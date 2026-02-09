@@ -37,6 +37,23 @@ class DBAccess {
             array_push($db["users"], $input);
             DBIO::writeToDb($db);
             return $input;
+        } else if ($url === "/groups") {
+            if (!isset($input["name"])) {
+                return self::defaultResp("Attributes missing");
+            }
+
+            $ids = array_column($db["groups"], "id");
+            $maxID = max($ids);
+            $input["id"] = $maxID + 1;
+            array_push($db["groups"], $input);
+            DBIO::writeToDb($db);
+            return $input;
+        } else if ($url === "/users_groups") {
+            if (!isset($input["userID"]) or !isset($input["groupID"])) {
+                return self::defaultResp("Attributes missing");
+            }
+
+            
         } else {
             return self::defaultResp("Bad request");
         }
