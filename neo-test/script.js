@@ -1,8 +1,9 @@
-let req = new Request("http://localhost:8000/", {
+let req = new Request("http://localhost:8000/users_groups", {
     headers: {"Content-type": "application/json"},
     method: "POST",
     body: JSON.stringify({
-        name: "test",
+        userID: 1,
+        groupID: 5,
     })
 });
 

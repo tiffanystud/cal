@@ -53,7 +53,10 @@ class DBAccess {
                 return self::defaultResp("Attributes missing");
             }
 
-            
+            $userIDExists = array_find($db["users"], fn($x) => x["id"] === $input["userID"]);
+            $groupIDExists = array_find($db["groups"], fn($x) => x["id"] === $input["groupID"]);
+
+            return self::defaultResp();
         } else {
             return self::defaultResp("Bad request");
         }
