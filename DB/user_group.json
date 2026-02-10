@@ -1,0 +1,45 @@
+[
+    {
+        "user_groupId": 1,
+        "userId": 1,
+        "groupId": 2,
+        "isAdmin": "true"
+    },
+    {
+        "user_groupId": 2,
+        "userId": 1,
+        "groupId": 1,
+        "isAdmin": "false"
+    },
+    {
+        "user_groupId": 3,
+        "userId": 2,
+        "groupId": 2,
+        "isAdmin": "false"
+    },
+    {
+        "user_groupId": 4,
+        "userId": 2,
+        "groupId": 3,
+        "isAdmin": "true"
+    },
+    {
+        "user_groupId": 5,
+        "userId": 3,
+        "groupId": 3,
+        "isAdmin": "false"
+    },
+    {
+        "user_groupId": 6,
+        "userId": 4,
+        "groupId": 1,
+        "isAdmin": "true"
+    },
+    {
+        "user_groupId": 7,
+        "userId": 5,
+        "groupId": 2,
+        "isAdmin": "false"
+    }
+]
+

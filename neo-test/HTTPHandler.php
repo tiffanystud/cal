@@ -34,6 +34,12 @@ class HTTPHandler {
         } else if ($method === "POST") {
             $input = file_get_contents("php://input");
             return json_encode(DBAccess::postHandler(json_decode($input, true)));
+        } else if($method === "PATCH") {
+            $input = file_get_contents("php://input");
+            return json_encode(DBAccess::patchHandler(json_decode($input, true)));
+        } else if($method === "DELETE") {
+            $input = file_get_contents("php://input");
+            return json_encode(DBAccess::deleteHandler(json_decode($input, true)));
         }
     }
 }
