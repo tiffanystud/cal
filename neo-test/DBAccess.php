@@ -53,7 +53,25 @@ class DBAccess {
                 return self::defaultResp("Attributes missing");
             }
 
-            
+            $userIDExists = array_find($db["users"], fn($x) => $x["id"] === $input["userID"]);
+            $groupIDExists = array_find($db["groups"], fn($x) => $x["id"] === $input["groupID"]);
+
+            if (!$userIDExists or !$groupIDExists) {
+                return self::defaultResp("Invalid request body");
+            }
+
+            $userInGroupAlready = array_find($db["users_groups"], fn($x) => $x["userID"] === $input["userID"] && $x["groupID"] === $input["groupID"]);
+            if ($userInGroupAlready !== null) {
+                return self::defaultResp("User already in group");
+            }
+
+            $ids = array_column($db["users_groups"], "id");
+            $maxID = max($ids);
+            $input["id"] = $maxID + 1;
+            $input["isAdmin"] = false;
+            array_push($db["users_groups"], $input);
+            DBIO::writeToDb($db);
+            return $input;
         } else {
             return self::defaultResp("Bad request");
         }
