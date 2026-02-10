@@ -62,10 +62,57 @@ class DBAccess {
         $url = $_SERVER["REQUEST_URI"];
         $db = DBIO::readDB();
         if($url === "/users") {
-            if(!isset($))
+            if (!isset($input["id"])) {
+                return self::defaultResp("Attributes missing");
+            } else if(!isset($input["userName"]) && !isset($input["pwd"]) && !isset($input["email"])) {
+                return self::defaultResp("Attributes missing");
+            }
+
+            $id = $input["id"];
+            $userName;
+            $pwd;
+            $email;
+
+            if(isset($input["userName"])) {
+                $userName = $input["userName"];
+            } else {
+                $userName = null;
+            }
+            if(isset($input["pwd"])) {
+                $pwd = $input["pwd"];
+            } else {
+                $pwd = null;
+            }
+            if(isset($input["email"])) {
+                $email = $input["email"];
+            } else {
+                $email = null;
+            }
+
+            $userFound = false;
+
+            foreach ($db["users"] as &$user) {
+                if($user["id"] === $id) {
+                    $userFound = true;
+                    if(($userName !== null)) {
+                        $user["userName"] = $userName;
+                    }
+                    if(($pwd !== null)) {
+                        $user["pwd"] = $pwd;
+                    }
+                    if(($email !== null)) {
+                        $user["email"] = $email;
+                    }
+
+                    DBIO::writeToDb($db);
+                    return $user;
+                }
+            }
+            if (!$userFound) {
+                return self::defaultResp("User not found");
+            }
 
 
-            
         } else if($url === "/groups") {
             //
         } else if($url == "/users_groups") {

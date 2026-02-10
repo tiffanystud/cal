@@ -1,8 +1,9 @@
-let req = new Request("http://localhost:8000/", {
+let req = new Request("http://localhost:8000/users", {
     headers: {"Content-type": "application/json"},
-    method: "POST",
+    method: "PATCH",
     body: JSON.stringify({
-        name: "test",
+        id:4,
+        email: "hejhej@gmail.com"
     })
 });
 
