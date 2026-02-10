@@ -38,7 +38,8 @@ class HTTPHandler {
             $input = file_get_contents("php://input");
             return json_encode(DBAccess::patchHandler(json_decode($input, true)));
         } else if($method === "DELETE") {
-            //Do something
+            $input = file_get_contents("php://input");
+            return json_encode(DBAccess::deleteHandler(json_decode($input, true)));
         }
     }
 }

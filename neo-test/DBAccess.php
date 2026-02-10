@@ -139,4 +139,27 @@ class DBAccess {
             return self::defaultResp("Attribute missing");
         }
     }
+    public static function deleteHandler($input){
+        $url = $_SERVER["REQUEST_URI"];
+        $db = DBIO::readDb();
+
+        if($url == "/users"){
+            if (!isset($input["userName"]) or !isset($input["pwd"]) or !isset($input["email"])) {
+                return self::defaultResp("Attributes missing");
+            }
+
+             $updatedContent = [];
+
+            foreach($db["users"] as $content){
+                if($input["userName"] != $content["userName"] && $input["email"] != $content["email"]){
+                    array_push($updatedContent, $content);
+                }
+            }
+
+            $db["users"] = "";
+            $db["users"] = $updatedContent;
+            DBIO::writeToDb($db);
+            return $input;
+        }       
+    }
 }
