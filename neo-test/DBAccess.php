@@ -71,6 +71,47 @@ class DBAccess {
         
         // PATCH: /users
         if($url === "/users") {
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
             // Elias kör
 
             
