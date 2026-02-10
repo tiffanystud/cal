@@ -145,6 +145,7 @@ class DBAccess {
                 if ($currentGroup["id"] == $input["id"]) {
                     
                     $currentGroup["name"] = $newName;
+                    DBIO::writeToDb(data: $db);
                     return $currentGroup;
                     
                 } else {
@@ -195,6 +196,7 @@ class DBAccess {
                         $targetCurrentUserGroup["groupID"] == $meGroupID
                         ) {
                             $targetCurrentUserGroup["isAdmin"] = $updateAdminStatus;
+                            DBIO::writeToDb(data: $db);
                             return $targetCurrentUserGroup;
                         }
                     }                    
