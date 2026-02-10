@@ -133,9 +133,9 @@ class DBAccess {
 
         } else if($url === "/groups") {
         //Check if input contains ID and name
-            if (!isset($input["id"]) and !isset($input["name"]) ) {
-                return self::defaultResp("Attributes missing");
-            }
+        if (!isset($input["name"])) {
+            return self::defaultResp("Attributes missing");
+        }
             
             $existingGroups = $db["groups"];
             $newName = $input["name"];
@@ -220,8 +220,8 @@ class DBAccess {
                 return self::defaultResp("Attributes missing");
             }
 
-             $updatedContent = [];
-
+            $updatedContent = [];
+            
             foreach($db["users"] as $content){
                 if($input["userName"] != $content["userName"] && $input["email"] != $content["email"]){
                     array_push($updatedContent, $content);
@@ -232,6 +232,42 @@ class DBAccess {
             $db["users"] = $updatedContent;
             DBIO::writeToDb($db);
             return $input;
-        }       
+            
+        } else if($url == "/groups"){
+
+            if (!isset($input["name"])) {
+                return self::defaultResp("Attributes missing");
+            }
+
+            $updatedContent = [];
+            
+            foreach($db["groups"] as $content){
+                if($input["name"] != $content["name"]){
+                    array_push($updatedContent, $content);
+                }
+            }
+
+            $db["groups"] = "";
+            $db["groups"] = $updatedContent;
+            DBIO::writeToDb($db);
+
+        } else if("/users_groups"){
+
+            if (!isset($input["userID"]) or !isset($input["groupID"])) {
+                return self::defaultResp("Attributes missing");
+            }
+
+            $updatedContent = [];
+            
+            foreach($db["users_groups"] as $content){
+                if($input["userID"] != $content["userID"] && $input["groupID"] != $content["groupID"]){
+                    array_push($updatedContent, $content);
+                }
+            }
+
+            $db["user_groups"] = "";
+            $db["user_groups"] = $updatedContent;
+            DBIO::writeToDb($db);
+        }
     }
 }
