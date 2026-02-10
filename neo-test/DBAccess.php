@@ -132,11 +132,83 @@ class DBAccess {
 
 
         } else if($url === "/groups") {
-            //
-        } else if($url == "/users_groups") {
+        //Check if input contains ID and name
+            if (!isset($input["id"]) and !isset($input["name"]) ) {
+                return self::defaultResp("Attributes missing");
+            }
+            
+            $existingGroups = $db["groups"];
+            $newName = $input["name"];
+            
+            foreach($existingGroups as $currentGroup) {
+                // Update group name if ID found
+                if ($currentGroup["id"] == $input["id"]) {
+                    
+                    $currentGroup["name"] = $newName;
+                    return $currentGroup;
+                    
+                } else {
+                    
+                    return self::defaultResp(message: "Not found. Could not update.");
+                }
+                
+            }
+            // Hitta gruppen med id 
+            
+        // PATCH: /users_groups
+        } else if ($url == "/users_groups") {
 
+            if (!isset($input["me"]) || !isset($input["updates"])) {
+                return self::defaultResp("Missing me or updates");
+            }
+
+            //Req. attributen (två olika ass. arrs)
+            $me = $input["me"];
+            $updates = $input["updates"];
+        
+            // Me attributes
+            $meUserID = $me["userID"];
+            $meGroupID = $me["groupID"];
+            $meIsAdmin = false;
+            
+            // Target/update attributes
+            $targetUserID = $updates["userID"];
+            $updateAdminStatus = $updates["isAdmin"];
+
+            foreach ($db["users_groups"] as $currentUsersGroup) {
+
+                // Kolla om me finns i user_groups
+                if (
+                    $currentUsersGroup["userID"] == $meUserID &&
+                    $currentUsersGroup["groupID"] == $meGroupID
+                ) {
+                    // Kolla om den som skickar request (me) är admin
+                    if (!$currentUsersGroup["isAdmin"] == false) {
+                        return self::defaultResp("Unauthorized");
+                    }
+
+                // Hitta target som ska uppdateras
+                foreach($db["users_groups"] as $targetCurrentUserGroup) {
+                    if (
+                        // Kolla om me är admin i target group 
+                        $targetCurrentUserGroup["userID"] == $targetUserID && 
+                        $targetCurrentUserGroup["groupID"] == $meGroupID
+                        ) {
+                            $targetCurrentUserGroup["isAdmin"] = $updateAdminStatus;
+                            return $targetCurrentUserGroup;
+                        }
+                    }                    
+
+                    return self::defaultResp("Unauthorized");
+                }
+            }
+
+            return self::defaultResp("Not found");
+            
         } else {
+            
             return self::defaultResp("Attribute missing");
+            
         }
     }
     public static function deleteHandler($input){
