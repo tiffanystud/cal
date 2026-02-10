@@ -35,7 +35,10 @@ class HTTPHandler {
             $input = file_get_contents("php://input");
             return json_encode(DBAccess::postHandler(json_decode($input, true)));
         } else if($method === "PATCH") {
-            //DO something
+            $input = file_get_contents("php://input");
+            
+
+
         } else if($method === "DELETE") {
             //Do something
         }

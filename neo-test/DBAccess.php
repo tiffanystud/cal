@@ -58,4 +58,20 @@ class DBAccess {
             return self::defaultResp("Bad request");
         }
     }
+    public static function patchHandler($input) {
+        $url = $_SERVER["REQUEST_URI"];
+        $db = DBIO::readDB();
+        if($url === "/users") {
+            if(!isset($))
+
+
+            
+        } else if($url === "/groups") {
+            //
+        } else if($url == "/users_groups") {
+
+        } else {
+            return self::defaultResp("Attribute missing");
+        }
+    }
 }
