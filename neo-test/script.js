@@ -3,6 +3,7 @@ let req = new Request("http://localhost:8000/users_groups", {
     method: "POST",
     body: JSON.stringify({
         userID: 5,
+        groupID: 3
     })
 });
 
