@@ -90,5 +90,14 @@ function PATCH($input, $url) {
 }
 
 function DELETE($input, $url) {
+    if ($url === "/users") {
+        if (!isset($input["id"]) or !isset($input["pwd"])) {
+            return ["error" => "Attributes missing"];
+        }
 
+        $data = ["id" => $input["id"], "pwd" => $input["pwd"]];
+        return deleteUser($data);
+    } else if($url === "/groups") {
+        
+    }
 }
