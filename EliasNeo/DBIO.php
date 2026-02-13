@@ -23,6 +23,53 @@
         writeToDb($db);
         return $newUser;
     }
+
+    function addGroup($data) {
+        $db = readDb();
+        $id = count($db["groups"]) + 1;
+
+        $newGroup = [
+            "id" => $id,
+            "name" => $data["name"]
+        ];
+        array_push($db["groups"], $newGroup);
+        writeToDb($db);
+        return $newGroup;
+    }
+
+    function addUserToGroup($data) { //userID, groupId, isAdmin
+        $db = readDb();
+
+        $userExist = false;
+        foreach($db["users"] as $user) {
+            if($user["id"] === $data["userID"]) {
+                $userExist = true;
+                break;
+            }
+        }
+        $groupExist = false;
+        foreach($db["groups"] as $group) {
+            if($group["id"] === $data["groupID"]) {
+                $groupExist = true;
+                break;
+            }
+        }
+        if($userExist && $groupExist) {
+            $id = count($db["users_groups"]) + 1;
+            $newUserToGroup = [
+                "id" => $id,
+                "userId" => $data["userID"],
+                "groupId" => $data["groupID"],
+                "isAdmin" => $data["isAdmin"]
+            ];
+            array_push($db["users_groups"], $newUserToGroup);
+            writeToDb($db);
+            return $newUserToGroup;
+        } else {
+            return ["error" => "User or group dont exist"];
+        }
+        
+    }
     
 
 

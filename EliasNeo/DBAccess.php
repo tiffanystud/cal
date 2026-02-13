@@ -46,11 +46,11 @@ function POST($input, $url) {
         $data = ["name" => $input["name"]];
         return addGroup($data);
     } else if ($url === "/users_groups") {
-        if (!isset($input["userID"]) or !isset($input["groupID"])) {
+        if (!isset($input["userID"]) or !isset($input["groupID"]) or !isset($input["isAdmin"])) {
             return ["error" => "Missing attributes"];
         }
 
-        $data = ["userID" => $input["userID"], "groupID" => $input["groupID"]];
+        $data = ["userID" => $input["userID"], "groupID" => $input["groupID"], "isAdmin" => $input["isAdmin"]];
         return addUserToGroup($data);
     } else {
         return ["error" => "Bad request"];

@@ -29,12 +29,6 @@
             "userName": "Alina",
             "pwd": 123,
             "email": "mail@mail.com"
-        },
-        {
-            "id": 6,
-            "userName": "Tomte",
-            "pwd": "hohoho",
-            "email": "tomte@gmail.com"
         }
     ],
     "groups": [
@@ -99,6 +93,12 @@
             "groupID": 3,
             "id": 8,
             "isAdmin": false
+        },
+        {
+            "id": 9,
+            "userId": 1,
+            "groupId": 2,
+            "isAdmin": true
         }
     ]
 }
