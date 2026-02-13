@@ -11,10 +11,11 @@
 
     function addUser($data) {
         $db = readDb();
-        $id = count($db["users"]) + 1;
+        $ids = array_column($db["users"], "id");
+        $newID = max($ids) + 1;
 
         $newUser = [
-            "id" => $id,
+            "id" => $newID,
             "userName" => $data["userName"],
             "pwd" => $data["pwd"],
             "email" => $data["email"]
@@ -26,10 +27,11 @@
 
     function addGroup($data) {
         $db = readDb();
-        $id = count($db["groups"]) + 1;
+        $ids = array_column($db["groups"], "id");
+        $newID = max($ids) + 1;
 
         $newGroup = [
-            "id" => $id,
+            "id" => $maxID,
             "name" => $data["name"]
         ];
         array_push($db["groups"], $newGroup);
@@ -55,9 +57,10 @@
             }
         }
         if($userExist && $groupExist) {
-            $id = count($db["users_groups"]) + 1;
+            $ids = array_column($db["users_groups"], "id");
+            $newID = max($ids) + 1;
             $newUserToGroup = [
-                "id" => $id,
+                "id" => $newID,
                 "userId" => $data["userID"],
                 "groupId" => $data["groupID"],
                 "isAdmin" => $data["isAdmin"]
@@ -69,6 +72,94 @@
             return ["error" => "User or group dont exist"];
         }
         
+    }
+
+    function deleteGroup($data) {
+        $db = readDb();
+
+        $group = array_find($db["groups"], fn($x) => $x["id"] === $data["id"]);
+        if (!$group) {
+            return ["error" => "Group not found"];
+        } else if ($group["name"] !== $data["name"]) {
+            return ["error" => "Group name does not match input"];
+        }
+
+        for ($i=0; $i<count($db["groups"]); $i++) {
+            if ($db["groups"][$i]["id"] === $group["id"]) {
+                array_splice($db["groups"], $i, 1);
+                writeToDb($db);
+                return ["success" => "Group deleted successfully"];
+            }
+        }
+    }
+
+    function deleteUser($data) {
+        $db = readDb();
+
+        $user = array_find($db["users"], fn($x) => $x["id"] === $data["id"]);
+        if (!$user) {
+            return ["error" => "User not found"];
+        } else if ($user["pwd"] !== $data["pwd"]) {
+            return ["error" => "Incorrect password"];
+        }
+
+        for ($i=0; i<count($db["users"]); $i++) {
+            if ($db["users"][$i]["id"] === $user["id"]) {
+                array_splice($db["users"], $i, 1);
+                writeToDb($db);
+                return ["success" => "User successfully deleted"];
+            }
+        }
+    }
+
+    function getGroups($idParam = null) {
+        $db = readDb();
+
+        if ($idParam) {
+            $id = intval($idParam);
+            $group = array_find($db["groups"], fn($x) => $x["id"] === $id);
+            if (!$group) {
+                return ["error" => "Group not found"];
+            } else {
+                return $group;
+            }
+        } else {
+            return $db["groups"];
+        }
+    }
+
+    function getUsers($idParam = null) {
+        $db = readDb();
+
+        if ($idParam) {
+            $id = intval($idParam);
+            $user = array_find($db["users"], fn($x) => $x["id"] === $id);
+            if (!$user) {
+                return ["error" => "User not found"];
+            } else {
+                return $user;
+            }
+        } else {
+            return $db["users"];
+        }
+    }
+
+    function getUsersGroups($params = null) {
+        $db = readDb();
+
+        if ($params) {
+            if (isset($params["userID"])) {
+                $userID = intval($param["userID"]);
+                $allGroupsWithUser = array_filter($db["users_groups"], fn($x) => $x["userID"] === $userID);
+                return $allGroupsWithUser;
+            } else if (isset($params["groupID"])) {
+                $groupID = intval($param["groupID"]);
+                $allUsersInGroup = array_filter($db["users_groups"], fn($x) => $x["groupID"] === $groupID);
+                return $allUsersInGroup;
+            }
+        } else {
+            return $db["users_groups"];
+        }
     }
 
     function patchUser($data) {
@@ -140,6 +231,29 @@
             return ["success" => "group updated successfully"];
         } else {
             return ["error" => "group doesn't exist"];
+        }
+    }
+
+    function removeUserFromGroup($data) {
+        $db = readDb();
+
+        $user = array_find($db["users"], fn($x) => $x["id"] === $data["userID"]);
+        $group = array_find($db["groups"], fn($x) => $x["id"] === $data["groupID"]);
+        if (!$user or !$group) {
+            return ["error" => "User or group not found"];
+        }
+
+        $userInGroup = array_find($db["users_groups"], fn($x) => $x["userID"] === $user["id"] && $x["groupID"] === $group["id"]);
+        if (!$userInGroup) {
+            return ["error" => "User is not a member of the specified group"];
+        }
+
+        for ($i=0; $i<count($db["users_groups"]); $i++) {
+            if ($db["users_groups"][$i]["userID"] === $user["id"] && $db["users_groups"][$i]["groupID"] === $group["id"]) {
+                array_splice($db["users_groups"], $i, 1);
+                writeToDb($db);
+                return ["success" => "User successfully removed from group"];
+            }
         }
     }
         

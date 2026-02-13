@@ -9,7 +9,11 @@ function GET($input, $url) {
     if (isset($input["id"]) && $url === "/users") {
         return getUsers($input["id"]);
     } else if (isset($input["id"]) && $url === "/groups") {
-        return getGroup($input["id"]);
+        return getGroups($input["id"]);
+    } else if (isset($input["userID"]) && $url === "/users_groups") {
+        return getUsersGroups($input);
+    } else if (isset($input["groupID"]) && $url === "/users_groups") {
+        return getUsersGroups($input);
     } else {
          switch ($url) {
             case "/users":
