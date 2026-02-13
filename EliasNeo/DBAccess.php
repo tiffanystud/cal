@@ -108,6 +108,20 @@ function DELETE($input, $url) {
         $data = ["id" => $input["id"], "pwd" => $input["pwd"]];
         return deleteUser($data);
     } else if($url === "/groups") {
-        
+        if (!isset($input["id"]) or !isset($input["name"])) {
+            return ["error" => "Attributes missing"];
+        }
+
+        $data = ["id" => $input["id"], "name" => $input["name"]];
+        return deleteGroup($data);
+    } else if ($url === "/users_groups") {
+        if (!isset($input["userID"]) or !isset($input["groupID"])) {
+            return ["error" => "Attributes missing"];
+        }
+
+        $data = ["userID" => $input["userID"], "groupID" => $input["groupID"]];
+        return removeUserFromGroup($data);
+    } else {
+        return ["error" => "Bad request"];
     }
 }
