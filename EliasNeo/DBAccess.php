@@ -1,5 +1,5 @@
 <?php
-//require_once "DBIO.php";
+require_once "DBIO.php";
 
 function methodHandler($method, $input, $url) {
     return $method($input, $url);

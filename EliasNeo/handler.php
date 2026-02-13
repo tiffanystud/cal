@@ -51,9 +51,7 @@
         } else {
             sendJSON($data, 200);
         }
-        
     }
-    handler($_SERVER["REQUEST_URI"], $_SERVER["REQUEST_METHOD"]);
 ?>
 
 

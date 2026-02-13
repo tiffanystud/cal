@@ -29,6 +29,12 @@
             "userName": "Alina",
             "pwd": 123,
             "email": "mail@mail.com"
+        },
+        {
+            "id": 6,
+            "userName": "Tomte",
+            "pwd": "hohoho",
+            "email": "tomte@gmail.com"
         }
     ],
     "groups": [
