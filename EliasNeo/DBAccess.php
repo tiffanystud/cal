@@ -72,10 +72,13 @@ function PATCH($input, $url) {
             $data["email"] = $input["email"];
         }
 
-        if (count($data) === 0) {
+        if (count($data) === 0 or !isset($input["id"])) {
             return ["error" => "Invalid attributes"];
         }
+        $data["id"] = $input["id"];
 
+
+        
         return patchUser($data);
     } else if ($url === "/groups") {
         $data = [];

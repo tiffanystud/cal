@@ -70,6 +70,55 @@
         }
         
     }
+
+    function patchUser($data) {
+        $db = readDb();
+    
+        $userExist = false;
+        foreach ($db["users"] as $user) {
+            if ($user["id"] === $data["id"]) {
+                $userExist = true;
+                break;
+            }
+        }
+    
+        if ($userExist) {
+            $newUserName = null;
+            $newPwd = null;
+            $newEmail = null;
+    
+            if (isset($data["userName"])) {
+                $newUserName = $data["userName"];
+            }
+            if (isset($data["pwd"])) {
+                $newPwd = $data["pwd"];
+            }
+            if (isset($data["email"])) {
+                $newEmail = $data["email"];
+            }
+    
+            foreach ($db["users"] as &$user) {
+                if ($user["id"] === $data["id"]) {
+                    if ($newUserName !== null) {
+                        $user["userName"] = $newUserName;
+                    }
+                    if ($newPwd !== null) {
+                        $user["pwd"] = $newPwd;
+                    }
+                    if ($newEmail !== null) {
+                        $user["email"] = $newEmail;
+                    }
+                    break;
+                }
+            }
+            writeToDb($db);
+            return ["success" => "User updated successfully"];
+        } else {
+            return ["error" => "User doesn't exist"];
+        }
+    }
+        
+    
     
 
 
