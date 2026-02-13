@@ -84,6 +84,13 @@ function PATCH($input, $url) {
         $data = [];
         if (isset($input["name"])) {
             $data["name"] = $input["name"];
+        } else {
+            return ["error" => "No name"];
+        }
+        if(isset($input["groupID"])) {
+            $data["groupID"] = $input["groupID"];
+        } else {
+            return ["error" => "Must have groupID"];
         }
 
         return patchGroup($data);

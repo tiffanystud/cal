@@ -1,9 +1,9 @@
-let req = new Request("http://localhost:8000/users", {
+let req = new Request("http://localhost:8000/groups", {
     headers: {"Content-type": "application/json"},
     method: "PATCH",
     body: JSON.stringify({
-       id:4,
-       pwd: 12
+        name:"VIP",
+        groupID: 1
     })
 });
 

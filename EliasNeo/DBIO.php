@@ -117,6 +117,31 @@
             return ["error" => "User doesn't exist"];
         }
     }
+
+    function patchGroup($data) {
+        $db = readDb();
+
+        $groupExist = false;
+        foreach($db["groups"] as $group) {
+            if($group["id"] === $data["groupID"]) {
+                $groupExist = true;
+                break;
+            }
+        }
+
+        if($groupExist) {
+            foreach($db["groups"] as &$group) {
+                if($group["id"] === $data["groupID"]) {
+                    $group["name"] = $data["name"];
+                    break;
+                }
+            }
+            writeToDb($db);
+            return ["success" => "group updated successfully"];
+        } else {
+            return ["error" => "group doesn't exist"];
+        }
+    }
         
     
     
