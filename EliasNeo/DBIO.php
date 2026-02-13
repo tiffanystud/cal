@@ -9,10 +9,21 @@
         return true;
     }
 
-    function DBIOHandler() {
-        
+    function addUser($data) {
+        $db = readDb();
+        $id = count($db["users"]) + 1;
+
+        $newUser = [
+            "id" => $id,
+            "userName" => $data["userName"],
+            "pwd" => $data["pwd"],
+            "email" => $data["email"]
+        ];
+        array_push($db["users"], $newUser);
+        writeToDb($db);
+        return $newUser;
     }
-    //test
+    
 
 
 
