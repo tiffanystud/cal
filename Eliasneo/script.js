@@ -1,10 +1,6 @@
-let req = new Request("http://localhost:8000/groups", {
+let req = new Request("http://localhost:8000/users?id=1", {
     headers: {"Content-type": "application/json"},
-    method: "PATCH",
-    body: JSON.stringify({
-        name:"VIP",
-        groupID: 1
-    })
+    method: "GET"
 });
 
 fetch(req).then(resp => resp.json()).then(reso => console.log(reso));

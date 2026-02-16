@@ -21,7 +21,7 @@
         {
             "id": 4,
             "userName": "Elias",
-            "pwd": 12,
+            "pwd": 123,
             "email": "hejhej@gmail.com"
         },
         {
@@ -34,7 +34,7 @@
     "groups": [
         {
             "id": 1,
-            "name": "VIP"
+            "name": "Grupp 1"
         },
         {
             "id": 2,
@@ -93,12 +93,6 @@
             "groupID": 3,
             "id": 8,
             "isAdmin": false
-        },
-        {
-            "id": 9,
-            "userId": 1,
-            "groupId": 2,
-            "isAdmin": true
         }
     ]
 }

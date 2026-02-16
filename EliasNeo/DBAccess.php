@@ -6,6 +6,7 @@ function methodHandler($method, $input, $url) {
 }
 
 function GET($input, $url) {
+    $url = parse_url($url, PHP_URL_PATH);
     if (isset($input["id"]) && $url === "/users") {
         return getUsers($input["id"]);
     } else if (isset($input["id"]) && $url === "/groups") {

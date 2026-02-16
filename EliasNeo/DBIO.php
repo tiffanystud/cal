@@ -4,6 +4,10 @@
         $db = file_get_contents("db.json");
         return json_decode($db, true);
     }
+    function resetDb() {
+        $backupDb = file_get_contents("db copy.json");
+        writeToDb(json_decode($backupDb), true);
+    }
     function writeToDb($data) {
         file_put_contents("db.json", json_encode($data, JSON_PRETTY_PRINT));
         return true;
@@ -31,7 +35,7 @@
         $newID = max($ids) + 1;
 
         $newGroup = [
-            "id" => $maxID,
+            "id" => $newID,
             "name" => $data["name"]
         ];
         array_push($db["groups"], $newGroup);
@@ -61,8 +65,8 @@
             $newID = max($ids) + 1;
             $newUserToGroup = [
                 "id" => $newID,
-                "userId" => $data["userID"],
-                "groupId" => $data["groupID"],
+                "userID" => $data["userID"],
+                "groupID" => $data["groupID"],
                 "isAdmin" => $data["isAdmin"]
             ];
             array_push($db["users_groups"], $newUserToGroup);
@@ -103,7 +107,7 @@
             return ["error" => "Incorrect password"];
         }
 
-        for ($i=0; i<count($db["users"]); $i++) {
+        for ($i=0; $i<count($db["users"]); $i++) {
             if ($db["users"][$i]["id"] === $user["id"]) {
                 array_splice($db["users"], $i, 1);
                 writeToDb($db);
@@ -149,11 +153,11 @@
 
         if ($params) {
             if (isset($params["userID"])) {
-                $userID = intval($param["userID"]);
+                $userID = intval($params["userID"]);
                 $allGroupsWithUser = array_filter($db["users_groups"], fn($x) => $x["userID"] === $userID);
                 return $allGroupsWithUser;
             } else if (isset($params["groupID"])) {
-                $groupID = intval($param["groupID"]);
+                $groupID = intval($params["groupID"]);
                 $allUsersInGroup = array_filter($db["users_groups"], fn($x) => $x["groupID"] === $groupID);
                 return $allUsersInGroup;
             }
