@@ -19,8 +19,11 @@ function testGET($url, $i) {
     //exekverar själva requesten, skickar en HTTP request till $url med de headers eller
     //andra options vi lagt till
     $resp = curl_exec($req);
+    //Hämtar HTTP-status koden av responsen
     $status = curl_getinfo($req, CURLINFO_HTTP_CODE);
 
+    //Körs om ett error kastas under requesten, dvs network error, CORS-error osv
+    //INTE om responsen returnerar HTTP-kod 400, 500 etc
     if ($resp === false) {
         echo curl_error($req);
     }
@@ -35,7 +38,10 @@ function testPOST($url, $i, $reqBody) {
     curl_setopt($req, CURLOPT_HTTPHEADER, [
         "Content-Type: application/json"
     ]);
+    //Sätter Method till POST
     curl_setopt($req, CURLOPT_POST, true);
+    //Anger request-bodyn, eftersom nuvarande API använder JSON, används json_encode vid
+    //sista argument
     curl_setopt($req, CURLOPT_POSTFIELDS, json_encode($reqBody));
 
     $resp = curl_exec($req);
@@ -55,6 +61,10 @@ function testPATCH($url, $i, $reqBody) {
     curl_setopt($req, CURLOPT_HTTPHEADER, [
         "Content-Type: application/json"
     ]);
+    //Ändrar request method till det som tredje argumentet innehåller
+    //Krävs när PATCH eller DELETE ska användas (i vårt fall)
+    //Kan även användas för att definiera "POST"
+    //Defaultar till GET om ingen annan metod angivits
     curl_setopt($req, CURLOPT_CUSTOMREQUEST, "PATCH");
     curl_setopt($req, CURLOPT_POSTFIELDS, json_encode($reqBody));
 
@@ -88,41 +98,49 @@ function testDELETE($url, $i, $reqBody) {
     echo "<p style='background-color: lime'>DELETE Test $i: to url: $url with body: $body<br>Response: $resp<br>Status: $status<br><br></p>";
 }
 
-$getTestURLs = ["http://localhost:8001/users?id=1", "http://localhost:8001/groups?id=1", "http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/users_groups", "http://localhost:8001/users_groups?userID=1", "http://localhost:8001/users_groups?groupID=1", "http://localhost:8001/users?id=7", "http://localhost:8001/test"];
+$getTestURLs = ["http://localhost:8001/users?id=1", "http://localhost:8001/groups?id=1", "http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/users_groups", "http://localhost:8001/users_groups?userID=1", "http://localhost:8001/users_groups?groupID=1", "http://localhost:8001/users?id=7", "http://localhost:8001/groups?id=7", "http://localhost:8001/test"];
 for ($i=0; $i<count($getTestURLs); $i++) {
     testGET($getTestURLs[$i], $i + 1);
 }
 
-$postTestURLs = ["http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/users_groups", "http://localhost:8001/users", "http://localhost:8001/test"];
+$postTestURLs = ["http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/users_groups", "http://localhost:8001/users_groups", "http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/test"];
 $postTestBodies = [
     ["userName" => "test", "pwd" => 123, "email" => "mail@mail.com"],
     ["name" => "Coola gruppen"],
     ["userID" => 1, "groupID" => 3, "isAdmin" => false],
+    ["userID" => 1, "groupID" => 1, "isAdmin" => false],
     ["userName" => "test2", "pwd" => 123],
+    [],
     []
 ];
 for ($i=0; $i<count($postTestURLs); $i++) {
     testPOST($postTestURLs[$i], $i + 1, $postTestBodies[$i]);
 }
 
-$patchTestURLs = ["http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/test", "http://localhost:8001/users"];
+$patchTestURLs = ["http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/test", "http://localhost:8001/users", "http://localhost:8001/groups"];
 $patchTestBodies = [
     ["id" => 6, "pwd" => 456],
     ["groupID" => 4, "name" => "Coolare gruppen"],
     [],
-    ["userName" => "newName"]
+    ["userName" => "newName"],
+    ["name" => "newName"]
 ];
 for ($i=0; $i<count($patchTestURLs); $i++) {
     testPATCH($patchTestURLs[$i], $i + 1, $patchTestBodies[$i]);
 }
 
-$deleteTestURLs = ["http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/users_groups", "http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/test"];
+$deleteTestURLs = ["http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/users_groups", "http://localhost:8001/users_groups", "http://localhost:8001/users_groups", "http://localhost:8001/users", "http://localhost:8001/users", "http://localhost:8001/groups", "http://localhost:8001/groups", "http://localhost:8001/groups", "http://localhost:8001/test"];
 $deleteTestBodies = [
     ["id" => 6, "pwd" => 456],
     ["id" => 4, "name" => "Coolare gruppen"],
     ["userID" => 1, "groupID" => 3],
+    ["userID" => 9, "groupID" => 3],
+    ["userID" => 5, "groupID" => 2],
     ["id" => 1, "pwd" => "fel"],
+    ["id" => 10, "pwd" => 123],
     ["id" => 2],
+    ["id" => 6, "name" => "Name"],
+    ["id" => 1, "name" => "fel"],
     []
 ];
 for ($i=0; $i<count($deleteTestURLs); $i++) {

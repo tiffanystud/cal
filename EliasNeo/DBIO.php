@@ -61,6 +61,11 @@
             }
         }
         if($userExist && $groupExist) {
+            $userAlreadyInGroup = array_find($db["users_groups"], fn($x) => $x["userID"] === $data["userID"] && $x["groupID"] === $data["groupID"]);
+            if ($userAlreadyInGroup) {
+                return ["error" => "User already in group"];
+            }
+
             $ids = array_column($db["users_groups"], "id");
             $newID = max($ids) + 1;
             $newUserToGroup = [
