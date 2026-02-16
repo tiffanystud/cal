@@ -42,6 +42,7 @@
 
         if($method === "GET") {
            $input = $_GET; // Hämta alla parameters
+
         } else {
             $input = json_decode($input, true);
         }

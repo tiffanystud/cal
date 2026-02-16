@@ -31,7 +31,7 @@
         $newID = max($ids) + 1;
 
         $newGroup = [
-            "id" => $maxID,
+            "id" => $newID,
             "name" => $data["name"]
         ];
         array_push($db["groups"], $newGroup);
@@ -103,7 +103,7 @@
             return ["error" => "Incorrect password"];
         }
 
-        for ($i=0; i<count($db["users"]); $i++) {
+        for ($i=0; $i<count($db["users"]); $i++) {
             if ($db["users"][$i]["id"] === $user["id"]) {
                 array_splice($db["users"], $i, 1);
                 writeToDb($db);
@@ -149,11 +149,11 @@
 
         if ($params) {
             if (isset($params["userID"])) {
-                $userID = intval($param["userID"]);
+                $userID = intval($params["userID"]);
                 $allGroupsWithUser = array_filter($db["users_groups"], fn($x) => $x["userID"] === $userID);
                 return $allGroupsWithUser;
             } else if (isset($params["groupID"])) {
-                $groupID = intval($param["groupID"]);
+                $groupID = intval($params["groupID"]);
                 $allUsersInGroup = array_filter($db["users_groups"], fn($x) => $x["groupID"] === $groupID);
                 return $allUsersInGroup;
             }
@@ -237,19 +237,19 @@
     function removeUserFromGroup($data) {
         $db = readDb();
 
-        $user = array_find($db["users"], fn($x) => $x["id"] === $data["userID"]);
-        $group = array_find($db["groups"], fn($x) => $x["id"] === $data["groupID"]);
+        $user = array_find($db["users"], fn($x) => $x["id"] == $data["userID"]);
+        $group = array_find($db["groups"], fn($x) => $x["id"] == $data["groupID"]);
         if (!$user or !$group) {
             return ["error" => "User or group not found"];
         }
 
-        $userInGroup = array_find($db["users_groups"], fn($x) => $x["userID"] === $user["id"] && $x["groupID"] === $group["id"]);
+        $userInGroup = array_find($db["users_groups"], fn($x) => $x["userId"] == $user["id"] && $x["groupId"] == $group["id"]);
         if (!$userInGroup) {
             return ["error" => "User is not a member of the specified group"];
         }
 
         for ($i=0; $i<count($db["users_groups"]); $i++) {
-            if ($db["users_groups"][$i]["userID"] === $user["id"] && $db["users_groups"][$i]["groupID"] === $group["id"]) {
+            if ($db["users_groups"][$i]["userId"] == $user["id"] && $db["users_groups"][$i]["groupId"] == $group["id"]) {
                 array_splice($db["users_groups"], $i, 1);
                 writeToDb($db);
                 return ["success" => "User successfully removed from group"];
