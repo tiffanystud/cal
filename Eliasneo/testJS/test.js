@@ -118,42 +118,7 @@ async function test() {
     console.log(resource);
 
 
-
-
-
     //Test 9
-    //200 User successfully deleted
-    req = new Request("http://localhost:8000/users", {
-        headers: { "Content-type": "application/json" },
-        method: "DELETE",
-        body: JSON.stringify({
-            id: 6,
-            pwd: "123",
-        })
-    });
-    response = await fetch(req); 
-    resource = await response.json(); 
-    document.getElementById("testRe9").textContent = `${response.status} ${JSON.stringify(resource)}`;
-    console.log(resource);
-
-
-    //Test 10
-    //200 Group deleted successfully
-    req = new Request("http://localhost:8000/groups", {
-        headers: { "Content-type": "application/json" },
-        method: "DELETE",
-        body: JSON.stringify({
-            id: 4,
-            name: "Tomteverkstad",
-        })
-    });
-    response = await fetch(req); 
-    resource = await response.json(); 
-    document.getElementById("testRe10").textContent = `${response.status} ${JSON.stringify(resource)}`;
-    console.log(resource);
-
-
-    //Test 11
     //200 User successfully removed from group
     req = new Request("http://localhost:8000/users_groups", {
         headers: { "Content-type": "application/json" },
@@ -165,7 +130,55 @@ async function test() {
     });
     response = await fetch(req); 
     resource = await response.json(); 
+    document.getElementById("testRe9").textContent = `${response.status} ${JSON.stringify(resource)}`;
+    console.log(resource);
+
+
+    //Test 10
+    //200 User successfully deleted
+    req = new Request("http://localhost:8000/users", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            id: 6,
+            pwd: "123",
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("testRe10").textContent = `${response.status} ${JSON.stringify(resource)}`;
+    console.log(resource);
+
+
+    //Test 11
+    //200 Group deleted successfully
+    req = new Request("http://localhost:8000/groups", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            id: 4,
+            name: "Tomteverkstad",
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
     document.getElementById("testRe11").textContent = `${response.status} ${JSON.stringify(resource)}`;
+    console.log(resource);
+
+
+    //Test 12
+    //400 Content-Type must be JSON
+    req = new Request("http://localhost:8000/groups", {
+        headers: { "Content-type": "text/html" },
+        method: "PATCH",
+        body: JSON.stringify({
+            id: 1,
+            username: "Erik"
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("testRe12").textContent = `${response.status} ${JSON.stringify(resource)}`;
     console.log(resource);
 }
 
