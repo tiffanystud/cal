@@ -59,7 +59,7 @@ class DBAccess {
 
     public function deleteData($input){
         $db = DBIO::readDb();
-        $db[$this->resource] = array_filter($db[this->resource], fn($tableObject) => $tableObject != $input);
+        $db[$this->resource] = array_filter($db[$this->resource], fn($tableObject) => $tableObject != $input);
         DBIO::writeToDb($db);
     }
 
