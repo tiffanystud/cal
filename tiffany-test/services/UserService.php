@@ -47,7 +47,6 @@ class UserService {
                     }
                 }
             }
-            
         }
 
     }   
@@ -72,21 +71,22 @@ class UserService {
             exit();
         }
             
-        if(count($input) > 1){
-            $countObjects = 0;
-            foreach($dbTable as $dbParameter => $dbObjectValue){
-                foreach($requestInput as $requestParamter => $requestObjectValue){
-                    if(isset($dbObjectValue[$requestParamter])){
-                        $countObjects++;
-                    }
+        $countObjects = 0;
+        foreach($dbTable as $dbParameter => $dbObjectValue){
+            foreach($input as $requestParamter => $requestObjectValue){
+                if(isset($dbObjectValue[$requestParamter])){
+                    $countObjects++;
+                }
                     
-                }
-                if($countObjects == count($input)){
-                    $newId = uniqid();
-                    array_merge($input, ["userId" => $newId]);
-                    return $dbInstance->postData($input);
-                }
             }
+            if($countObjects == count($input)){
+                $newId = uniqid();
+                array_merge($input, ["userId" => $newId]);
+                return $dbInstance->postData($input);
+            } else {
+                throw new Exception("Object fields missing!");
+            }
+            // Vet inte om error behövs här pga controllers
         }
     
     }
@@ -143,19 +143,20 @@ class UserService {
             exit();
         }
 
-        if(count($input) > 1){
-            $countObjects = 0;
-            foreach($dbTable as $dbParameter => $dbObjectValue){
-                foreach($requestInput as $requestParamter => $requestObjectValue){
-                    if(isset($dbObjectValue[$requestParamter]) && $dbObjectValue[$requestParamter] == $requestObjectValue){
-                        $countObjects++;
-                    }
-                }
-
-                if($countObjects == count($input)){
-                    return $dbInstance->deleteData($input);
+        $countObjects = 0;
+        foreach($dbTable as $dbParameter => $dbObjectValue){
+            foreach($requestInput as $requestParamter => $requestObjectValue){
+                if(isset($dbObjectValue[$requestParamter]) && $dbObjectValue[$requestParamter] == $requestObjectValue){
+                    $countObjects++;
                 }
             }
+
+            if($countObjects == count($input)){
+                return $dbInstance->deleteData($input);
+            } else {
+                throw new Exception("Id missing");
+            }
+                // Vet inte om error behövs pga av controllers
         }
     }
 }
