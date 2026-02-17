@@ -18,7 +18,7 @@ class UsersController {
                     exit();
                 }
     
-                UsersService::getUsers($input);
+                return UsersService::getUsers($input);
 
             } catch(Exception $error){
                 http_response_code(500);
@@ -69,7 +69,7 @@ class UsersController {
                     exit();
                 }
 
-                UsersService::patchUser($input);
+                return UsersService::patchUser($input);
 
             } catch(Exception $error){
                 http_response_code(500);
@@ -96,7 +96,7 @@ class UsersController {
                     exit();
                 }
 
-                UsersService::deleteUser($input);
+                return UsersService::deleteUser($input);
 
             } catch(Exception $error){
                 http_response_code(500);

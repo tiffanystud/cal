@@ -84,7 +84,7 @@ class UserService {
                 if($countObjects == count($input)){
                     $newId = uniqid();
                     array_merge($input, ["userId" => $newId]);
-                    $dbInstance->postData($input);
+                    return $dbInstance->postData($input);
                 }
             }
         }
@@ -118,7 +118,7 @@ class UserService {
             }
         }
 
-        $dbInstance->pathData($dbTable);
+        return $dbInstance->pathData($dbTable);
 
 
     }
@@ -153,7 +153,7 @@ class UserService {
                 }
 
                 if($countObjects == count($input)){
-                    $dbInstance->deleteData($input);
+                    return $dbInstance->deleteData($input);
                 }
             }
         }
