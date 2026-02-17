@@ -1,6 +1,10 @@
-let req = new Request("http://localhost:8000/users?id=1", {
+let req = new Request("http://localhost:8000/users_groups", {
     headers: {"Content-type": "application/json"},
-    method: "GET"
+    method: "DELETE",
+    body: JSON.stringify({
+        userID: 5,
+        groupID: 3
+    })
 });
 
 fetch(req).then(resp => resp.json()).then(reso => console.log(reso));
