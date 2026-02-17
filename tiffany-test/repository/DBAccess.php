@@ -50,10 +50,10 @@ class DBAccess {
         DBIO::writeToDb($db);
     }
 
-    public function patchData($input){
+    public function patchData($updatedDB){
         $db = DBIO::readDb();
         $db[$this->resource] = [];
-        array_push($db[$this->resource], $input);
+        array_push($db[$this->resource], $updatedDB);
         DBIO::writeToDb($db);
     }
 
