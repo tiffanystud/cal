@@ -52,7 +52,7 @@ class DBAccess {
 
     public function patchData($input){
         $db = DBIO::readDb();
-        $db = [];
+        $db[$this->resource] = [];
         array_push($db[$this->resource], $input);
         DBIO::writeToDb($db);
     }
