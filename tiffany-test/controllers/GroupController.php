@@ -49,7 +49,19 @@ class GroupController {
         /* GroupService::getHandler(); */
         
         } else if ($method === "PATCH") {
-
+            try {
+                
+                $result = GroupService::updateGroup($input); 
+                
+                http_response_code(201);
+                echo json_encode($result);
+                return;
+                
+            } catch (Exception $exc) {
+                http_response_code(400);
+                echo json_encode(["error" => $exc->getMessage()]);
+                return;
+            }
         /* GroupService::getHandler(); */
         
         } else if ($method === "DELETE") {

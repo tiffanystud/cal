@@ -61,4 +61,36 @@ class GroupService {
         
         return $db->postData($newGroup);
     }
+    
+    /* --- PATCH ---- */
+    public static function updateGroup($input) {
+
+        if (!isset($input["id"])) {
+            throw new Exception("Id missing");
+        }
+        if (!isset($input["name"])) {
+            throw new Exception("Name missing");
+        }
+        
+        $db = new DBAccess("groups");
+        $groups = $db->getAll();
+        
+        foreach ($groups as $currentGroup) {
+            if ($currentGroup["id"] == $input["id"]) {
+                $currentGroup["name"] = $input["name"];
+                return;
+            } else {
+                throw new Exception("Not found");
+            }
+        }
+        
+        return $db->patchData($groups);
+    }
+    
+    
+    
+    
+    
+    
+    
 }
