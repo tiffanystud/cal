@@ -118,10 +118,23 @@ async function test() {
     console.log(resource);
 
 
-
-
-
     //Test 9
+    //200 User successfully removed from group
+    req = new Request("http://localhost:8000/users_groups", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            userID: 6,
+            groupID: 4
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("testRe9").textContent = `${response.status} ${JSON.stringify(resource)}`;
+    console.log(resource);
+
+
+    //Test 10
     //200 User successfully deleted
     req = new Request("http://localhost:8000/users", {
         headers: { "Content-type": "application/json" },
@@ -133,11 +146,11 @@ async function test() {
     });
     response = await fetch(req); 
     resource = await response.json(); 
-    document.getElementById("testRe9").textContent = `${response.status} ${JSON.stringify(resource)}`;
+    document.getElementById("testRe10").textContent = `${response.status} ${JSON.stringify(resource)}`;
     console.log(resource);
 
 
-    //Test 10
+     //Test 11
     //200 Group deleted successfully
     req = new Request("http://localhost:8000/groups", {
         headers: { "Content-type": "application/json" },
@@ -145,22 +158,6 @@ async function test() {
         body: JSON.stringify({
             id: 4,
             name: "Tomteverkstad",
-        })
-    });
-    response = await fetch(req); 
-    resource = await response.json(); 
-    document.getElementById("testRe10").textContent = `${response.status} ${JSON.stringify(resource)}`;
-    console.log(resource);
-
-
-    //Test 11
-    //200 User successfully removed from group
-    req = new Request("http://localhost:8000/users_groups", {
-        headers: { "Content-type": "application/json" },
-        method: "DELETE",
-        body: JSON.stringify({
-            userID: 6,
-            groupID: 4
         })
     });
     response = await fetch(req); 

@@ -1,5 +1,4 @@
 
-@@ -0,0 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,56 +8,56 @@
 </head>
 <body>
 
-    <h2>Test 1</h2>
+    <h2>Test 1 (/users GET)</h2>
     <h3 id="test1">Expected result: 200, Alla users</h3>
     <h3>Result: <span id="testRe1"></span></h3>
 
 
-    <h2>Test 2</h2>
+    <h2>Test 2 (/users POST)</h2>
     <h3 id="test2">Expected result: 200, {id: 6, userName: Tomte, pwd: "123", email: "tomte@hotmail.com"}</h3>
     <h3>Result: <span id="testRe2"></span></h3>
 
 
-    <h2>Test 3</h2>
+    <h2>Test 3 (/groups POST)</h2>
     <h3 id="test3">Expected result: 400, Missing attributes</h3>
     <h3>Result: <span id="testRe3"></span></h3>
 
 
-    <h2>Test 4</h2>
+    <h2>Test 4 (/groups POST)</h2>
     <h3 id="test4">Expected result: 200, {id: 4, name: "tomteverkstad"}</h3>
     <h3>Result: <span id="testRe4"></span></h3>
 
 
-    <h2>Test 5</h2>
+    <h2>Test 5 (/users_groups POST)</h2>
     <h3 id="test5">Expected result: 200, {id: 10, userId: 6, groupId: 4: isAdmin. true}</h3>
     <h3>Result: <span id="testRe5"></span></h3>
 
 
-    <h2>Test 6------------------------------</h2>
+    <h2>Test 6 (/users_groups?groupID=1 GET)</h2>
     <h3 id="test6">Expected result: 200, Alla med samma groupID</h3>
     <h3>Result: <span id="testRe6"></span></h3>
 
 
-    <h2>Test 7</h2>
+    <h2>Test 7 (/users PATCH)</h2>
     <h3 id="test7">Expected result: 400, Invalid attributes</h3>
     <h3>Result: <span id="testRe7"></span></h3>
 
 
-    <h2>Test 8------------------------------</h2>
+    <h2>Test 8 (/users?id=6 GET)</h2>
     <h3 id="test8">Expected result: 200, {id: 6, userName:Tomte, pwd: "123", email: "tomte@gamail.com" }</h3>
     <h3>Result: <span id="testRe8"></span></h3>
 
 
-    <h2>Test 9</h2>
+    <h2>Test 9 (/users_groups DELETE)</h2>
     <h3 id="test9">Expected result: 200, User successfully deleted</h3>
     <h3>Result: <span id="testRe9"></span></h3>
 
 
-    <h2>Test 10</h2>
+    <h2>Test 10 (/users DELETE)</h2>
     <h3 id="test10">Expected result: 200, Group deleted successfully</h3>
     <h3>Result: <span id="testRe10"></span></h3>
 
-    <h2>Test 11</h2>
+    <h2>Test 11 (/groups DELETE)</h2>
     <h3 id="test10">Expected result: 200, User successfully removed from group</h3>
     <h3>Result: <span id="testRe11"></span></h3>
 

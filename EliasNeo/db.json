@@ -87,12 +87,6 @@
             "userID": 4,
             "groupID": 2,
             "isAdmin": false
-        },
-        {
-            "userID": 5,
-            "groupID": 3,
-            "id": 8,
-            "isAdmin": false
         }
     ]
 }
