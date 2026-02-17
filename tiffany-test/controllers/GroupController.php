@@ -1,8 +1,7 @@
-<!-- GroupsController.php -->
-
-<!-- require_once "/../services/GroupService.php" -->
-
 <?php
+
+require_once __DIR__ . "/../services/GroupService.php";
+
 class GroupController {
     public static function handler($method, $input): void {
 
@@ -12,9 +11,9 @@ class GroupController {
                 $id = $_GET["id"] ?? null; 
                 
                 if ($id) {
-                    /* $result = GroupService::getById($id);  */ 
+                    $result = GroupService::getById($id);
                 } else {
-                    /* $result = GroupService::getAll();  */            
+                    $result = GroupService::getAll();         
                 }
         
                 http_response_code(200);
