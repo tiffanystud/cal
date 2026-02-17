@@ -37,8 +37,7 @@ class UsersController {
                     }
                 }
                 if($countObjects == count($input)){
-                    array_push($db[$arrayKey], $input);
-                    return $db;
+                    return $input;
                 }
             }
         }
@@ -46,6 +45,7 @@ class UsersController {
         if ($method === "PATCH") {
             /* return UsersService::getAllUsers(); */
         }
+
         if ($method === "DELETE") {
             $db = UsersService::getAllUsers(); 
 
@@ -59,8 +59,7 @@ class UsersController {
                     }
 
                     if($countObjects == count($input)){
-                        $db[$arrayKey] = array_filter($db[$arrayKey], fn($tableObject) => $tableObject != $input);
-                        return $db;
+                        return $input;
                     }
                 }
             }
