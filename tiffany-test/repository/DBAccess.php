@@ -46,7 +46,7 @@ class DBAccess {
 
     public function postData($input){
         $db = DBIO::readDb();
-        array_push($db[this->resource], $input);
+        array_push($db[$this->resource], $input);
         DBIO::writeToDb($db);
     }
 

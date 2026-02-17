@@ -7,11 +7,14 @@ class GroupController {
 
         if ($method === "GET") {
             try {
-                // Get id from query, else set (no logic)
+                // Get id from query, else set (no logic) null
                 $id = $_GET["id"] ?? null; 
+                $name = $_GET["name"] ?? null; 
                 
                 if ($id) {
-                    $result = GroupService::getById($id);
+                    $result = GroupService::getById(id: $id);
+                } elseif ($name) {
+                    $result = GroupService::getByName($name);
                 } else {
                     $result = GroupService::getAll();         
                 }
@@ -26,10 +29,22 @@ class GroupController {
                 echo json_encode(["error" => $exc->getMessage()]);
                 return;
             }
-    
-        /* GroupService::getHandler(); */
         
         } else if ($method === "POST") {
+            
+            try {
+                
+                $result = GroupService::createGroup($input); 
+                
+                http_response_code(201);
+                echo json_encode($result);
+                return;
+                
+            } catch (Exception $exc) {
+                http_response_code(400);
+                echo json_encode(["error" => $exc->getMessage()]);
+                return;
+            }
             
         /* GroupService::getHandler(); */
         

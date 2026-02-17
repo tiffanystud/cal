@@ -10,7 +10,7 @@ class UserService {
 
     public static function getUsers($input){
 
-        $dbInstance = DBAccess("User");
+        $dbInstance = new DBAccess("User");
         $dbTable = $dbInstance->getAll();
 
         if(!$input["userId"] > 1){
