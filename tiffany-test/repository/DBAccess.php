@@ -46,19 +46,20 @@ class DBAccess {
 
     public function postData($input){
         $db = DBIO::readDb();
-        array_push($db[this->resource], $input);
+        array_push($db[$this->resource], $input);
         DBIO::writeToDb($db);
     }
 
-    public function patchData($tableParameter, $inputParameter, $inputValue){
+    public function patchData($input){
         $db = DBIO::readDb();
-        $db[this->resource][$tableParameter][$inputParameter] = $inputValue;
+        $db = [];
+        array_push($db[$this->resource], input);
         DBIO::writeToDb($db);
     }
 
-    public function deleteData($input, $tableValue, $inputValue){
+    public function deleteData($input){
         $db = DBIO::readDb();
-        $db[this->resource] = array_filter($db[this->resource], fn($tableValue) => $tableValue != $inputValue);
+        $db[$this->resource] = array_filter($db[this->resource], fn($tableObject) => $tableObject != $input);
         DBIO::writeToDb($db);
     }
 

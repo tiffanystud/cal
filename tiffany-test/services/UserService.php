@@ -82,7 +82,9 @@ class UserService {
                     
                 }
                 if($countObjects == count($input)){
-                    return $input;
+                    $newId = uniqid();
+                    array_merge($input, ["userId" => $newId]);
+                    $dbInstance->postData($input);
                 }
             }
         }
@@ -108,15 +110,16 @@ class UserService {
             exit();
         }
 
-        foreach($dbTable as $dbParameter => $dbObjectValue){
-           if($dbParameter == $input["userId"]){
-                foreach($requestInput as $requestParamter => $requestObjectValue){
-                    if($requestParamter != "userId"){
-                        return $db["User"][$dbParameter][$requestParamter] = $requestObjectValue;
-                    }
+        foreach($dbTable as $tableIndex => $tableValue){
+            foreach($input as $inputIndex => $inputValue){
+                if($inputIndex != "userId"){
+                    $dbTable[$tableIndex][$inputIndex] = $inputValue;
                 }
             }
         }
+
+        $dbInstance->pathData($dbTable);
+
 
     }
 
@@ -150,7 +153,7 @@ class UserService {
                 }
 
                 if($countObjects == count($input)){
-                    return $input;
+                    $dbInstance->deleteData($input);
                 }
             }
         }
