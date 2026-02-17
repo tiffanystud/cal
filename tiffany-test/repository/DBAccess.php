@@ -29,4 +29,17 @@ class DBAccess {
 
         return null;
     }
+    
+        public function findByName($name) {
+        $db = DBIO::readDb();
+        $items = $db[$this->resource] ?? [];
+
+        foreach ($items as $item) {
+            if ($item["name"] == $name) {
+                return $item;
+            }
+        }
+
+        return null;
+    }
 }

@@ -4,6 +4,8 @@ require_once __DIR__ . "/../repositories/DBAccess.php";
 
 class GroupService {
     
+
+    /* ---- GET --- */
     public static function getAll() {
         
         // Hämtar db för bara groups, conatructorn sätter resource till ex: "groups"
@@ -19,6 +21,17 @@ class GroupService {
     }
     
     public static function getById($id) {
+        // Hämtar db för bara groups, conatructorn sätter resource till ex: "groups"
+        $db = new DBAccess("groups");
+        $group = $db->findById($id);
+        
+        if (!$group) { 
+            throw new Exception("Group not found"); 
+        } 
+        
+        return $group;
+    }
+    public static function getByName($name) {
         // Hämtar db för bara groups, conatructorn sätter resource till ex: "groups"
         $db = new DBAccess("groups");
         $group = $db->findById($id);
