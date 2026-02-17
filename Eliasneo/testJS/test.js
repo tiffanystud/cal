@@ -150,7 +150,7 @@ async function test() {
     console.log(resource);
 
 
-     //Test 11
+    //Test 11
     //200 Group deleted successfully
     req = new Request("http://localhost:8000/groups", {
         headers: { "Content-type": "application/json" },
@@ -163,6 +163,22 @@ async function test() {
     response = await fetch(req); 
     resource = await response.json(); 
     document.getElementById("testRe11").textContent = `${response.status} ${JSON.stringify(resource)}`;
+    console.log(resource);
+
+
+    //Test 12
+    //400 Content-Type must be JSON
+    req = new Request("http://localhost:8000/groups", {
+        headers: { "Content-type": "text/html" },
+        method: "PATCH",
+        body: JSON.stringify({
+            id: 1,
+            username: "Erik"
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("testRe12").textContent = `${response.status} ${JSON.stringify(resource)}`;
     console.log(resource);
 }
 
