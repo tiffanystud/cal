@@ -50,11 +50,29 @@ class DBAccess {
         DBIO::writeToDb($db);
     }
 
-    public function patchData($updatedDB){
+    // id: id, changes: ["name" => "newName", "pwd" => "newPwd"]
+    public function patchData($id, $newData){
+        
         $db = DBIO::readDb();
-        $db[$this->resource] = [];
-        array_push($db[$this->resource], $updatedDB);
-        DBIO::writeToDb($db);
+        $dbItems = $db[$this->resource];
+        
+        foreach ($dbItems as $currentIndex => $item) {
+            if ($item["id"] == $id) {
+
+                // Updates the fields that are present in [changes]
+                foreach ($newData as $key => $value) {
+                    $dbItems[$currentIndex][$key] == $value;
+                }
+                
+                // Save
+                $db[$this->resource] = $dbItems;
+                DBIO::writeToDb($db);
+                
+                return $dbItems[$currentIndex];
+            }
+        }
+        
+        throw new Exception("Not found");
     }
 
     public function deleteData($input){

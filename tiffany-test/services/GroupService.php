@@ -73,18 +73,11 @@ class GroupService {
         }
         
         $db = new DBAccess("groups");
-        $groups = $db->getAll();
-        
-        foreach ($groups as $currentGroup) {
-            if ($currentGroup["id"] == $input["id"]) {
-                $currentGroup["name"] = $input["name"];
-                return;
-            } else {
-                throw new Exception("Not found");
-            }
-        }
-        
-        return $db->patchData($groups);
+
+        return $db->patchData($input["id"], [
+            "name" => $input["name"]
+        ]);
+            
     }
     
     
