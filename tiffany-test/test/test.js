@@ -65,11 +65,11 @@ async function getGroup() {
     let request = await fetch("http://localhost:8000/groups");
     let response = await request.json();
     if (response.status.ok) {
-        document.querySelector("#getUser").style.backgroundColor = "green";
-        document.querySelector("#getUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#getGroup").style.backgroundColor = "green";
+        document.querySelector("#getGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
     } else {
-        document.querySelector("#getUser").style.backgroundColor = "red";
-        document.querySelector("#getUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#getGroup").style.backgroundColor = "red";
+        document.querySelector("#getGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
     }
 }
 
@@ -80,7 +80,13 @@ async function postGroup() {
         header: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    return response.status;
+    if (response.status.ok) {
+        document.querySelector("#postGroup").style.backgroundColor = "green";
+        document.querySelector("#postGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    } else {
+        document.querySelector("#postGroup").style.backgroundColor = "red";
+        document.querySelector("#postGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    }
 }
 
 async function patchGroup() {
@@ -90,7 +96,13 @@ async function patchGroup() {
         header: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    return response.status;
+    if (response.status.ok) {
+        document.querySelector("#patchGroup").style.backgroundColor = "green";
+        document.querySelector("#patchGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    } else {
+        document.querySelector("#patchGroup").style.backgroundColor = "red";
+        document.querySelector("#patchGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    }
 }
 
 async function deleteGroup() {
@@ -100,7 +112,13 @@ async function deleteGroup() {
         headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    return response.status;
+    if (response.status.ok) {
+        document.querySelector("#deleteGroup").style.backgroundColor = "green";
+        document.querySelector("#deleteGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    } else {
+        document.querySelector("#deleteGroup").style.backgroundColor = "red";
+        document.querySelector("#deleteGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    }
 }
 
 

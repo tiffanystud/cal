@@ -2,6 +2,20 @@
 require_once "DBAccess.php";
 /* Importera users/grooups handlerer */
 
+function urlHandler($requestUrl){   
+
+    $db = readDB("DB.json");
+    $urlPath = parse_url($requestUrl, PHP_URL_PATH);
+    $path = ltrim($urlPath, "/");
+
+    if(isset($path)){
+        return requestHandler($_SERVER["REQUEST_METHOD"]);
+    }
+
+    return;
+
+}
+
 
 class HTTPHandler {
     public static function handler() {
