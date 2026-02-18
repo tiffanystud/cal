@@ -202,3 +202,5 @@ async function runFunctions() {
     await patchUserGroup();
     await deleteUserGroup();
 }
+
+runFunctions();
