@@ -17,6 +17,7 @@ function Router($requestUrl){
     $input = json_decode(file_get_contents("php://input"), true) ?? [];
 
     switch ($path) {
+        
         case "users":
             switch ($method) {
                case "GET": 
@@ -31,6 +32,7 @@ function Router($requestUrl){
                     break;
             }
             break;
+            
         case "groups":
             switch ($method) {
                case "GET": 
@@ -45,6 +47,7 @@ function Router($requestUrl){
                     break;
             }
             break;
+            
         case "users_groups":
             switch ($method) {
                case "GET": 
@@ -58,9 +61,10 @@ function Router($requestUrl){
                     break;
             }        
             break;
+            
         default:
-         http_response_code(404); 
-         echo json_encode(["error" => "Route not found"]); 
-         break;
+            http_response_code(404); 
+            echo json_encode(["error" => "Route not found"]); 
+            break;
     }
 }
