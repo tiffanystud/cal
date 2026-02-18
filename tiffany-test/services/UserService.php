@@ -13,7 +13,7 @@ class UserService {
         $dbInstance = new DBAccess("User");
         $dbTable = $dbInstance->getAll();
 
-        if(!$input["userId"] > 1){
+        if(!$input["id"] > 1){
             http_response_code(400);
             echo json_encode(["error" => "UserId is not positive!"]);
             exit();
@@ -21,7 +21,7 @@ class UserService {
             http_response_code(400);
             echo json_encode(["error" => "Username has no capital!"]);
             exit();
-        } else if(!str_contains($input["password"], "%") && !strlen($input["password"] > 5)){
+        } else if(!str_contains($input["pwd"], "%") && !strlen($input["pwd"] > 5)){
             http_response_code(400);
             echo json_encode(["error" => "Password is to short and not containing special character!"]);
             exit();
@@ -61,7 +61,7 @@ class UserService {
             http_response_code(400);
             echo json_encode(["error" => "Username has no capital!"]);
             exit();
-        } else if(!str_contains($input["password"], "%") && !strlen($input["password"] > 5)){
+        } else if(!str_contains($input["pwd"], "%") && !strlen($input["pwd"] > 5)){
             http_response_code(400);
             echo json_encode(["error" => "Password is to short and not containing special character!"]);
             exit();
@@ -81,7 +81,7 @@ class UserService {
             }
             if($countObjects == count($input)){
                 $newId = uniqid();
-                array_merge($input, ["userId" => $newId]);
+                array_merge($input, ["id" => $newId]);
                 return $dbInstance->postData($input);
             } else {
                 throw new Exception("Object fields missing!");
@@ -100,7 +100,7 @@ class UserService {
             http_response_code(400);
             echo json_encode(["error" => "Username has no capital!"]);
             exit();
-        } else if(!str_contains($input["password"], "%") && !strlen($input["password"] > 5)){
+        } else if(!str_contains($input["pwd"], "%") && !strlen($input["pwd"] > 5)){
             http_response_code(400);
             echo json_encode(["error" => "Password is to short and not containing special character!"]);
             exit();
@@ -112,7 +112,7 @@ class UserService {
 
         foreach($dbTable as $tableIndex => $tableValue){
             foreach($input as $inputIndex => $inputValue){
-                if($inputIndex != "userId"){
+                if($inputIndex != "id"){
                     $dbTable[$tableIndex][$inputIndex] = $inputValue;
                 }
             }
@@ -133,7 +133,7 @@ class UserService {
             http_response_code(400);
             echo json_encode(["error" => "Username has no capital!"]);
             exit();
-        } else if(!str_contains($input["password"], "%") && !strlen($input["password"] > 5)){
+        } else if(!str_contains($input["pwd"], "%") && !strlen($input["pwd"] > 5)){
             http_response_code(400);
             echo json_encode(["error" => "Password is to short and not containing special character!"]);
             exit();
