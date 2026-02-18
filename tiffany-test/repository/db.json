@@ -133,12 +133,6 @@
             "groupID": 3,
             "id": 8,
             "isAdmin": false
-        },
-        {
-            "id": "69964de512320",
-            "userID": 2,
-            "groupID": 999,
-            "isAdmin": false
         }
     ]
 }
