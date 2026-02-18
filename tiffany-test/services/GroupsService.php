@@ -63,20 +63,20 @@ class GroupsService {
     }
     
     /* --- PATCH ---- */
-    public static function updateGroup($id, $input) {
+    public static function updateGroup($input) {
 
-        if (!$id) {
+        if (!isset($input["id"])) {
             throw new Exception("Id missing");
         }
         if (!isset($input["name"])) {
             throw new Exception("Name missing");
         }
-
+        
         $db = new DBAccess("groups");
 
-        return $db->patchData($id, ["name" => $input["name"]]);
+        return $db->patchData($input["id"], ["name" => $input["name"]]);
+            
     }
-
     
     /* --- DELETE ---- */
     public static function deleteGroup($id) {  
