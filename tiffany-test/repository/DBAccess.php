@@ -61,14 +61,14 @@ class DBAccess
     public function patchData($id, $newData)
     {
         $db = DBIO::readDb();
-        $dbItems = $db[$this->resource];
+        $dbItems = $db[$this->resource] ?? [];
         
         foreach ($dbItems as $currentIndex => $item) {
-            if ($item["id"] = $id) {
+            if ($item["id"] == $id) {
 
                 // Updates the fields that are present in [changes]
                 foreach ($newData as $key => $value) {
-                    $dbItems[$currentIndex][$key] == $value;
+                    $dbItems[$currentIndex][$key] = $value;
                 }
 
                 // Save
