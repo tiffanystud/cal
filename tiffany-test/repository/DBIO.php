@@ -2,7 +2,7 @@
 
 class DBIO {
     private static function dbPath(): string {
-    return __DIR__ . "db.json";
+    return __DIR__ . "/../repository/db.json";
 }
 
     public static function readDb() {
