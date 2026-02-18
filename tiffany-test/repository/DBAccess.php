@@ -56,14 +56,13 @@ class DBAccess
         DBIO::writeToDb($db);
         return $input;
     }
-
+    
     // id: id, changes: ["name" => "newName", "pwd" => "newPwd"]
     public function patchData($id, $newData)
     {
-
         $db = DBIO::readDb();
         $dbItems = $db[$this->resource];
-
+        
         foreach ($dbItems as $currentIndex => $item) {
             if ($item["id"] == $id) {
 
@@ -75,7 +74,6 @@ class DBAccess
                 // Save
                 $db[$this->resource] = $dbItems;
                 DBIO::writeToDb($db);
-
                 return $dbItems[$currentIndex];
             }
         }
