@@ -1,6 +1,6 @@
 // USERSTABLE
 async function getUser() {
-    let request = await fetch("http://localhost:8000/User");
+    let request = await fetch("http://localhost:8000/users");
     let response = await request.json();
     if (response.status.ok) {
         document.querySelector("#getUser").style.backgroundColor = "green";
@@ -12,9 +12,9 @@ async function getUser() {
 }
 
 async function postUser() {
-    let request = await fetch("http://localhost:8000/User", {
+    let request = await fetch("http://localhost:8000/users", {
         method: "POST",
-        body: JSON.stringify({ userName: "Philip", password: "hejhej%", email: "philles@" }),
+        body: JSON.stringify({ userName: "Philip", pwd: "hejhej%", email: "philles@" }),
         header: { "Content-Type": "application/json" }
     })
     let response = await request.json();
@@ -28,9 +28,9 @@ async function postUser() {
 }
 
 async function patchUser() {
-    let request = await fetch("http://localhost:8000/User", {
+    let request = await fetch("http://localhost:8000/users", {
         method: "PATCH",
-        body: JSON.stringify({ userId: 1, userName: "Elias", password: "citron" }),
+        body: JSON.stringify({ id: 1, userName: "Elias", pwd: "hejhej%" }),
         header: { "Content-Type": "application/json" }
     })
     let response = await request.json();
@@ -44,9 +44,9 @@ async function patchUser() {
 }
 
 async function deleteUser() {
-    let request = await fetch("http://localhost:8000/User", {
+    let request = await fetch("http://localhost:8000/users", {
         method: "DELETE",
-        body: JSON.stringify({ userId: 1, userName: "Elias", password: "citron" }),
+        body: JSON.stringify({ id: 1, userName: "Elias", pwd: "hejhej%", email: "mail@gmail.com" }),
         headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
