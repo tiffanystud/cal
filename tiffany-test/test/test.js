@@ -128,7 +128,13 @@ async function deleteGroup() {
 async function getUserGroup() {
     let request = await fetch("http://localhost:8000/users_groups");
     let response = await request.json();
-    return response.status;
+    if (response.status.ok) {
+        document.querySelector("#getUserGroup").style.backgroundColor = "green";
+        document.querySelector("#getUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    } else {
+        document.querySelector("#getUserGroup").style.backgroundColor = "red";
+        document.querySelector("#getUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    }
 }
 
 async function postUserGroup() {
@@ -138,7 +144,13 @@ async function postUserGroup() {
         header: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    return response.status;
+    if (response.status.ok) {
+        document.querySelector("#postUserGroup").style.backgroundColor = "green";
+        document.querySelector("#postUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    } else {
+        document.querySelector("#postUserGroup").style.backgroundColor = "red";
+        document.querySelector("#postUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    }
 }
 
 async function patchUserGroup() {
@@ -148,7 +160,13 @@ async function patchUserGroup() {
         header: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    return response.status;
+    if (response.status.ok) {
+        document.querySelector("#patchUserGroup").style.backgroundColor = "green";
+        document.querySelector("#patchUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    } else {
+        document.querySelector("#patchUserGroup").style.backgroundColor = "red";
+        document.querySelector("#patchUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    }
 }
 
 async function deleteUserGroup() {
@@ -158,7 +176,13 @@ async function deleteUserGroup() {
         headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    return response.status;
+    if (response.status.ok) {
+        document.querySelector("#deleteUserGroup").style.backgroundColor = "green";
+        document.querySelector("#deleteUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    } else {
+        document.querySelector("#deleteUserGroup").style.backgroundColor = "red";
+        document.querySelector("#deleteUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+    }
 }
 
 
