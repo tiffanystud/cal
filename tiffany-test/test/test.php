@@ -2,7 +2,7 @@
 
 // getUsers
 
-$url = "http://localhost/users";
+$url = "http://localhost/users?id=1&userName=Neo&pwd=123&email=mail@mail.com";
 
 $ch = curl_init($url);
 

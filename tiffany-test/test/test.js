@@ -1,30 +1,35 @@
 // USERSTABLE
+
 async function getUser() {
-    let request = await fetch("http://localhost:8000/users");
+    let request = await fetch("http://localhost:8000/users?id=1&userName=Neo&pwd=123&email=mail@gmail.com");
     if (request.ok) {
         let response = await request.json();
+        console.log(response)
         document.querySelector("#getUser").style.backgroundColor = "green";
-        document.querySelector("#getUser").textContent = `<p>${response.status}</p><p>${JSON.stringify(response.body)}</p>`
+        document.querySelector("#getUser").innerHTML = `<p>${request.status}</p><p>${JSON.stringify(response)}</p>`
     } else {
         let response = await request.json();
         document.querySelector("#getUser").style.backgroundColor = "red";
-        document.querySelector("#getUser").textContent = `<p>${response.status}</p><p>${JSON.stringify(response.body)}</p>`
+        document.querySelector("#getUser").textContent = `<p>${request.status}</p><p>${JSON.stringify(response)}</p>`
     }
 }
 
 async function postUser() {
     let request = await fetch("http://localhost:8000/users", {
         method: "POST",
-        body: JSON.stringify({ userName: "Philip", pwd: "hejhej%", email: "philles@" }),
-        header: { "Content-Type": "application/json" }
+        body: JSON.stringify({ id: 7, userName: "Philip", pwd: "hejhej%", email: "philles@" }),
+        headers: { "Content-Type": "application/json" }
     })
-    let response = await request.json();
-    if (response.status.ok) {
+    if (request.ok) {
+        let response = await request.text();
+        console.log(response)
         document.querySelector("#postUser").style.backgroundColor = "green";
-        document.querySelector("#postUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#postUser").innerHTML = `<p>${request.status}</p><p>${JSON.stringify(response)}</p>`
     } else {
+        let response = await request.text();
+        console.log(response);
         document.querySelector("#postUser").style.backgroundColor = "red";
-        document.querySelector("#postUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#postUser").innerHTML = `<p>${request.status}</p><p>${JSON.stringify(response)}</p>`
     }
 }
 
@@ -32,15 +37,15 @@ async function patchUser() {
     let request = await fetch("http://localhost:8000/users", {
         method: "PATCH",
         body: JSON.stringify({ id: 1, userName: "Elias", pwd: "hejhej%" }),
-        header: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#patchUser").style.backgroundColor = "green";
-        document.querySelector("#postUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#postUser").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#patchUser").style.backgroundColor = "red";
-        document.querySelector("#patchUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#patchUser").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -51,12 +56,12 @@ async function deleteUser() {
         headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#deleteUser").style.backgroundColor = "green";
-        document.querySelector("#deleteUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#deleteUser").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#deleteUser").style.backgroundColor = "red";
-        document.querySelector("#deleteUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#deleteUser").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -65,12 +70,12 @@ async function deleteUser() {
 async function getGroup() {
     let request = await fetch("http://localhost:8000/groups");
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#getGroup").style.backgroundColor = "green";
-        document.querySelector("#getGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#getGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#getGroup").style.backgroundColor = "red";
-        document.querySelector("#getGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#getGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -78,15 +83,15 @@ async function postGroup() {
     let request = await fetch("http://localhost:8000/groups", {
         method: "POST",
         body: JSON.stringify({ name: "Group 2" }),
-        header: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    if (response.status.ok) {
+    if (request.ok) {
         document.querySelector("#postGroup").style.backgroundColor = "green";
-        document.querySelector("#postGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#postGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#postGroup").style.backgroundColor = "red";
-        document.querySelector("#postGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#postGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -94,15 +99,15 @@ async function patchGroup() {
     let request = await fetch("http://localhost:8000/groups", {
         method: "PATCH",
         body: JSON.stringify({ id: 3, name: "Test group" }),
-        header: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#patchGroup").style.backgroundColor = "green";
-        document.querySelector("#patchGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#patchGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#patchGroup").style.backgroundColor = "red";
-        document.querySelector("#patchGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#patchGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -113,12 +118,12 @@ async function deleteGroup() {
         headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#deleteGroup").style.backgroundColor = "green";
-        document.querySelector("#deleteGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#deleteGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#deleteGroup").style.backgroundColor = "red";
-        document.querySelector("#deleteGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#deleteGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -129,12 +134,12 @@ async function deleteGroup() {
 async function getUserGroup() {
     let request = await fetch("http://localhost:8000/users_groups");
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#getUserGroup").style.backgroundColor = "green";
-        document.querySelector("#getUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#getUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#getUserGroup").style.backgroundColor = "red";
-        document.querySelector("#getUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#getUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -142,15 +147,15 @@ async function postUserGroup() {
     let request = await fetch("http://localhost:8000/users_groups", {
         method: "POST",
         body: JSON.stringify({ userId: 6, groupId: 5, isAdmin: false }),
-        header: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#postUserGroup").style.backgroundColor = "green";
-        document.querySelector("#postUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#postUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#postUserGroup").style.backgroundColor = "red";
-        document.querySelector("#postUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#postUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -158,15 +163,15 @@ async function patchUserGroup() {
     let request = await fetch("http://localhost:8000/users_groups", {
         method: "PATCH",
         body: JSON.stringify({ id: 3, isAdmin: true }),
-        header: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#patchUserGroup").style.backgroundColor = "green";
-        document.querySelector("#patchUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#patchUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#patchUserGroup").style.backgroundColor = "red";
-        document.querySelector("#patchUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#patchUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
@@ -177,24 +182,24 @@ async function deleteUserGroup() {
         headers: { "Content-Type": "application/json" }
     })
     let response = await request.json();
-    if (response.status.ok) {
+    if (response.ok) {
         document.querySelector("#deleteUserGroup").style.backgroundColor = "green";
-        document.querySelector("#deleteUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#deleteUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     } else {
         document.querySelector("#deleteUserGroup").style.backgroundColor = "red";
-        document.querySelector("#deleteUserGroup").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#deleteUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
     }
 }
 
 
 async function runFunctions() {
-    await getUser();
-    await postUser();
-    await patchUser();
-    await deleteUser();
+    // await getUser();
+    // await postUser();
+    // await patchUser();
+    // await deleteUser();
 
-    await getGroup();
-    await postGroup();
+    // await getGroup();
+    // await postGroup();
     await patchGroup();
     await deleteGroup();
 

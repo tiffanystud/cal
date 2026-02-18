@@ -54,6 +54,7 @@ class DBAccess
         $db = DBIO::readDb();
         array_push($db[$this->resource], $input);
         DBIO::writeToDb($db);
+        return $input;
     }
 
     // id: id, changes: ["name" => "newName", "pwd" => "newPwd"]

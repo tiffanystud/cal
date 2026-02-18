@@ -6,7 +6,7 @@ class GroupsController {
     public static function handle($method, $input): void {
 
         if ($method === "GET") {
-            
+            echo "hej--------------";
             try {
                 // Get id from query, else set (no logic) null
                 $id = $_GET["id"] ?? null; 

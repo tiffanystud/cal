@@ -8,6 +8,7 @@ class UsersController {
         if ($method === "GET") {
             try {
                 if(empty($input["userName"])){
+                    var_dump($input);
                     http_response_code(400);
                     echo json_encode(["error" => "Username is missing!"]);
                     exit();
@@ -21,7 +22,10 @@ class UsersController {
                     exit();
                 }
     
-                return UsersService::getUsers($input);
+                $result = UsersService::getUsers($input);
+                http_response_code(200);
+                echo json_encode($result);
+                return;
 
             } catch(Exception $error){
                 http_response_code(500);

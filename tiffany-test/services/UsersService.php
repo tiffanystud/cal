@@ -1,7 +1,3 @@
-
-<!-- Validera input, sätt business logic -->
-<!-- Returnera till controller -->
-
 <?php
 
 require_once __DIR__ . "/../repository/DBAccess.php";
@@ -13,7 +9,7 @@ class UsersService {
 
     public static function getUsers($input){
 
-        $dbInstance = new DBAccess("User");
+        $dbInstance = new DBAccess("users");
         $dbTable = $dbInstance->getAll();
 
         if(!$input["id"] > 1){
@@ -36,7 +32,7 @@ class UsersService {
 
         if(count($input) > 1){
             foreach($dbTable as $dbParameter => $dbObjectValue){
-                foreach($requestInput as $requestParamter => $requestObjectValue){
+                foreach($input as $requestParamter => $requestObjectValue){
                     if(isset($dbObjectValue[$requestParamter]) && $dbObjectValue[$requestParamter] == $requestObjectValue){
                         return $dbObjectValue;
                     }
@@ -56,7 +52,7 @@ class UsersService {
     
     public static function createUser($input) {
 
-        $dbInstance = DBAccess("User");
+        $dbInstance = new DBAccess("users");
         $dbTable = $dbInstance->getAll();
     
     
@@ -83,8 +79,8 @@ class UsersService {
                     
             }
             if($countObjects == count($input)){
-                $newId = uniqid();
-                array_merge($input, ["id" => $newId]);
+                // $newId = uniqid();
+                // array_merge($input, ["id" => $newId]);
                 return $dbInstance->postData($input);
             } else {
                 throw new Exception("Object fields missing!");
@@ -96,7 +92,7 @@ class UsersService {
 
     public static function patchUser($input){
 
-        $dbInstance = DBAccess("User");
+        $dbInstance = new DBAccess("users");
         $dbTable = $dbInstance->getAll();
 
         if(!ctype_upper($input["userName"][0])){
@@ -129,7 +125,7 @@ class UsersService {
 
     public static function deleteUser($input){
 
-        $dbInstance = DBAccess("User");
+        $dbInstance = new DBAccess("users");
         $dbTable = $dbInstance->getAll();
 
         if(!ctype_upper($input["userName"][0])){
