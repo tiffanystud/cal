@@ -156,7 +156,7 @@ async function runFunctions() {
     await patchUser();
     await deleteUser();
 
-    // GROUPS
+    // GROUPS  
     await getGroup();
     await postGroup();
     await patchGroup();

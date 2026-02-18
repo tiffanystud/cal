@@ -2,164 +2,122 @@
 
 require_once __DIR__ . "/../repository/DBAccess.php";
 
-class UsersService {
-    public static function getAllUsers() {
-        // BUG
-        return DBAcess::getUsers();
+class UsersService
+{
+
+    /* ---- GET ---- */
+
+    public static function getAll()
+    {
+        $db = new DBAccess("users");
+        $users = $db->getAll();
+
+        if (empty($users)) {
+            throw new Exception("No users found");
+        }
+
+        return $users;
     }
 
-    public static function getUsers($input){
+    public static function getById($id)
+    {
+        $db = new DBAccess("users");
+        $user = $db->findById($id);
 
-        $dbInstance = new DBAccess("users");
-        $dbTable = $dbInstance->getAll();
-
-        if(!$input["id"] > 1){
-            http_response_code(400);
-            echo json_encode(["error" => "UserId is not positive!"]);
-            exit();
-        } else if(!ctype_upper($input["userName"][0])){
-            http_response_code(400);
-            echo json_encode(["error" => "Username has no capital!"]);
-            exit();
-        } else if(!str_contains($input["pwd"], "%") && !strlen($input["pwd"] > 5)){
-            http_response_code(400);
-            echo json_encode(["error" => "Password is to short and not containing special character!"]);
-            exit();
-        } else if(!str_contains($input["email"], "@")){
-            http_response_code(400);
-            echo json_encode(["error" => "Email is not including @!"]);
-            exit();
+        if (!$user) {
+            throw new Exception("User not found");
         }
 
-        if(count($input) > 1){
-            foreach($dbTable as $dbParameter => $dbObjectValue){
-                foreach($input as $requestParamter => $requestObjectValue){
-                    if(isset($dbObjectValue[$requestParamter]) && $dbObjectValue[$requestParamter] == $requestObjectValue){
-                        return $dbObjectValue;
-                    }
-                }
-            }
-        } else {
-            foreach($dbTable as $dbParameter => $dbObjectValue){
-                foreach($requestInput as $requestParamter => $requestObjectValue){
-                    if(isset($dbObjectValue[$requestParamter]) && $dbObjectValue[$requestParamter] == $requestObjectValue){
-                        return $requestObjectValue;
-                    }
-                }
+        return $user;
+    }
+
+    public static function getByUserName($userName)
+    {
+        $db = new DBAccess("users");
+        $users = $db->getAll();
+
+        foreach ($users as $u) {
+            if ($u["userName"] === $userName) {
+                return $u;
             }
         }
 
-    }   
-    
-    public static function createUser($input) {
+        throw new Exception("User not found");
+    }
 
-        $dbInstance = new DBAccess("users");
-        $dbTable = $dbInstance->getAll();
-    
-    
-        if(!ctype_upper($input["userName"][0])){
-            http_response_code(400);
-            echo json_encode(["error" => "Username has no capital!"]);
-            exit();
-        } else if(!str_contains($input["pwd"], "%") && !strlen($input["pwd"] > 5)){
-            http_response_code(400);
-            echo json_encode(["error" => "Password is to short and not containing special character!"]);
-            exit();
-        } else if(!str_contains($input["email"], "@")){
-            http_response_code(400);
-            echo json_encode(["error" => "Email is not including @!"]);
-            exit();
+
+    /* ---- POST ---- */
+    public static function createUser($input)
+    {
+        if (!isset($input["userName"])) {
+            throw new Exception("Username missing");
         }
-            
-        $countObjects = 0;
-        foreach($dbTable as $dbParameter => $dbObjectValue){
-            foreach($input as $requestParamter => $requestObjectValue){
-                if(isset($dbObjectValue[$requestParamter])){
-                    $countObjects++;
-                }
-                    
-            }
-            if($countObjects == count($input)){
-                // $newId = uniqid();
-                // array_merge($input, ["id" => $newId]);
-                return $dbInstance->postData($input);
-            } else {
-                throw new Exception("Object fields missing!");
-            }
-            // Vet inte om error behövs här pga controllers
+        if (!isset($input["pwd"])) {
+            throw new Exception("Password missing");
+        }
+        if (!isset($input["email"])) {
+            throw new Exception("Email missing");
+        }
+
+        $db = new DBAccess("users");
+
+        $newUser = [
+            "id" => uniqid(),
+            "userName" => $input["userName"],
+            "pwd" => $input["pwd"],
+            "email" => $input["email"]
+        ];
+
+        return $db->postData($newUser);
+    }
+
+
+    /* ---- PATCH ---- */
+    // Expects id + changes[]
+    public static function updateUser($input)
+    {
+        if (!isset($input["id"])) {
+            throw new Exception("Id missing");
+        }
+
+        $db = new DBAccess("users");
+        $id = $input["id"];
+        
+        $existingUser = $db->findById($id); 
+        if (!$existingUser) { 
+            throw new Exception("User not found"); 
         }
         
-    }
-
-    public static function patchUser($input){
-
-        $dbInstance = new DBAccess("users");
-        $dbTable = $dbInstance->getAll();
-
-        if(!ctype_upper($input["userName"][0])){
-            http_response_code(400);
-            echo json_encode(["error" => "Username has no capital!"]);
-            exit();
-        } else if(!str_contains($input["pwd"], "%") && !strlen($input["pwd"] > 5)){
-            http_response_code(400);
-            echo json_encode(["error" => "Password is to short and not containing special character!"]);
-            exit();
-        } else if(!str_contains($input["email"], "@")){
-            http_response_code(400);
-            echo json_encode(["error" => "Email is not including @!"]);
-            exit();
-        }
-
-        foreach($dbTable as $tableIndex => $tableValue){
-            foreach($input as $inputIndex => $inputValue){
-                if($inputIndex != "id"){
-                    $dbTable[$tableIndex][$inputIndex] = $inputValue;
-                }
+        $validKeys = array_keys($existingUser);
+        $changes = [];
+        
+        foreach ($input as $key => $value) { 
+            
+            if ($key === "id") { continue; }
+                
+            if (!in_array ($key, $validKeys)) { 
+                throw new Exception("Invalid field: $key"); 
             }
+            
+            $changes[$key] = $value; 
         }
-        // BUG
-        return $dbInstance->pathData($dbTable);
-
-
+        
+        if (empty($changes)) { 
+            throw new Exception("No valid fields to update"); 
+        }
+        
+        return $db->patchData($id, $changes);
     }
 
 
-    public static function deleteUser($input){
-
-        $dbInstance = new DBAccess("users");
-        $dbTable = $dbInstance->getAll();
-
-        if(!ctype_upper($input["userName"][0])){
-            http_response_code(400);
-            echo json_encode(["error" => "Username has no capital!"]);
-            exit();
-        } else if(!str_contains($input["pwd"], "%") && !strlen($input["pwd"] > 5)){
-            http_response_code(400);
-            echo json_encode(["error" => "Password is to short and not containing special character!"]);
-            exit();
-        } else if(!str_contains($input["email"], "@")){
-            http_response_code(400);
-            echo json_encode(["error" => "Email is not including @!"]);
-            exit();
+    /* ---- DELETE ---- */
+    public static function deleteUser($input)
+    {
+        if (!isset($input["id"])) {
+            throw new Exception("Id missing");
         }
 
-        $countObjects = 0;
-        foreach($dbTable as $dbParameter => $dbObjectValue){
-            foreach($input as $requestParamter => $requestObjectValue){
-                if(isset($dbObjectValue[$requestParamter]) && $dbObjectValue[$requestParamter] == $requestObjectValue){
-                    $countObjects++;
-                }
-            }
-
-            if($countObjects == count($input)){
-                return $dbInstance->deleteData($input);
-            } else {
-                throw new Exception("Id missing");
-            }
-                // Vet inte om error behövs pga av controllers
-        }
+        $db = new DBAccess("users");
+        return $db->deleteData($input["id"]);
     }
 }
-
-
-    
