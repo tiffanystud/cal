@@ -8,7 +8,6 @@ class GroupsController
     {
 
         if ($method === "GET") {
-            echo "hej--------------";
             try {
                 // Get id from query, else set (no logic) null
                 $id = $_GET["id"] ?? null;

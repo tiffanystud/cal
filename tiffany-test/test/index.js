@@ -87,7 +87,7 @@ function postGroup() {
     return runTest({
         url: "http://localhost:8000/groups",
         method: "POST",
-        body: { name: "Group 50" },
+        body: { name: "Group - VIP VT26" },
         targetId: "postGroup"
     });
 }
@@ -105,7 +105,7 @@ function deleteGroup() {
     return runTest({
         url: "http://localhost:8000/groups",
         method: "DELETE",
-        body: { id: 3, name: "Test group" },
+        body: { id: 2, name: "Grupp 2" },
         targetId: "deleteGroup"
     });
 }
@@ -151,10 +151,10 @@ function deleteUserGroup() {
 /* ---- RUN TESTS ---- */
 async function runFunctions() {
     // USERS
-/*     await getUser();
+    await getUser();
     await postUser();
     await patchUser();
-    await deleteUser(); */
+    await deleteUser();
 
     // GROUPS
     await getGroup();
