@@ -6,13 +6,14 @@ class GroupController {
     public static function handler($method, $input): void {
 
         if ($method === "GET") {
+            
             try {
                 // Get id from query, else set (no logic) null
                 $id = $_GET["id"] ?? null; 
                 $name = $_GET["name"] ?? null; 
                 
                 if ($id) {
-                    $result = GroupService::getById(id: $id);
+                    $result = GroupService::getById($id);
                 } elseif ($name) {
                     $result = GroupService::getByName($name);
                 } else {
@@ -45,10 +46,9 @@ class GroupController {
                 echo json_encode(["error" => $exc->getMessage()]);
                 return;
             }
-            
-        /* GroupService::getHandler(); */
         
         } else if ($method === "PATCH") {
+            
             try {
                 
                 $result = GroupService::updateGroup($input); 
@@ -62,11 +62,24 @@ class GroupController {
                 echo json_encode(["error" => $exc->getMessage()]);
                 return;
             }
-        /* GroupService::getHandler(); */
         
         } else if ($method === "DELETE") {
-        
-        /* GroupService::getHandler(); */
+            
+            try {
+                
+                $result = GroupService::deleteGroup($input["id"]);
+                
+                http_response_code(200);
+                echo json_encode($result);
+                return;
+                
+            } catch (Exception $exc) {
+                
+                http_response_code(400);
+                echo json_encode(["error" => $exc->getMessage()]);
+                return;
+                
+            }
         }
     }
 

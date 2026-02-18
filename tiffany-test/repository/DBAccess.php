@@ -2,22 +2,26 @@
 
 require_once "DBIO.php";
 
-class DBAccess {
+class DBAccess
+{
     // resource kommer från services ex: "$db = new DBAccess("groups")"
     private $resource;
 
-    public function __construct($resource) {
+    public function __construct($resource)
+    {
         $this->resource = $resource;
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         $db = DBIO::readDb();
-        
+
         // Resource ex: "groups" = return $this->db["groups"];
         return $db[$this->resource] ?? [];
     }
 
-    public function findById($id) {
+    public function findById($id)
+    {
         $db = DBIO::readDb();
         $items = $db[$this->resource] ?? [];
 
@@ -29,8 +33,9 @@ class DBAccess {
 
         return null;
     }
-    
-        public function findByName($name) {
+
+    public function findByName($name)
+    {
         $db = DBIO::readDb();
         $items = $db[$this->resource] ?? [];
 
@@ -41,21 +46,23 @@ class DBAccess {
         }
 
         return null;
-    }  
+    }
 
 
-    public function postData($input){
+    public function postData($input)
+    {
         $db = DBIO::readDb();
         array_push($db[$this->resource], $input);
         DBIO::writeToDb($db);
     }
 
     // id: id, changes: ["name" => "newName", "pwd" => "newPwd"]
-    public function patchData($id, $newData){
-        
+    public function patchData($id, $newData)
+    {
+
         $db = DBIO::readDb();
         $dbItems = $db[$this->resource];
-        
+
         foreach ($dbItems as $currentIndex => $item) {
             if ($item["id"] == $id) {
 
@@ -63,22 +70,45 @@ class DBAccess {
                 foreach ($newData as $key => $value) {
                     $dbItems[$currentIndex][$key] == $value;
                 }
-                
+
                 // Save
                 $db[$this->resource] = $dbItems;
                 DBIO::writeToDb($db);
-                
+
                 return $dbItems[$currentIndex];
             }
         }
-        
+
         throw new Exception("Not found");
     }
 
-    public function deleteData($input){
+    // $id
+    public function deleteData($id)
+    {
+        
         $db = DBIO::readDb();
-        $db[$this->resource] = array_filter($db[$this->resource], fn($tableObject) => $tableObject != $input);
-        DBIO::writeToDb($db);
+        $dbItems = $db[$this->resource];
+        $deleted;
+            
+        foreach ($dbItems as $currentIndex => $item) {
+            
+            if ($item["id"] == $id) {
+                $deleted = $db[$currentIndex];
+                
+                // Cuts out item with correct id
+                 array_splice($dbItems, $currentIndex, 1); 
+                 
+                 // Saves new DB
+                 $db[$this->resource] = $dbItems;
+                 DBIO::writeToDb($db); 
+                 
+                 return $deleted;
+            }
+            
+        }
+        
+        throw new Exception("Not found");
+
     }
 
 
