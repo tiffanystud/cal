@@ -6,11 +6,10 @@ class UsersGroupController {
 
     public static function handle($method, $input): void {
 
-        /* -------------------- GET -------------------- */
         if ($method === "GET") {
             try {
-                $id = $_GET["id"] ?? null;
-                $userId = $_GET["userId"] ?? null;
+                $id      = $_GET["id"] ?? null;
+                $userId  = $_GET["userId"] ?? null;
                 $groupId = $_GET["groupId"] ?? null;
 
                 if ($id) {
@@ -35,7 +34,6 @@ class UsersGroupController {
         }
 
 
-        /* -------------------- POST -------------------- */
         if ($method === "POST") {
             try {
                 $result = UsersGroupsService::addUserToGroup($input);
@@ -50,11 +48,8 @@ class UsersGroupController {
             }
         }
 
-
-        /* -------------------- PATCH -------------------- */
         if ($method === "PATCH") {
             try {
-                // Enda PATCH-operationen: ändra adminstatus
                 $result = UsersGroupsService::makeUserGroupAdmin($input);
                 http_response_code(200);
                 echo json_encode($result);
@@ -67,8 +62,6 @@ class UsersGroupController {
             }
         }
 
-
-        /* -------------------- DELETE -------------------- */
         if ($method === "DELETE") {
             try {
                 $result = UsersGroupsService::removeUserFromGroup($input);

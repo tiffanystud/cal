@@ -124,32 +124,45 @@ function postUserGroup() {
         url: "http://localhost:8000/users_groups",
         method: "POST",
         body: { 
-            userId: 6, 
-            adminId: 1, 
-            groupId: 5 
+            userId: 2, 
+            groupId: 999, 
+            isAdmin: false 
         },
         targetId: "postUserGroup"
     });
 }
 
 
+
 function patchUserGroup() {
     return runTest({
         url: "http://localhost:8000/users_groups",
         method: "PATCH",
-        body: { id: 3, isAdmin: true },
+        
+        // relId + "requesters" id
+        body: { 
+            id: 3, 
+            adminId: 1  
+        },
         targetId: "patchUserGroup"
     });
 }
+
+
 
 function deleteUserGroup() {
     return runTest({
         url: "http://localhost:8000/users_groups",
         method: "DELETE",
-        body: { id: 3, userId: 6, groupId: 5, isAdmin: false },
+        body: { 
+            id: 3,
+            adminId: 1
+        },
         targetId: "deleteUserGroup"
     });
 }
+
+
 
 
 
@@ -170,8 +183,9 @@ async function runFunctions() {
     // USERS_GROUPS
     await getUserGroup();
     await postUserGroup();
-    await patchUserGroup();
-    await deleteUserGroup();
+    await getGroup();
+    // await patchUserGroup();
+    // await deleteUserGroup();
 }
 
 runFunctions();

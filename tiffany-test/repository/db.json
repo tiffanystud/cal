@@ -38,19 +38,19 @@
         },
         {
             "id": 7,
-            "userName": "Philip",
-            "pwd": "hejhej%",
-            "email": "philles@"
+            "userName": "Philippa",
+            "pwd": "neej%!",
+            "email": "lill@y"
         },
         {
             "id": 7,
-            "userName": "Philip",
-            "pwd": "hejhej%",
-            "email": "philles@"
+            "userName": "Philipe",
+            "pwd": "heej%",
+            "email": "greats@"
         },
         {
             "id": 7,
-            "userName": "Philip",
+            "userName": "Filippés",
             "pwd": "hejhej%",
             "email": "philles@"
         }
@@ -67,6 +67,10 @@
         {
             "id": "3",
             "name": "Grupp 3"
+        },
+        {
+            "id": "999",
+            "name": "040 Underground"
         }
     ],
     "users_groups": [
