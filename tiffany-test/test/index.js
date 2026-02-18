@@ -141,8 +141,8 @@ function patchUserGroup() {
         
         // relId + "requesters" id
         body: { 
-            id: 3, 
-            adminId: 1  
+            id: 2, 
+            adminId: 2  
         },
         targetId: "patchUserGroup"
     });
@@ -155,8 +155,8 @@ function deleteUserGroup() {
         url: "http://localhost:8000/users_groups",
         method: "DELETE",
         body: { 
-            id: 3,
-            adminId: 1
+            id: 2,
+            adminId: 2
         },
         targetId: "deleteUserGroup"
     });
@@ -169,23 +169,22 @@ function deleteUserGroup() {
 /* ---- RUN TESTS ---- */
 async function runFunctions() {
     // USERS
-/*     await getUser();
+    await getUser();
     await postUser();
     await patchUser();
-    await deleteUser(); */
+    await deleteUser();
 
     // GROUPS  
-/*     await getGroup();
+    await getGroup();
     await postGroup();
     await patchGroup();
-    await deleteGroup(); */
+    await deleteGroup();
 
     // USERS_GROUPS
     await getUserGroup();
     await postUserGroup();
-    await getGroup();
-    // await patchUserGroup();
-    // await deleteUserGroup();
+    await patchUserGroup();
+    await deleteUserGroup();
 }
 
 runFunctions();
