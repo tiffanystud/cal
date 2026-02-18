@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../services/UsersGroupService.php";
 
 class UsersGroupController {
-   public static function handler($method, $input): void {
+   public static function handle($method, $input): void {
         if ($method === "GET") {
             try {
                 $id = $_GET["id"] ?? null;

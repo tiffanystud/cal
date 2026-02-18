@@ -35,13 +35,13 @@ function Router($requestUrl){
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();
-                    UsersController::handle(method: $method, input: []);
+                    GroupsController::handle(method: $method, input: []);
                     break;
                     
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
-                    UsersController::handle(method: $method, input: []);
+                    GroupsController::handle(method: $method, input: []);
                     break;
             }
             
@@ -49,12 +49,12 @@ function Router($requestUrl){
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();
-                    UsersController::handle(method: $method, input: []);
+                    UsersGroupController::handle(method: $method, input: []);
                     break;
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
-                    UsersController::handle(method: $method, input: []);
+                    UsersGroupController::handle(method: $method, input: []);
                     break;
             }
     }
