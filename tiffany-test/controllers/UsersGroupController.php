@@ -15,7 +15,7 @@ class UsersGroupController {
                     http_response_code(200);
                     echo json_encode($result);
                 } elseif ($userId){
-                    $result = UsersGroupsService::getAllRelationsByUser($userId);
+                    $result = UsersGroupsService->getAllRelationsByUser($userId);
                     http_response_code(200);
                     echo json_encode($result);                    
                 } elseif ($groupId){
