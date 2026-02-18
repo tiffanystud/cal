@@ -6,7 +6,7 @@ class UsersGroupsService {
 
     private DBAccess $users;
     private DBAccess $groups;
-    private DBAccess $userGroups;
+    private DBAccess $usersGroups;
 
     public function __construct()
     {
@@ -23,7 +23,7 @@ class UsersGroupsService {
         return $relations;
     }
     public function getRelationById($id){
-        $relation = $this->findById($id);
+        $relation = $this->usersGroups->findById($id);
         if ($relation){
             throw new Exception("Relation not found");
         }
