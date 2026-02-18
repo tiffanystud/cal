@@ -16,11 +16,11 @@ class UsersGroupsService {
     }
 
     public function getAll(){
-        $usersGroups = $this->usersGroup->getAll();
+        $relations = $this->usersGroup->getAll();
         if (empty($usersGroups)){
-            throw new Exception("No groups found");
+            throw new Exception("No relations found.");
         }
-        return $usersGroups;
+        return $relations;
     }
 
     public function addUserToGroup($input) {
@@ -97,6 +97,19 @@ class UsersGroupsService {
         
         return array_filter($relations, fn($x) => $x["groupID"] == $groupId);
         
+    }
+    public function getAllRelationsByUser($userId){
+        if (!$this->users->findById($userId)){
+            throw new DomainException("User not found.");
+        }
+        $relations = $this->usersGroups->getAll();
+        $relationsOfUser = array_filter($relations, fn($x) => $x["userID" == $userId]);
+        if(empty($relationsOfUser)){
+            // Vet inte om jag ska skicka error här?
+            $message = ["message" => "User not in any group"];
+            return $message;
+        }
+        return $relationsOfUser;
     }
 
     public function getAllUsersByGroup($groupId){
