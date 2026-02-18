@@ -7,9 +7,10 @@ class DBIO {
     }
 
     public static function writeToDb($data) {
-        file_put_contents("db.json", json_encode($data, JSON_PRETTY_PRINT), true);
+        file_put_contents("db.json", json_encode($data, JSON_PRETTY_PRINT));
         return true;
     }
+
 }
 
 ?>
