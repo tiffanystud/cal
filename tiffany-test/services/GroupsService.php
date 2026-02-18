@@ -82,11 +82,11 @@ class GroupsService {
     public static function deleteGroup($id) {  
              
         $db = new DBAccess("groups");
-        
-        
+    
         if (!isset($input["id"])) {
             throw new Exception("Id missing");
         }
+        
         return $db->deleteData($id);
         
     }
