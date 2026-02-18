@@ -6,10 +6,10 @@ require_once __DIR__ . "/../middleware/middleware.php";
 // Controllera
 require_once "GroupsController.php";
 require_once "UsersController.php";
-require_once "UsersGroupController.php";
+require_once "UsersGroupsController.php";
 
 function Router($requestUrl){   
-
+    echo "hej--------------";
     $urlPath = parse_url($requestUrl, PHP_URL_PATH);
     $path = ltrim($urlPath, "/");
     $method = $_SERVER["REQUEST_METHOD"];
@@ -21,15 +21,20 @@ function Router($requestUrl){
         case "users":
             switch ($method) {
                case "GET": 
+                    echo "Before---------";
                     CorsMiddleware::handle();
                     UsersController::handle(method: $method, input: $input);
+                    echo "After---------";
                     break;
+                   
                     
                 default:
+                    echo "Before---------";
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
                     UsersController::handle(method: $method, input: $input);
                     break;
+                    echo "After---------";
             }
             break;
             

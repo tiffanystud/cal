@@ -1,13 +1,14 @@
 // USERSTABLE
 async function getUser() {
     let request = await fetch("http://localhost:8000/users");
-    let response = await request.json();
-    if (response.status.ok) {
+    if (request.ok) {
+        let response = await request.json();
         document.querySelector("#getUser").style.backgroundColor = "green";
-        document.querySelector("#getUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#getUser").textContent = `<p>${response.status}</p><p>${JSON.stringify(response.body)}</p>`
     } else {
+        let response = await request.json();
         document.querySelector("#getUser").style.backgroundColor = "red";
-        document.querySelector("#getUser").textContent = `<p>${response.status}</p><p>${response.body}</p>`
+        document.querySelector("#getUser").textContent = `<p>${response.status}</p><p>${JSON.stringify(response.body)}</p>`
     }
 }
 
