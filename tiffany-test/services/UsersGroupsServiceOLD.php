@@ -2,120 +2,110 @@
 
 require_once __DIR__ . "/../repository/DBAccess.php";
 
-class UsersGroupsService
-{
+class UsersGroupsService {
 
-    public static function getAll()
+    private DBAccess $users;
+    private DBAccess $groups;
+    private DBAccess $usersGroups;
+
+    public function __construct()
     {
-        $db = new DBAccess("users_groups");
-        $relations = $db->getAll();
-        if (empty($usersGroups)) {
+        $this->users = new DBAccess("users");
+        $this->groups = new DBAccess("groups");
+        $this->usersGroups = new DBAccess("users_groups");
+    }
+
+    public function getAll(){
+        $relations = $this->usersGroup->getAll();
+        if (empty($usersGroups)){
             throw new Exception("No relations found.");
         }
         return $relations;
     }
-    public static function getRelationById($id)
-    {
-        $db = new DBAccess("users_groups");
-        $relation = $db->findById($id);
-        if ($relation) {
+    public function getRelationById($id){
+        $relation = $this->usersGroups->findById($id);
+        if ($relation){
             throw new Exception("Relation not found");
         }
         return $relation;
     }
 
     //Denna funktion ska returnera [id=>1, userID=>1, groupID=>1, isAdmin=>true]
-    public static function getAllRelationsByGroup($groupId){
-        $dbGroups = new DBAccess("groups");
-        if (!$dbGroups->findById($groupId)) {
+    public function getAllRelationsByGroup($groupId) {
+        if (!$this->groups->findById($groupId)){
             throw new DomainException("Group not found");
         }
-        $db = new DBAccess("users_groups");
-        $relations = $db->getAll();
 
+        $relations = $this->usersGroups->getAll();
+        
         return array_filter($relations, fn($x) => $x["groupID"] == $groupId);
-
+        
     }
-    public static function getAllRelationsByUser($userId){
-        $dbUsers = new DBAccess("users");
-        if (!$dbUsers->findById($userId)) {
+    public function getAllRelationsByUser($userId){
+        if (!$this->users->findById($userId)){
             throw new DomainException("User not found.");
         }
-        $db = new DBAccess("users_groups");
-        $relations = $db->getAll();
+        $relations = $this->usersGroups->getAll();
         $relationsOfUser = array_filter($relations, fn($x) => $x["userID" == $userId]);
 
         return $relationsOfUser;
     }
 
-    public static function getAllUsersByGroup($groupId)
-    {
-        $relations = self::getAllRelationsByGroup($groupId);
+    public function getAllUsersByGroup($groupId){
+        $relations = getAllRelationsByGroup($groupId);
         $userIds = [];
-        foreach ($relations as $rel) {
+        foreach ($relations as $rel){
             array_push($relations, $rel["userID"]);
         }
         //Ev ska slänga in någon sorts koll...
-        $dbUsers = new DBAccess("users");
         $users = [];
-        foreach ($userIds as $userId) {
-            $user = $dbUsers->findById($userId);
-            if(!$user){
-                throw new Exception("User in group does not exist");
-            }
+        foreach ($userIds as $userId){
+            $user = $this->users->findById($userId);
             array_push($users, $user);
         }
         return $users;
     }
 
-    public static function getAllGroupsByUser($userId) {
-        $dbUsers = new DBAccess("users");
-        $dbGroups = new DBAccess("groups");
-        
-        if (!$dbUsers->findById($userId)) {
+    public function getAllGroupsByUser($userId){
+        if(!$this->users->findById($userId)){
             throw new Exception("User not found");
         }
-        $relations = self::getAll();
-        $relationsOfUser = self::getRelationsByUser($userId);
+        $relations = $this->getAll();
+        $relationsOfUser = $this->getRelationsByUser($userId);
 
-        if (empty($relationsOfUser)) {
+        if(empty($relationsOfUser)){
             ///Vet inte om det behöver bli error!
             throw new Exception("User not in any group.");
         }
-        
         $groups = [];
-        foreach ($relationsOfUser as $rel) {
-            $group = $dbGroups->findById($rel["groupID"]);
+        foreach($relationsOfUser as $rel){
+            $group = $this->findById($rel["groupID"]);
             array_push($groups, $group);
         }
         return $groups;
     }
 
-    public static function addUserToGroup($input)
-    {
-        if (!isset($input["userId"])) {
+        public function addUserToGroup($input) {
+        if(!isset($input["userId"])){
             throw new Exception("User ID missing.");
         }
-        if (!isset($input["adminId"])) {
+        if(!isset($input["adminId"])){
             throw new Exception("Admin ID missing.");
         }
-        if (!isset($input["groupId"])) {
+        if(!isset($input["groupId"])){
             throw new Exception("Group ID missing.");
         }
         $userId = $input["userId"];
         $adminId = $input["adminId"];
         $groupId = $input["groupId"];
-
-        $dbUsers = new DBAccess("users");
-        $db = new DBAccess("users_groups");
-
+            
         //Kolla om användaren finns!
-        $userExists = $dbUser->findById($userId);
-        if (!$userExists) {
+        $userExists = $this->users->findById($userId);
+        if (!$userExists){
             throw new DomainException("User not found");
         }
         // Kolla om gruppen finns!  
-        $relations = self::getAllRelationsByGroup($groupId);
+        $relations = $this->getAllRelationsByGroup($groupId);
         // Kolla om admin är admin!
         $adminIsAdmin = array_any($relations, fn($x) => $x["userID"] == $adminId && $x["isAdmin"] == true);
         if (!$adminIsAdmin) {
@@ -126,30 +116,27 @@ class UsersGroupsService
         if ($userInGroup) {
             throw new DomainException("User already in group.");
         }
-        $newId = uniqid();
+        $newId = newId($groupId);
         // Här blir man då per default inte admin, men om man skapar en grupp måste man ju bli admin...
-        return $db->postData(["id" => $newId, "userID" => $userId, "groupID" => $groupId, "isAdmin" => false]);
+        return $this->usersGroup->postData(["id" => $newId, "userID" => $userId, "groupID" => $groupId, "isAdmin" => false]);        
 
-    }
-
-    public static function removeUserFromGroup($input)
-    {
-        if (!isset($input["userId"])) {
+        }
+    
+    public static function removeUserFromGroup($input) {
+        if(!isset($input["userId"])){
             throw new Exception("User ID missing.");
         }
-        if (!isset($input["adminId"])) {
+        if(!isset($input["adminId"])){
             throw new Exception("Admin ID missing.");
         }
-        if (!isset($input["groupId"])) {
+        if(!isset($input["groupId"])){
             throw new Exception("Group ID missing.");
         }
         $userId = $input["userId"];
         $adminId = $input["adminId"];
         $groupId = $input["groupId"];
 
-        $db = new DBAccess("users_groups");
-
-        $relations = self::getAllRelationsByGroup($groupId);
+        $relations = $this->getAllRelationsByGroup($groupId);
 
         $adminIsAdmin = array_any($relations, fn($x) => $x["userID"] == $adminId && $x["isAdmin"] == true);
         if (!$adminIsAdmin) {
@@ -159,43 +146,52 @@ class UsersGroupsService
         if (!$userInGroup) {
             throw new DomainException("User not in group.");
         }
-        return $db->deleteData($userInGroup);
+        return $this->usersGroup->deleteData($userInGroup);    
     }
 
 
     // Kanske ska byta till changeAdminStatus eller ngt.
-    public static function makeUserGroupAdmin($input)
-    {
-        if (!isset($input["userId"])) {
+    public function makeUserGroupAdmin($input){
+        if(!isset($input["userId"])){
             throw new Exception("User ID missing.");
         }
-        if (!isset($input["adminId"])) {
+        if(!isset($input["adminId"])){
             throw new Exception("Admin ID missing.");
         }
-        if (!isset($input["groupId"])) {
+        if(!isset($input["groupId"])){
             throw new Exception("Group ID missing.");
         }
         $userId = $input["userId"];
         $adminId = $input["adminId"];
         $groupId = $input["groupId"];
 
-        $db = new DBAccess("users_groups");
-
-        $relations = self::getAllRelationsByGroup($groupId);
+        $relations = $this->getAllRelationsByGroup($groupId);
 
         $adminIsAdmin = array_any($relations, fn($x) => $x["userID"] == $adminID && $x["isAdmin"] == true);
-        if (!$adminIsAdmin) {
+        if (!$adminIsAdmin){
             throw new Exception("Only admin can make user admin.");
         }
         $userInGroup = array_find($relations, fn($x) => $x["userID"] == $userId);
 
-        if (!$userInGroup) {
+        if(!$userInGroup){
             throw new Exception("User is not in group.");
         }
 
-        return $db->patchData($userInGroup);
+        return $this->userGroups->patchData($userInGroup);
+
+        }
 
     }
-}
+    
+    function newId($groupId){
+        $maxId = 0;
+        foreach ($this->usersGroups->getAll() as $uG){
+            if ($uG > $maxId){
+                $maxId = $uG;
+            }
+        }
+        return $maxId + 1;
 
+    }
 
+    

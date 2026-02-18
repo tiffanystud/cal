@@ -11,20 +11,20 @@ class UsersGroupController {
                 $groupId = $_GET["groupId"] ?? null;
 
                 if($id) {
-                    $result = UsersGroupsService->getRelationById($id);
+                    $result = UsersGroupsService::getRelationById($id);
                     http_response_code(200);
                     echo json_encode($result);
                 } elseif ($userId){
-                    $result = UsersGroupsService->getAllRelationsByUser($userId);
+                    $result = UsersGroupsService::getAllRelationsByUser($userId);
                     http_response_code(200);
                     echo json_encode($result);                    
                 } elseif ($groupId){
-                    $result = UsersGroupsService->getAllRelationsByGroup($groupId);
+                    $result = UsersGroupsService::getAllRelationsByGroup($groupId);
                     http_response_code(200);
                     echo json_encode($result);
                     return;
                 } else {
-                    $result = UsersGroupsService->getAll();
+                    $result = UsersGroupsService::getAll();
                     http_response_code(200);
                     echo json_encode($result);                    
                 }
