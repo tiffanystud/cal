@@ -82,10 +82,13 @@ async function getGroup() {
 async function postGroup() {
     let request = await fetch("http://localhost:8000/groups", {
         method: "POST",
-        body: JSON.stringify({ name: "Group 2" }),
+        body: JSON.stringify({ name: "Group 50" }),
         headers: { "Content-Type": "application/json" }
     })
-    let response = await request.json();
+        console.log("HEJ")
+        console.log(await request)
+    let response = await request.statusText;
+    
     if (request.ok) {
         document.querySelector("#postGroup").style.backgroundColor = "green";
         document.querySelector("#postGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
@@ -149,7 +152,8 @@ async function postUserGroup() {
         body: JSON.stringify({ userId: 6, groupId: 5, isAdmin: false }),
         headers: { "Content-Type": "application/json" }
     })
-    let response = await request.json();
+    let response = await request.text();
+    console.log(response);
     if (response.ok) {
         document.querySelector("#postUserGroup").style.backgroundColor = "green";
         document.querySelector("#postUserGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
@@ -199,14 +203,14 @@ async function runFunctions() {
     // await deleteUser();
 
     // await getGroup();
-    // await postGroup();
-    await patchGroup();
+    await postGroup();
+/*  await patchGroup();
     await deleteGroup();
 
     await getUserGroup();
     await postUserGroup();
     await patchUserGroup();
-    await deleteUserGroup();
+    await deleteUserGroup(); */
 }
 
 runFunctions();

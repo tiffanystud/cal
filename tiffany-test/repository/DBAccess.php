@@ -64,7 +64,7 @@ class DBAccess
         $dbItems = $db[$this->resource];
         
         foreach ($dbItems as $currentIndex => $item) {
-            if ($item["id"] == $id) {
+            if ($item["id"] = $id) {
 
                 // Updates the fields that are present in [changes]
                 foreach ($newData as $key => $value) {
@@ -92,7 +92,7 @@ class DBAccess
         foreach ($dbItems as $currentIndex => $item) {
             
             if ($item["id"] == $id) {
-                $deleted = $db[$currentIndex];
+                $deleted = $dbItems[$currentIndex];
                 
                 // Cuts out item with correct id
                  array_splice($dbItems, $currentIndex, 1); 
