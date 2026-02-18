@@ -2,7 +2,7 @@
 
 // getUsers
 
-$url = "http://localhost/post_handler.php?";
+$url = "http://localhost/users";
 
 $ch = curl_init($url);
 
