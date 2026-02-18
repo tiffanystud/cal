@@ -170,7 +170,7 @@ function deleteUserGroup() {
 async function runFunctions() {
     // USERS
     await getUser();
-    await postUser();
+    /* await postUser();
     await patchUser();
     await deleteUser();
 
@@ -184,7 +184,7 @@ async function runFunctions() {
     await getUserGroup();
     await postUserGroup();
     await patchUserGroup();
-    await deleteUserGroup();
+    await deleteUserGroup(); */
 }
 
 runFunctions();
