@@ -22,8 +22,70 @@ class UsersGroupsService {
         }
         return $relations;
     }
+    public function getRelationById($id){
+        $relation = $this->findById($id);
+        if ($relation){
+            throw new Exception("Relation not found");
+        }
+        return $relation;
+    }
 
-    public function addUserToGroup($input) {
+    //Denna funktion ska returnera [id=>1, userID=>1, groupID=>1, isAdmin=>true]
+    public function getAllRelationsByGroup($groupId) {
+        if (!$this->groups->findById($groupId)){
+            throw new DomainException("Group not found");
+        }
+
+        $relations = $this->usersGroups->getAll();
+        
+        return array_filter($relations, fn($x) => $x["groupID"] == $groupId);
+        
+    }
+    public function getAllRelationsByUser($userId){
+        if (!$this->users->findById($userId)){
+            throw new DomainException("User not found.");
+        }
+        $relations = $this->usersGroups->getAll();
+        $relationsOfUser = array_filter($relations, fn($x) => $x["userID" == $userId]);
+
+        return $relationsOfUser;
+    }
+
+    public function getAllUsersByGroup($groupId){
+        $relations = getAllRelationsByGroup($groupId);
+        $userIds = [];
+        foreach ($relations as $rel){
+            array_push($relations, $rel["userID"]);
+        }
+        //Ev ska slänga in någon sorts koll...
+        $users = [];
+        foreach ($userIds as $userId){
+            $user = $this->users->findById($userId);
+            array_push($users, $user);
+        }
+        return $users;
+    }
+
+    public function getAllGroupsByUser($userId){
+        if(!$this->users->findById($userId)){
+            throw new Exception("User not found");
+        }
+        $relations = $this->getAll();
+        $relationsOfUser = $this->getRelationsByUser($userId);
+
+        if(empty($relationsOfUser)){
+            ///Vet inte om det behöver bli error!
+            throw new Exception("User not in any group.");
+        }
+        $groups = [];
+        foreach($relationsOfUser as $rel){
+            $group = $this->findById($rel["groupID"]);
+            array_push($groups, $group);
+        }
+        return $groups;
+    }
+
+        public function addUserToGroup($input) {
         if(!isset($input["userId"])){
             throw new Exception("User ID missing.");
         }
@@ -87,45 +149,6 @@ class UsersGroupsService {
         return $this->usersGroup->deleteData($userInGroup);    
     }
 
-    //Denna funktion ska returnera [id=>1, userID=>1, groupID=>1, isAdmin=>true]
-    public function getAllRelationsByGroup($groupId) {
-        if (!$this->groups->findById($groupId)){
-            throw new DomainException("Group not found");
-        }
-
-        $relations = $this->usersGroups->getAll();
-        
-        return array_filter($relations, fn($x) => $x["groupID"] == $groupId);
-        
-    }
-    public function getAllRelationsByUser($userId){
-        if (!$this->users->findById($userId)){
-            throw new DomainException("User not found.");
-        }
-        $relations = $this->usersGroups->getAll();
-        $relationsOfUser = array_filter($relations, fn($x) => $x["userID" == $userId]);
-        if(empty($relationsOfUser)){
-            // Vet inte om jag ska skicka error här?
-            $message = ["message" => "User not in any group"];
-            return $message;
-        }
-        return $relationsOfUser;
-    }
-
-    public function getAllUsersByGroup($groupId){
-        $relations = getAllRelationsByGroup($groupId);
-        $userIds = [];
-        foreach ($relations as $rel){
-            array_push($relations, $rel["userID"]);
-        }
-        //Ev ska slänga in någon sorts koll...
-        $users = [];
-        foreach ($userIds as $userId){
-            $user = $this->users->findById($userId);
-            array_push($users, $user);
-        }
-        return $users;
-    }
 
     // Kanske ska byta till changeAdminStatus eller ngt.
     public function makeUserGroupAdmin($input){

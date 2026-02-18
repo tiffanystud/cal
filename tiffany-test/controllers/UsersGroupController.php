@@ -11,11 +11,15 @@ class UsersGroupController {
                 $groupId = $_GET["groupId"] ?? null;
 
                 if($id) {
-                    //Har ingen funktion ännu
+                    $result = UsersGroupService::getRelationById($id);
+                    http_response_code(200);
+                    echo json_encode($result);
                 } elseif ($userId){
-                    // Har ingen funktion men ev. getGroupOfUser?
+                    $result = UsersGroupService::getAllRelationsByUser($userId);
+                    http_response_code(200);
+                    echo json_encode($result);                    
                 } elseif ($groupId){
-                    $result = UsersGroupService::getAllUsersByGroup($groupId);
+                    $result = UsersGroupService::getAllRelationsByGroup($groupId);
                     http_response_code(200);
                     echo json_encode($result);
                     return;
