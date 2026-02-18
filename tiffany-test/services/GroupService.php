@@ -74,13 +74,22 @@ class GroupService {
         
         $db = new DBAccess("groups");
 
-        return $db->patchData($input["id"], [
-            "name" => $input["name"]
-        ]);
+        return $db->patchData($input["id"], ["name" => $input["name"]]);
             
     }
     
-    
+    /* --- DELETE ---- */
+    public static function deleteGroup($id) {  
+             
+        $db = new DBAccess("groups");
+        
+        
+        if (!isset($input["id"])) {
+            throw new Exception("Id missing");
+        }
+        return $db->deleteData($id);
+        
+    }
     
     
     
