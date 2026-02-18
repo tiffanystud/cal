@@ -15,6 +15,14 @@ class UsersGroupsService {
         $this->usersGroups = new DBAccess("user_groups");
     }
 
+    public function getAll(){
+        $usersGroups = $this->usersGroup->getAll();
+        if (empty($usersGroups)){
+            throw new Exception("No groups found");
+        }
+        return $usersGroups;
+    }
+
     public function addUserToGroup($input) {
         if(!isset($input["userId"])){
             throw new Exception("User ID missing.");
@@ -35,7 +43,7 @@ class UsersGroupsService {
             throw new DomainException("User not found");
         }
         // Kolla om gruppen finns!  
-        $relations = $this->getAllUsersInGroup($groupId);
+        $relations = $this->getAllRelationsByGroup($groupId);
         // Kolla om admin är admin!
         $adminIsAdmin = array_any($relations, fn($x) => $x["userID"] == $adminId && $x["isAdmin"] == true);
         if (!$adminIsAdmin) {
@@ -66,7 +74,7 @@ class UsersGroupsService {
         $adminId = $input["adminId"];
         $groupId = $input["groupId"];
 
-        $relations = $this->getAllUsersInGroup($groupId);
+        $relations = $this->getAllRelationsByGroup($groupId);
 
         $adminIsAdmin = array_any($relations, fn($x) => $x["userID"] == $adminId && $x["isAdmin"] == true);
         if (!$adminIsAdmin) {
@@ -79,9 +87,8 @@ class UsersGroupsService {
         return $this->usersGroup->deleteData($userInGroup);    
     }
 
-    //Denna funktion returnerar eg. inte alla användare i gruppen, men hela posten typ
-    // [id=>1, userID=>1, groupID=>1, isAdmin=>true]
-    public function getAllUsersInGroup($groupId) {
+    //Denna funktion ska returnera [id=>1, userID=>1, groupID=>1, isAdmin=>true]
+    public function getAllRelationsByGroup($groupId) {
         if (!$this->groups->findById($groupId)){
             throw new DomainException("Group not found");
         }
@@ -92,6 +99,22 @@ class UsersGroupsService {
         
     }
 
+    public function getAllUsersByGroup($groupId){
+        $relations = getAllRelationsByGroup($groupId);
+        $userIds = [];
+        foreach ($relations as $rel){
+            array_push($relations, $rel["userID"]);
+        }
+        //Ev ska slänga in någon sorts koll...
+        $users = [];
+        foreach ($userIds as $userId){
+            $user = $this->users->findById($userId);
+            array_push($users, $user);
+        }
+        return $users;
+    }
+
+    // Kanske ska byta till changeAdminStatus eller ngt.
     public function makeUserGroupAdmin($input){
         if(!isset($input["userId"])){
             throw new Exception("User ID missing.");
@@ -106,7 +129,7 @@ class UsersGroupsService {
         $adminId = $input["adminId"];
         $groupId = $input["groupId"];
 
-        $relations = $this->getAllUsersInGroup($groupId);
+        $relations = $this->getAllRelationsByGroup($groupId);
 
         $adminIsAdmin = array_any($relations, fn($x) => $x["userID"] == $adminID && $x["isAdmin"] == true);
         if (!$adminIsAdmin){

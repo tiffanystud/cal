@@ -15,13 +15,14 @@ class UsersGroupController {
                 } elseif ($userId){
                     // Har ingen funktion men ev. getGroupOfUser?
                 } elseif ($groupId){
-                    // Denna funktion bör nog eg. ge en lista på användare.
-                    $result = UsersGroupService::getAllUsersInGroup($groupId);
+                    $result = UsersGroupService::getAllUsersByGroup($groupId);
                     http_response_code(200);
                     echo json_encode($result);
                     return;
                 } else {
-                    // Har ingen funktion, vet inte, varför vill man ha alla users_groups?
+                    $result = UsersGroupService::getAll();
+                    http_response_code(200);
+                    echo json_encode($result);                    
                 }
 
             } catch (Exception $exc){
@@ -32,7 +33,6 @@ class UsersGroupController {
 
         } else if ($method === "POST") {
             try {
-                // addUserToGroup
                 $result = UsersGroupService::addUserToGroup($input);
                 http_response_code(200);
                 echo json_encode($result);
