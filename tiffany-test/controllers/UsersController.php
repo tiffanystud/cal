@@ -8,7 +8,7 @@ class UsersController {
                     http_response_code(400);
                     echo json_encode(["error" => "Username is missing!"]);
                     exit();
-                } else if(empty($input["password"])){
+                } else if(empty($input["pwd"])){
                     http_response_code(400);
                     echo json_encode(["error" => "Password is missing!"]);
                     exit();
@@ -18,7 +18,7 @@ class UsersController {
                     exit();
                 }
     
-                return UsersService::getUsers($input);
+                return UserService::getUsers($input);
 
             } catch(Exception $error){
                 http_response_code(500);
@@ -33,7 +33,7 @@ class UsersController {
                     http_response_code(400);
                     echo json_encode(["error" => "Username is missing!"]);
                     exit();
-                } else if(empty($input["password"])){
+                } else if(empty($input["pwd"])){
                     http_response_code(400);
                     echo json_encode(["error" => "Password is missing!"]);
                     exit();
@@ -59,7 +59,7 @@ class UsersController {
                     http_response_code(400);
                     echo json_encode(["error" => "Username is missing!"]);
                     exit();
-                } else if(empty($input["password"])){
+                } else if(empty($input["pwd"])){
                     http_response_code(400);
                     echo json_encode(["error" => "Password is missing!"]);
                     exit();
@@ -86,7 +86,7 @@ class UsersController {
                     http_response_code(400);
                     echo json_encode(["error" => "Username is missing!"]);
                     exit();
-                } else if(empty($input["password"])){
+                } else if(empty($input["pwd"])){
                     http_response_code(400);
                     echo json_encode(["error" => "Password is missing!"]);
                     exit();
