@@ -1,5 +1,7 @@
 <?php
 
+require_once "db.json";
+
 class DBIO {
     public static function readDb() {
         $db = file_get_contents("db.json");

@@ -1,8 +1,11 @@
 
 <!-- Validera input, sätt business logic -->
 <!-- Returnera till controller -->
- 
+
 <?php
+
+require_once __DIR__ . "/../repository/DBAccess.php";
+
 class UsersService {
     public static function getAllUsers() {
         return DBAcess::getUsers();

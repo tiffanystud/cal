@@ -13,11 +13,11 @@ class GroupsController {
                 $name = $_GET["name"] ?? null; 
                 
                 if ($id) {
-                    $result = GroupService::getById($id);
+                    $result = GroupsService::getById($id);
                 } elseif ($name) {
-                    $result = GroupService::getByName($name);
+                    $result = GroupsService::getByName($name);
                 } else {
-                    $result = GroupService::getAll();         
+                    $result = GroupsService::getAll();         
                 }
         
                 http_response_code(200);

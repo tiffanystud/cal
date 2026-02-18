@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../repositories/DBAccess.php";
+require_once __DIR__ . "/../repository/DBAccess.php";
 
 class UsersGroupsService {
 

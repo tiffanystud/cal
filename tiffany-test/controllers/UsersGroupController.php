@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../services/UsersGroupService.php";
+require_once __DIR__ . "/../services/UsersGroupsService.php";
 
 class UsersGroupController {
    public static function handle($method, $input): void {
@@ -11,20 +11,20 @@ class UsersGroupController {
                 $groupId = $_GET["groupId"] ?? null;
 
                 if($id) {
-                    $result = UsersGroupService::getRelationById($id);
+                    $result = UsersGroupsService::getRelationById($id);
                     http_response_code(200);
                     echo json_encode($result);
                 } elseif ($userId){
-                    $result = UsersGroupService::getAllRelationsByUser($userId);
+                    $result = UsersGroupsService::getAllRelationsByUser($userId);
                     http_response_code(200);
                     echo json_encode($result);                    
                 } elseif ($groupId){
-                    $result = UsersGroupService::getAllRelationsByGroup($groupId);
+                    $result = UsersGroupsService::getAllRelationsByGroup($groupId);
                     http_response_code(200);
                     echo json_encode($result);
                     return;
                 } else {
-                    $result = UsersGroupService::getAll();
+                    $result = UsersGroupsService::getAll();
                     http_response_code(200);
                     echo json_encode($result);                    
                 }
@@ -37,7 +37,7 @@ class UsersGroupController {
 
         } else if ($method === "POST") {
             try {
-                $result = UsersGroupService::addUserToGroup($input);
+                $result = UsersGroupsService::addUserToGroup($input);
                 http_response_code(200);
                 echo json_encode($result);
                 return;
@@ -47,7 +47,7 @@ class UsersGroupController {
             }
         } else if($method === "PATCH") {
             try {
-                $result = UsersGroupService::makeUserGroupAdmin($input);
+                $result = UsersGroupsService::makeUserGroupAdmin($input);
                 http_response_code(200);
                 echo json_encode($result);
                 return;
@@ -57,7 +57,7 @@ class UsersGroupController {
             }
         } else if($method === "DELETE") {
             try {
-                $result = UsersGroupService::removeUserFromGroup($input);
+                $result = UsersGroupsService::removeUserFromGroup($input);
                 http_response_code(200);
                 echo json_encode($result);
                 return;

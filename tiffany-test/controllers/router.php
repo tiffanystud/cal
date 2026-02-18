@@ -4,7 +4,7 @@
 require_once __DIR__ . "/../middleware/middleware.php";
 
 // Controllera
-require_once "GroupController.php";
+require_once "GroupsController.php";
 require_once "UsersController.php";
 require_once "UsersGroupController.php";
 
