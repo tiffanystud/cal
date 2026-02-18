@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../repositories/DBAccess.php";
 
-class GroupService {
+class GroupsService {
     
 
     /* ---- GET ---- */

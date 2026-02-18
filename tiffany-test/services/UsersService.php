@@ -3,7 +3,7 @@
 <!-- Returnera till controller -->
  
 <?php
-class UserService {
+class UsersService {
     public static function getAllUsers() {
         return DBAcess::getUsers();
     }

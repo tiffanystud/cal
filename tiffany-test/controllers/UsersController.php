@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . "/../services/UsersService.php";
+
 class UsersController {
 
     public static function handle($method, $input){
@@ -18,7 +21,7 @@ class UsersController {
                     exit();
                 }
     
-                return UserService::getUsers($input);
+                return UsersService::getUsers($input);
 
             } catch(Exception $error){
                 http_response_code(500);

@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . "/../services/GroupService.php";
+require_once __DIR__ . "/../services/GroupsService.php";
 
-class GroupController {
+class GroupsController {
     public static function handler($method, $input): void {
 
         if ($method === "GET") {
@@ -35,7 +35,7 @@ class GroupController {
             
             try {
                 
-                $result = GroupService::createGroup($input); 
+                $result = GroupsService::createGroup($input); 
                 
                 http_response_code(201);
                 echo json_encode($result);
@@ -51,7 +51,7 @@ class GroupController {
             
             try {
                 
-                $result = GroupService::updateGroup($input); 
+                $result = GroupsService::updateGroup($input); 
                 
                 http_response_code(200);
                 echo json_encode($result);
@@ -67,7 +67,7 @@ class GroupController {
             
             try {
                 
-                $result = GroupService::deleteGroup($input["id"]);
+                $result = GroupsService::deleteGroup($input["id"]);
                 
                 http_response_code(200);
                 echo json_encode($result);
