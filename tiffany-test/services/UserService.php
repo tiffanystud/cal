@@ -88,7 +88,7 @@ class UserService {
             }
             // Vet inte om error behövs här pga controllers
         }
-    
+        
     }
 
     public static function patchUser($input){
@@ -145,7 +145,7 @@ class UserService {
 
         $countObjects = 0;
         foreach($dbTable as $dbParameter => $dbObjectValue){
-            foreach($requestInput as $requestParamter => $requestObjectValue){
+            foreach($input as $requestParamter => $requestObjectValue){
                 if(isset($dbObjectValue[$requestParamter]) && $dbObjectValue[$requestParamter] == $requestObjectValue){
                     $countObjects++;
                 }
