@@ -23,6 +23,7 @@ function Router($requestUrl){
     switch ($path) {
         
         case "users":
+            
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();
@@ -39,6 +40,7 @@ function Router($requestUrl){
             break;
             
         case "groups":
+            
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();
@@ -54,6 +56,7 @@ function Router($requestUrl){
             break;
             
         case "users_groups":
+            
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();

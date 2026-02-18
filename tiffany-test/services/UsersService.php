@@ -4,6 +4,7 @@ require_once __DIR__ . "/../repository/DBAccess.php";
 
 class UsersService {
     public static function getAllUsers() {
+        // BUG
         return DBAcess::getUsers();
     }
 
@@ -116,7 +117,7 @@ class UsersService {
                 }
             }
         }
-
+        // BUG
         return $dbInstance->pathData($dbTable);
 
 

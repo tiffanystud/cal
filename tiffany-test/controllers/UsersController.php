@@ -50,7 +50,10 @@ class UsersController {
                     exit();
                 }
 
-                return UsersService::createUser($input);
+                $result = UsersService::createUser($input);
+                http_response_code(201);
+                echo json_decode($result);
+                return;
 
             } catch(Exception $error){
                 http_response_code(500);
@@ -76,7 +79,10 @@ class UsersController {
                     exit();
                 }
 
-                return UsersService::patchUser($input);
+                $result = UsersService::patchUser($input);
+                http_response_code(201);
+                echo json_encode($result);
+                return;
 
             } catch(Exception $error){
                 http_response_code(500);

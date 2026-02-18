@@ -68,9 +68,9 @@ class GroupsService
     }
 
     /* --- PATCH ---- */
-    public static function updateGroup($id, $input)
-    {
-
+    public static function updateGroup($input){
+        
+        // Id and name needed for patch
         if (!isset($input["id"])) {
             throw new Exception("Id missing");
         }

@@ -197,17 +197,17 @@ async function deleteUserGroup() {
 
 
 async function runFunctions() {
-    await getUser();
+/*     await getUser();
     await postUser();
     await patchUser();
-    await deleteUser();
+    await deleteUser(); */
 
     await getGroup();
     await postGroup();
-/*  await patchGroup();
+    await patchGroup();
     await deleteGroup();
 
-    await getUserGroup();
+/*     await getUserGroup();
     await postUserGroup();
     await patchUserGroup();
     await deleteUserGroup(); */

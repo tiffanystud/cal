@@ -29,6 +29,12 @@
             "userName": "Alina",
             "pwd": 123,
             "email": "mail@mail.com"
+        },
+        {
+            "id": 7,
+            "userName": "Philip",
+            "pwd": "hejhej%",
+            "email": "philles@"
         }
     ],
     "groups": [
@@ -41,15 +47,39 @@
             "name": "Grupp 2"
         },
         {
-            "id": 3,
-            "name": "Grupp 3"
-        },
-        {
             "id": "6995c68fdff86",
             "name": "Group 50"
         },
         {
             "id": "6995d008cab02",
+            "name": "Group 50"
+        },
+        {
+            "id": "69962b6b39926",
+            "name": "Group 50"
+        },
+        {
+            "id": "69962ca23cff9",
+            "name": "Group 50"
+        },
+        {
+            "id": "69962cd27b26b",
+            "name": "Group 50"
+        },
+        {
+            "id": "69962d5d3e1d5",
+            "name": "Group 50"
+        },
+        {
+            "id": "69962d96acb1a",
+            "name": "Group 50"
+        },
+        {
+            "id": "69962dde65b99",
+            "name": "Group 50"
+        },
+        {
+            "id": "6996305a33d81",
             "name": "Group 50"
         }
     ],
