@@ -101,11 +101,10 @@ async function postGroup() {
 async function patchGroup() {
     let request = await fetch("http://localhost:8000/groups", {
         method: "PATCH",
-        body: JSON.stringify({ id: 3, name: "Hejdå"}),
+        body: JSON.stringify({ id: 3, name: "Test group" }),
         headers: { "Content-Type": "application/json" }
     })
-    let response = await request.text();
-    console.log(request + "---------")
+    let response = await request.json();
     if (response.ok) {
         document.querySelector("#patchGroup").style.backgroundColor = "green";
         document.querySelector("#patchGroup").textContent = `<p>${request.status}</p><p>${response}</p>`
@@ -198,19 +197,20 @@ async function deleteUserGroup() {
 
 
 async function runFunctions() {
-    await getUser();
-    await postUser();  
-    await patchUser();
-    await deleteUser();
+    // await getUser();
+    // await postUser();
+    // await patchUser();
+    // await deleteUser();
 
-    await getGroup();
+    // await getGroup();
     await postGroup();
-    await patchGroup();
+/*  await patchGroup();
     await deleteGroup();
 
-    // aawait getUserGroup();
-    // aawait postUserGroup();
-    // await patchUserGroup();
-    // aawait deleteUserGroup(); 
+    await getUserGroup();
+    await postUserGroup();
+    await patchUserGroup();
+    await deleteUserGroup(); */
 }
+
 runFunctions();

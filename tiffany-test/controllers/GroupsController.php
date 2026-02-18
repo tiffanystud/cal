@@ -50,17 +50,15 @@ class GroupsController
             }
 
         } else if ($method === "PATCH") {
-
+            
             try {
-                $id = $input["id"] ?? null;
-                $updates = $input;
-
-                $result = GroupsService::updateGroup($id, $updates);
-
+                
+                $result = GroupsService::updateGroup($input); 
+                
                 http_response_code(200);
                 echo json_encode($result);
                 return;
-
+                
             } catch (Exception $exc) {
                 http_response_code(400);
                 echo json_encode(["error" => $exc->getMessage()]);
