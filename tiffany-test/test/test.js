@@ -213,5 +213,3 @@ async function runFunctions() {
     await deleteUserGroup(); */
 }
 runFunctions();
-
-runFunctions();
