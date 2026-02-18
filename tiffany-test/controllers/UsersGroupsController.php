@@ -1,6 +1,6 @@
 <?php
 
-require_once "../services/UsersGroupsService.php";
+require_once __DIR__ . "/../services/UsersGroupsService.php";
 
 class UsersGroupController {
    public static function handle($method, $input): void {

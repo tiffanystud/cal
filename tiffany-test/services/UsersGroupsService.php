@@ -12,7 +12,7 @@ class UsersGroupsService {
     {
         $this->users = new DBAccess("users");
         $this->groups = new DBAccess("groups");
-        $this->usersGroups = new DBAccess("user_groups");
+        $this->usersGroups = new DBAccess("users_groups");
     }
 
     public function getAll(){
