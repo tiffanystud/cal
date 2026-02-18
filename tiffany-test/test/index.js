@@ -123,10 +123,15 @@ function postUserGroup() {
     return runTest({
         url: "http://localhost:8000/users_groups",
         method: "POST",
-        body: { userId: 6, groupId: 5, isAdmin: false },
+        body: { 
+            userId: 6, 
+            adminId: 1, 
+            groupId: 5 
+        },
         targetId: "postUserGroup"
     });
 }
+
 
 function patchUserGroup() {
     return runTest({
