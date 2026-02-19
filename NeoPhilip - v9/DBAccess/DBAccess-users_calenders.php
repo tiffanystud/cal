@@ -1,5 +1,9 @@
 <?php
 
+require_once "../DBIO/DBIO-users.php";
+require_once "../DBIO/DBIO-calenders.php";
+require_once "../DBIO/DBIO-users_calenders.php";
+
 function usersCalHandler($method, $input) {
     return $method($input);
 }

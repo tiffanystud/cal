@@ -16,7 +16,7 @@ function GET($input){
 
 function POST($input){
     if(isset($input["creatorId"]) && isset($input["name"]) && isset($input["type"])){
-        return postCalender();
+        return postCalender($input);
     } else {
         return ["error" => "Attributes missing", "code" => 400];
     }
@@ -24,16 +24,13 @@ function POST($input){
 
 function PATCH($input){
     if(isset($input["id"])){
-        $data = [];
-        $data["id"] = $input["id"];
         if(isset($input["name"])){
-            $data["name"] = $input["name"];
+            return patchCalender(["id" => $input["id"], "name" => $input["name"]]);
         } else if(isset($input["type"])){
-            $data["type"] = $input["type"];
+            return patchCalender(["id" => $input["id"], "type" => $input["type"]]);
         } else {
             return ["error" => "Attributes are missing", "code" => 400];
         }
-        return patchCalender($data);
     } else {
         return ["error" => "Id is missing", "code" => 400];
     }
