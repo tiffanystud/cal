@@ -25,7 +25,9 @@ function PATCH($input) {
         patchUserOrCal($input, "user");
     } else if (isset($input["calId"])) {
         patchUserOrCal($input, "cal");
-    }                          
+    } else {
+        return ["data" => ["error" => "Bad request"], "code" => 400];
+    }                        
 }
 
 function DELETE($input) {
