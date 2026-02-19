@@ -39,7 +39,7 @@ async function patchUser() {
         body: JSON.stringify({ id: 1, userName: "Elias", pwd: "hejhej%" }),
         headers: { "Content-Type": "application/json" }
     })
-    let response = await request.json();
+    let response = await request.text();
     if (response.ok) {
         document.querySelector("#patchUser").style.backgroundColor = "green";
         document.querySelector("#postUser").textContent = `<p>${request.status}</p><p>${response}</p>`
@@ -197,20 +197,19 @@ async function deleteUserGroup() {
 
 
 async function runFunctions() {
-    // await getUser();
-    // await postUser();
-    // await patchUser();
-    // await deleteUser();
+/*     await getUser();
+    await postUser();
+    await patchUser();
+    await deleteUser(); */
 
-    // await getGroup();
+    await getGroup();
     await postGroup();
-/*  await patchGroup();
+    await patchGroup();
     await deleteGroup();
 
-    await getUserGroup();
+/*     await getUserGroup();
     await postUserGroup();
     await patchUserGroup();
     await deleteUserGroup(); */
 }
-
 runFunctions();

@@ -29,20 +29,60 @@
             "userName": "Alina",
             "pwd": 123,
             "email": "mail@mail.com"
+        },
+        {
+            "id": 7,
+            "userName": "Philip",
+            "pwd": "hejhej%",
+            "email": "philles@"
+        },
+        {
+            "id": 7,
+            "userName": "Philippa",
+            "pwd": "neej%!",
+            "email": "lill@y"
+        },
+        {
+            "id": 7,
+            "userName": "Philipe",
+            "pwd": "heej%",
+            "email": "greats@"
+        },
+        {
+            "id": 7,
+            "userName": "Filipp\u00e9s",
+            "pwd": "hejhej%",
+            "email": "philles@"
+        },
+        {
+            "id": "69964de50c348",
+            "userName": "Philip",
+            "pwd": "hejhej%",
+            "email": "philles@"
+        },
+        {
+            "id": "69964f404248f",
+            "userName": "Philip",
+            "pwd": "hejhej%",
+            "email": "philles@"
         }
     ],
     "groups": [
         {
             "id": 1,
             "name": "Grupp 1"
-        },
+        },  
         {
-            "id": 2,
+            "id": "2",
             "name": "Grupp 2"
         },
         {
-            "id": 3,
-            "name": "Grupp 3"
+            "id": "3",
+            "name": "Test group"
+        },
+        {
+            "id": "999",
+            "name": "040 Underground"
         }
     ],
     "users_groups": [

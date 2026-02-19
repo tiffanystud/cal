@@ -31,11 +31,19 @@
             "email": "mail@mail.com"
         },
         {
+            "id": 7,
             "userName": "Philip",
             "pwd": "hejhej%",
             "email": "philles@"
         },
         {
+            "id": 7,
+            "userName": "Philip",
+            "pwd": "hejhej%",
+            "email": "philles@"
+        },
+        {
+            "id": 7,
             "userName": "Philip",
             "pwd": "hejhej%",
             "email": "philles@"
@@ -53,24 +61,12 @@
             "name": "Grupp 1"
         },
         {
-            "id": 2,
+            "id": "2",
             "name": "Grupp 2"
         },
         {
-            "id": 3,
+            "id": "3",
             "name": "Grupp 3"
-        },
-        {
-            "id": "6995b4d9082cb",
-            "name": "Group 2"
-        },
-        {
-            "id": "6995c26b9272a",
-            "name": "Group 2500"
-        },
-        {
-            "id": "6995c31ae5372",
-            "name": "Group 50"
         }
     ],
     "users_groups": [
