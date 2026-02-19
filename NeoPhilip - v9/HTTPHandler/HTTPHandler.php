@@ -1,7 +1,7 @@
 <?php
-require_once "./DBAccess-users.php";
-require_once "./DBAccess-calenders.php";
-require_once "./DBAccess-users_calenders.php";
+require_once "../DBAccess/DBAccess-users.php";
+require_once "../DBAccess/DBAccess-calenders.php";
+require_once "../DBAccess/DBAccess-users_calenders.php";
 
 
 function handler() {

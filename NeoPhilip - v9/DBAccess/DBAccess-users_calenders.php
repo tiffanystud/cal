@@ -1,7 +1,5 @@
 <?php
 
-require_once "../DBIO/DBIO-users.php";
-require_once "../DBIO/DBIO-calenders.php";
 require_once "../DBIO/DBIO-users_calenders.php";
 
 function usersCalHandler($method, $input) {
@@ -38,7 +36,7 @@ function DELETE($input) {
     if (!isset($input["userId"]) && !isset($input["calId"])) {
         return ["data" => ["error" => "Missing attributes"], "code" => 400];
     } else {
-        deleteUserFromCal($input);
+        return deleteUserFromCal($input);
     }
 }
 
