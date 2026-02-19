@@ -40,7 +40,7 @@ function PATCH($input){
 }
 
 function DELETE($input){
-    if(isset($input["id"]) && isset($input["creatorId"])){
+    if(isset($input["id"])){
         return deleteCalender($input);
     } else {
         return ["error" => "Attributes are missing", "code" => 400];
