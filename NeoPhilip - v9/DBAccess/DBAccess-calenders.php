@@ -1,6 +1,6 @@
 <?php
 
-require_once "./DBIO-calenders.php";
+require_once "../DBIO/DBIO-calenders.php";
 
 function calenderHandler($method, $input){
     return $method($input);
@@ -18,7 +18,7 @@ function POST($input){
     if(isset($input["creatorId"]) && isset($input["name"]) && isset($input["type"])){
         return postCalender($input);
     } else {
-        return ["error" => "Attributes missing", "code" => 400];
+        return ["data" => ["error" => "Attributes missing"], "code" => 400];
     }
 }
 
@@ -29,10 +29,10 @@ function PATCH($input){
         } else if(isset($input["type"])){
             return patchCalender(["id" => $input["id"], "type" => $input["type"]]);
         } else {
-            return ["error" => "Attributes are missing", "code" => 400];
+            return ["data" => ["error" => "Attributes missing"], "code" => 400];
         }
     } else {
-        return ["error" => "Id is missing", "code" => 400];
+        return ["data" => ["error" => "Id is missing"], "code" => 400];
     }
 }
 
@@ -40,7 +40,7 @@ function DELETE($input){
     if(isset($input["id"])){
         return deleteCalender($input);
     } else {
-        return ["error" => "Attributes are missing", "code" => 400];
+        return ["data" => ["error" => "Attributes missing"], "code" => 400];
     }
 }
 
