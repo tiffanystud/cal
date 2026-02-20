@@ -1,0 +1,124 @@
+{
+    "EVENTS": [
+        {
+            "id": "65e10aa11c001",
+            "date": "2026-03-01",
+            "type": "lecture",
+            "name": "Sprint Review",
+            "description": "Genomgång",
+            "location": "Zoom",
+            "needsConfirmation": false,
+            "participationLimits": null,
+            "tags": "review",
+            "calId": "65e10aa11b001"
+        },
+        {
+            "id": "65e10aa11c002",
+            "date": "2026-03-05",
+            "type": "deadline",
+            "name": "Inlämning 1",
+            "description": null,
+            "location": null,
+            "needsConfirmation": false,
+            "participationLimits": null,
+            "tags": "school",
+            "calId": "65e10aa11b002"
+        },
+        {
+            "id": "65e10aa11c003",
+            "date": "2026-03-10",
+            "type": "aw",
+            "name": "After Work",
+            "description": "Team AW",
+            "location": "Malmö",
+            "needsConfirmation": true,
+            "participationLimits": 20,
+            "tags": "social",
+            "calId": "65e10aa11b004"
+        },
+        {
+            "id": "65e10aa11c004",
+            "date": "2026-03-12",
+            "type": "lecture",
+            "name": "Föreläsning 2",
+            "description": null,
+            "location": "Campus",
+            "needsConfirmation": false,
+            "participationLimits": null,
+            "tags": "uni",
+            "calId": "65e10aa11b002"
+        },
+        {
+            "id": "65e10aa11c005",
+            "date": "2026-03-15",
+            "type": "gym",
+            "name": "Leg Day",
+            "description": null,
+            "location": "Nordic Wellness",
+            "needsConfirmation": false,
+            "participationLimits": null,
+            "tags": "training",
+            "calId": "65e10aa11b003"
+        },
+        {
+            "id": "65e10aa11c006",
+            "date": "2026-03-18",
+            "type": "meeting",
+            "name": "Planeringsmöte",
+            "description": "Planering",
+            "location": "Teams",
+            "needsConfirmation": true,
+            "participationLimits": 10,
+            "tags": "work",
+            "calId": "65e10aa11b001"
+        },
+        {
+            "id": "65e10aa11c007",
+            "date": "2026-03-20",
+            "type": "deadline",
+            "name": "Projektdeadline",
+            "description": null,
+            "location": null,
+            "needsConfirmation": false,
+            "participationLimits": null,
+            "tags": "project",
+            "calId": "65e10aa11b005"
+        },
+        {
+            "id": "65e10aa11c008",
+            "date": "2026-03-22",
+            "type": "lecture",
+            "name": "Seminarium",
+            "description": null,
+            "location": "Campus",
+            "needsConfirmation": false,
+            "participationLimits": null,
+            "tags": "uni",
+            "calId": "65e10aa11b002"
+        },
+        {
+            "id": "65e10aa11c009",
+            "date": "2026-03-25",
+            "type": "aw",
+            "name": "AW 2",
+            "description": "AW igen",
+            "location": "Malmö",
+            "needsConfirmation": true,
+            "participationLimits": 15,
+            "tags": "social",
+            "calId": "65e10aa11b004"
+        },
+        {
+            "id": "65e10aa11c00a",
+            "date": "2026-03-28",
+            "type": "gym",
+            "name": "Cardio",
+            "description": null,
+            "location": "Gymmet",
+            "needsConfirmation": false,
+            "participationLimits": null,
+            "tags": "training",
+            "calId": "65e10aa11b003"
+        }
+    ]
+}
