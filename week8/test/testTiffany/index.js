@@ -1,6 +1,5 @@
-// -----------------------------
-// GENERELL TEST-FETCHER
-// -----------------------------
+// GENERELL TEST-FETCHER 
+
 async function runTest({ url, method = "GET", body = null, targetId }) {
     
     const card = document.querySelector(`#${targetId}`);
@@ -37,154 +36,29 @@ async function runTest({ url, method = "GET", body = null, targetId }) {
 }
 
 
-/* ----- USERS ------- */
-function getUser() {
-    return runTest({
-        url: "http://localhost:8000/users?id=1&userName=Neo&pwd=123&email=mail@gmail.com",
-        targetId: "getUser"
-    });
-}
 
-function postUser() {
-    return runTest({
-        url: "http://localhost:8000/users",
-        method: "POST",
-        body: { id: 7, userName: "Philip", pwd: "hejhej%", email: "philles@" },
-        targetId: "postUser"
-    });
-}
-
-function patchUser() {
-    return runTest({
-        url: "http://localhost:8000/users",
-        method: "PATCH",
-        body: { id: 1, userName: "Elias", pwd: "hejhej%" },
-        targetId: "patchUser"
-    });
-}
-
-function deleteUser() {
-    return runTest({
-        url: "http://localhost:8000/users",
-        method: "DELETE",
-        body: { id: 1, userName: "Elias", pwd: "hejhej%", email: "mail@gmail.com" },
-        targetId: "deleteUser"
-    });
-}
+/* ----- RESOURCE 1 (users/events etc) ------- */
+// Kolla i original för hur funktionerna kan struktureras upp
 
 
 
-/* ----- GROUPS ------- */
 
-function getGroup() {
-    return runTest({
-        url: "http://localhost:8000/groups",
-        targetId: "getGroup"
-    });
-}
+/* ----- RESOURCE 2 (users/events etc) ------- */
 
-function postGroup() {
-    return runTest({
-        url: "http://localhost:8000/groups",
-        method: "POST",
-        body: { name: "Group - VIP VT26" },
-        targetId: "postGroup"
-    });
-}
-
-function patchGroup() {
-    return runTest({
-        url: "http://localhost:8000/groups",
-        method: "PATCH",
-        body: { id: 3, name: "Test group" },
-        targetId: "patchGroup"
-    });
-}
-
-function deleteGroup() {
-    return runTest({
-        url: "http://localhost:8000/groups",
-        method: "DELETE",
-        body: { id: 2, name: "Grupp 2" },
-        targetId: "deleteGroup"
-    });
-}
-
-
-/* ----- USERS_GROUPS ------- */
-function getUserGroup() {
-    return runTest({
-        url: "http://localhost:8000/users_groups",
-        targetId: "getUserGroup"
-    });
-}
-
-function postUserGroup() {
-    return runTest({
-        url: "http://localhost:8000/users_groups",
-        method: "POST",
-        body: { 
-            userId: 2, 
-            groupId: 999, 
-            isAdmin: false 
-        },
-        targetId: "postUserGroup"
-    });
-}
+// Kolla i original för hur funktionerna kan struktureras upp
 
 
 
-function patchUserGroup() {
-    return runTest({
-        url: "http://localhost:8000/users_groups",
-        method: "PATCH",
-        
-        // relId + "requesters" id
-        body: { 
-            id: 2, 
-            adminId: 2  
-        },
-        targetId: "patchUserGroup"
-    });
-}
-
-
-
-function deleteUserGroup() {
-    return runTest({
-        url: "http://localhost:8000/users_groups",
-        method: "DELETE",
-        body: { 
-            id: 2,
-            adminId: 2
-        },
-        targetId: "deleteUserGroup"
-    });
-}
-
-
-
+    
 
 
 /* ---- RUN TESTS ---- */
 async function runFunctions() {
-    // USERS
-    await getUser();
-    await postUser();
-    await patchUser();
-    await deleteUser();
+    // RESOURCE 1
 
-    // GROUPS  
-    await getGroup();
-    await postGroup();
-    await patchGroup();
-    await deleteGroup();
 
-    // USERS_GROUPS
-    await getUserGroup();
-    await postUserGroup();
-    await patchUserGroup();
-    await deleteUserGroup();
+    // RESOURCE 2
+
 }
 
-runFunctions();
+// runFunctions();
