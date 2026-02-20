@@ -1,5 +1,5 @@
 {
-    "USERS": [
+    "users": [
         {
             "id": "65e10aa11a001",
             "email": "alice@example.com",
