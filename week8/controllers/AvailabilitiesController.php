@@ -4,20 +4,47 @@ require_once __DIR__ . "/../services/GroupsService.php";
 class AvailabilitiesController
 {
 
+    static function throwExc($exc, $responseCode) {
+        http_response_code($responseCode);
+        echo json_encode(["error" => $exc->getMessage()]);
+        exit;
+    }
+    
+    static function okResponse($response, $responseCode) {
+        http_response_code($responseCode);
+        echo json_encode(["message" => $response->getMessage()]);
+        exit;
+    }
+    
     public static function handle($method, $input)
     {
 
-        if ($method = "GET") {
+        if ($method == "GET") {
 
             try {
-
+                
+                $result = true;    
+                
+                if (true) {
+                    return self::okResponse($result, 200);
+                    
+                } else if (false) {
+                    return self::okResponse($result, 201);
+                }
+                
             } catch (Exception $exc) {
-
+                
+                if (true) {
+                    return self::throwExc($exc, 401);
+                    
+                } else if (false) {
+                    return self::throwExc($exc, 400);
+                }
             }
 
         }
 
-        if ($method = "GET") {
+        if ($method == "POST") {
 
             try {
 
@@ -27,7 +54,7 @@ class AvailabilitiesController
             
         }
 
-        if ($method = "GET") {
+        if ($method == "PATCH") {
 
             try {
 
@@ -37,7 +64,7 @@ class AvailabilitiesController
             
         }
 
-        if ($method = "GET") {
+        if ($method == "DELETE") {
 
             try {
 
