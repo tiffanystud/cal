@@ -1,5 +1,5 @@
 <?php
-    function router(reqUrl) {
+    function router() {
         
 
     }
