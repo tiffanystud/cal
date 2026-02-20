@@ -1,0 +1,64 @@
+{
+    "USERS": [
+        {
+            "id": "65e10aa11a001",
+            "email": "alice@example.com",
+            "pwd": "pwd1",
+            "name": "Alice"
+        },
+        {
+            "id": "65e10aa11a002",
+            "email": "bob@example.com",
+            "pwd": "pwd2",
+            "name": "Bob"
+        },
+        {
+            "id": "65e10aa11a003",
+            "email": "carol@example.com",
+            "pwd": "pwd3",
+            "name": "Carol"
+        },
+        {
+            "id": "65e10aa11a004",
+            "email": "dave@example.com",
+            "pwd": "pwd4",
+            "name": "Dave"
+        },
+        {
+            "id": "65e10aa11a005",
+            "email": "eve@example.com",
+            "pwd": "pwd5",
+            "name": "Eve"
+        },
+        {
+            "id": "65e10aa11a006",
+            "email": "frank@example.com",
+            "pwd": "pwd6",
+            "name": "Frank"
+        },
+        {
+            "id": "65e10aa11a007",
+            "email": "grace@example.com",
+            "pwd": "pwd7",
+            "name": "Grace"
+        },
+        {
+            "id": "65e10aa11a008",
+            "email": "heidi@example.com",
+            "pwd": "pwd8",
+            "name": "Heidi"
+        },
+        {
+            "id": "65e10aa11a009",
+            "email": "ivan@example.com",
+            "pwd": "pwd9",
+            "name": "Ivan"
+        },
+        {
+            "id": "65e10aa11a00a",
+            "email": "judy@example.com",
+            "pwd": "pwd10",
+            "name": "Judy"
+        }
+    ]
+}
