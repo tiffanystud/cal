@@ -3,42 +3,56 @@
 function runRequest($method, $endpoint, $data = null)
 {
     $url = "http://localhost:8000" . $endpoint;
-    
+
     // Vid GETT bygg query m params
     if ($method === "GET" && $data !== null) {
-        
+
         $queryString = http_build_query($data);
         $url = $url . "?" . $queryString;
-        
+
     }
 
     $curlReq = curl_init($url);
-    
+
     // Svar som ttext och sätt HTTP metod
     curl_setopt($curlReq, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curlReq, CURLOPT_CUSTOMREQUEST, $method);
-    
+
     if ($method !== "GET" && $data !== null) {
-        
+
         $jsonBody = json_encode($data);
         $jsonHeader = ["Content-Type: application/json"];
-        
+
         // Sätt rättt headers
         curl_setopt($curlReq, CURLOPT_POSTFIELDS, $jsonBody);
         curl_setopt($curlReq, CURLOPT_HTTPHEADER, $jsonHeader);
-        
+
     }
-    
+
     // Kör requesten och hämta datan
-    $responseBody = curl_exec($curlReq);
     $responseCode = curl_getinfo($curlReq, CURLINFO_HTTP_CODE);
-    
+    $responseBody = curl_exec($curlReq);
+
     // Stäng curl
     curl_close($curlReq);
 
-    $response = ["status" => $responseCode, "body" => $responseBody]; 
-    return $response;
+    // Testa som JSON annars Text?
+    $decodedBody = json_decode($responseBody, true);
     
+    if ($decodedBody === null && $responseBody !== "") {
+        $decodedBody = $responseBody;
+    }
+    if ($responseBody === "") {
+        $decodedBody = null;
+    }
+
+    $response = [
+        "status" => $responseCode,
+        "body" => $decodedBody
+    ];
+
+    return $response;
+
 }
 
 
@@ -51,7 +65,13 @@ function testGet_200()
 {
     $expected = [
         "status" => 200,
-        "body" => ["message" => "whatever your service returns"]
+        "body" => [
+            "id" => "ID",
+            "userId" => "ID",
+            "date" => "yyyy-mm-dd",
+            "isAvailable" => true,
+            "calId" => "ID"
+        ]
     ];
 
     $actual = runRequest(
@@ -68,9 +88,9 @@ function testGet_200()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -79,8 +99,11 @@ function testGet_404()
 {
     $expected = [
         "status" => 404,
-        "body" => ["error" => "Availability not found"]
+        "body" => [
+            "error" => "Availability not found"
+        ]
     ];
+
 
     $actual = runRequest(
         method: "GET",
@@ -96,7 +119,7 @@ function testGet_404()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
 }
 
@@ -106,7 +129,9 @@ function testGet_400()
 {
     $expected = [
         "status" => 400,
-        "body" => ["error" => "Missing attributes"]
+        "body" => [
+            "error" => "Missing attributes"
+        ]
     ];
 
     $actual = runRequest(
@@ -122,9 +147,9 @@ function testGet_400()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -155,7 +180,7 @@ function testPost_201()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
 }
 
@@ -183,9 +208,9 @@ function testPost_400()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -213,9 +238,9 @@ function testPost_404()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -243,9 +268,9 @@ function testPost_409()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -276,9 +301,9 @@ function testPatch_201()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -306,9 +331,9 @@ function testPatch_204()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -335,9 +360,9 @@ function testPatch_400()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -365,9 +390,9 @@ function testPatch_404()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -377,7 +402,7 @@ function testPatch_404()
 // 200
 function testDelete_200()
 {
-    
+
     $expected = [
         "status" => 200,
         "body" => ["message" => "deleted"]
@@ -398,9 +423,9 @@ function testDelete_200()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
-    
+
 }
 
 
@@ -426,7 +451,7 @@ function testDelete_400()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
 
 }
@@ -455,7 +480,7 @@ function testDelete_404()
         "expected" => $expected,
         "actual" => $actual
     ];
-    
+
     return $result;
 }
 
@@ -471,23 +496,23 @@ function runTests()
     $results[] = testGet_404();
     $results[] = testGet_400();
 
-/*     // POST
-    $results[] = testPost_201();
-    $results[] = testPost_400();
-    $results[] = testPost_404();
-    $results[] = testPost_409();
+    /*     // POST
+        $results[] = testPost_201();
+        $results[] = testPost_400();
+        $results[] = testPost_404();
+        $results[] = testPost_409();
 
-    // PATCH
-    $results[] = testPatch_201();
-    $results[] = testPatch_204();
-    $results[] = testPatch_400();
-    $results[] = testPatch_404();
+        // PATCH
+        $results[] = testPatch_201();
+        $results[] = testPatch_204();
+        $results[] = testPatch_400();
+        $results[] = testPatch_404();
 
-    // DELETE
-    $results[] = testDelete_200();
-    $results[] = testDelete_400();
-    $results[] = testDelete_404();
- */
+        // DELETE
+        $results[] = testDelete_200();
+        $results[] = testDelete_400();
+        $results[] = testDelete_404();
+     */
     return $results;
 }
 
