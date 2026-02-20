@@ -21,7 +21,7 @@ function getUserById($input){
 function postUser($input){
     $db = readTable();
 
-    $user = array_find($db, fn($user) => $user["id"] == $input["id"]);
+    $user = array_find($db["users"], fn($user) => $user["id"] == $input["id"]);
 
     if(!$user){
         array_push($db["user"], $input);
@@ -35,7 +35,36 @@ function postUser($input){
 }
 
 function patchUser($input){
+    $db = readTable();
 
+    $userArray = array_find($db["users"], fn($user) => $user["id"] == $input["id"]);
+
+    if(!$userArray){
+        return ["error" => "Cant find user by id", "code" => 406];
+    }
+
+    $sameValues = [];
+
+    foreach($userArray as $userKey => &$user){
+        foreach($input as $valueKey => $value){
+            if($valueKey != "id"){
+                if($user[$valueKey] == $value){
+                    // Kollar om det redan stämmer, då skickas error att det inte kan ändra den
+                    array_push($sameValues, $valueKey);
+                    continue;
+                } else{
+                    $user[$valueKey] = $value;
+                }
+            }
+        }
+    }
+
+    if(!empty($sameValues)){
+        // Returnera objekt och eller 200 meddelande med status osv
+        return $input;
+    } else {
+        return ["error" => implode(" ", $sameValues) . " already set", "code" => 406];
+    }
 }
 
 function deleteUser($input){
