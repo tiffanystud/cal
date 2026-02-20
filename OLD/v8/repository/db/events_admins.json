@@ -1,0 +1,44 @@
+{
+    "EVENTS_ADMINS": [
+        {
+            "id": "65e10aa143201",
+            "eventId": "65e10aa11c001",
+            "userId": "65e10aa11a001",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65e10aa143202",
+            "eventId": "65e10aa11c002",
+            "userId": "65e10aa11a002",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65e10aa143203",
+            "eventId": "65e10aa11c003",
+            "userId": "65e10aa11a004",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65e10aa143204",
+            "eventId": "65e10aa11c004",
+            "userId": "65e10aa11a003",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65e10aa143205",
+            "eventId": "65e10aa11c005",
+            "userId": "65e10aa11a003",
+            "canDelete": false,
+            "canEdit": false,
+            "isCreator": true
+        }
+    ]
+}
