@@ -21,7 +21,27 @@ function Router($requestUrl){
     }
 
     switch ($path) {
-        
+            
+        case "calendar":
+            
+            switch ($method) {
+               case "GET": 
+                    CorsMiddleware::handle();
+                    GroupsController::handle(method: $method, input: $input);
+                    break;
+                    
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    GroupsController::handle(method: $method, input: $input);
+                    break;
+            }
+            break;
+
+        case "calendar_msg": 
+            //Handle calendar_msg
+            break;
+
         case "users":
             
             switch ($method) {
@@ -39,23 +59,7 @@ function Router($requestUrl){
             }
             break;
             
-        case "groups":
-            
-            switch ($method) {
-               case "GET": 
-                    CorsMiddleware::handle();
-                    GroupsController::handle(method: $method, input: $input);
-                    break;
-                    
-                default:
-                    CorsMiddleware::handle();
-                    JsonMiddleware::handle();
-                    GroupsController::handle(method: $method, input: $input);
-                    break;
-            }
-            break;
-            
-        case "users_groups":
+        case "users_calendars":
             
             switch ($method) {
                case "GET": 
