@@ -1,0 +1,29 @@
+{
+    "FRIENDSHIPS": [
+        {
+            "id": "65e10aa151001",
+            "userId1": "65e10aa11a001",
+            "userId2": "65e10aa11a002"
+        },
+        {
+            "id": "65e10aa151002",
+            "userId1": "65e10aa11a003",
+            "userId2": "65e10aa11a004"
+        },
+        {
+            "id": "65e10aa151003",
+            "userId1": "65e10aa11a005",
+            "userId2": "65e10aa11a006"
+        },
+        {
+            "id": "65e10aa151004",
+            "userId1": "65e10aa11a007",
+            "userId2": "65e10aa11a008"
+        },
+        {
+            "id": "65e10aa151005",
+            "userId1": "65e10aa11a009",
+            "userId2": "65e10aa11a00a"
+        }
+    ]
+}

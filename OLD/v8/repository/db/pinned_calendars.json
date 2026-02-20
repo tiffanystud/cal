@@ -1,0 +1,29 @@
+{
+    "PINNED_CALENDARS": [
+        {
+            "id": "65e10aa11e001",
+            "userId": "65e10aa11a001",
+            "calId": "65e10aa11b002"
+        },
+        {
+            "id": "65e10aa11e002",
+            "userId": "65e10aa11a002",
+            "calId": "65e10aa11b001"
+        },
+        {
+            "id": "65e10aa11e003",
+            "userId": "65e10aa11a003",
+            "calId": "65e10aa11b003"
+        },
+        {
+            "id": "65e10aa11e004",
+            "userId": "65e10aa11a004",
+            "calId": "65e10aa11b004"
+        },
+        {
+            "id": "65e10aa11e005",
+            "userId": "65e10aa11a005",
+            "calId": "65e10aa11b005"
+        }
+    ]
+}

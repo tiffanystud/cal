@@ -1,0 +1,39 @@
+{
+    "EVENTS_RSVP": [
+        {
+            "id": "65e10aa14f001",
+            "eventId": "65e10aa11c001",
+            "userId": "65e10aa11a002",
+            "date": "2026-02-20",
+            "reminder": true
+        },
+        {
+            "id": "65e10aa14f002",
+            "eventId": "65e10aa11c003",
+            "userId": "65e10aa11a005",
+            "date": "2026-02-21",
+            "reminder": false
+        },
+        {
+            "id": "65e10aa14f003",
+            "eventId": "65e10aa11c006",
+            "userId": "65e10aa11a006",
+            "date": "2026-02-22",
+            "reminder": true
+        },
+        {
+            "id": "65e10aa14f004",
+            "eventId": "65e10aa11c008",
+            "userId": "65e10aa11a007",
+            "date": "2026-02-23",
+            "reminder": false
+        },
+        {
+            "id": "65e10aa14f005",
+            "eventId": "65e10aa11c00a",
+            "userId": "65e10aa11a008",
+            "date": "2026-02-24",
+            "reminder": true
+        }
+    ]
+}

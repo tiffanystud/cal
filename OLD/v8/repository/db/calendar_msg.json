@@ -1,0 +1,44 @@
+{
+    "CALENDAR_MSG": [
+        {
+            "id": "65e10aa153001",
+            "senderId": "65e10aa11a002",
+            "calId": "65e10aa11b001",
+            "date": "2026-02-20",
+            "time": "13:10:00",
+            "content": "Jag laddar upp filerna snart."
+        },
+        {
+            "id": "65e10aa153002",
+            "senderId": "65e10aa11a003",
+            "calId": "65e10aa11b002",
+            "date": "2026-02-21",
+            "time": "14:20:00",
+            "content": "Glöm inte mötet imorgon."
+        },
+        {
+            "id": "65e10aa153003",
+            "senderId": "65e10aa11a004",
+            "calId": "65e10aa11b003",
+            "date": "2026-02-22",
+            "time": "15:30:00",
+            "content": "Gympasset flyttas till 18:00."
+        },
+        {
+            "id": "65e10aa153004",
+            "senderId": "65e10aa11a005",
+            "calId": "65e10aa11b004",
+            "date": "2026-02-23",
+            "time": "16:45:00",
+            "content": "AW på fredag, vem kommer?"
+        },
+        {
+            "id": "65e10aa153005",
+            "senderId": "65e10aa11a006",
+            "calId": "65e10aa11b005",
+            "date": "2026-02-24",
+            "time": "17:55:00",
+            "content": "Deadline närmar sig, glöm inte att lämna in."
+        }
+    ]
+}
