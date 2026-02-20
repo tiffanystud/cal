@@ -42,6 +42,26 @@ function Router($requestUrl){
             //Handle calendar_msg
             break;
 
+        case "events":
+            //Handle events
+            break;
+
+        case "event_admins":
+            //Handle event_admins
+            break;
+
+        case "event_rsvp":
+            //Handle event_rsvp
+            break;
+
+        case "friendships":
+            //Handle friendships
+            break;
+
+        case "private_msg":
+            //Handle private msg
+            break;
+
         case "users":
             
             switch ($method) {
@@ -58,6 +78,10 @@ function Router($requestUrl){
                     break;
             }
             break;
+
+        case "users_availability":
+            //Handle users_availability
+            break;
             
         case "users_calendars":
             
@@ -72,6 +96,10 @@ function Router($requestUrl){
                     UsersGroupController::handle(method: $method, input: $input);
                     break;
             }        
+            break;
+
+        case "users_pinned_calendars":
+            //Handle users_pinned_calendars
             break;
             
         default:
