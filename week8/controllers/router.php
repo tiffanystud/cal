@@ -7,6 +7,7 @@ require_once __DIR__ . "/../middleware/middleware.php";
 require_once "UsersController.php";
 require_once "GroupsController.php";
 require_once "UsersGroupsController.php";
+require_once "UsersAvailabilities.php";
 
 
 function Router($requestUrl){   
@@ -79,9 +80,20 @@ function Router($requestUrl){
             }
             break;
 
-        case "users_availability":
-            //Handle users_availability
-            break;
+        case "users_availabilities":
+            
+            switch ($method) {
+               case "GET": 
+                    CorsMiddleware::handle();
+                    UsersController::handle($method, $input);
+                    break;
+                   
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    UsersController::handle(method: $method, input: $input);
+                    break;
+            }
             
         case "users_calendars":
             
@@ -90,13 +102,13 @@ function Router($requestUrl){
                     CorsMiddleware::handle();
                     UsersGroupController::handle(method: $method, input: $input);
                     break;
+                
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
                     UsersGroupController::handle(method: $method, input: $input);
                     break;
             }        
-            break;
 
         case "users_pinned_calendars":
             //Handle users_pinned_calendars

@@ -32,18 +32,6 @@ class UsersAvailabilitiesService
  
     }
 
-    public static function getById($id)
-    {
-
-    }
-
-    public static function getByName($name)
-    {
-
-    }
-
-
-
     /* --- POST ---- */
     public static function create($userId, $date, $isAvailable, $calId){
     
@@ -153,6 +141,5 @@ class UsersAvailabilitiesService
         throw new Exception("Availability not found");
         
     }
-
 
 }

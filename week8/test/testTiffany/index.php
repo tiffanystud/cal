@@ -1,82 +1,195 @@
 <?php
 
-function request($method, $endpoint, $data = null)
+function runRequest($method, $endpoint, $data = null)
 {
-    $url = "http://localhost" . $endpoint;
-
-    $ch = curl_init($url);
-
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-
-    if ($data !== null) {
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            "Content-Type: application/json"
-        ]);
+    $url = "http://localhost:8000" . $endpoint;
+    
+    // Vid GETT bygg query m params
+    if ($method === "GET" && $data !== null) {
+        
+        $queryString = http_build_query($data);
+        $url = $url . "?" . $queryString;
+        
     }
 
-    $response = curl_exec($ch);
+    $curlReq = curl_init($url);
+    
+    // Svar som ttext och sätt HTTP metod
+    curl_setopt($curlReq, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curlReq, CURLOPT_CUSTOMREQUEST, $method);
+    
+    if ($method !== "GET" && $data !== null) {
+        
+        $jsonBody = json_encode($data);
+        $jsonHeader = ["Content-Type: application/json"];
+        
+        // Sätt rättt headers
+        curl_setopt($curlReq, CURLOPT_POSTFIELDS, $jsonBody);
+        curl_setopt($curlReq, CURLOPT_HTTPHEADER, $jsonHeader);
+        
+    }
+    
+    // Kör requesten och hämta datan
+    $responseBody = curl_exec($curlReq);
+    $responseCode = curl_getinfo($curlReq, CURLINFO_HTTP_CODE);
+    
+    // Stäng curl
+    curl_close($curlReq);
 
+    $response = ["status" => $responseCode, "body" => $responseBody]; 
     return $response;
+    
 }
 
 
-/* ================= USERS ================= */
+/* ------ USERS_AVAILABILITIES ------ */
 
-echo request("GET", "/users?id=1");
+/* --- GET --- */
 
-echo request("POST", "/users", [
-    "userName" => "Philip",
-    "pwd" => "hejhej%",
-    "email" => "philles@"
-]);
+// 200
+echo runRequest(
+    method: "GET", 
+    endpoint: "/users_availabilities?userId=65e10aa11a001&date=2026-03-01");
 
-echo request("PATCH", "/users", [
-    "userId" => 1,
-    "userName" => "Elias"
-]);
+// 404
+echo runRequest(
+    method: "GET", 
+    endpoint: "/users_availabilities?userId=65e10aa11a001&date=0000-00-00");
 
-echo request("DELETE", "/users", [
-    "userId" => 1
-]);
-
-
-/* ================= GROUPS ================= */
-
-echo request("GET", "/groups");
-
-echo request("POST", "/groups", [
-    "name" => "Group 4"
-]);
-
-echo request("PATCH", "/groups", [
-    "id" => 3,
-    "name" => "Test group"
-]);
-
-echo request("DELETE", "/groups", [
-    "id" => 3
-]);
+// 400
+echo runRequest(
+    method: "GET", 
+    endpoint: "/users_availabilities?userId=65e10aa11a001");
 
 
-/* ================= USERS_GROUPS ================= */
+/* --- POST --- */
 
-echo request("GET", "/users_groups");
+// 201
+echo runRequest(
+    method: "POST", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a00a",
+        "date" => "2026-03-20",
+        "isAvailable" => false,
+        "calId" => "65e10aa11b005",
+    ]);
 
-echo request("POST", "/users_groups", [
-    "userId" => 6,
-    "groupId" => 5,
-    "isAdmin" => false
-]);
+// 400
+echo runRequest(
+    method: "POST", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a00a",
+        "date" => "2026-03-20",
+        "isAvailable" => false,
+        // "calId" => "65e10aa11b005",
+    ]);
 
-echo request("PATCH", "/users_groups", [
-    "id" => 3,
-    "isAdmin" => true
-]);
 
-echo request("DELETE", "/users_groups", [
-    "id" => 3
-]);
+// 404
+echo runRequest(
+    method: "POST", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a00a",
+        "date" => "2026-03-20",
+        "isAvailable" => false,
+        "calId" => "000000000000",
+    ]);
 
-?>
+// 409
+echo runRequest(
+    method: "POST", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a001",
+        "date" => "2026-03-01",
+        "isAvailable" => false,
+        "calId" => "65e10aa11b001",
+    ]);
+    
+    
+
+/* --- PATCH --- */
+
+// 201
+echo runRequest(
+    method: "PATCH", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a001",
+        "date" => "2026-03-01",
+        "isAvailable" => false,
+        "calId" => "65e10aa11b001",
+    ]);
+    
+// 204
+echo runRequest(
+    method: "PATCH", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a001",
+        "date" => "2026-03-01",
+        "isAvailable" => false,
+        "calId" => "65e10aa11b001",
+    ]);
+
+// 400
+echo runRequest(
+    method: "PATCH", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a00a",
+        "date" => "2026-03-20",
+        "isAvailable" => false,
+        // "calId" => "65e10aa11b005",
+    ]);
+
+
+// 404
+echo runRequest(
+    method: "PATCH", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a00a",
+        "date" => "0000-00-00",
+        "isAvailable" => false,
+        "calId" => "65e10aa11b005",
+    ]);
+
+    
+/* --- DELETE --- */
+
+// 200
+echo runRequest(
+    method: "DELETE", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a00a",
+        "date" => "2026-03-20",
+        "calId" => "65e10aa11b005",
+    ]);
+
+// 400
+echo runRequest(
+    method: "DELETE", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "65e10aa11a00a",
+        "date" => "2026-03-20",
+        // "calId" => "65e10aa11b005",
+    ]);
+
+
+// 404
+echo runRequest(
+    method: "DELETE", 
+    endpoint: "/users_availabilities",
+    data:[
+        "userId" => "000000000000",
+        "date" => "2026-03-20",
+        "calId" => "65e10aa11b005",
+    ]);
+
+    

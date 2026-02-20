@@ -75,7 +75,6 @@ class UsersAvailabilities {
                     return self::bubbleMessage($result, 200);
                 }
                 
-                // Se över ***
                 return self::bubbleDefault("GET/ try-block", 500);
 
             } catch (Exception $exc) {

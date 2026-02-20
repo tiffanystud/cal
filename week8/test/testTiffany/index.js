@@ -53,12 +53,24 @@ async function runTest({ url, method = "GET", body = null, targetId }) {
 
 
 /* ---- RUN TESTS ---- */
-async function runFunctions() {
-    // RESOURCE 1
+
+async function runPhpTests() {
+
+    // 1. USERS_AVAILABILITIES
+    const availRes = await fetch("tests_users_availabilities.php");
+    const availData = await availRes.json();
+
+    document.querySelector("#availabilities .result-box").textContent =
+        JSON.stringify(availData, null, 2);
 
 
-    // RESOURCE 2
+    // 2. USERS_RSVP
+    const rsvpRes = await fetch("tests_users_rsvp.php");
+    const rsvpData = await rsvpRes.json();
 
+    document.querySelector("#rsvp .result-box").textContent =
+        JSON.stringify(rsvpData, null, 2);
 }
 
-// runFunctions();
+runPhpTests();
+
