@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../services/GroupsService.php";
+require_once __DIR__ . "/../services/groupsService.php";
 
 class GroupsController
 {
