@@ -14,7 +14,7 @@ class DBAccess
 
     public function getAll()
     {
-        $db = DBIO::readDb();
+        $db = DBIO::readDb($this->resource);
 
         // Resource ex: "groups" = return $this->db["groups"];
         return $db[$this->resource] ?? [];
@@ -22,7 +22,7 @@ class DBAccess
 
     public function findById($id)
     {
-        $db = DBIO::readDb();
+        $db = DBIO::readDb($this->resource);
         $items = $db[$this->resource] ?? [];
 
         foreach ($items as $item) {
@@ -36,7 +36,7 @@ class DBAccess
 
     public function findByName($name)
     {
-        $db = DBIO::readDb();
+        $db = DBIO::readDb($this->resource);
         $items = $db[$this->resource] ?? [];
 
         foreach ($items as $item) {
@@ -51,16 +51,16 @@ class DBAccess
 
     public function postData($input)
     {
-        $db = DBIO::readDb();
+        $db = DBIO::readDb($this->resource);
         array_push($db[$this->resource], $input);
-        DBIO::writeToDb($db);
+        DBIO::writeToDb($this->resource, $db);
         return $input;
     }
     
     // id: id, changes: ["name" => "newName", "pwd" => "newPwd"]
     public function patchData($id, $newData)
     {
-        $db = DBIO::readDb();
+        $db = DBIO::readDb($this->resource);
         $dbItems = $db[$this->resource];
         
         foreach ($dbItems as $currentIndex => $item) {
@@ -73,7 +73,7 @@ class DBAccess
 
                 // Save
                 $db[$this->resource] = $dbItems;
-                DBIO::writeToDb($db);
+                DBIO::writeToDb($this->resource, $db);
                 return $dbItems[$currentIndex];
             }
         }
@@ -85,7 +85,7 @@ class DBAccess
     public function deleteData($id)
     {
         
-        $db = DBIO::readDb();
+        $db = DBIO::readDb($this->resource);
         $dbItems = $db[$this->resource];
         $deleted;
             
@@ -99,7 +99,7 @@ class DBAccess
                  
                  // Saves new DB
                  $db[$this->resource] = $dbItems;
-                 DBIO::writeToDb($db); 
+                 DBIO::writeToDb($this->resource, $db); 
                  
                  return $deleted;
             }
