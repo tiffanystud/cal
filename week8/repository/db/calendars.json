@@ -1,0 +1,34 @@
+{
+    "calendars": [
+        {
+            "id": "65e10aa11b001",
+            "creatorId": "65e10aa11a001",
+            "name": "Projekt A",
+            "type": "public"
+        },
+        {
+            "id": "65e10aa11b002",
+            "creatorId": "65e10aa11a002",
+            "name": "Studiegrupp",
+            "type": "private"
+        },
+        {
+            "id": "65e10aa11b003",
+            "creatorId": "65e10aa11a003",
+            "name": "Gym-schema",
+            "type": "public"
+        },
+        {
+            "id": "65e10aa11b004",
+            "creatorId": "65e10aa11a004",
+            "name": "AW-teamet",
+            "type": "public"
+        },
+        {
+            "id": "65e10aa11b005",
+            "creatorId": "65e10aa11a005",
+            "name": "Deadline-kalender",
+            "type": "private"
+        }
+    ]
+}
