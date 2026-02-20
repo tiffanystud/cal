@@ -84,8 +84,12 @@ class DBAccess
     // $id
     public function deleteData($id)
     {
-        
+        // Hämtar rätt db, DBIO skapar rätt path med resource
+        //  DB = "resource" : [ {items}, {items}, {items} ] 
         $db = DBIO::readDb($this->resource);
+        
+        // Hämtar alla {items} inuti DB (går ett steg ner) 
+        // [{items}, {items}, {items}] 
         $dbItems = $db[$this->resource];
         $deleted;
             
@@ -95,13 +99,13 @@ class DBAccess
                 $deleted = $dbItems[$currentIndex];
                 
                 // Cuts out item with correct id
-                 array_splice($dbItems, $currentIndex, 1); 
+                array_splice($dbItems, $currentIndex, 1); 
+                
+                // Saves updated DB
+                $db[$this->resource] = $dbItems;
+                DBIO::writeToDb($this->resource, $db); 
                  
-                 // Saves new DB
-                 $db[$this->resource] = $dbItems;
-                 DBIO::writeToDb($this->resource, $db); 
-                 
-                 return $deleted;
+                return $deleted;
             }
             
         }
