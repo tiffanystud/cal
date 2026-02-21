@@ -11,8 +11,8 @@ class BackupDBController {
         $backupDir = __DIR__ . "/../repository/db_backup/";
 
         error_log("DIR: " . __DIR__);
-error_log("SOURCE: " . $sourceDir);
-error_log("BACKUP: " . $backupDir);
+        error_log("SOURCE: " . $sourceDir);
+        error_log("BACKUP: " . $backupDir);
 
         // Hämta alla filer i db/
         $files = glob($sourceDir . "*.json");

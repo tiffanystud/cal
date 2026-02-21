@@ -36,7 +36,20 @@ async function runRequest(method, endpoint, data = null) {
 
     let url = endpoint;
 
-    // Om GET → bygg querystring
+    // When db (backup/restore)
+    if (endpoint === "/backup_database" || endpoint === "/restore_database") { url = "http://localhost:8000" + endpoint; } 
+/*     if (endpoint === "/backup_database" || endpoint === "/restore_database") { 
+        
+        if (endpoint === "/backup_database" ) {
+            url = "http://localhost:8000/controllers/BackupDBController.php" 
+        }
+        if (endpoint === "/restore_database" ) {
+            url = "http://localhost:8000/controllers/RestoreDBController.php" 
+        }
+        
+    } */
+    
+    // Om GET, bygg querystring
     if (method === "GET" && data) {
         const params = new URLSearchParams(data).toString();
         url = `${endpoint}?${params}`;
@@ -53,7 +66,7 @@ async function runRequest(method, endpoint, data = null) {
         options.body = JSON.stringify(data);
     }
 
-    const response = await fetch(url);
+    const response = await fetch(url, options);
     const text = await response.text();
 
     let body;

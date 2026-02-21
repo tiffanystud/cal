@@ -12,9 +12,18 @@ require_once "UsersGroupsController.php";
 require_once "UsersAvailabilitiesController.php";
 
 
-function Router($requestUrl){   
+function Router($requestUrl = null){   
+    
+    if ($requestUrl === null) {
+        $requestUrl = $_SERVER["REQUEST_URI"] ?? "";
+    }
+
+    error_log("ROUTER: requestUrl = " . $requestUrl);
+    error_log("ROUTER: urlPath = " . parse_url($requestUrl, PHP_URL_PATH));
     $urlPath = parse_url($requestUrl, PHP_URL_PATH);
     $path = ltrim($urlPath, "/");
+    error_log("ROUTER: computed path = " . $path);
+
     $method = $_SERVER["REQUEST_METHOD"];
     
     if($method == "GET"){
@@ -26,10 +35,12 @@ function Router($requestUrl){
     switch ($path) {
             
         case "backup_database":
+            CorsMiddleware::handle();
             BackupDBController::handle();
             break;
 
         case "restore_database":
+            CorsMiddleware::handle();
             RestoreDBController::handle();
             break;
 
