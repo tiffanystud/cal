@@ -4,11 +4,17 @@ class BackupDBController {
 
     public static function handle() {
 
-        // Sökvägar
+        error_log("--------- DB BACKUP körs!");
+
+    
         $sourceDir = __DIR__ . "/../repository/db/";
         $backupDir = __DIR__ . "/../repository/db_backup/";
 
-        // Hämta alla JSON-filer i database/
+        error_log("DIR: " . __DIR__);
+error_log("SOURCE: " . $sourceDir);
+error_log("BACKUP: " . $backupDir);
+
+        // Hämta alla filer i db/
         $files = glob($sourceDir . "*.json");
 
         foreach ($files as $file) {
@@ -16,7 +22,7 @@ class BackupDBController {
             $filename = basename($file);
             $backupPath = $backupDir . $filename;
 
-            // Kopiera filen till backup
+            // Kopiera filen till db_backup
             copy($file, $backupPath);
         }
 

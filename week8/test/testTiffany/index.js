@@ -43,6 +43,43 @@ async function loadTestsForResource(resourceName, phpFilePath) {
     });
 }
 
+async function runRequest(method, endpoint, data = null) {
+
+    let url = endpoint;
+
+    // Om GET → bygg querystring
+    if (method === "GET" && data) {
+        const params = new URLSearchParams(data).toString();
+        url = `${endpoint}?${params}`;
+    }
+
+    const options = {
+        method: method,
+        headers: {}
+    };
+
+    // Om POST/PATCH/DELETE → skicka JSON-body
+    if (method !== "GET" && data) {
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify(data);
+    }
+
+    const response = await fetch(url);
+    const text = await response.text();
+
+    let body;
+    try {
+        body = JSON.parse(text);
+    } catch {
+        body = text;
+    }
+
+    return {
+        status: response.status,
+        body: body
+    };
+}
+
 
 
 /* --------- Build Test card ------ */

@@ -17,3 +17,11 @@ Instruktioner för att köra test:
 
 3. Kör test
     1. Skriv in på webbläsaren: http://localhost:8001/index.html
+    
+    
+Rollbacks
+- Gör alla starter ovan
+- Testa manuellt
+    - http://localhost:8000/backup_database 
+    - http://localhost:8000/restore_database
+    

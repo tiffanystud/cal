@@ -4,11 +4,15 @@ class RestoreDBController {
 
     public static function handle() {
 
+    
+        error_log("--------- DB RESTORE körs!");
+
+        
         // Sökvägar
         $sourceDir = __DIR__ . "/../repository/db/";
         $backupDir = __DIR__ . "/../repository/db_backup/";
 
-        // Hämta alla JSON-filer i backup/
+        // Hämta alla filer i db_backup/
         $files = glob($backupDir . "*.json");
 
         foreach ($files as $file) {
@@ -16,7 +20,7 @@ class RestoreDBController {
             $filename = basename($file);
             $restorePath = $sourceDir . $filename;
 
-            // Kopiera tillbaka filen
+            // SKriver över filen i db (efter testerna, dvs efter att filerna i db ändrats)
             copy($file, $restorePath);
         }
 
