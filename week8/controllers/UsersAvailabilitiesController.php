@@ -81,31 +81,31 @@ class UsersAvailabilitiesController
 
             try {
 
-                if ($userId && $date) {
-                    $result = UsersAvailabilitiesService::getAll($userId, $date);
-                    return self::bubbleData($result, 200);
+                if (!isset($userId, $date)) {
+                    throw new Exception("Missing attributes");
                 }
 
-                return self::bubbleDefault("GET/ try-block", 500);
+                $result = UsersAvailabilitiesService::getAll($userId, $date);
+                return self::bubbleData($result, 200);
 
             } catch (Exception $exc) {
 
                 return self::bubbleError($exc, "GET/ catch-block");
 
             }
-
         }
+
 
         if ($method == "POST") {
 
             try {
 
-                $userId = $input["id"] ?? null;
+                $userId = $input["userId"] ?? null;
                 $date = $input["date"] ?? null;
                 $isAvailable = $input["isAvailable"] ?? null;
                 $calId = $input["calId"] ?? null;
 
-                if ($userId && $date && $isAvailable && $calId) {
+                if (isset($userId, $date, $isAvailable, $calId)) {
                     $result = UsersAvailabilitiesService::create($userId, $date, $isAvailable, $calId);
                     return self::bubbleMessage($result, 201);
                 }
@@ -126,7 +126,7 @@ class UsersAvailabilitiesController
 
             try {
 
-                $userId = $input["id"] ?? null;
+                $userId = $input["userId"] ?? null;
                 $date = $input["date"] ?? null;
                 $isAvailable = $input["isAvailable"] ?? null;
                 $calId = $input["calId"] ?? null;
@@ -151,7 +151,7 @@ class UsersAvailabilitiesController
 
             try {
 
-                $userId = $input["id"] ?? null;
+                $userId = $input["userId"] ?? null;
                 $date = $input["date"] ?? null;
                 $calId = $input["calId"] ?? null;
 

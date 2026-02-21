@@ -11,7 +11,7 @@ class UsersAvailabilitiesService
         $db = new DBAccess("users_availabilities");
         $items = $db->getAll();
         
-        if (!$userId && !$date) {
+        if (!isset($userId, $date)) {
             // Kolla format på date?
             throw new Exception("Missing attributes");
         }
@@ -36,18 +36,21 @@ class UsersAvailabilitiesService
     public static function create($userId, $date, $isAvailable, $calId){
     
         //validera format?
-        if ($userId && $date && $isAvailable && $calId) {
+        if (isset($userId, $date, $isAvailable, $calId)) {
             
             $dbUsers =  new DBAccess("users");
+            $userItems = $dbUsers->getAll();
+            
             $dbCalendars =  new DBAccess("calendars");
+            $calendarItems = $dbCalendars->getAll();
             
             $userAndCalOK = false;
             
             // Does user & cal exist?
-            foreach ($dbUsers as $currUser) {
+            foreach ($userItems as $currUser) {
                 
                 if ($currUser["id"] == $userId) {
-                    foreach ($dbCalendars as $currCal) {
+                    foreach ($calendarItems as $currCal) {
                         
                         if ($currCal["id"] == $calId) 
                             $userAndCalOK = true;
@@ -61,9 +64,11 @@ class UsersAvailabilitiesService
                 
 
             $dbUsersAvails = new DBAccess("users_availabilities");  
+            $itemsUsersAvails = $dbUsersAvails;
+            
             
             // Check if exists
-            foreach ($dbUsersAvails as $currAvail) {
+            foreach ($itemsUsersAvails as $currAvail) {
                 if (
                     $currAvail["userId"] == $userId &&
                     $currAvail["date"] == $date &&
