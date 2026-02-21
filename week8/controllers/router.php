@@ -4,6 +4,8 @@
 require_once __DIR__ . "/../middleware/middleware.php";
 
 // Controllera
+require_once "BackupDBController.php";
+require_once "RestoreDBController.php";
 require_once "UsersController.php";
 require_once "GroupsController.php";
 require_once "UsersGroupsController.php";
@@ -23,6 +25,14 @@ function Router($requestUrl){
 
     switch ($path) {
             
+        case "backup_database":
+            BackupDBController::handle();
+            break;
+
+        case "restore_database":
+            RestoreDBController::handle();
+            break;
+
         case "calendar":
             
             switch ($method) {
