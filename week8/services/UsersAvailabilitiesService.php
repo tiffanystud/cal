@@ -64,7 +64,7 @@ class UsersAvailabilitiesService
                 
 
             $dbUsersAvails = new DBAccess("users_availabilities");  
-            $itemsUsersAvails = $dbUsersAvails;
+            $itemsUsersAvails = $dbUsersAvails->getAll();
             
             
             // Check if exists

@@ -95,7 +95,7 @@ function createTestCard(test) {
     /* ---- Kort ----- */
     // Titel
     const title = document.createElement("h3");
-    title.textContent = `${test.method} ${test.endpoint} — ${test.name}`;
+    title.textContent = `${test.method} ${test.endpoint} - (${test.name})`;
     card.appendChild(title);
 
     // Infotext

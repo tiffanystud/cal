@@ -209,14 +209,16 @@ function testGet_400()
 /* -- POST -- */
 
 // 201
-function testPost_201()
-{
+function testPost_201(){
+    
     $expected = [
         "status" => 201,
         "body" => [
-            [
-                "message" => "Availability created"
-            ]
+                "id" => "ID",
+                "userId" => "ID",
+                "date" => "yyyy-mm-dd",
+                "isAvailable" => true,
+                "calId" => "ID"
         ]
     ];
 
@@ -381,14 +383,16 @@ function testPost_409()
 /* -- PATCH -- */
 
 // 200
-function testPatch_201()
+function testPatch_200()
 {
     $expected = [
         "status" => 200,
         "body" => [
-            [
-                "message" => "Availability updated"
-            ]
+                "id" => "ID",
+                "userId" => "ID",
+                "date" => "yyyy-mm-dd",
+                "isAvailable" => true,
+                "calId" => "ID"
         ]
     ];
 
@@ -404,7 +408,7 @@ function testPatch_201()
     );
 
     $result = [
-        "name" => "PATCH 201",
+        "name" => "PATCH 200",
         "method" => "PATCH",
         "endpoint" => "/users_availabilities",
         "queryParams" => null,
@@ -422,52 +426,6 @@ function testPatch_201()
     return $result;
     
 }
-
-
-// 204
-function testPatch_204()
-{
-    $expected = [
-        "status" => 204,
-        "body" => [
-            [
-                "message" => "No changes made"
-            ]
-        ]
-    ];
-
-
-    $actual = runRequest(
-        method: "PATCH",
-        endpoint: "/users_availabilities",
-        data: [
-            "userId" => "65e10aa11a001",
-            "date" => "2026-03-01",
-            "isAvailable" => false,
-            "calId" => "65e10aa11b001"
-        ]
-    );
-
-    $result = [
-        "name" => "PATCH 204",
-        "method" => "PATCH",
-        "endpoint" => "/users_availabilities",
-        "queryParams" => null,
-        "requestBody" => [
-            "userId" => "65e10aa11a001",
-            "date" => "2026-03-01",
-            "isAvailable" => false,
-            "calId" => "65e10aa11b001"
-        ],
-        "expected" => $expected,
-        "actual" => $actual,
-        "info" => "Availability was not switched, it was already set to “change”"
-    ];
-    
-    return $result;
-    
-}
-
 
 // 400
 function testPatch_400()
@@ -551,7 +509,47 @@ function testPatch_404()
     
 }
 
+// 409
+function testPatch_409()
+{
+    $expected = [
+        "status" => 409,
+        "body" => [
+                "message" => "No changes made"
+        ]
+    ];
 
+
+    $actual = runRequest(
+        method: "PATCH",
+        endpoint: "/users_availabilities",
+        data: [
+            "userId" => "65e10aa11a001",
+            "date" => "2026-03-01",
+            "isAvailable" => false,
+            "calId" => "65e10aa11b001"
+        ]
+    );
+
+    $result = [
+        "name" => "PATCH 409",
+        "method" => "PATCH",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a001",
+            "date" => "2026-03-01",
+            "isAvailable" => false,
+            "calId" => "65e10aa11b001"
+        ],
+        "expected" => $expected,
+        "actual" => $actual,
+        "info" => "Availability was not switched, it was already set to “change”"
+    ];
+    
+    return $result;
+    
+}
 
 /* -- DELETE -- */
 
@@ -562,9 +560,11 @@ function testDelete_200()
     $expected = [
         "status" => 200,
         "body" => [
-            [
-                "message" => "Availability deleted"
-            ]
+                "id" => "ID",
+                "userId" => "ID",
+                "date" => "yyyy-mm-dd",
+                "isAvailable" => true,
+                "calId" => "ID"
         ]
     ];
 
@@ -698,11 +698,11 @@ function runTests()
     $tests[] = testPost_409();
 
     // PATCH
-    $tests[] = testPatch_201();
-    $tests[] = testPatch_204();
+    $tests[] = testPatch_200();
     $tests[] = testPatch_400();
     $tests[] = testPatch_404();
-
+    $tests[] = testPatch_409();
+    
     // DELETE
     $tests[] = testDelete_200();
     $tests[] = testDelete_400();

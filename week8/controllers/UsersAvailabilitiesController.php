@@ -29,7 +29,7 @@ class UsersAvailabilitiesController
             // Not an error, valid
             case "No changes made":
                 $response = $exc; // Eller vad ska jag sätta här?
-                $status = 204;
+                $status = 409;
                 return self::bubbleMessage($response, $status);
 
             default:
@@ -45,9 +45,17 @@ class UsersAvailabilitiesController
     static function bubbleMessage($response, $responseCode)
     {
         http_response_code($responseCode);
+
+        // Hanterar arrays eller exc
+        if (is_array($response)) {
+            echo json_encode($response);
+            exit;
+        }
+
         echo json_encode(["message" => $response->getMessage()]);
         exit;
     }
+
     static function bubbleData($data, $status)
     {
         http_response_code($status);
@@ -105,13 +113,13 @@ class UsersAvailabilitiesController
                 $isAvailable = $input["isAvailable"] ?? null;
                 $calId = $input["calId"] ?? null;
 
-                if (isset($userId, $date, $isAvailable, $calId)) {
-                    $result = UsersAvailabilitiesService::create($userId, $date, $isAvailable, $calId);
-                    return self::bubbleMessage($result, 201);
+                if (!isset($userId, $date, $isAvailable, $calId)) {
+                    $exc = new ErrorException("Missing attributes");
+                    return self::bubbleError($exc, "POST /try-block");
                 }
-
-                $exc = new ErrorException("Missing attributes");
-                return self::bubbleError($exc, "POST /try-block");
+                    
+                $result = UsersAvailabilitiesService::create($userId, $date, $isAvailable, $calId);
+                return self::bubbleMessage($result, 201);
 
             } catch (Exception $exc) {
 
@@ -131,13 +139,13 @@ class UsersAvailabilitiesController
                 $isAvailable = $input["isAvailable"] ?? null;
                 $calId = $input["calId"] ?? null;
 
-                if ($userId && $date && $isAvailable && $calId) {
-                    $result = UsersAvailabilitiesService::update($input);
-                    return self::bubbleMessage($result, 200);
+                if (!isset($userId, $date, $isAvailable, $calId)) {
+                    $exc = new Exception("Missing attributes");
+                    return self::bubbleError($exc, "PATCH /try-block");
                 }
-
-                $exc = new Exception("Missing attributes");
-                return self::bubbleError($exc, "PATCH /try-block");
+                    
+                $result = UsersAvailabilitiesService::update($input);
+                return self::bubbleMessage($result, 200);
 
             } catch (Exception $exc) {
 
@@ -156,13 +164,13 @@ class UsersAvailabilitiesController
                 $calId = $input["calId"] ?? null;
 
                 // If input exists
-                if ($userId && $date && $calId) {
-                    $result = UsersAvailabilitiesService::delete($userId, $date, $calId);
-                    return self::bubbleMessage($result, 200);
+                if (!isset($userId, $date, $calId)) {
+                    $exc = new ErrorException("Missing attributes");
+                    return self::bubbleError($exc, "DELETE /try-block");
                 }
-
-                $exc = new ErrorException("Missing attributes");
-                return self::bubbleError($exc, "DELETE /try-block");
+                    
+                $result = UsersAvailabilitiesService::delete($userId, $date, $calId);
+                return self::bubbleMessage($result, 200);
 
             } catch (Exception $exc) {
 
