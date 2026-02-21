@@ -3,11 +3,7 @@
 class RestoreDBController {
 
     public static function handle() {
-
-    
-        error_log(" -------------- DB RESTORE körs! -------------- ");
-
-        
+            
         // Sökvägar
         $sourceDir = __DIR__ . "/../repository/db/";
         $backupDir = __DIR__ . "/../repository/db_backup/";

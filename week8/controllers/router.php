@@ -10,6 +10,7 @@ require_once "UsersController.php";
 require_once "GroupsController.php";
 require_once "UsersGroupsController.php";
 require_once "UsersAvailabilitiesController.php";
+require_once "EventsRSVPController.php";
 
 
 function Router($requestUrl = null){   
