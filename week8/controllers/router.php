@@ -85,13 +85,13 @@ function Router($requestUrl){
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();
-                    UsersController::handle($method, $input);
+                    UsersAvailabilitiesController::handle($method, $input);
                     break;
                    
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
-                    UsersController::handle(method: $method, input: $input);
+                    UsersAvailabilitiesController::handle(method: $method, input: $input);
                     break;
             }
             break;

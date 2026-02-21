@@ -1,6 +1,3 @@
-
-/* ---- RUN TESTS ---- */
-
 console.log("START AV INDEX.JS")
 
 async function loadTestsForResource(resourceName, phpFilePath) {
@@ -21,7 +18,7 @@ async function loadTestsForResource(resourceName, phpFilePath) {
     let text = await response.text();
     console.log("RAW RESPONSE TEXT:", text);
 
-    // Försök tolka JSON
+    // Försök tolka som JSOn
     let data;
     try {
         data = JSON.parse(text);
@@ -48,37 +45,59 @@ async function loadTestsForResource(resourceName, phpFilePath) {
 
 
 
-/* ----------------------------------------------------
-   BYGG ETT TESTKORT
----------------------------------------------------- */
-
+/* --------- Build Test card ------ */
 function createTestCard(test) {
 
     const card = document.createElement("div");
     card.classList.add("test-card");
 
-    // PASS / FAIL
+    // Sätt rätt klass om expected och actual är samma
     const isPass = compareResults(test.expected, test.actual);
     card.classList.add(isPass ? "pass" : "fail");
 
+    /* ---- Kort ----- */
     // Titel
     const title = document.createElement("h3");
     title.textContent = `${test.method} ${test.endpoint} — ${test.name}`;
     card.appendChild(title);
 
-    // Info-text
+    // Infotext
     const info = document.createElement("p");
     info.classList.add("info");
     info.textContent = test.info;
     card.appendChild(info);
 
-    // Expandable details
+    /* ---- Details ----- */
+    // Container för Details
     const details = document.createElement("details");
+
     const summary = document.createElement("summary");
     summary.textContent = "Visa detaljer";
     details.appendChild(summary);
 
-    // Request
+    /* -- Received Response --- */
+    const actTitle = document.createElement("h4");
+    actTitle.textContent = "Received Response";
+    details.appendChild(actTitle);
+
+    const act = document.createElement("pre");
+    act.textContent = JSON.stringify(test.actual, null, 2);
+    details.appendChild(act);
+
+    /* -- Expected Response --- */
+    const expTitle = document.createElement("h4");
+    expTitle.textContent = "Expected Response";
+    details.appendChild(expTitle);
+
+    const exp = document.createElement("pre");
+    exp.textContent = JSON.stringify(test.expected, null, 2);
+    details.appendChild(exp);
+
+    /* -- Sent Request --- */
+    const reqTitle = document.createElement("h4");
+    reqTitle.textContent = "Sent Request";
+    details.appendChild(reqTitle);
+
     const req = document.createElement("pre");
     req.textContent = JSON.stringify({
         queryParams: test.queryParams,
@@ -86,26 +105,14 @@ function createTestCard(test) {
     }, null, 2);
     details.appendChild(req);
 
-    // Expected
-    const exp = document.createElement("pre");
-    exp.textContent = JSON.stringify(test.expected, null, 2);
-    details.appendChild(exp);
-
-    // Actual
-    const act = document.createElement("pre");
-    act.textContent = JSON.stringify(test.actual, null, 2);
-    details.appendChild(act);
-
     card.appendChild(details);
 
     return card;
 }
 
 
-/* ----------------------------------------------------
-   JÄMFÖR EXPECTED VS ACTUAL
----------------------------------------------------- */
 
+/* ---- Jämför response med expected ----------- */
 function compareResults(expected, actual) {
 
     // Jämför status
@@ -118,17 +125,15 @@ function compareResults(expected, actual) {
     try {
         actualBody = JSON.parse(actual.body);
     } catch (e) {
-        // om det inte är JSON, behåll raw
+        // om ej JSOn kör raw
     }
 
     // Jämför body
     return JSON.stringify(expected.body) === JSON.stringify(actualBody);
 }
 
-/* ----------------------------------------------------
-   STARTA ALLA TESTER
----------------------------------------------------- */
 
+/*  ------- Kör alla test -------- */
 async function runAllTests() {
 
     console.log("START AV runAllTests")
