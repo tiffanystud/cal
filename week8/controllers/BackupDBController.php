@@ -4,7 +4,7 @@ class BackupDBController {
 
     public static function handle() {
 
-        error_log("--------- DB BACKUP körs!");
+        error_log("------------- DB BACKUP körs! --------------");
 
     
         $sourceDir = __DIR__ . "/../repository/db/";

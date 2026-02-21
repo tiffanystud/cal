@@ -1,11 +1,8 @@
 <?php
-error_log("TOP OF FILE REACHED");
 
 function runRequest($method, $endpoint, $data = null)
 {
     
-    error_log("TOP OF runRequest");
-
     $url = "http://localhost:8000" . $endpoint;
 
     // Vid GETT bygg query m params
@@ -16,9 +13,7 @@ function runRequest($method, $endpoint, $data = null)
 
     }
 
-    error_log("Right before: curlReq = curl_init(url)");
     $curlReq = curl_init($url);
-    error_log("Right after: curlReq = curl_init(url)");
     
     
     // Svar som ttext och sätt HTTP metod
@@ -31,31 +26,19 @@ function runRequest($method, $endpoint, $data = null)
         $jsonHeader = ["Content-Type: application/json"];
 
         // Sätt rättt headers
-        error_log("Right before: curl_setopt(curlReq, CURLOPT_POSTFIELDS, jsonBody)");
         curl_setopt($curlReq, CURLOPT_POSTFIELDS, $jsonBody);
-        error_log("Right after: curl_setopt(curlReq, CURLOPT_POSTFIELDS, jsonBody)");
         
-        error_log("Right before: curl_setopt(curlReq, CURLOPT_HTTPHEADER, jsonHeader)");
         curl_setopt($curlReq, CURLOPT_HTTPHEADER, $jsonHeader);
-        error_log("Right after: curl_setopt(curlReq, CURLOPT_HTTPHEADER, jsonHeader)");
 
     }
 
     // Kör requesten och hämta datan
-    error_log(message: "Right before: responseBody = curl_exec(curlReq);");
     $responseBody = curl_exec($curlReq);
-    error_log("Right after: responseBody = curl_exec(curlReq);");
-
-    
     $responseCode = curl_getinfo($curlReq, CURLINFO_HTTP_CODE);
-    error_log("Right after: responseCode = curl_getinfo(curlReq, CURLINFO_HTTP_CODE)");
 
-
-    error_log("Right before: rdecodedBody = json_decode(responseBody, true)");
     
     // Testa som JSON annars Text?
     $decodedBody = json_decode($responseBody, true);
-    error_log("Right after: rdecodedBody = json_decode(responseBody, true)");
     
     if ($decodedBody === null && $responseBody !== "") {
         $decodedBody = $responseBody;
@@ -81,7 +64,6 @@ function runRequest($method, $endpoint, $data = null)
 // 200
 function testGet_200()
 {
-    error_log("UsersAvailabilities.php test 1 körs");
 
     $expected = [
         "status" => 200,
@@ -97,8 +79,6 @@ function testGet_200()
     ];
 
 
-    error_log("UsersAvailabilities.php innan runRequest när test 1 körs");
-
     $actual = runRequest(
         method: "GET",
         endpoint: "/users_availabilities",
@@ -108,8 +88,6 @@ function testGet_200()
         ]
     );
     
-    error_log("UsersAvailabilities.php efter runRequest när test 1 körs");
-
     $result = [
         "name" => "GET 200",
         "method" => "GET",
@@ -124,8 +102,6 @@ function testGet_200()
         "info" => "Returns availability for a specific user on a specific date"
     ];
     
-    error_log("UsersAvailabilities.php innan return när test 1 körs");
-
     return $result;
     
 }
@@ -684,10 +660,7 @@ function runTests()
     $tests = [];
 
     // GET
-    error_log(" BEFORE FIRST TEST IN runTests");
     $tests[] = testGet_200();
-    error_log(" AFTER FIRST TEST IN runTests");
-
     $tests[] = testGet_404();
     $tests[] = testGet_400();
 
@@ -713,10 +686,8 @@ function runTests()
         "tests" => $tests 
     ];
     
-    error_log("BOTTOM OF RUNTESTS REACHED, before return result ");
     return $result;
 }
 
-error_log("BOTTOM OF FILE REACHED, before json_Encode");
 
 echo json_encode(runTests(), JSON_PRETTY_PRINT);

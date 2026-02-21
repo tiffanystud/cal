@@ -5,7 +5,7 @@ class RestoreDBController {
     public static function handle() {
 
     
-        error_log("--------- DB RESTORE körs!");
+        error_log(" -------------- DB RESTORE körs! -------------- ");
 
         
         // Sökvägar

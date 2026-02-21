@@ -1,39 +1,28 @@
-console.log("START AV INDEX.JS")
-
 async function loadTestsForResource(resourceName, phpFilePath) {
 
-    console.log("Fetching:", phpFilePath);
 
     const response = await fetch(phpFilePath).catch(err => {
-        console.error("FETCH ERROR:", err);
     });
 
     if (!response) {
-        console.error("No response object returned at all");
         return;
     }
 
-    console.log("Response status:", response.status);
 
     let text = await response.text();
-    console.log("RAW RESPONSE TEXT:", text);
 
     // Försök tolka som JSOn
     let data;
     try {
         data = JSON.parse(text);
     } catch (e) {
-        console.error("JSON PARSE ERROR:", e);
         return;
     }
 
-    console.log("Parsed JSON:", data);
 
     const container = document.querySelector(`#${resourceName} .tests-container`);
-    console.log("Container:", container);
 
     if (!data.tests) {
-        console.error("data.tests saknas!");
         return;
     }
 
@@ -109,7 +98,7 @@ function createTestCard(test) {
     const details = document.createElement("details");
 
     const summary = document.createElement("summary");
-    summary.textContent = "Visa detaljer";
+    summary.textContent = "Show details";
     details.appendChild(summary);
 
     /* -- Received Response --- */
