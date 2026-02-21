@@ -5,8 +5,8 @@ class RestoreDBController {
     public static function handle() {
 
         // Sökvägar
-        $sourceDir = __DIR__ . "/../database/";
-        $backupDir = __DIR__ . "/../database_backup/";
+        $sourceDir = __DIR__ . "/../repository/db/";
+        $backupDir = __DIR__ . "/../repository/db_backup/";
 
         // Hämta alla JSON-filer i backup/
         $files = glob($backupDir . "*.json");

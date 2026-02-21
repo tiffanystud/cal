@@ -186,6 +186,12 @@ async function runAllTests() {
 
     console.log("START AV runAllTests")
 
+    /* -- Rollback start -- */
+    // Initialisera rollback funktionaliter
+    await runRequest("POST", "/backup_database");
+    
+    
+    /* -- Resources -- */
     await loadTestsForResource(
         "usersAvailabilities",
         "/resources/UsersAvailabilitiesTest.php"
@@ -193,6 +199,11 @@ async function runAllTests() {
 
     // await loadTestsForResource("users", "resources/Users.php");
     // await loadTestsForResource("groups", "resources/Groups.php");
+    
+    
+    /* -- Rollback end -- */
+    // Gör rollback efter alla test
+    await runRequest("POST", "/restore_database");
 }
 
 runAllTests();
