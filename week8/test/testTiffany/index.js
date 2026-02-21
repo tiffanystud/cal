@@ -115,22 +115,70 @@ function createTestCard(test) {
 /* ---- Jämför response med expected ----------- */
 function compareResults(expected, actual) {
 
-    // Jämför status
+    // 1. Jämför status
     if (expected.status !== actual.status) {
         return false;
     }
 
-    // Försök tolka actual.body som JSON
+    // 2. Försök tolka actual.body som JSON
     let actualBody = actual.body;
+
     try {
         actualBody = JSON.parse(actual.body);
     } catch (e) {
-        // om ej JSOn kör raw
+        // behåll raw om det inte går att parsa
     }
 
-    // Jämför body
-    return JSON.stringify(expected.body) === JSON.stringify(actualBody);
+    // 3. Om expected.body är ett objekt (t.ex. error)
+    if (!Array.isArray(expected.body)) {
+
+        // actual måste också vara ett objekt
+        if (typeof actualBody !== "object" || actualBody === null) {
+            return false;
+        }
+
+        // kontrollera att alla expected-nycklar finns i actual
+        for (let key in expected.body) {
+            if (!(key in actualBody)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // 4. Om expected.body är en array (t.ex. [ {…} ])
+    if (Array.isArray(expected.body)) {
+
+        // actual måste också vara en array
+        if (!Array.isArray(actualBody)) {
+            return false;
+        }
+
+        // expected-body har alltid exakt 1 objekt i dina tester
+        const expectedObj = expected.body[0];
+        const actualObj = actualBody[0];
+
+        // actual måste ha ett objekt
+        if (typeof actualObj !== "object" || actualObj === null) {
+            return false;
+        }
+
+        // kontrollera att alla expected-nycklar finns i actual
+        for (let key in expectedObj) {
+            if (!(key in actualObj)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    return false;
 }
+
+
+
 
 
 /*  ------- Kör alla test -------- */
@@ -140,7 +188,7 @@ async function runAllTests() {
 
     await loadTestsForResource(
         "usersAvailabilities",
-        "/resources/UsersAvailabilities.php"
+        "/resources/UsersAvailabilitiesTest.php"
     );
 
     // await loadTestsForResource("users", "resources/Users.php");

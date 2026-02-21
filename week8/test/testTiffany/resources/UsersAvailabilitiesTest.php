@@ -86,13 +86,16 @@ function testGet_200()
     $expected = [
         "status" => 200,
         "body" => [
-            "id" => "ID",
-            "userId" => "ID",
-            "date" => "yyyy-mm-dd",
-            "isAvailable" => true,
-            "calId" => "ID"
+            [
+                "id" => "ID",
+                "userId" => "ID",
+                "date" => "yyyy-mm-dd",
+                "isAvailable" => true,
+                "calId" => "ID"
+            ]
         ]
     ];
+
 
     error_log("UsersAvailabilities.php innan runRequest när test 1 körs");
 
@@ -133,8 +136,11 @@ function testGet_404()
 {
     $expected = [
         "status" => 404,
-        "body" => ["error" => "Availability not found"]
+        "body" => [
+            "error" => "Availability not found"
+        ]
     ];
+
 
     $actual = runRequest(
         method: "GET",
@@ -168,7 +174,9 @@ function testGet_400()
 {
     $expected = [
         "status" => 400,
-        "body" => ["error" => "Missing attributes"]
+        "body" => [
+            "error" => "Missing attributes"
+        ]
     ];
 
     $actual = runRequest(
@@ -205,7 +213,11 @@ function testPost_201()
 {
     $expected = [
         "status" => 201,
-        "body" => ["message" => "Availability created"]
+        "body" => [
+            [
+                "message" => "Availability created"
+            ]
+        ]
     ];
 
     $actual = runRequest(
@@ -244,8 +256,11 @@ function testPost_400()
 {
     $expected = [
         "status" => 400,
-        "body" => ["error" => "Missing attributes"]
+        "body" => [
+            "error" => "Missing attributes"
+        ]
     ];
+
 
     $actual = runRequest(
         method: "POST",
@@ -282,8 +297,11 @@ function testPost_404()
 {
     $expected = [
         "status" => 404,
-        "body" => ["error" => "User or calendar not found"]
+        "body" => [
+            "error" => "User or calendar not found"
+        ]
     ];
+
 
     $actual = runRequest(
         method: "POST",
@@ -322,7 +340,9 @@ function testPost_409()
 {
     $expected = [
         "status" => 409,
-        "body" => ["error" => "Availability already exists"]
+        "body" => [
+            "error" => "Availability already exists"
+        ]
     ];
 
     $actual = runRequest(
@@ -360,12 +380,16 @@ function testPost_409()
 
 /* -- PATCH -- */
 
-// 201
+// 200
 function testPatch_201()
 {
     $expected = [
         "status" => 200,
-        "body" => ["message" => "Availability updated"]
+        "body" => [
+            [
+                "message" => "Availability updated"
+            ]
+        ]
     ];
 
     $actual = runRequest(
@@ -405,8 +429,13 @@ function testPatch_204()
 {
     $expected = [
         "status" => 204,
-        "body" => ["message" => "No changes made"]
+        "body" => [
+            [
+                "message" => "No changes made"
+            ]
+        ]
     ];
+
 
     $actual = runRequest(
         method: "PATCH",
@@ -445,7 +474,9 @@ function testPatch_400()
 {
     $expected = [
         "status" => 400,
-        "body" => ["error" => "Missing attributes"]
+        "body" => [
+            "error" => "Missing attributes"
+        ]
     ];
 
     $actual = runRequest(
@@ -483,8 +514,11 @@ function testPatch_404()
 {
     $expected = [
         "status" => 404,
-        "body" => ["error" => "Availability not found"]
+        "body" => [
+            "error" => "Availability not found"
+        ]
     ];
+
 
     $actual = runRequest(
         method: "PATCH",
@@ -527,7 +561,11 @@ function testDelete_200()
     
     $expected = [
         "status" => 200,
-        "body" => ["message" => "Availability deleted"]
+        "body" => [
+            [
+                "message" => "Availability deleted"
+            ]
+        ]
     ];
 
     $actual = runRequest(
@@ -565,7 +603,9 @@ function testDelete_400()
 {
     $expected = [
         "status" => 400,
-        "body" => ["error" => "Missing attributes"]
+        "body" => [
+            "error" => "Missing attributes"
+        ]
     ];
 
     $actual = runRequest(
@@ -601,7 +641,9 @@ function testDelete_404()
 {
     $expected = [
         "status" => 404,
-        "body" => ["error" => "Availability not found"]
+        "body" => [
+            "error" => "Availability not found"
+        ]
     ];
 
     $actual = runRequest(
@@ -647,7 +689,7 @@ function runTests()
     error_log(" AFTER FIRST TEST IN runTests");
 
     $tests[] = testGet_404();
-   /*  $tests[] = testGet_400();
+    $tests[] = testGet_400();
 
     // POST
     $tests[] = testPost_201();
@@ -664,7 +706,7 @@ function runTests()
     // DELETE
     $tests[] = testDelete_200();
     $tests[] = testDelete_400();
-    $tests[] = testDelete_404(); */
+    $tests[] = testDelete_404();
     
     $result = [ 
         "resource" => "users_availabilities", 
