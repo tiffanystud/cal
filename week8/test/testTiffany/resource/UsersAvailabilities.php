@@ -2,6 +2,9 @@
 
 function runRequest($method, $endpoint, $data = null)
 {
+    
+    error_log("UsersAvailabilities.php körs START");
+
     $url = "http://localhost:8000" . $endpoint;
 
     // Vid GETT bygg query m params
@@ -63,6 +66,8 @@ function runRequest($method, $endpoint, $data = null)
 // 200
 function testGet_200()
 {
+    error_log("UsersAvailabilities.php test 1 körs");
+
     $expected = [
         "status" => 200,
         "body" => [
@@ -85,12 +90,20 @@ function testGet_200()
 
     $result = [
         "name" => "GET 200",
+        "method" => "GET",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => [
+            "userId" => "65e10aa11a001",
+            "date" => "2026-03-01"
+        ],
+        "requestBody" => null,
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "Returns availability for a specific user on a specific date"
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -99,11 +112,8 @@ function testGet_404()
 {
     $expected = [
         "status" => 404,
-        "body" => [
-            "error" => "Availability not found"
-        ]
+        "body" => ["error" => "Availability not found"]
     ];
-
 
     $actual = runRequest(
         method: "GET",
@@ -116,10 +126,18 @@ function testGet_404()
 
     $result = [
         "name" => "GET 404",
+        "method" => "GET",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => [
+            "userId" => "65e10aa11a001",
+            "date" => "0000-00-00"
+        ],
+        "requestBody" => null,
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "No availability entry exists"
     ];
-
+    
     return $result;
 }
 
@@ -129,9 +147,7 @@ function testGet_400()
 {
     $expected = [
         "status" => 400,
-        "body" => [
-            "error" => "Missing attributes"
-        ]
+        "body" => ["error" => "Missing attributes"]
     ];
 
     $actual = runRequest(
@@ -144,12 +160,19 @@ function testGet_400()
 
     $result = [
         "name" => "GET 400",
+        "method" => "GET",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => [
+            "userId" => "65e10aa11a001"
+        ],
+        "requestBody" => null,
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "userId or date missing"
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -161,7 +184,7 @@ function testPost_201()
 {
     $expected = [
         "status" => 201,
-        "body" => ["message" => "created"]
+        "body" => ["message" => "Availability created"]
     ];
 
     $actual = runRequest(
@@ -177,10 +200,20 @@ function testPost_201()
 
     $result = [
         "name" => "POST 201",
+        "method" => "POST",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a00a",
+            "date" => "2026-03-20",
+            "isAvailable" => false,
+            "calId" => "65e10aa11b005"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "Creates a new availability entry"
     ];
-
+    
     return $result;
 }
 
@@ -205,12 +238,21 @@ function testPost_400()
 
     $result = [
         "name" => "POST 400",
+        "method" => "POST",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a00a",
+            "date" => "2026-03-20",
+            "isAvailable" => false
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "Required fields missing"
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -235,13 +277,25 @@ function testPost_404()
 
     $result = [
         "name" => "POST 404",
+        "method" => "POST",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a00a",
+            "date" => "2026-03-20",
+            "isAvailable" => false,
+            "calId" => "000000000000"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "FK validation failed"
     ];
-
+    
     return $result;
-
+    
 }
+
+error_log("UsersAvailabilities.php körs");
 
 
 // 409
@@ -265,12 +319,22 @@ function testPost_409()
 
     $result = [
         "name" => "POST 409",
+        "method" => "POST",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a001",
+            "date" => "2026-03-01",
+            "isAvailable" => false,
+            "calId" => "65e10aa11b001"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "Duplicate entry for same user+date"
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -282,7 +346,7 @@ function testPatch_201()
 {
     $expected = [
         "status" => 200,
-        "body" => ["message" => "updated"]
+        "body" => ["message" => "Availability updated"]
     ];
 
     $actual = runRequest(
@@ -298,12 +362,22 @@ function testPatch_201()
 
     $result = [
         "name" => "PATCH 201",
+        "method" => "PATCH",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a001",
+            "date" => "2026-03-01",
+            "isAvailable" => false,
+            "calId" => "65e10aa11b001"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "Change availability status to yes or maybe. Delete = no."
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -312,7 +386,7 @@ function testPatch_204()
 {
     $expected = [
         "status" => 204,
-        "body" => null
+        "body" => ["message" => "No changes made"]
     ];
 
     $actual = runRequest(
@@ -328,12 +402,22 @@ function testPatch_204()
 
     $result = [
         "name" => "PATCH 204",
+        "method" => "PATCH",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a001",
+            "date" => "2026-03-01",
+            "isAvailable" => false,
+            "calId" => "65e10aa11b001"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "Availability was not switched, it was already set to “change”"
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -357,12 +441,21 @@ function testPatch_400()
 
     $result = [
         "name" => "PATCH 400",
+        "method" => "PATCH",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a00a",
+            "date" => "2026-03-20",
+            "isAvailable" => false
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "userId, calId, isAvailable or date missing"
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -387,12 +480,22 @@ function testPatch_404()
 
     $result = [
         "name" => "PATCH 404",
+        "method" => "PATCH",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a00a",
+            "date" => "0000-00-00",
+            "isAvailable" => false,
+            "calId" => "65e10aa11b005"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "No entry to patch"
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -402,10 +505,10 @@ function testPatch_404()
 // 200
 function testDelete_200()
 {
-
+    
     $expected = [
         "status" => 200,
-        "body" => ["message" => "deleted"]
+        "body" => ["message" => "Availability deleted"]
     ];
 
     $actual = runRequest(
@@ -420,12 +523,21 @@ function testDelete_200()
 
     $result = [
         "name" => "DELETE 200",
+        "method" => "DELETE",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a00a",
+            "date" => "2026-03-20",
+            "calId" => "65e10aa11b005"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "Deletes availability entry"
     ];
-
+    
     return $result;
-
+    
 }
 
 
@@ -448,10 +560,18 @@ function testDelete_400()
 
     $result = [
         "name" => "DELETE 400",
+        "method" => "DELETE",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "65e10aa11a00a",
+            "date" => "2026-03-20"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "userId or date missing"
     ];
-
+    
     return $result;
 
 }
@@ -477,43 +597,59 @@ function testDelete_404()
 
     $result = [
         "name" => "DELETE 404",
+        "method" => "DELETE",
+        "endpoint" => "/users_availabilities",
+        "queryParams" => null,
+        "requestBody" => [
+            "userId" => "000000000000",
+            "date" => "2026-03-20",
+            "calId" => "65e10aa11b005"
+        ],
         "expected" => $expected,
-        "actual" => $actual
+        "actual" => $actual,
+        "info" => "No entry to delete"
     ];
-
+    
     return $result;
 }
 
 
-/* ------ ALL TESTS ------ */
+
+/* ------ ALL TESTS (FORMAT B) ------ */
 
 function runTests()
 {
-    $results = [];
+    
+    $tests = [];
 
     // GET
-    $results[] = testGet_200();
-    $results[] = testGet_404();
-    $results[] = testGet_400();
+    $tests[] = testGet_200();
+    $tests[] = testGet_404();
+    $tests[] = testGet_400();
 
-    /*     // POST
-        $results[] = testPost_201();
-        $results[] = testPost_400();
-        $results[] = testPost_404();
-        $results[] = testPost_409();
+    // POST
+    $tests[] = testPost_201();
+    $tests[] = testPost_400();
+   /*  $tests[] = testPost_404();
+    $tests[] = testPost_409();
 
-        // PATCH
-        $results[] = testPatch_201();
-        $results[] = testPatch_204();
-        $results[] = testPatch_400();
-        $results[] = testPatch_404();
+    // PATCH
+    $tests[] = testPatch_201();
+    $tests[] = testPatch_204();
+    $tests[] = testPatch_400();
+    $tests[] = testPatch_404();
 
-        // DELETE
-        $results[] = testDelete_200();
-        $results[] = testDelete_400();
-        $results[] = testDelete_404();
-     */
-    return $results;
+    // DELETE
+    $tests[] = testDelete_200();
+    $tests[] = testDelete_400();
+    $tests[] = testDelete_404(); */
+    
+    $result = [ 
+        "resource" => "users_availabilities", 
+        "tests" => $tests 
+    ];
+    
+    return $result;
 }
 
 echo json_encode(runTests(), JSON_PRETTY_PRINT);

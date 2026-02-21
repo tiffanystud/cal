@@ -7,7 +7,7 @@ require_once __DIR__ . "/../middleware/middleware.php";
 require_once "UsersController.php";
 require_once "GroupsController.php";
 require_once "UsersGroupsController.php";
-require_once "UsersAvailabilities.php";
+require_once "UsersAvailabilitiesController.php";
 
 
 function Router($requestUrl){   
