@@ -4,21 +4,48 @@
 console.log("START AV INDEX.JS")
 
 async function loadTestsForResource(resourceName, phpFilePath) {
-console.log("Container:", document.querySelector("#usersAvailabilities .tests-container"));
 
-    // 1. Hämta testdata från PHP
-    const response = await fetch(phpFilePath);
-    const data = await response.json();
+    console.log("Fetching:", phpFilePath);
 
-    // 2. Hitta container i HTML
+    const response = await fetch(phpFilePath).catch(err => {
+        console.error("FETCH ERROR:", err);
+    });
+
+    if (!response) {
+        console.error("No response object returned at all");
+        return;
+    }
+
+    console.log("Response status:", response.status);
+
+    let text = await response.text();
+    console.log("RAW RESPONSE TEXT:", text);
+
+    // Försök tolka JSON
+    let data;
+    try {
+        data = JSON.parse(text);
+    } catch (e) {
+        console.error("JSON PARSE ERROR:", e);
+        return;
+    }
+
+    console.log("Parsed JSON:", data);
+
     const container = document.querySelector(`#${resourceName} .tests-container`);
+    console.log("Container:", container);
 
-    // 3. Skapa ett kort för varje test
+    if (!data.tests) {
+        console.error("data.tests saknas!");
+        return;
+    }
+
     data.tests.forEach(test => {
         const card = createTestCard(test);
         container.appendChild(card);
     });
 }
+
 
 
 /* ----------------------------------------------------
@@ -108,7 +135,7 @@ async function runAllTests() {
 
     await loadTestsForResource(
         "usersAvailabilities",
-        "/test/testTiffany/resources/UsersAvailabilities.php"
+        "/resources/UsersAvailabilities.php"
     );
 
     // await loadTestsForResource("users", "resources/Users.php");

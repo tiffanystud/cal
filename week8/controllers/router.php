@@ -94,6 +94,7 @@ function Router($requestUrl){
                     UsersController::handle(method: $method, input: $input);
                     break;
             }
+            break;
             
         case "users_calendars":
             
@@ -108,7 +109,8 @@ function Router($requestUrl){
                     JsonMiddleware::handle();
                     UsersGroupController::handle(method: $method, input: $input);
                     break;
-            }        
+            }  
+            break;      
 
         case "users_pinned_calendars":
             //Handle users_pinned_calendars
