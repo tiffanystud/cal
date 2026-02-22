@@ -4,11 +4,8 @@ require_once __DIR__ . "/../services/EventsRSVPServices.php";
 class EventsRSVP {
 
     /* -- RESPONSES -- */
-    static function bubbleError($exc, $sender)
-    {
-
-        $responseCode;
-
+    static function bubbleError($exc, $sender){
+        
         // Check exc msg for response code
         switch ($exc->getMessage()) {
 
@@ -68,7 +65,7 @@ class EventsRSVP {
         // Se över **
         $production = false;
         if ($production) {
-            // var_dump("Default bubble at: " . $position . " ----- UsersAvailabilitiesController.php ----- ");
+            // var_dump("Default bubble at: " . $position . " ----- EventsRSVP.php ----- ");
         }
 
         http_response_code($status);
@@ -84,15 +81,11 @@ class EventsRSVP {
         if ($method == "GET") {
 
             $userId = $_GET["userId"] ?? null;
-            $date = $_GET["date"] ?? null;
+            $eventId = $_GET["eventId"] ?? null;
 
             try {
 
-                if (!isset($userId, $date)) {
-                    throw new Exception("Missing attributes");
-                }
-
-                $result = EventsRSVPService::getAll($userId, $date);
+                $result = EventsRSVPService::getAll($userId, $eventId);
                 return self::bubbleData($result, 200);
 
             } catch (Exception $exc) {

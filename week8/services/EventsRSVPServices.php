@@ -4,27 +4,28 @@ require_once __DIR__ . "/../repository/DBAccess.php";
 
 class EventsRSVPService {
     /* ---- GET ---- */
-    public static function getAll($userId = null, $date = null)
-    {
+    public static function getAll($userId = null, $eventId = null){
         
-        $db = new DBAccess("users_availabilities");
-        $items = $db->getAll();
-        
-        if (!isset($userId, $date)) {
-            // Kolla format på date?
+        if (!isset($userId, $eventId)) {
             throw new Exception("Missing attributes");
         }
+        
+        $db = new DBAccess("events_rsvp");
+        $items = $db->getAll();
                    
         $filtered = [];
 
+        // Säkerställer vi bara en rad med samma userID och eventId?
         foreach ($items as $currItem) {
-            if ($currItem["userId"] == $userId && $currItem["date"] == $date ) {
+            if ($currItem["userId"] == $userId && 
+                $currItem["eventId"] == $eventId 
+                ) {
                 $filtered[] = $currItem;
             }
         }
 
         if (!$filtered) {
-            throw new Exception("Availability not found");
+            throw new Exception("Event RSVP not found");
         }
         
         return $filtered;
@@ -62,7 +63,7 @@ class EventsRSVPService {
             }
                 
 
-            $dbUsersAvails = new DBAccess("users_availabilities");  
+            $dbUsersAvails = new DBAccess("events_rsvp");  
             $itemsUsersAvails = $dbUsersAvails->getAll();
             
             
@@ -99,7 +100,7 @@ class EventsRSVPService {
     public static function update($input)
     {
 
-        $db = new DBAccess("users_availabilities");
+        $db = new DBAccess("events_rsvp");
         $items = $db->getAll();
         
         foreach ($items as $currAvailability) {
@@ -128,7 +129,7 @@ class EventsRSVPService {
     public static function delete($userId, $date, $calId)
     {
 
-        $db = new DBAccess("users_availabilities");
+        $db = new DBAccess("events_rsvp");
         $items = $db->getAll();
         
         foreach($items as $currAvailability) {
