@@ -25,7 +25,7 @@ class EventsRSVPService {
         }
 
         if (!$filtered) {
-            throw new Exception("Event RSVP not found");
+            throw new Exception("RSVP not found");
         }
         
         return $filtered;
@@ -33,68 +33,42 @@ class EventsRSVPService {
     }
 
     /* --- POST ---- */
-    public static function create($userId, $date, $isAvailable, $calId){
-    
-        //validera format?
-        if (isset($userId, $date, $isAvailable, $calId)) {
-            
-            $dbUsers =  new DBAccess("users");
-            $userItems = $dbUsers->getAll();
-            
-            $dbCalendars =  new DBAccess("calendars");
-            $calendarItems = $dbCalendars->getAll();
-            
-            $userAndCalOK = false;
-            
-            // Does user & cal exist?
-            foreach ($userItems as $currUser) {
-                
-                if ($currUser["id"] == $userId) {
-                    foreach ($calendarItems as $currCal) {
-                        
-                        if ($currCal["id"] == $calId) 
-                            $userAndCalOK = true;
-                    }
-                }
-            }
-            
-            if (!$userAndCalOK) {
-                throw new Exception("User or calendar not found");
-            }
-                
+    public static function create($input){
+        
+        $eventId = $input["eventId"] ?? null;
+        $userId = $input["userId"] ?? null;
+        $date = $date["date"] ?? null;
+        $reminder = $input["reminder"] ?? null;
 
-            $dbUsersAvails = new DBAccess("events_rsvp");  
-            $itemsUsersAvails = $dbUsersAvails->getAll();
-            
-            
-            // Check if exists
-            foreach ($itemsUsersAvails as $currAvail) {
-                if (
-                    $currAvail["userId"] == $userId &&
-                    $currAvail["date"] == $date &&
-                    $currAvail["calId"] == $calId 
-                ) {
-                    throw new Exception("Availability already exists");
-                }
-            } 
-            
-            // Create new availability
-            $newAvailability = [
-                "id" => uniqid(),
-                "userId" => $userId,
-                "date" => $date,
-                "isAvailable" => $isAvailable,
-                "calId" => $calId
-            ];
-            
-            $result = $dbUsersAvails->postData($newAvailability);
-            return $result;        
-                
+        if (!isset($eventId, $userId, $date, $reminder)) {
+            return new ErrorException("Missing attributes");
         }
-
-        throw new Exception( "Missing Attributes");
-
+            
+        $db =  new DBAccess("events_rsvp");
+        $items = $db->getAll();
+        
+        // Does RSVP exist
+        foreach ($items as $currItem) {
+            if ($currItem["userId"] == $userId && $currItem["eventId"] == $eventId) {
+                throw new Exception("RSVP already exists");
+            }
+        }
+    
+        // Create new availability
+        $newRSVP = [
+            "id" => uniqid(),
+            "eventId" => $eventId,
+            "userId" => $userId,
+            "date" => $date,
+            "reminder" => $reminder
+        ];
+        
+        $result = $items->postData($newRSVP);
+        return $result;        
+            
     }
+
+
 
     /* --- PATCH ---- */
     public static function update($input)

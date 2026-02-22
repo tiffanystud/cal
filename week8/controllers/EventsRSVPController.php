@@ -100,15 +100,6 @@ class EventsRSVP {
 
             try {
 
-                $userId = $input["userId"] ?? null;
-                $date = $input["date"] ?? null;
-                $isAvailable = $input["isAvailable"] ?? null;
-                $calId = $input["calId"] ?? null;
-
-                if (!isset($userId, $date, $isAvailable, $calId)) {
-                    $exc = new ErrorException("Missing attributes");
-                    return self::bubbleError($exc, "POST /try-block");
-                }
                     
                 $result = EventsRSVPService::create($userId, $date, $isAvailable, $calId);
                 return self::bubbleMessage($result, 201);
