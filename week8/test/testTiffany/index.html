@@ -8,119 +8,75 @@
 
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            justify-content: center;
-            align-items: center;
             font-family: Arial, sans-serif;
+            padding: 20px;
             background: #f5f5f5;
-            padding: 40px 0;
+        }
+
+        h2 {
+            margin-bottom: 10px;
         }
 
         .test-card {
-            width: 500px;
-            box-sizing: border-box;
-            min-height: 250px;
-            padding: 15px;
-            border-radius: 25px;
-            border: 10px solid #ccc;
-            background: white;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .test-card h3 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .result-box {
-            width: 90%;
-            margin-top: 10px;
-            padding: 10px;
-            background: #eee;
+            border: 2px solid #ccc;
+            padding: 12px;
+            margin-bottom: 12px;
             border-radius: 6px;
-            height: 145px;
-            overflow-y: auto;
-            font-family: monospace;
-            font-size: 14px;
-            white-space: pre-wrap;
+            background: #fafafa;
+        }
+
+        .test-card.pass {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+        }
+
+        .test-card.fail {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        pre {
+            background: #fff;
+            padding: 8px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .info {
+            font-style: italic;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- USERS -->
-    <div class="test-card" id="getUser">
-        <h3>GET USERS</h3>
-        <div class="result-box"></div>
+    <div id="usersAvailabilities" class="resource-block">
+        <h2>Users Availabilities Tests</h2>
+        <div class="tests-container"></div>
     </div>
 
-    <div class="test-card" id="postUser">
-        <h3>POST USERS</h3>
-        <div class="result-box"></div>
+    <div id="eventsRSVP" class="resource-block">
+        <h2>Events RSVPs Tests</h2>
+        <div class="tests-container"></div>
     </div>
 
-    <div class="test-card" id="patchUser">
-        <h3>PATCH USERS</h3>
-        <div class="result-box"></div>
-    </div>
 
-    <div class="test-card" id="deleteUser">
-        <h3>DELETE USERS</h3>
-        <div class="result-box"></div>
-    </div>
 
-    <!-- GROUPS -->
-    <div class="test-card" id="getGroup">
-        <h3>GET GROUPS</h3>
-        <div class="result-box"></div>
-    </div>
-
-    <div class="test-card" id="postGroup">
-        <h3>POST GROUPS</h3>
-        <div class="result-box"></div>
-    </div>
-
-    <div class="test-card" id="patchGroup">
-        <h3>PATCH GROUPS</h3>
-        <div class="result-box"></div>
-    </div>
-
-    <div class="test-card" id="deleteGroup">
-        <h3>DELETE GROUPS</h3>
-        <div class="result-box"></div>
-    </div>
-
-    <!-- USERS_GROUPS -->
-    <div class="test-card" id="getUserGroup">
-        <h3>GET USER GROUPS</h3>
-        <div class="result-box"></div>
-    </div>
-
-    <div class="test-card" id="postUserGroup">
-        <h3>POST USER GROUPS</h3>
-        <div class="result-box"></div>
-    </div>
-
-    <div class="test-card" id="patchUserGroup">
-        <h3>PATCH USER GROUPS</h3>
-        <div class="result-box"></div>
-    </div>
-
-    <div class="test-card" id="deleteUserGroup">
-        <h3>DELETE USER GROUPS</h3>
-        <div class="result-box"></div>
-    </div>
-
+    
+    
+    
+    
     <script src="index.js"></script>
+
+
 </body>
+
 
 </html>
