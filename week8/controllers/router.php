@@ -61,7 +61,7 @@ function Router($requestUrl = null){
             //Handle event_admins
             break;
 
-        case "event_rsvp":
+        case "events_rsvp":
             //Handle event_rsvp
             break;
 
