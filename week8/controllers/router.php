@@ -19,11 +19,9 @@ function Router($requestUrl = null){
         $requestUrl = $_SERVER["REQUEST_URI"] ?? "";
     }
 
-    error_log("ROUTER: requestUrl = " . $requestUrl);
-    error_log("ROUTER: urlPath = " . parse_url($requestUrl, PHP_URL_PATH));
+    
     $urlPath = parse_url($requestUrl, PHP_URL_PATH);
     $path = ltrim($urlPath, "/");
-    error_log("ROUTER: computed path = " . $path);
 
     $method = $_SERVER["REQUEST_METHOD"];
     
