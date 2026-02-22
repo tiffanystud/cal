@@ -25,7 +25,7 @@ function Router($requestUrl = null){
 
     $method = $_SERVER["REQUEST_METHOD"];
     
-    if($method == "GET"){
+    if ($method == "GET"){
         $input = $_GET ?? [];
     } else {
         $input = json_decode(file_get_contents("php://input"), true) ?? [];
@@ -33,16 +33,6 @@ function Router($requestUrl = null){
 
     switch ($path) {
             
-        case "backup_database":
-            CorsMiddleware::handle();
-            BackupDBController::handle();
-            break;
-
-        case "restore_database":
-            CorsMiddleware::handle();
-            RestoreDBController::handle();
-            break;
-
         case "calendar":
             
             switch ($method) {
@@ -111,7 +101,7 @@ function Router($requestUrl = null){
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
-                    UsersAvailabilitiesController::handle(method: $method, input: $input);
+                    UsersAvailabilitiesController::handle($method, $input);
                     break;
             }
             break;
@@ -121,19 +111,29 @@ function Router($requestUrl = null){
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();
-                    UsersGroupController::handle(method: $method, input: $input);
+                    UsersGroupController::handle($method, $input);
                     break;
                 
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
-                    UsersGroupController::handle(method: $method, input: $input);
+                    UsersGroupController::handle($method, $input);
                     break;
             }  
             break;      
 
         case "users_pinned_calendars":
             //Handle users_pinned_calendars
+            break;
+            
+        case "backup_database":
+            CorsMiddleware::handle();
+            BackupDBController::handle();
+            break;
+
+        case "restore_database":
+            CorsMiddleware::handle();
+            RestoreDBController::handle();
             break;
             
         default:

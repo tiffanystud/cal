@@ -1,8 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../services/UsersAvailabilitiesService.php";
-class UsersAvailabilitiesController
-{
+class UsersAvailabilitiesController {
 
     /* -- RESPONSES -- */
     static function bubbleError($exc, $sender)
