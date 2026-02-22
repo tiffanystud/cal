@@ -6,19 +6,18 @@ class EventsRSVP {
     /* -- RESPONSES -- */
     static function bubbleError($exc, $sender){
         
-        // Check exc msg for response code
+        // Check exc msg (set from services and catched or thrown w/exc in controller) to set correct response code 
         switch ($exc->getMessage()) {
 
             case "Missing attributes":
                 $responseCode = 400;
                 break;
 
-            case "Availability not found":
-            case "User or calendar not found":
+            case "RSVP not found":
                 $responseCode = 404;
                 break;
 
-            case "Availability already exists":
+            case "RSVP already exists":
                 $responseCode = 409;
                 break;
 
@@ -33,6 +32,7 @@ class EventsRSVP {
                 return self::bubbleDefault($positionMsg, 400);
         }
 
+        // After cases
         http_response_code($responseCode);
         echo json_encode(["error" => $exc->getMessage()]);
         exit;
@@ -80,6 +80,7 @@ class EventsRSVP {
 
         if ($method == "GET") {
 
+            // Params (GET)
             $userId = $_GET["userId"] ?? null;
             $eventId = $_GET["eventId"] ?? null;
 
@@ -99,13 +100,12 @@ class EventsRSVP {
         if ($method == "POST") {
 
             try {
-
-                    
-                $result = EventsRSVPService::create($userId, $date, $isAvailable, $calId);
+                 
+                $result = EventsRSVPService::create($input);
                 return self::bubbleMessage($result, 201);
 
             } catch (Exception $exc) {
-
+                
                 return self::bubbleError($exc, "POST /catch-block");
 
             }
@@ -116,16 +116,6 @@ class EventsRSVP {
         if ($method == "PATCH") {
 
             try {
-
-                $userId = $input["userId"] ?? null;
-                $date = $input["date"] ?? null;
-                $isAvailable = $input["isAvailable"] ?? null;
-                $calId = $input["calId"] ?? null;
-
-                if (!isset($userId, $date, $isAvailable, $calId)) {
-                    $exc = new Exception("Missing attributes");
-                    return self::bubbleError($exc, "PATCH /try-block");
-                }
                     
                 $result = EventsRSVPService::update($input);
                 return self::bubbleMessage($result, 200);

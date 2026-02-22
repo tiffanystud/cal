@@ -54,7 +54,7 @@ class EventsRSVPService {
             }
         }
     
-        // Create new availability
+        // Create new RSVP
         $newRSVP = [
             "id" => uniqid(),
             "eventId" => $eventId,
@@ -74,13 +74,22 @@ class EventsRSVPService {
     public static function update($input)
     {
 
+        $eventId = $input["eventId"] ?? null;
+        $userId = $input["userId"] ?? null;
+        $date = $date["date"] ?? null;
+        $reminder = $input["reminder"] ?? null;
+        
+        if (!isset($eventId, $userId, $reminder)) {
+            return new ErrorException("Missing attributes");
+        }
+        
         $db = new DBAccess("events_rsvp");
         $items = $db->getAll();
         
         foreach ($items as $currAvailability) {
             if (
-                $currAvailability["userId"] == $input["userId"] &&
-                $currAvailability["date"] == $input["date"] &&
+                $currAvailability["userId"] == $userId &&
+                $currAvailability["eventId"] == $eventId&&
                 $currAvailability["calId"] == $input["calId"] 
                 ) {
                     // Chech if availability already is the same
