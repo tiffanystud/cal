@@ -42,11 +42,21 @@
                 
             }
             if($method === "PATCH") {
-                $reqBody = json_decode(file_get_contents("php://input"),true)
+                $reqBody = json_decode(file_get_contents("php://input"),true);
                 if(isset($input["id"])){
                     $name = $reqBody["name"] ?? null;
                     $pwd =  $reqBody["pwd"] ?? null;
                     $email = $reqBody["email"] ?? null;
+
+                    $data = [
+                        "id" => $input["id"],
+                        "data" => [
+                            "name" => $name,
+                            "pwd" => $pwd,
+                            "email" => $email
+                        ]
+                    ];
+                    $result = UserService::changeUser($data);
                     
                 } else {
                     http_response_code(400);

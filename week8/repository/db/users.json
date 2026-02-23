@@ -59,12 +59,6 @@
             "email": "judy@example.com",
             "pwd": "pwd10",
             "name": "Judy"
-        },
-        {
-            "id": "699b5ca53838e",
-            "email": "test@gmail.com",
-            "pwd": "123",
-            "name": "test"
         }
     ]
 }
