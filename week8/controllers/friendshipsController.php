@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../services/friendshipsService.php";
+require_once __DIR__ . "/../services/FriendshipsService.php";
 
 class FriendshipsController{
 
@@ -16,10 +16,11 @@ class FriendshipsController{
                 } elseif ($id1) {
                     $result = FriendshipsService::getAllFriends();
                 }
-                //Gör funktion som skickar meddelande.
+                //<--------- HITTEPÅ-funktion
                 sendSuccessMsg($result /*Status*/);
 
             } catch (Exception $exc){
+                //<--------- HITTEPÅ-funktion
                 sendErrorMsg($exc);
 
             }
@@ -32,14 +33,16 @@ class FriendshipsController{
                 if($id) {
                     $result = FriendshipsService::newFriend();
                 }
+                //<--------- HITTEPÅ-funktion
                 sendSuccessMsg($result/*Status*/);
             } catch (Exception $exc){
+                //<--------- HITTEPÅ-funktion
                 sendErrorMsg($exc);
             }
         }
 
         if ($method === "PATCH") {
-
+            
         }
 
     }
