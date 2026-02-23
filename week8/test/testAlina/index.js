@@ -62,7 +62,7 @@ function deleteFriendship() {
         url: "http://localhost:8000/friendships",
         method: "DELETE",
         body: { 
-            userId: "65e10aa11a001",
+            userId1: "65e10aa11a001",
             userId2: "65e10aa11a00a"
         },
         targetId: "deleteFriendship"

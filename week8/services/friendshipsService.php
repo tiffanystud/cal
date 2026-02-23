@@ -76,9 +76,9 @@ class FriendshipsService{
         
     }
 
-    public static function deleteFriend($userId, $input)
+    public static function deleteFriend($id1, $id2)
     {
-        if (!isset($input["friendId"])) {
+        if (!isset($id2)) {
             throw new Exception("Missing friendId", 400);
         }
 
@@ -88,8 +88,8 @@ class FriendshipsService{
 
         foreach ($relations as $rel) {
             if (
-                $rel["userId"] == $userId &&
-                $rel["friendId"] == $input["friendId"]
+                $rel["userId1"] == $id1 &&
+                $rel["userId2"] == $id2
             ) {
                 return $friendsDb->deleteData($rel["id"]);
             }
