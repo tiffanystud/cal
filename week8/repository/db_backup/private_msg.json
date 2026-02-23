@@ -1,0 +1,44 @@
+{
+    "private_msg": [
+        {
+            "id": "65e10aa152001",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65e10aa11a002",
+            "date": "2026-02-20",
+            "time": "13:00:00",
+            "content": "Hej!"
+        },
+        {
+            "id": "65e10aa152002",
+            "senderId": "65e10aa11a002",
+            "receiverId": "65e10aa11a003",
+            "date": "2026-02-21",
+            "time": "14:00:00",
+            "content": "Hur går det?"
+        },
+        {
+            "id": "65e10aa152003",
+            "senderId": "65e10aa11a004",
+            "receiverId": "65e10aa11a005",
+            "date": "2026-02-22",
+            "time": "15:00:00",
+            "content": "Ses imorgon?"
+        },
+        {
+            "id": "65e10aa152004",
+            "senderId": "65e10aa11a006",
+            "receiverId": "65e10aa11a007",
+            "date": "2026-02-23",
+            "time": "16:00:00",
+            "content": "Skickar filerna snart."
+        },
+        {
+            "id": "65e10aa152005",
+            "senderId": "65e10aa11a008",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-02-24",
+            "time": "17:00:00",
+            "content": "Tack!"
+        }
+    ]
+}
