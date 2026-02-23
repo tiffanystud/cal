@@ -13,6 +13,10 @@ require_once "EventsRSVPController.php";
 require_once "EventsController.php";
 require_once "CalendarsMSGController.php";
 require_once "EventAdminsController.php";
+require_once "BackupDBController.php";
+require_once "RestoreDBController.php";
+require_once "CalendarsController.php";
+require_once "PinnedCalendarsController.php";
 
 require_once "BackupDBController.php";
 require_once "RestoreDBController.php"
@@ -38,22 +42,18 @@ function Router($requestUrl = null){
 
     switch ($path) {
             
-        case "calendar":
-            
+        case "calendars":
             switch ($method) {
-               case "GET": 
+                case "GET":
                     CorsMiddleware::handle();
-                    GroupsController::handle(method: $method, input: $input);
+                    CalendarsController::handle($method, $input);
                     break;
-                    
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
-                    GroupsController::handle(method: $method, input: $input);
+                    CalendarsController::handle($method, $input);
                     break;
             }
-            break;
-
         case "calendar_msg": 
             switch ($method) {
                case "GET": 
@@ -211,7 +211,17 @@ function Router($requestUrl = null){
             break;      
 
         case "users_pinned_calendars":
-            //Handle users_pinned_calendars
+            switch ($method) {
+                case "GET":
+                    CorsMiddleware::handle();
+                    PinnedCalendarsController::handle($method, $input);
+                    break;
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    PinnedCalendarsController::handle($method, $input);
+                    break;
+            }
             break;
             
         case "backup_database":
