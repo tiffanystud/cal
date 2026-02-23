@@ -23,12 +23,6 @@
             "creatorId": "65e10aa11a004",
             "name": "AW-teamet",
             "type": "public"
-        },
-        {
-            "id": "65e10aa11b005",
-            "creatorId": "65e10aa11a005",
-            "name": "Deadline-kalender",
-            "type": "private"
         }
     ]
 }

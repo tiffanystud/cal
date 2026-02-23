@@ -224,19 +224,21 @@ async function runAllTests() {
 
     console.log("START AV runAllTests")
 
-    /* -- Rollback start -- */
-    // Initialisera rollback funktionaliter
-    await runRequest("POST", "/backup_database");
-    
     
     /* -- Resources -- */
     
+    /* -- Rollback start -- */
+    await runRequest(
+        "POST", 
+        "/backup_database"
+    );
     // Users Availabilities
     await loadTestsForResource(
         "usersAvailabilities",
         "/resources/UsersAvailabilitiesTest.php"
     );
     console.log("Efter U.AVAILS AV runAllTests")
+    /* -- Rollback -- */
     await runRequest(
         "POST", 
         "/restore_database"
@@ -253,6 +255,21 @@ async function runAllTests() {
         "/resources/EventsRSVPTest.php"
     );
     console.log("Efter E.RSVPS AV runAllTests")
+    await runRequest(
+        "POST",
+         "/restore_database"
+    );
+    
+    
+    // Events RSVP
+    await runRequest(
+        "POST", 
+        "/calendar_msg"
+    );
+    await loadTestsForResource(
+        "calendarsMSG",
+        "/resources/CalendarsMSGTest.php"
+    );
     await runRequest(
         "POST",
          "/restore_database"
