@@ -1,14 +1,14 @@
 <?php
 
 require_once __DIR__ . "/../repository/DBAccess.php";
-require_once __DIR__ . "CalendarService.php";
+//require_once __DIR__ . "CalendarService.php";
 
 class CalendarsMSGService {
     /* ---- GET ---- */
     public static function getAll($input){
         
-        $senderId = $input["senderID"] ?? null;
-        $calId = $input["calID"] ?? null;
+        $senderId = $input["senderId"] ?? null;
+        $calId = $input["calId"] ?? null;
         
         if (!isset($senderId, $calId)) {
             throw new Exception("Missing attributes");
@@ -19,9 +19,8 @@ class CalendarsMSGService {
                    
         $filtered = [];
 
-        // Säkerställer vi bara en rad med samma userID och eventId?
         foreach ($items as $currItem) {
-            if ($currItem["senderID"] == $senderId && 
+            if ($currItem["senderId"] == $senderId && 
                 $currItem["calId"] == $calId 
                 ) {
                 $filtered[] = $currItem;
@@ -39,8 +38,8 @@ class CalendarsMSGService {
     /* --- POST ---- */
     public static function create($input){
         
-        $senderId = $input["senderID"] ?? null;
-        $calId = $input["calID"] ?? null;
+        $senderId = $input["senderId"] ?? null;
+        $calId = $input["calId"] ?? null;
         $content = $input["content"] ?? null;
         
         if (!isset($eventId, $userId, $content)) {
@@ -100,7 +99,7 @@ class CalendarsMSGService {
         foreach ($items as $currItem) {
             if ($currItem["id"] == $id) {
                 
-                $changes = ["content" => $content];
+                $changes = ["content" => $content, "hasChanged" => true];
 
                 // Updated item
                 return $db->patchData($currItem["id"],$changes);

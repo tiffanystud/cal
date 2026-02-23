@@ -9,10 +9,12 @@ require_once "GroupsController.php";
 require_once "UsersGroupsController.php";
 require_once "UsersAvailabilitiesController.php";
 require_once "EventsRSVPController.php";
-require_once "BackupDBController.php";
-require_once "RestoreDBController.php";
 require_once "EventsController.php";
+require_once "CalendarsMSGController.php";
 
+require_once "BackupDBController.php";
+require_once "RestoreDBController.php"
+;
 
 function Router($requestUrl = null){   
     
@@ -51,7 +53,18 @@ function Router($requestUrl = null){
             break;
 
         case "calendar_msg": 
-            //Handle calendar_msg
+            switch ($method) {
+               case "GET": 
+                    CorsMiddleware::handle();
+                    CalendarsMSGController::handle(method: $method, input: $input);
+                    break;
+                    
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    CalendarsMSGController::handle(method: $method, input: $input);
+                    break;
+            }
             break;
 
         case "events":
