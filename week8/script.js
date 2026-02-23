@@ -1,8 +1,9 @@
 let req = new Request("http://localhost:8000/users?id=65e10aa11a009", {
     headers: {"Content-type": "application/json"},
-    method: "PATCH",
+    method: "DELETE",
     body: JSON.stringify({
-        pwd: "hejhejLösen"
+       "email" : "ivan@example.com",
+       "pwd" : "pwd9"
     })
     
 });

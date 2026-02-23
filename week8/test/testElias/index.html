@@ -43,6 +43,18 @@
     <h2>/user?id="65e10aa11aasd009" PATCH ERROR</h1>
     <h3>Expect: User not found, 404</h2>
     <h3 id="userT9"></h2>
+
+    <h2>/user?id="65e10aa11a009" DELETE OK</h1>
+    <h3>Expect: Successfully deleted user, 200</h2>
+    <h3 id="userT10"></h2>
+
+    <h2>/user?id="65e10aa11a009" DELETE ERROR</h1>
+    <h3>Expect: Missing fields, 400</h2>
+    <h3 id="userT11"></h2>
+
+    <h2>/user?id="65e10aa11a008" DELETE ERROR</h1>
+    <h3>Expect: Invalid pwd or email, 403</h2>
+    <h3 id="userT12"></h2>
     
     <script src="index.js"></script>
 </body>
