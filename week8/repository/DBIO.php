@@ -11,7 +11,7 @@ class DBIO {
     }
 
     public static function writeToDb($resource, $data) {
-        file_put_contents(self::dbPath(), json_encode($data, JSON_PRETTY_PRINT));
+        file_put_contents(self::dbPath($resource), json_encode($data, JSON_PRETTY_PRINT));
         return true;
     }
 

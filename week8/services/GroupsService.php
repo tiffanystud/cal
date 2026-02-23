@@ -54,7 +54,7 @@ class GroupsService
     {
 
         if (!isset($input["name"])) {
-            throw new Exception("Group must have a name");
+            throw new Exception(message: "Group must have a name");
         }
 
         $db = new DBAccess("groups");

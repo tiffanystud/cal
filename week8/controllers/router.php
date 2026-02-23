@@ -4,18 +4,29 @@
 require_once __DIR__ . "/../middleware/middleware.php";
 
 // Controllera
+require_once "BackupDBController.php";
+require_once "RestoreDBController.php";
 require_once "UsersController.php";
 require_once "GroupsController.php";
 require_once "UsersGroupsController.php";
+require_once "UsersAvailabilitiesController.php";
+require_once "EventsRSVPController.php";
 require_once "EventsController.php";
 
 
-function Router($requestUrl){   
+function Router($requestUrl = null){   
+    
+    if ($requestUrl === null) {
+        $requestUrl = $_SERVER["REQUEST_URI"] ?? "";
+    }
+
+    
     $urlPath = parse_url($requestUrl, PHP_URL_PATH);
     $path = ltrim($urlPath, "/");
+
     $method = $_SERVER["REQUEST_METHOD"];
     
-    if($method == "GET"){
+    if ($method == "GET"){
         $input = $_GET ?? [];
     } else {
         $input = json_decode(file_get_contents("php://input"), true) ?? [];
@@ -62,7 +73,7 @@ function Router($requestUrl){
             //Handle event_admins
             break;
 
-        case "event_rsvp":
+        case "events_rsvp":
             //Handle event_rsvp
             break;
 
@@ -91,8 +102,20 @@ function Router($requestUrl){
             }
             break;
 
-        case "users_availability":
-            //Handle users_availability
+        case "users_availabilities":
+            
+            switch ($method) {
+               case "GET": 
+                    CorsMiddleware::handle();
+                    UsersAvailabilitiesController::handle($method, $input);
+                    break;
+                   
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    UsersAvailabilitiesController::handle($method, $input);
+                    break;
+            }
             break;
             
         case "users_calendars":
@@ -100,18 +123,29 @@ function Router($requestUrl){
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();
-                    UsersGroupController::handle(method: $method, input: $input);
+                    UsersGroupController::handle($method, $input);
                     break;
+                
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
-                    UsersGroupController::handle(method: $method, input: $input);
+                    UsersGroupController::handle($method, $input);
                     break;
-            }        
-            break;
+            }  
+            break;      
 
         case "users_pinned_calendars":
             //Handle users_pinned_calendars
+            break;
+            
+        case "backup_database":
+            CorsMiddleware::handle();
+            BackupDBController::handle();
+            break;
+
+        case "restore_database":
+            CorsMiddleware::handle();
+            RestoreDBController::handle();
             break;
             
         default:
