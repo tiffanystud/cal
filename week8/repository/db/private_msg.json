@@ -6,7 +6,8 @@
             "receiverId": "65e10aa11a002",
             "date": "2026-02-20",
             "time": "13:00:00",
-            "content": "Hej!"
+            "content": "Hej!",
+            "hasChange": false
         },
         {
             "id": "65e10aa152002",
@@ -14,7 +15,10 @@
             "receiverId": "65e10aa11a003",
             "date": "2026-02-21",
             "time": "14:00:00",
-            "content": "Hur går det?"
+            "content": "Hur g\u00e5r det?",
+            "hasChange": false
+
+            
         },
         {
             "id": "65e10aa152003",
@@ -22,7 +26,9 @@
             "receiverId": "65e10aa11a005",
             "date": "2026-02-22",
             "time": "15:00:00",
-            "content": "Ses imorgon?"
+            "content": "Ses imorgon?",
+            "hasChange": false
+
         },
         {
             "id": "65e10aa152004",
@@ -30,7 +36,9 @@
             "receiverId": "65e10aa11a007",
             "date": "2026-02-23",
             "time": "16:00:00",
-            "content": "Skickar filerna snart."
+            "content": "Skickar filerna snart.",
+            "hasChange": false
+
         },
         {
             "id": "65e10aa152005",
@@ -38,7 +46,9 @@
             "receiverId": "65e10aa11a009",
             "date": "2026-02-24",
             "time": "17:00:00",
-            "content": "Tack!"
+            "content": "Tack!",
+            "hasChange": false
+
         }
     ]
 }

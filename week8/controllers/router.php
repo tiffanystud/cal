@@ -4,6 +4,7 @@
 require_once __DIR__ . "/../middleware/Middleware.php";
 
 // Controllera
+require_once "PrivateMsgController.php";
 require_once "UserController.php";
 require_once "GroupsController.php";
 require_once "UsersGroupsController.php";
@@ -105,8 +106,30 @@ function Router($requestUrl = null){
             //Handle friendships
             break;
 
-        case "private_msg":
-            //Handle private msg
+        case "private_msg": // Elias
+            switch($method) {
+                case "GET":
+                    CorsMiddleware::handle();
+                    PrivateMsgController::handle($method, $input);
+                    exit();
+                case "POST":
+                    CorsMiddleware::handle();
+                    PrivateMsgController::handle($method, $input);
+                    exit();
+                case "PATCH":
+                    CorsMiddleware::handle();
+                    PrivateMsgController::handle($method, $input);
+                    exit();
+                case "DELETE":
+                    CorsMiddleware::handle();
+                    PrivateMsgController::handle($method, $input);
+                    exit();
+                default : 
+                        CorsMiddleware::handle();
+                        http_response_code(400);
+                        echo json_encode(["error" => "No method allowed"]);
+                        exit();
+            }
             break;
 
         case "users": //Elias
