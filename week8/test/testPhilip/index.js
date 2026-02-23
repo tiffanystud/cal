@@ -1,64 +1,200 @@
-// GENERELL TEST-FETCHER 
 
-async function runTest({ url, method = "GET", body = null, targetId }) {
-    
-    const card = document.querySelector(`#${targetId}`);
-    const box = card.querySelector(".result-box");
+async function test() {
 
-    try {
-        const request = await fetch(url, {
-            method,
-            headers: body ? { "Content-Type": "application/json" } : {},
-            body: body ? JSON.stringify(body) : null
-        });
+    let req;
+    let response;
+    let resource;
+    //Test 1
+    req = new Request("http://localhost:8000/calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "GET",
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT1").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
 
-        let response;
-        const contentType = request.headers.get("content-type");
+    //Test 2
+    req = new Request("http://localhost:8000/calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({
+            userId: "1",
+            name: "Testgroup",
+            type: "public"
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT2").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
 
-        if (contentType && contentType.includes("application/json")) {
-            response = await request.json();
-        } else {
-            response = await request.text();
-        }
+    //Test 3
+    req = new Request("http://localhost:8000/calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({
+            userId: "1",
+            type: "public"
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT3").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
 
-        card.style.borderColor = request.ok ? "green" : "red";
+    //Test 4
+    req = new Request("http://localhost:8000/calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "PATCH",
+        body: JSON.stringify({
+            id: "65e10aa11b001",
+            calId: "3",
+            userId: "1",
+            name: "newNameGroup"
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT4").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
 
-        box.textContent = 
-            typeof response === "string"
-                ? response
-                : JSON.stringify(response, null, 2);
+    //Test 5
+    req = new Request("http://localhost:8000/calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "PATCH",
+        body: JSON.stringify({
+            userId: "1",
+            name: "newNameGroup"
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT4").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 6
+    req = new Request("http://localhost:8000/calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            id: "65e10aa11b005",
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT4").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    req = new Request("http://localhost:8000/calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            userId: "1",
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT4").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
 
 
-    } catch (err) {
-        card.style.backgroundColor = "red";
-        card.innerHTfML = `<p>ERROR</p><pre>${err}</pre>`;
-    }
+    //Test 7
+    req = new Request("http://localhost:8000/calendars?calId=1", {
+        headers: { "Content-type": "application/json" },
+        method: "GET"
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT5").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 8
+    req = new Request("http://localhost:8000/calendars?calId", {
+        headers: { "Content-type": "application/json" },
+        method: "GET"
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT5").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+
+
+    // pinned_calendars
+
+    //Test 1
+
+    req = new Request("http://localhost:8000/users_pinned_calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "GET"
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT5").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+
+    //Test 2
+    req = new Request("http://localhost:8000/users_pinned_calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({
+            userId: "1",
+            calId: "3"
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT4").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+
+    //Test 3
+
+    req = new Request("http://localhost:8000/users_pinned_calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({
+            userId: "1",
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT4").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+
+    // Test 4 
+
+    req = new Request("http://localhost:8000/users_pinned_calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            id: "65e10aa11e005",
+            userId: "165e10aa11a005",
+            calId: "65e10aa11b005"
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT4").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    // Test 5
+
+    req = new Request("http://localhost:8000/users_pinned_calendars", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            id: "1",
+            userId: "1"
+        })
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT4").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
 }
-
-
-
-/* ----- RESOURCE 1 (users/events etc) ------- */
-// Kolla i original för hur funktionerna kan struktureras upp
-
-
-
-
-/* ----- RESOURCE 2 (users/events etc) ------- */
-
-// Kolla i original för hur funktionerna kan struktureras upp
-
-
-
-    
-
-
-/* ---- RUN TESTS ---- */
-async function runFunctions() {
-    // RESOURCE 1
-
-
-    // RESOURCE 2
-
-}
-
-// runFunctions();
+test();
