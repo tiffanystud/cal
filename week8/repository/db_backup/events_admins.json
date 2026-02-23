@@ -4,7 +4,7 @@
             "id": "65e10aa143201",
             "eventId": "65e10aa11c001",
             "userId": "65e10aa11a001",
-            "canDelete": false,
+            "canDelete": true,
             "canEdit": true,
             "isCreator": true
         },
@@ -33,11 +33,11 @@
             "isCreator": true
         },
         {
-            "id": "699c6c2778e8d",
-            "userId": "65e10aa11a001",
-            "eventId": "65e10aa11c001",
-            "canDelete": true,
-            "canEdit": true,
+            "id": "65e10aa143205",
+            "eventId": "65e10aa11c005",
+            "userId": "65e10aa11a003",
+            "canDelete": false,
+            "canEdit": false,
             "isCreator": true
         }
     ]

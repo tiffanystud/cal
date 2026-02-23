@@ -232,17 +232,17 @@ async function runAllTests() {
         "POST", 
         "/backup_database"
     );
-    // Users
+    // Users rollback ej ok??
     await loadTestsForResource(
-        "usersAvailabilities",
-        "/resources/UsersAvailabilitiesTest.php"
+        "users",
+        "/resources/UsersTest.php"
     );
-    console.log("Efter U.AVAILS AV runAllTests")
     /* -- Rollback -- */
     await runRequest(
         "POST", 
         "/restore_database"
     );
+    console.log("HEJ ROLLBACK??")
     
     
     /* -- Rollback start -- */

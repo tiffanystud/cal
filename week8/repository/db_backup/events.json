@@ -6,7 +6,7 @@
             "type": "lecture",
             "name": "Sprint Review",
             "description": "Genomg\u00e5ng",
-            "location": "Malm\u00f6",
+            "location": "Zoom",
             "needsConfirmation": false,
             "participationLimits": null,
             "tags": "review",
@@ -109,7 +109,19 @@
             "calId": "65e10aa11b004"
         },
         {
-            "id": "699c6c2773ec9",
+            "id": "65e10aa11c00a",
+            "date": "2026-03-28",
+            "type": "gym",
+            "name": "Cardio",
+            "description": null,
+            "location": "Gymmet",
+            "needsConfirmation": false,
+            "participationLimits": null,
+            "tags": "training",
+            "calId": "65e10aa11b003"
+        },
+        {
+            "id": "699c6d0e23afe",
             "type": "test",
             "name": "test",
             "description": "test",
