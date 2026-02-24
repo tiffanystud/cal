@@ -31,13 +31,13 @@ class CalendarsService{
         $calendarTable = $db->getAll();
 
         if($input["type"] != "public" && $input["type"] != "private"){
-            throw new Exception("Invalid group type");
+            throw new Invalid("Invalid group type");
         }
         
         foreach($calendarTable as $cals){
             if($input["creatorId"] == $cals["creatorId"]){
                 if($input["name"] == $cals["name"]){
-                    throw new Exception("User has group with same name");
+                    throw new AlreadyInGroup("User is already in group with same name");
                 }
             }
         }
@@ -82,11 +82,11 @@ class CalendarsService{
                 break;
             }
         }
-
+        
         if($checkCal){
-            $db->deleteData($input["id"]);
+            return $db->deleteData($input["id"]);
         } else {
-            throw new Exception("Calendar doesent exists to delete");
+            throw new Exception("No calendar exists to delete");
         }
     }
 

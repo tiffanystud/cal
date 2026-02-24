@@ -1,6 +1,5 @@
 <?php
 
-error_log("---------In EventsRSVPTest.php. - row 3");
 function runRequest($method, $endpoint, $data = null)
 {
 
@@ -68,7 +67,7 @@ function testUsersGetAll_200()
             [
                 "id" => "ID",
                 "email" => "VALUE",
-                "password" => "VALUE",
+                "pwd" => "VALUE",
                 "name" => "VALUE"
             ]
         ]
@@ -100,7 +99,7 @@ function testUsersGetOne_200()
         "body" => [
             "id" => "ID",
             "email" => "VALUE",
-            "password" => "VALUE",
+            "pwd" => "VALUE",
             "name" => "VALUE"
         ]
     ];
@@ -172,7 +171,7 @@ function testUsersPost_201()
         "body" => [
             "id" => "ID",
             "email" => "VALUE",
-            "password" => "VALUE",
+            "pwd" => "VALUE",
             "name" => "VALUE"
         ]
     ];
@@ -180,7 +179,7 @@ function testUsersPost_201()
     $body = [
         "name" => "Test User",
         "email" => "newuser@example.com",
-        "password" => "123456"
+        "pwd" => "123456"
     ];
 
     $actual = runRequest(
@@ -215,7 +214,6 @@ function testUsersPost_400()
     $body = [
         "name" => "",
         "email" => "",
-        "password" => ""
     ];
 
     $actual = runRequest(
@@ -248,8 +246,8 @@ function testUsersPost_409()
 
     $body = [
         "name" => "Duplicate",
-        "email" => "test@gmail.com", // existing email
-        "password" => "123"
+        "email" => "frank@example.com", // existing email
+        "pwd" => "123"
     ];
 
     $actual = runRequest(
@@ -282,26 +280,24 @@ function testUsersPatch_200()
         ]
     ];
 
-    $query = [
-        "id" => "65e10aa11a001"
-    ];
 
     $body = [
+        "id" => "65e10aa11a006",
         "name" => "Updated Name",
         "pwd" => "newpass"
+
     ];
 
     $actual = runRequest(
         method: "PATCH",
         endpoint: "/users",
-        data: array_merge($query, $body)
+        data: array_merge($body)
     );
 
     return [
         "name" => "PATCH 200",
         "method" => "PATCH",
         "endpoint" => "/users",
-        "queryParams" => $query,
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
@@ -319,25 +315,21 @@ function testUsersPatch_404()
         ]
     ];
 
-    $query = [
-        "id" => "000000000000"
-    ];
-
     $body = [
+        "id" => "000000000000",
         "name" => "New Name"
     ];
 
     $actual = runRequest(
         method: "PATCH",
-        endpoint: "/users",
-        data: array_merge($query, $body)
+        endpoint: "/users?id=65e10aa11hhyba006",
+        data: array_merge($body)
     );
 
     return [
         "name" => "PATCH 404",
         "method" => "PATCH",
         "endpoint" => "/users",
-        "queryParams" => $query,
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
@@ -354,30 +346,26 @@ function testUsersDelete_200()
     $expected = [
         "status" => 200,
         "body" => [
-            "message" => "user deleted"
+            "message" => "User succesfully deleted"
         ]
     ];
 
-    $query = [
-        "id" => "65e10aa11a008"
-    ];
-
     $body = [
-        "email" => "heidi@example.com",
-        "pwd" => "pwdasd9"
+        "id" => "65e10aa11a005",
+        "email" => "eve@example.com",
+        "pwd" => "pwd5"
     ];
 
     $actual = runRequest(
         method: "DELETE",
-        endpoint: "/users",
-        data: array_merge($query, $body)
+        endpoint: "/users?id=65e10aa11a006",
+        data: $body
     );
 
     return [
         "name" => "DELETE 200",
         "method" => "DELETE",
         "endpoint" => "/users",
-        "queryParams" => $query,
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
@@ -406,7 +394,7 @@ function testUsersDelete_404()
 
     $actual = runRequest(
         method: "DELETE",
-        endpoint: "/users",
+        endpoint: "/users?id=65e10agbya11a006",
         data: array_merge($query, $body)
     );
 

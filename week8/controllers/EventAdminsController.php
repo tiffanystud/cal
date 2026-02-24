@@ -32,7 +32,7 @@ class EventAdminsController {
             }
         } else if ($method === "POST") {
             try {
-                self::createResp(EventAdminsService::newEventAdmin($input), 200);
+                self::createResp(EventAdminsService::newEventAdmin($input), 201);
                 return;
             } catch (Exception $e) {
                 $msg = $e->getMessage();

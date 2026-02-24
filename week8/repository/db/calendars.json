@@ -23,6 +23,12 @@
             "creatorId": "65e10aa11a004",
             "name": "newNameGroup",
             "type": "public"
+        },
+        {
+            "id": "699d8717f007a",
+            "creatorId": "3",
+            "name": "LatestTestgroup",
+            "type": "public"
         }
     ]
 }

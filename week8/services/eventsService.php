@@ -144,7 +144,7 @@ class EventsService {
         }
 
         $events->deleteData($eventId);
-        return "Event deleted successfully";
+        return ["success" => "Event deleted successfully"];
     } 
  }
 

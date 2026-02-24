@@ -22,7 +22,7 @@ class PinnedCalendarsController{
                     if(isset($input["userId"])){
                         return self::sendResponse(PinnedCalendarsService::pinnedCalendarsGetById($input), 200);
                     } else {
-                        return self::sendResponse(["error" => "UserId missing"], 400);
+                        return self::sendResponse(["error" => "UserId missing"], 404);
                     }
                 }
             }catch(Exception $error){

@@ -22,14 +22,14 @@ class EventAdminsService {
                 return $eventAdmin;
             }
         } else if ($userId) {
-            $result = array_filter($eventAdmins->getAll(), fn($x) => $x["userId"] === $userId);
+            $result = array_values(array_filter($eventAdmins->getAll(), fn($x) => $x["userId"] === $userId));
             if (count($result) === 0) {
                 throw new Exception("Not found");
             } else {
                 return $result;
             }
         } else if ($eventId) {
-            $result = array_filter($eventAdmins->getAll(), fn($x) => $x["eventId"] === $eventId);
+            $result = array_values(array_filter($eventAdmins->getAll(), fn($x) => $x["eventId"] === $eventId));
             if (count($result) === 0) {
                 throw new Exception("Not found");
             } else {
@@ -97,7 +97,7 @@ class EventAdminsService {
 
         $patchAttributes = [
             "canDelete" => $canDelete,
-            "canEdir" => $canEdit,
+            "canEdit" => $canEdit,
             "isCreator" => $isCreator
         ];
         $patchBody = [];

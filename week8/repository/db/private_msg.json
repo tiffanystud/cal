@@ -17,8 +17,6 @@
             "time": "14:00:00",
             "content": "Hur g\u00e5r det?",
             "hasChange": false
-
-            
         },
         {
             "id": "65e10aa152003",
@@ -28,7 +26,6 @@
             "time": "15:00:00",
             "content": "Ses imorgon?",
             "hasChange": false
-
         },
         {
             "id": "65e10aa152004",
@@ -38,17 +35,15 @@
             "time": "16:00:00",
             "content": "Skickar filerna snart.",
             "hasChange": false
-
         },
         {
-            "id": "65e10aa152005",
-            "senderId": "65e10aa11a008",
-            "receiverId": "65e10aa11a009",
+            "id": "699dab043acd9",
+            "senderId": "65e10aa152005",
+            "receiverId": "65e10aa11a002",
             "date": "2026-02-24",
-            "time": "17:00:00",
-            "content": "Tack!",
+            "time": "13:43:32",
+            "content": "Go bears",
             "hasChange": false
-
         }
     ]
 }

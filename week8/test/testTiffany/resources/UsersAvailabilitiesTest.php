@@ -202,10 +202,10 @@ function testPost_201(){
         method: "POST",
         endpoint: "/users_availabilities",
         data: [
-            "userId" => "65e10aa11a00a",
-            "date" => "2026-03-20",
+            "userId" => "65e10aa11a008",
+            "date" => "2026-03-24",
             "isAvailable" => false,
-            "calId" => "65e10aa11b005"
+            "calId" => "65e10aa11b003"
         ]
     );
 
@@ -548,9 +548,9 @@ function testDelete_200()
         method: "DELETE",
         endpoint: "/users_availabilities",
         data: [
-            "userId" => "65e10aa11a00a",
-            "date" => "2026-03-20",
-            "calId" => "65e10aa11b005"
+            "userId" => "65e10aa11a004",
+            "date" => "2026-03-10",
+            "calId" => "65e10aa11b003"
         ]
     );
 
@@ -560,9 +560,9 @@ function testDelete_200()
         "endpoint" => "/users_availabilities",
         "queryParams" => null,
         "requestBody" => [
-            "userId" => "65e10aa11a00a",
-            "date" => "2026-03-20",
-            "calId" => "65e10aa11b005"
+            "userId" => "65e10aa11a004",
+            "date" => "2026-03-10",
+            "calId" => "65e10aa11b003"
         ],
         "expected" => $expected,
         "actual" => $actual,

@@ -196,4 +196,12 @@ const runTests = async function() {
     fetch("http://localhost:8000/restore_database").then((resp) => resp.text()).then((reso) => console.log(reso));
 }
 
-runTests();
+//runTests();
+
+fetch("http://localhost:8000/event_admins?eventId=65e10aa11c002", {
+    method: "GET"
+}).then(resp => resp.json()).then(reso => console.log(reso));
+
+fetch("http://localhost:8000/event_admins?userId=65e10aa11a002", {
+    method: "GET"
+}).then(resp => resp.json()).then(reso => console.log(reso));

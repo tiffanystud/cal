@@ -180,12 +180,10 @@ function Router($requestUrl = null){
                         UserController::handle($method, $input);
                         exit();
                     case "PATCH":
-                        $input = $_GET ?? [];
                         CorsMiddleware::handle();
                         UserController::handle($method, $input);
                         exit();
                     case "DELETE":
-                        $input = $_GET ?? [];
                         CorsMiddleware::handle();
                         UserController::handle($method, $input);
                         exit();

@@ -1,6 +1,5 @@
 <?php
 
-error_log("---------In EventsRSVPTest.php. - row 3");
 function runRequest($method, $endpoint, $data = null)
 {
     

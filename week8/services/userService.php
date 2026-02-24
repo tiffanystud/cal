@@ -51,17 +51,18 @@
             }
         }
 
-        public static function deleteUser($id, $data) {
+        public static function deleteUser($data) {
             $db = new DBAccess("users");
-            $result = $db->findById($id);
+            $result = $db->findById($data["id"]);
             if ($result === null) {
                 return ["error" => "User not found"];
             }
             if ($result["email"] === $data["email"] && $result["pwd"] === $data["pwd"]) {
-                $deleteResult = $db->deleteData($id);
+                $deleteResult = $db->deleteData($data["id"]);
                 return ["message" => "User succesfully deleted"];
+            } else {
+                return ["error" => "Invalid email or password"];
             }
-            return ["error" => "Invalid email or password"];
         }
         
     }

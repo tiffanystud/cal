@@ -42,7 +42,6 @@
                 
             }
             if($method === "PATCH") {
-                $reqBody = json_decode(file_get_contents("php://input"),true);
                 if(isset($input["id"])){
                     $name = $reqBody["name"] ?? null;
                     $pwd =  $reqBody["pwd"] ?? null;
@@ -60,7 +59,7 @@
                         return;
                     } else {
                         http_response_code(200);
-                        echo json_encode($result);
+                        echo json_encode(["message" => "Update OK"]);
                         return;
                     }
                     
@@ -72,10 +71,9 @@
 
             }
             if($method === "DELETE") {
-                $reqBody = json_decode(file_get_contents("php://input"),true);
                 if(isset($input["id"])){
-                    if(isset($reqBody["email"]) && isset($reqBody["pwd"])) {
-                        $result = UserService::deleteUser($input["id"], $reqBody);
+                    if(isset($input["email"]) && isset($input["pwd"])) {
+                        $result = UserService::deleteUser($input);
                         if($result === ["error" => "User not found"]){ 
                             http_response_code(404);
                             echo json_encode($result);
@@ -84,9 +82,9 @@
                             http_response_code(403);
                             echo json_encode($result);
                             return;
-                        } else {
+                        } elseif(["message" => "User succesfully deleted"] ) {
                             http_response_code(200);
-                            echo json_encode($result);
+                            echo json_encode(["message" => "User succesfully deleted"]);
                             return;
                         }
                     } else {
@@ -96,7 +94,7 @@
                     }
                 } else {
                     http_response_code(400);
-                    echo json_encode(["error" => "Missing user id parameter"]);
+                    echo json_encode(["error" => "Missing userId"]);
                     return;
                 }
             }
