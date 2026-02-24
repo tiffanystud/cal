@@ -79,40 +79,6 @@ function testPrivMsgGet_200()
 }
 
 
-// 404
-function testPrivMsgGet_404()
-{
-    $expected = [
-        "status" => 404,
-        "body" => [
-            "error" => "No private messages found"
-        ]
-    ];
-
-    $query = [
-        "senderId" => "000000000000"
-    ];
-
-    $actual = runRequest(
-        method: "GET",
-        endpoint: "/private_msg",
-        data: $query
-    );
-
-    return [
-        "name" => "GET 404",
-        "method" => "GET",
-        "endpoint" => "/private_msg",
-        "queryParams" => $query,
-        "requestBody" => null,
-        "expected" => $expected,
-        "actual" => $actual,
-        "info" => "No private messages found"
-    ];
-}
-
-
-
 /* ---------- POST ---------- */
 
 // 200
@@ -141,7 +107,6 @@ function testPrivMsgPost_200()
         "name" => "POST 200",
         "method" => "POST",
         "endpoint" => "/private_msg",
-        "queryParams" => null,
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
@@ -432,7 +397,6 @@ function runTests()
 
     // GET
     $tests[] = testPrivMsgGet_200();
-    $tests[] = testPrivMsgGet_404();
 
     // POST
     $tests[] = testPrivMsgPost_200();

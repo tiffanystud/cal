@@ -60,8 +60,9 @@
             if ($result["email"] === $data["email"] && $result["pwd"] === $data["pwd"]) {
                 $deleteResult = $db->deleteData($id);
                 return ["message" => "User succesfully deleted"];
+            } else {
+                return ["error" => "Invalid email or password"];
             }
-            return ["error" => "Invalid email or password"];
         }
         
     }

@@ -60,7 +60,7 @@
                         return;
                     } else {
                         http_response_code(200);
-                        echo json_encode($result);
+                        echo json_encode(["message" => "Update OK"]);
                         return;
                     }
                     
@@ -86,7 +86,7 @@
                             return;
                         } else {
                             http_response_code(200);
-                            echo json_encode($result);
+                            echo json_encode(["message" => "user deleted"]);
                             return;
                         }
                     } else {

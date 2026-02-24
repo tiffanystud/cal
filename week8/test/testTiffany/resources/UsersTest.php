@@ -68,7 +68,7 @@ function testUsersGetAll_200()
             [
                 "id" => "ID",
                 "email" => "VALUE",
-                "password" => "VALUE",
+                "pwd" => "VALUE",
                 "name" => "VALUE"
             ]
         ]
@@ -100,7 +100,7 @@ function testUsersGetOne_200()
         "body" => [
             "id" => "ID",
             "email" => "VALUE",
-            "password" => "VALUE",
+            "pwd" => "VALUE",
             "name" => "VALUE"
         ]
     ];
@@ -172,7 +172,7 @@ function testUsersPost_201()
         "body" => [
             "id" => "ID",
             "email" => "VALUE",
-            "password" => "VALUE",
+            "pwd" => "VALUE",
             "name" => "VALUE"
         ]
     ];
@@ -180,7 +180,7 @@ function testUsersPost_201()
     $body = [
         "name" => "Test User",
         "email" => "newuser@example.com",
-        "password" => "123456"
+        "pwd" => "123456"
     ];
 
     $actual = runRequest(
@@ -215,7 +215,6 @@ function testUsersPost_400()
     $body = [
         "name" => "",
         "email" => "",
-        "password" => ""
     ];
 
     $actual = runRequest(
@@ -248,8 +247,8 @@ function testUsersPost_409()
 
     $body = [
         "name" => "Duplicate",
-        "email" => "test@gmail.com", // existing email
-        "password" => "123"
+        "email" => "frank@example.com", // existing email
+        "pwd" => "123"
     ];
 
     $actual = runRequest(
@@ -282,9 +281,6 @@ function testUsersPatch_200()
         ]
     ];
 
-    $query = [
-        "id" => "65e10aa11a001"
-    ];
 
     $body = [
         "name" => "Updated Name",
@@ -293,15 +289,14 @@ function testUsersPatch_200()
 
     $actual = runRequest(
         method: "PATCH",
-        endpoint: "/users",
-        data: array_merge($query, $body)
+        endpoint: "/users?id=65e10aa11a006",
+        data: array_merge($body)
     );
 
     return [
         "name" => "PATCH 200",
         "method" => "PATCH",
         "endpoint" => "/users",
-        "queryParams" => $query,
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
@@ -329,7 +324,7 @@ function testUsersPatch_404()
 
     $actual = runRequest(
         method: "PATCH",
-        endpoint: "/users",
+        endpoint: "/users?id=65e10aa11hhyba006",
         data: array_merge($query, $body)
     );
 
@@ -358,26 +353,21 @@ function testUsersDelete_200()
         ]
     ];
 
-    $query = [
-        "id" => "65e10aa11a008"
-    ];
-
     $body = [
-        "email" => "heidi@example.com",
-        "pwd" => "pwdasd9"
+        "email" => "frank@example.com",
+        "pwd" => "pwd6"
     ];
 
     $actual = runRequest(
         method: "DELETE",
-        endpoint: "/users",
-        data: array_merge($query, $body)
+        endpoint: "/users?id=65e10aa11a006",
+        data: array_merge($body)
     );
 
     return [
         "name" => "DELETE 200",
         "method" => "DELETE",
         "endpoint" => "/users",
-        "queryParams" => $query,
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
@@ -406,7 +396,7 @@ function testUsersDelete_404()
 
     $actual = runRequest(
         method: "DELETE",
-        endpoint: "/users",
+        endpoint: "/users?id=65e10agbya11a006",
         data: array_merge($query, $body)
     );
 
