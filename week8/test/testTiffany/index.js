@@ -223,7 +223,52 @@ async function runAllTests() {
     
     /* -- Resources -- */
     
-    /* -- Rollback start -- */
+    
+    // Events Admins 
+/*     await runRequest(
+        "POST", 
+        "/backup_database"
+    );
+    await loadTestsForResource(
+        "event_admins",
+        "/resources/EventsAdminsTest.php"
+    );
+    await runRequest(
+        "POST",
+        "/restore_database"
+    ) */;
+     
+    ///FRiendships
+
+    await runRequest(
+        "POST",
+        "/backup_database"
+    );
+    await loadTestsForResource(
+        "friendships",
+        "/resources/FriendshipsTest.php"
+    );
+    await runRequest(
+        "POST",
+        "/restore_database"
+    );
+
+    // USERS_CALENDARS
+
+    await runRequest(
+        "POST",
+        "/backup_database"
+    );
+    await loadTestsForResource(
+        "users_calendars",
+        "/resources/UsersCalendarsTest.php"
+    );
+    await runRequest(
+        "POST",
+        "/restore_database"
+    );
+
+    // Private MSG
     await runRequest(
         "POST", 
         "/backup_database"
@@ -305,8 +350,6 @@ async function runAllTests() {
         "POST",
          "/restore_database"
     );
-    
-    
     
 
     // await loadTestsForResource("users", "resources/Users.php");

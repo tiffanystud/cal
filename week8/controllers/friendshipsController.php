@@ -30,7 +30,7 @@ class FriendshipsController{
                     throw new Exception("Missing attributes", 400);
                 }
                 $result = FriendshipsService::newFriend($userId, $friendId);
-                self::json($result, 200);
+                self::json($result, 201);
                 return;
 
             }

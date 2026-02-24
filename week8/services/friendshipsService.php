@@ -54,7 +54,7 @@ class FriendshipsService{
         $usersDb = new DBAccess("users");
 
         if(!$usersDb->findById($id1) || !$usersDb->findById($id2)) {
-            throw new Exception("User not found!");
+            throw new Exception("User not found!", 404);
         }
         $relations = $frDb->getAll();
 
@@ -91,11 +91,12 @@ class FriendshipsService{
                 $rel["userId1"] == $id1 &&
                 $rel["userId2"] == $id2
             ) {
-                return $friendsDb->deleteData($rel["id"]);
+                $friendsDb->deleteData($rel["id"]);
+                return ["message"=>"Deleted successfully!"];
             }
         }
 
-        throw new Exception("User not found", 400);
+        throw new Exception("User not found", 404);
     }
 }
 

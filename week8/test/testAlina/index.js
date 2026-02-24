@@ -155,7 +155,7 @@ function deleteUsersCal(){
         method: "DELETE",
         body: {
             userId: "65e10aa11a001",
-            calId:"65e10aa11b003",
+            calId:"65e10aa11b003"
             },
         targetId: "deleteUsersCalendars"
     });
@@ -164,7 +164,7 @@ function deleteUsersCal(){
 function deleteUsersCalMissing(){
         return runTest({
         url: "http://localhost:8000/users_calendars",
-        method: "PATCH",
+        method: "DELETE",
         body: {
             userId: "65e10aa11a001"
             },
@@ -175,9 +175,10 @@ function deleteUsersCalMissing(){
 function deleteUsersCalNotFound(){
         return runTest({
         url: "http://localhost:8000/users_calendars",
-        method: "PATCH",
+        method: "DELETE",
         body: {
-            userId: "65e10aa11a001"
+            userId: "65e10aa11a001",
+            calId:"65e1a3"
             },
         targetId: "deleteUsersCalNotFound"
     });

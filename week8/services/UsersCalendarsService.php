@@ -118,9 +118,18 @@ class UsersCalendarsService {
         $calId    = $input["calId"];
 
         $dbUG = new DBAccess("users_calendars");
+        $dbU = new DBAccess("users");
+        $dbC = new DBAccess("calendars");
+
+        if(!$dbU->findById($userId)){
+            throw new Exception("User not found", 404);
+        }
+        if(!$dbC->findById($calId)){
+            throw new Exception("Calendar not found", 404);
+        }
 
         $relations = $dbUG->getAll();
-        $relId;
+        $relId = null;
         foreach ($relations as $rel){
             if ($rel["userId"] == $userId && $rel["calId"] == $calId){
                 $relId = $rel["id"];
@@ -146,7 +155,10 @@ class UsersCalendarsService {
             throw new Exception("Only admin can remove users from calendar.");
         }
         */
-        return $dbUG->deleteData($relId);
+        $success = $dbUG->deleteData($relId);
+        if ($success){
+            return ["message" => "Deleted successfully!"];
+        }
     }
 
 
