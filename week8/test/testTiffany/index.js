@@ -33,7 +33,7 @@ async function loadTestsForResource(resourceName, phpFilePath) {
         const card = createTestCard(test);
         container.appendChild(card);
     });
-    
+
 }
 
 
@@ -42,13 +42,12 @@ async function runRequest(method, endpoint, data = null) {
     let url = endpoint;
 
     // When db (backup/restore) build url diff.
-    if (endpoint === "/backup_database" || 
-        endpoint === "/restore_database") 
-    { 
-            url = "http://localhost:8000" + endpoint; 
-    } 
+    if (endpoint === "/backup_database" ||
+        endpoint === "/restore_database") {
+        url = "http://localhost:8000" + endpoint;
+    }
 
-    
+
     // Om GET, bygg querystring
     if (method === "GET" && data) {
         const params = new URLSearchParams(data).toString();
@@ -220,12 +219,12 @@ async function runAllTests() {
 
     console.log("START AV runAllTests")
 
-    
+
     /* -- Resources -- */
-    
+
     /* -- Rollback start -- */
     await runRequest(
-        "POST", 
+        "POST",
         "/backup_database"
     );
     // Users Availabilities
@@ -235,14 +234,14 @@ async function runAllTests() {
     );
     /* -- Rollback -- */
     await runRequest(
-        "POST", 
+        "POST",
         "/restore_database"
     );
-    
-    
+
+
     /* -- Rollback start -- */
     await runRequest(
-        "POST", 
+        "POST",
         "/backup_database"
     );
     // Users rollback ej ok??
@@ -252,15 +251,15 @@ async function runAllTests() {
     );
     /* -- Rollback -- */
     await runRequest(
-        "POST", 
+        "POST",
         "/restore_database"
     );
     console.log("HEJ ROLLBACK??")
-    
-    
+
+
     /* -- Rollback start -- */
     await runRequest(
-        "POST", 
+        "POST",
         "/backup_database"
     );
     // Users Availabilities
@@ -271,14 +270,14 @@ async function runAllTests() {
     console.log("Efter U.AVAILS AV runAllTests")
     /* -- Rollback -- */
     await runRequest(
-        "POST", 
+        "POST",
         "/restore_database"
     );
-    
-    
+
+
     // Events RSVP
     await runRequest(
-        "POST", 
+        "POST",
         "/backup_database"
     );
     await loadTestsForResource(
@@ -288,13 +287,13 @@ async function runAllTests() {
     console.log("Efter E.RSVPS AV runAllTests")
     await runRequest(
         "POST",
-         "/restore_database"
+        "/restore_database"
     );
-    
-    
+
+
     // Events RSVP
     await runRequest(
-        "POST", 
+        "POST",
         "/calendar_msg"
     );
     await loadTestsForResource(
@@ -303,19 +302,33 @@ async function runAllTests() {
     );
     await runRequest(
         "POST",
-         "/restore_database"
+        "/restore_database"
     );
-    
-    
-    
+
+    // Calendars
+    await runRequest(
+        "POST",
+        "/backup_database"
+    );
+    await loadTestsForResource(
+        "calendars",
+        "/resources/CalendarsTest.php"
+    );
+    await runRequest(
+        "POST",
+        "/restore_database"
+    );
+
+
+
 
     // await loadTestsForResource("users", "resources/Users.php");
     // await loadTestsForResource("groups", "resources/Groups.php");
-    
-    
+
+
     /* -- Rollback end -- */
     // Gör rollback efter alla test
-   // await runRequest("POST", "/restore_database");
+    // await runRequest("POST", "/restore_database");
 }
 
 runAllTests();
