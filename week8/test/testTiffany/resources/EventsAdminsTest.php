@@ -72,7 +72,10 @@ function testGet_200_all()
         ]
     ];
 
-    $actual = runRequest("GET", "/event_admins");
+    $actual = runRequest(
+        "GET", 
+        "/event_admins"
+    );
 
     return [
         "name" => "GET 200 ALL",
@@ -102,8 +105,10 @@ function testGet_200_userId()
         ]
     ];
 
-    $actual = runRequest("GET", "/event_admins", [
-        "userId" => "65e10aa11a001"
+    $actual = runRequest(
+        "GET", 
+        "/event_admins", 
+        ["userId" => "65e10aa11a001"
     ]);
 
     return [
@@ -644,36 +649,32 @@ function testDelete_404()
 
 function runTests()
 {
-    $tests = [];
-
-    // GET
-    $tests[] = testGet_200_all();
-    $tests[] = testGet_200_userId();
-    $tests[] = testGet_200_eventId();
-    $tests[] = testGet_200_both();
-    $tests[] = testGet_404();
-
-    // POST
-    $tests[] = testPost_201();
-    $tests[] = testPost_400();
-    $tests[] = testPost_403();
-    $tests[] = testPost_404();
-
-    // PATCH
-    $tests[] = testPatch_200();
-    $tests[] = testPatch_400();
-    $tests[] = testPatch_403();
-    $tests[] = testPatch_404();
-
-    // DELETE
-    $tests[] = testDelete_200();
-    $tests[] = testDelete_400();
-    $tests[] = testDelete_403();
-    $tests[] = testDelete_404();
-
     return [
-        "resource" => "event_admins",
-        "tests" => $tests
+        // GET
+        testGet_200_all(),
+        testGet_200_userId(),
+        testGet_200_eventId(),
+        testGet_200_both(),
+        testGet_404(),
+
+        // POST
+        testPost_201(),
+        testPost_400(),
+        testPost_403(),
+        testPost_404(),
+
+        // PATCH
+        testPatch_200(),
+        testPatch_400(),
+        testPatch_403(),
+        testPatch_404(),
+
+        // DELETE
+        testDelete_200(),
+        testDelete_400(),
+        testDelete_403(),
+        testDelete_404(),
+
     ];
 }
 

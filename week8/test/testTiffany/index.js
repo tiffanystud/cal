@@ -219,7 +219,7 @@ async function runAllTests() {
 
     /* -- Resources -- */
     
-/*     
+  
     // Events Admins  (EJ KLAR)
     await runRequest(
         "POST", 
@@ -233,8 +233,7 @@ async function runAllTests() {
         "POST",
         "/restore_database"
     )
-     */
-    
+
     // Private MSG
     await runRequest(
         "POST",
