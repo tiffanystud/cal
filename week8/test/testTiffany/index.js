@@ -232,6 +232,23 @@ async function runAllTests() {
         "POST", 
         "/backup_database"
     );
+    // Users Availabilities
+    await loadTestsForResource(
+        "privateMSG",
+        "/resources/PrivateMSGTest.php"
+    );
+    /* -- Rollback -- */
+    await runRequest(
+        "POST", 
+        "/restore_database"
+    );
+    
+    
+    /* -- Rollback start -- */
+    await runRequest(
+        "POST", 
+        "/backup_database"
+    );
     // Users rollback ej ok??
     await loadTestsForResource(
         "users",
