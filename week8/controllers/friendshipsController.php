@@ -24,14 +24,12 @@ class FriendshipsController{
             } 
         //friendships?userId=id
             if ($method === "POST"){
-                error_log("POST friendships reached controller");
                 $userId = $input["userId1"] ?? null;
                 $friendId = $input["userId2"] ?? null;
                 if(!$userId || !$friendId){
                     throw new Exception("Missing attributes", 400);
                 }
                 $result = FriendshipsService::newFriend($userId, $friendId);
-                error_log("Sending JSON response");
                 self::json($result, 200);
                 return;
 

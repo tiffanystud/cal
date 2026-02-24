@@ -19,7 +19,6 @@ async function runTest({ url, method = "GET", body = null, targetId }) {
         } else {
             response = await request.text();
         }
-        console.log(request.ok);
         card.style.borderColor = request.ok ? "green" : "red";
 
         box.textContent = 
@@ -72,7 +71,7 @@ function deleteFriendship() {
 
 
 
-/* ----- RESOURCE 2 (users/events etc) ------- */
+/* ----- RESOURCE 2 (users_calendars etc) ------- */
 
 function getUsersCalendars() {
     return runTest({
@@ -80,6 +79,111 @@ function getUsersCalendars() {
         targetId: "getUsersCalendars"
     });
 }
+
+function postUsersCalendars() {
+    return runTest({
+        url: "http://localhost:8000/users_calendars",
+        method: "POST",
+        body: {
+            userId: "65e10aa11a001",
+            calId:"65e10aa11b003",
+            },
+        targetId: "postUsersCalendars"
+    });
+
+    
+}
+
+function badPostUsersCalendars() {
+    return runTest({
+        url: "http://localhost:8000/users_calendars",
+        method: "POST",
+        body: {
+            userId: "65e10aa11a001",
+            },
+        targetId: "badPostUsersCalendars"
+    });
+
+    
+}
+
+function postNoUsersCalendars() {
+    return runTest({
+        url: "http://localhost:8000/users_calendars",
+        method: "POST",
+        body: {
+            userId: "65eda",
+            calId:"65e10aa11b003",
+            },
+        targetId: "postNoUsersCalendars"
+    });
+
+    
+}
+
+function postAlreadyInUsersCalendars() {
+    return runTest({
+        url: "http://localhost:8000/users_calendars",
+        method: "POST",
+        body: {
+            userId: "65e10aa11a001",
+            calId:"65e10aa11b003",
+            },
+        targetId: "postAlreadyInUsersCalendars"
+    });
+
+    
+}
+///Denna har jag inte gjort klart pga. session
+function patchUserAdminStatus(){
+    return runTest({
+        url: "http://localhost:8000/users_calendars",
+        method: "PATCH",
+        body: {
+            sessionId: "sflkasjf", 
+            changeUserId: "198247941", 
+            calId: "320713", 
+            adminStatus: true
+            },
+        targetId: "postAlreadyInUsersCalendars"
+    });
+}
+
+function deleteUsersCal(){
+        return runTest({
+        url: "http://localhost:8000/users_calendars",
+        method: "DELETE",
+        body: {
+            userId: "65e10aa11a001",
+            calId:"65e10aa11b003",
+            },
+        targetId: "deleteUsersCalendars"
+    });
+
+}
+function deleteUsersCalMissing(){
+        return runTest({
+        url: "http://localhost:8000/users_calendars",
+        method: "PATCH",
+        body: {
+            userId: "65e10aa11a001"
+            },
+        targetId: "deleteUsersCalMissing"
+    });
+
+}
+function deleteUsersCalNotFound(){
+        return runTest({
+        url: "http://localhost:8000/users_calendars",
+        method: "PATCH",
+        body: {
+            userId: "65e10aa11a001"
+            },
+        targetId: "deleteUsersCalNotFound"
+    });
+
+}
+
 
 
 
@@ -92,6 +196,13 @@ async function runFunctions() {
     postFriendship();
     deleteFriendship();
     getUsersCalendars();
+    postUsersCalendars();
+    badPostUsersCalendars();
+    postNoUsersCalendars();
+    postAlreadyInUsersCalendars();
+    deleteUsersCal();
+    deleteUsersCalMissing()
+    deleteUsersCalNotFound()
 
 
 

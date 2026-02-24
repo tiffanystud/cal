@@ -61,10 +61,10 @@ class UsersCalendarsService {
     public static function addUserToCalendar($input){
         
         if (!isset($input["userId"])) {
-            throw new Exception("User ID missing.");
+            throw new Exception("User ID missing.", 400);
         }
         if (!isset($input["calId"])) {
-            throw new Exception("Calendar ID missing.");
+            throw new Exception("Calendar ID missing.", 400);
         }
 
         $userId  = $input["userId"];
@@ -77,12 +77,12 @@ class UsersCalendarsService {
 
         // Finns user?
         if (!$dbUsers->findById($userId)) {
-            throw new Exception("User not found.");
+            throw new Exception("User not found.", 404);
         }
 
         // Finns cal?
         if (!$dbCals->findById($calId)) {
-            throw new Exception("Calendar not found.");
+            throw new Exception("Calendar not found.", 404);
         }
 
         // finns reda u_g?
@@ -90,13 +90,13 @@ class UsersCalendarsService {
         foreach ($existing as $rel) {
             
             if ($rel["userId"] == $userId && $rel["calId"] == $calId) {
-                throw new Exception("Relation already exists.");
+                throw new Exception("Relation already exists.", 409);
             }
         }
 
         $newRelation = [
             "id"      => uniqid(),
-            "userID"  => $userId,
+            "userId"  => $userId,
             "calId" => $calId,
             "isAdmin" => $isAdmin
         ];
@@ -111,21 +111,29 @@ class UsersCalendarsService {
     //  Requirs: id (relation id), adminId
     public static function removeUserFromCal($input) {
         
-        if (!isset($input["id"]))      throw new Exception("Users Calendar ID missing.");
-        if (!isset($input["adminId"])) throw new Exception("Admin ID missing.");
+        if (!isset($input["userId"])) throw new Exception("User ID missing.");
+        if (!isset($input["calId"])) throw new Exception("Calendar ID missing.");
 
-        $relationId = $input["id"];
-        $adminId    = $input["adminId"];
+        $userId = $input["userId"];
+        $calId    = $input["calId"];
 
         $dbUG = new DBAccess("users_calendars");
 
-        $relation = $dbUG->findById($relationId);
-        if (!$relation) {
+        $relations = $dbUG->getAll();
+        $relId;
+        foreach ($relations as $rel){
+            if ($rel["userId"] == $userId && $rel["calId"] == $calId){
+                $relId = $rel["id"];
+            }
+        }
+        if (!$relId) {
             throw new Exception("Relation not found.");
         }
 
-        $relations = self::getAllRelationsByCalId($relation["calId"]);
 
+        /*
+        $relations = self::getAllRelationsByCalId($calId);
+        
         // is admin is admin?
         $adminIsAdmin = false;
         foreach ($relations as $rel) {
@@ -137,8 +145,8 @@ class UsersCalendarsService {
         if (!$adminIsAdmin) {
             throw new Exception("Only admin can remove users from calendar.");
         }
-
-        return $dbUG->deleteData($relationId);
+        */
+        return $dbUG->deleteData($relId);
     }
 
 

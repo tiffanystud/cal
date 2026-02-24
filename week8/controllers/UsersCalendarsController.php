@@ -50,7 +50,7 @@ class UsersCalendarsController {
 
         if ($method === "PATCH") {
             try {
-                $result = UsersCalendarsService::makeUserCalendarAdmin($input);
+                $result = UsersCalendarsService::makeUserCalAdmin($input);
                 http_response_code(200);
                 echo json_encode($result);
                 return;
@@ -64,7 +64,7 @@ class UsersCalendarsController {
 
         if ($method === "DELETE") {
             try {
-                $result = UsersCalendarsService::removeUserFromCalendar($input);
+                $result = UsersCalendarsService::removeUserFromCal($input);
                 http_response_code(200);
                 echo json_encode($result);
                 return;
