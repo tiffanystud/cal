@@ -222,7 +222,7 @@ function testGet_404()
 function testPost_200()
 {
     $expected = [
-        "status" => 200,
+        "status" => 201,
         "body" => [
             
             "id" => "65e10aa143204",
