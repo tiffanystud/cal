@@ -126,6 +126,8 @@ Filers ansvarsområden och funktioner
     - Läser och skriver över "databasen"
     - Används även av database backup/restore
     
+--
+
 5. Testfiler (resursTest.php)
     - runRequest() - cURL
         - Bygger URL (http://localhost:8000 + endpoint)
@@ -137,15 +139,32 @@ Filers ansvarsområden och funktioner
         - Kör alla testfunktioner (testGet200(), testPatch400())
         - Returnerar [ "resource" => "resource_name", "tests" => $tests ] // JSON som index.js läser
     
-6. Dashboard (index.html, index.js)
+6. Test Dashboard (index.html, index.js)
     - index.html 
         - Har en fördefinerad div per resurs som js sedan "bygger ut"
     - index.js
-        - loadTestsForResource(resourceName, phpFilePath)
-        - runRequest(method, endpoint, data = null)
-        - createTestCard(test)
-        - compareResults(expected, actual)
         - runAllTests()
-        
+            - körs direkt
+            - Kör för varje resurs: 
+                1. runRequest(db backup), 
+                2. loadTestsForResource(htmlID, resourceTest.php), 
+                3. runRequest(db restore)
+        - loadTestsForResource(resourceName, phpFilePath)
+            1. Fetchar på angiven filePath (:8000)
+            2. Hämtar resource HTML div
+            3. Sparar returnerad testArray i data.test
+                - Anropar createTestCard() för varje data.test
+                - Appendar detta till resourceDiv
+        - runRequest(method, endpoint, data = null)
+            - Används för att köra en request direkt från index.js (tester från testfilerna)
+                - "/backup_database" och "/restore_database" kör från index.js
+            1. Bygger URL och kör fetchanrop
+        - createTestCard(test)
+            1. Bygger HTML-"kort" för varje test per resourcee
+                - Visar: testnamn,  metod + endpint, expected data, recieved/actual data, info, och färg
+        - compareResults(expected, actual)
+            - Används av createTestCard för att markera grönt eller rött
+            1. Jämför keys i expected och actual (ej value) och statuskod
+            2. Returnerar t/f
         
 ----
