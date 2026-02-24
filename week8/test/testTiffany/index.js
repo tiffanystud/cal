@@ -221,7 +221,7 @@ async function runAllTests() {
     
     
     // Events Admins 
-/*     await runRequest(
+     await runRequest(
         "POST", 
         "/backup_database"
     );
@@ -232,7 +232,7 @@ async function runAllTests() {
     await runRequest(
         "POST",
         "/restore_database"
-    ) */; 
+    ); 
     
     
     // Private MSG
