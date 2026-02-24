@@ -36,6 +36,7 @@ async function loadTestsForResource(resourceName, phpFilePath) {
     
 }
 
+
 async function runRequest(method, endpoint, data = null) {
 
     let url = endpoint;
@@ -80,7 +81,6 @@ async function runRequest(method, endpoint, data = null) {
         body: body
     };
 }
-
 
 
 /* --------- Build Test card ------ */
@@ -149,7 +149,6 @@ function createTestCard(test) {
 }
 
 
-
 /* ---- Jämför response med expected ----------- */
 function compareResults(expected, actual) {
 
@@ -214,9 +213,6 @@ function compareResults(expected, actual) {
 
     return false;
 }
-
-
-
 
 
 /*  ------- Kör alla test -------- */
