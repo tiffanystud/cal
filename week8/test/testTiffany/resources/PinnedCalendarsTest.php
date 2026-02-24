@@ -87,7 +87,7 @@ function testPinnedCalendarGet_200()
         "requestBody" => null,
         "expected" => $expected,
         "actual" => $actual,
-        "info" => "Fetches all calendars messages"
+        "info" => "Fetches all pinned calendars"
     ];
 }
 
@@ -99,15 +99,17 @@ function testPinnedCalendarGetQuery_200()
     $expected = [
         "status" => 200,
         "body" =>  [
-                "id" => "ID",
-                "userId" => "ID",
-                "calId" => "STRING"
+            [
+            "id" => "ID",
+            "userId" => "ID",
+            "calId" => "STRING"
             ]
+        ]
     ];
 
     $actual = runRequest(
         method: "GET",
-        endpoint: "/users_pinned_calendars?userId=65e10aa11a003",
+        endpoint: "/users_pinned_calendars?userId=65e10aa11a002",
         data: null
     );
 
@@ -115,11 +117,11 @@ function testPinnedCalendarGetQuery_200()
         "name" => "GETQUERY 200",
         "method" => "GET",
         "endpoint" => "/users_pinned_calendars",
-        "queryParams" => ["userId" => "65e10aa11a003"],
+        "queryParams" => ["userId" => "65e10aa11a002"],
         "requestBody" => null,
         "expected" => $expected,
         "actual" => $actual,
-        "info" => "Fetches pinned calendar for user"
+        "info" => "Fetches pinned calendars for user"
     ];
 }
 
@@ -147,7 +149,7 @@ function testPinnedCalendarGetQuery_404()
         "requestBody" => null,
         "expected" => $expected,
         "actual" => $actual,
-        "info" => "Gives error for pinned calendar"
+        "info" => "Cant find any pinned calendars for user"
     ];
 }
 
@@ -185,7 +187,7 @@ function testPinnedCalendarPost_201()
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
-        "info" => "Sends "
+        "info" => "Creates pinned calendar for users"
     ];
 }
 
@@ -293,7 +295,7 @@ function testPinnedCalendarDelete_200()
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
-        "info" => "Sends "
+        "info" => "Deletes users pinned calendar"
     ];
 }
 
@@ -326,7 +328,7 @@ function testPinnedCalendarDelete_400()
         "requestBody" => $body,
         "expected" => $expected,
         "actual" => $actual,
-        "info" => "Sends "
+        "info" => "Users calendar doesent exist"
     ];
 }
 

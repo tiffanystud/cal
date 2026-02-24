@@ -7,7 +7,7 @@ class PinnedCalendarsService{
     public static function pinnedCalendarsGetAll(){
         $db = new DBAccess("pinned_calendars");
         $pinnedCalendarTable = $db->getAll();
-
+        
         if(empty($pinnedCalendarTable)){
             throw new Exception("No calendars found");
         } else {
@@ -18,12 +18,13 @@ class PinnedCalendarsService{
 
     public static function pinnedCalendarsGetById($input){
         $db = new DBAccess("pinned_calendars");
-        $pinnedCalendarTable = $db->findById($input["userId"]);
+        $pinnedCalendarTable = $db->getAll();
+        $filterdPinnedCalendars = array_values(array_filter($pinnedCalendarTable, fn($pinCal) => $pinCal["userId"] == $input["userId"]));
 
-        if(empty($pinnedCalendarTable)){
+        if(empty($filterdPinnedCalendars)){
             throw new Exception("No calendars found by userId");
         } else {
-            return $pinnedCalendarTable;
+            return $filterdPinnedCalendars;
         }
     }
 
