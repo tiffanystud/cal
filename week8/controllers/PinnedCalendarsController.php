@@ -62,7 +62,7 @@ class PinnedCalendarsController{
                     return self::sendResponse(PinnedCalendarsService::pinnedCalendarsDelete($input), 200);
                 }
             } catch(Exception $error){
-                return self::sendResponse(["error" => $error->getMessage()], 400);
+                return self::sendResponse(["error" => $error->getMessage()], 404);
             }
         }
 

@@ -306,12 +306,12 @@ function testPinnedCalendarDelete_400()
     $expected = [
         "status" => 400,
         "body" => [
-            "error" => "Calendar doesent exist"
+            "error" => "Missing id attribute"
         ]
     ];
 
     $body = [
-        "id" => "124"
+        "id"
     ];
 
     $actual = runRequest(
@@ -331,6 +331,44 @@ function testPinnedCalendarDelete_400()
         "info" => "Users calendar doesent exist"
     ];
 }
+
+
+// 400
+function testPinnedCalendarDelete_404()
+{
+    $expected = [
+        "status" => 404,
+        "body" => [
+            "error" => "Calendar doesent exist"
+        ]
+    ];
+
+    $body = [
+        "id" => "124"
+    ];
+
+    $actual = runRequest(
+        method: "DELETE",
+        endpoint: "/users_pinned_calendars",
+        data: $body
+    );
+
+    return [
+        "name" => "DELETE 404",
+        "method" => "DELETE",
+        "endpoint" => "/users_pinned_calendars",
+        "queryParams" => null,
+        "requestBody" => $body,
+        "expected" => $expected,
+        "actual" => $actual,
+        "info" => "Users calendar doesent exist"
+    ];
+}
+
+
+
+
+
 
 
 
@@ -357,6 +395,7 @@ function runTests()
 
         testPinnedCalendarDelete_200(),
         testPinnedCalendarDelete_400(),
+        testPinnedCalendarDelete_404()
         // testCalendarDelete_404()
     ];
 }
