@@ -6,7 +6,7 @@ async function test() {
     let resource;
     //Test 1
     req = new Request("http://localhost:8000/calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "GET",
     });
     response = await fetch(req);
@@ -16,11 +16,11 @@ async function test() {
 
     //Test 2
     req = new Request("http://localhost:8000/calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "POST",
         body: JSON.stringify({
-            userId: "1",
-            name: "Testgroup",
+            creatorId: "3",
+            name: "LatestTestgroup",
             type: "public"
         })
     });
@@ -31,7 +31,7 @@ async function test() {
 
     //Test 3
     req = new Request("http://localhost:8000/calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "POST",
         body: JSON.stringify({
             userId: "1",
@@ -45,12 +45,10 @@ async function test() {
 
     //Test 4
     req = new Request("http://localhost:8000/calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "PATCH",
         body: JSON.stringify({
-            id: "65e10aa11b001",
-            calId: "3",
-            userId: "1",
+            id: "65e10aa11b004",
             name: "newNameGroup"
         })
     });
@@ -61,7 +59,7 @@ async function test() {
 
     //Test 5
     req = new Request("http://localhost:8000/calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "PATCH",
         body: JSON.stringify({
             userId: "1",
@@ -75,10 +73,10 @@ async function test() {
 
     //Test 6
     req = new Request("http://localhost:8000/calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "DELETE",
         body: JSON.stringify({
-            id: "65e10aa11b005",
+            id: "699c70f322ea5",
         })
     });
     response = await fetch(req);
@@ -87,7 +85,7 @@ async function test() {
     console.log(resource);
 
     req = new Request("http://localhost:8000/calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "DELETE",
         body: JSON.stringify({
             userId: "1",
@@ -100,8 +98,8 @@ async function test() {
 
 
     //Test 7
-    req = new Request("http://localhost:8000/calendars?calId=1", {
-        headers: { "Content-type": "application/json" },
+    req = new Request("http://localhost:8000/calendars?id=65e10aa11b004", {
+        headers: { "Content-Type": "application/json" },
         method: "GET"
     });
     response = await fetch(req);
@@ -110,8 +108,8 @@ async function test() {
     console.log(resource);
 
     //Test 8
-    req = new Request("http://localhost:8000/calendars?calId", {
-        headers: { "Content-type": "application/json" },
+    req = new Request("http://localhost:8000/calendars?id", {
+        headers: { "Content-Type": "application/json" },
         method: "GET"
     });
     response = await fetch(req);
@@ -125,8 +123,8 @@ async function test() {
 
     //Test 1
 
-    req = new Request("http://localhost:8000/users_pinned_calendars", {
-        headers: { "Content-type": "application/json" },
+    req = new Request("http://localhost:8000/users_pinned_calendars?id=65e10aa11a002", {
+        headers: { "Content-Type": "application/json" },
         method: "GET"
     });
     response = await fetch(req);
@@ -135,13 +133,26 @@ async function test() {
     console.log(resource);
 
 
+    req = new Request("http://localhost:8000/users_pinned_calendars", {
+        headers: { "Content-Type": "application/json" },
+        method: "GET"
+    });
+    response = await fetch(req);
+    resource = await response.json();
+    document.getElementById("userT5").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+
+
+
+
     //Test 2
     req = new Request("http://localhost:8000/users_pinned_calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "POST",
         body: JSON.stringify({
-            userId: "1",
-            calId: "3"
+            userId: "4",
+            calId: "6"
         })
     });
     response = await fetch(req);
@@ -153,7 +164,7 @@ async function test() {
     //Test 3
 
     req = new Request("http://localhost:8000/users_pinned_calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "POST",
         body: JSON.stringify({
             userId: "1",
@@ -168,12 +179,10 @@ async function test() {
     // Test 4 
 
     req = new Request("http://localhost:8000/users_pinned_calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "DELETE",
         body: JSON.stringify({
-            id: "65e10aa11e005",
-            userId: "165e10aa11a005",
-            calId: "65e10aa11b005"
+            id: "65e10aa11e004"
         })
     });
     response = await fetch(req);
@@ -184,11 +193,10 @@ async function test() {
     // Test 5
 
     req = new Request("http://localhost:8000/users_pinned_calendars", {
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         method: "DELETE",
         body: JSON.stringify({
-            id: "1",
-            userId: "1"
+            id: "1"
         })
     });
     response = await fetch(req);

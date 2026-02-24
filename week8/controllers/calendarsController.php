@@ -1,38 +1,49 @@
 <?php
 
+require_once __DIR__ . "/../services/CalendarsService.php";
+
 class CalendarsController{
-    public static function calendarHandler($method, $input){
+
+
+    public static function sendResponse($data, $status){
+        http_response_code($status);
+        echo json_encode($data);
+        exit();
+    }
+
+
+
+    public static function handle($method, $input){
 
         if($method == "GET"){
             try{
                 // OM det inte finns några parameter, hämta alla
                 if(empty($input)){
-                    return calendarsService::calendarsGetAll();
+                    return self::sendResponse(CalendarsService::calendarsGetAll(), 200);
                 } else {
                     // Hämta en specifik calendar med id parameter
                     if(isset($input["id"])){
-                        return calendarsService::calendarsGetById($input);
+                        return self::sendResponse(CalendarsService::calendarsGetById($input), 200);
     
                     } else {
-                        return ["error" => "Value missing", "code" => 400];
+                        return self::sendResponse(["error" => "Value missing"], 400);
                     }
                 } 
                 // Denna tar emot flera catchs beroende på id eller alla
-            } catch(emptyCalendars $error){
-                return ["error" => $error, "code" => 404];
+            } catch(Exception $error){
+                return self::sendResponse(["error" => $error->getMessage()], 400);
             } 
         }
 
         if($method == "POST"){
             try{
                 if(!isset($input["creatorId"]) || !isset($input["name"]) || !isset($input["type"])){
-                    return ["error" => "Attributes missing", "code" => 400];
+                    return self::sendResponse(["error" => "Attributes missing"], 400);
                 } else {
-                    return calendarsPost($input);
+                    return self::sendResponse(CalendarsService::calendarsPost($input), 201);
                 }
             } catch(Exception $error){
-                // Kolla upp vad man kan returnera här och vad $error kommer bli sen
-                // Samma att servicen kommer returnera någon fel kod och då måste vi vet vilken kod det är här att skicka tillbaka
+                return self::sendResponse(["error" => $error->getMessage()], 400);
             }
 
         }
@@ -40,27 +51,27 @@ class CalendarsController{
         if($method == "PATCH"){
             try{
                 if(!isset($input["id"])){
-                    return ["error" => "Id missing", "code" => 400];
+                    return self::sendResponse(["error" => "Id missing"], 400);
                 } else {
-                    return calendarsPatch($input);
+                    return self::sendResponse(CalendarsService::calendarsPatch($input), 200);
                 }
 
             } catch(Exception $error){
-                return ["error" => $error, "code" => 400];
+                return self::sendResponse(["error" => $error->getMessage()], 400);
             }
 
         }
 
         if($method == "DELETE"){
             try{
-                if(!isset($input["id"]) && !isset($input["creatorId"])){
-                    return ["error" => "Only creator can delete group", "code" => 400];
+                if(!isset($input["id"])){
+                    return self::sendResponse(["error" => "Only creator can delete group"], 400);
                 } else {
-                    return calendarsDelete($input);
+                    return self::sendResponse(CalendarsService::calendarsDelete($input), 200);
                 }
 
             } catch(Exception $error){
-                return ["error" => $error, "code" => 400];
+                return self::sendResponse(["error" => $error->getMessage()], 400);
             }
 
 

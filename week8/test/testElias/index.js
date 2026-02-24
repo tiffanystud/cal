@@ -161,5 +161,138 @@ async function test() {
     resource = await response.json(); 
     document.getElementById("userT12").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
     console.log(resource);
+
+    //Test 13
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "GET"
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT13").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 14
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({
+            userId: "65e10aa152005",
+            receiverId: "65e10aa11a002",
+            content: "Go bears"
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT14").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 15
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({
+            userId: "65e10aa152005",
+            receiverId: "65e10aa11a002",
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT15").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 16
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({
+            userId: "65e10aa152005",
+            receiverId: "65e10asakjnda11a002",
+            content: "Go bears"
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT16").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 17
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "PATCH",
+        body: JSON.stringify({
+            privMsgId: "65e10aa152005",
+            content: "Uppdate message"
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT17").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 18
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "PATCH",
+        body: JSON.stringify({
+            privMsgId: "65e10aa152005",
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT18").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 19
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "PATCH",
+        body: JSON.stringify({
+            privMsgId: "65e10aa15jkn2005",
+            content:"Go bear!"
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT19").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 20
+     req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            privMsgId: "65e10aa152005",
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT20").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 21
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+            privMsgId: "65e10jkkjaa152005",
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT21").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
+
+    //Test 22
+    req = new Request("http://localhost:8000/private_msg", {
+        headers: { "Content-type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify({
+        })
+    });
+    response = await fetch(req); 
+    resource = await response.json(); 
+    document.getElementById("userT22").textContent = `Result: ${JSON.stringify(resource)}, ${response.status}`;
+    console.log(resource);
 }
 test();

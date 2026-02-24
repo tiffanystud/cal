@@ -4,13 +4,19 @@
 require_once __DIR__ . "/../middleware/Middleware.php";
 
 // Controllera
+require_once "PrivateMsgController.php";
 require_once "UserController.php";
 require_once "GroupsController.php";
 require_once "UsersCalendarsController.php";
 require_once "UsersAvailabilitiesController.php";
 require_once "EventsRSVPController.php";
+require_once "EventsController.php";
+require_once "CalendarsMSGController.php";
+require_once "EventAdminsController.php";
 require_once "BackupDBController.php";
 require_once "RestoreDBController.php";
+require_once "CalendarsController.php";
+require_once "PinnedCalendarsController.php";
 require_once "FriendshipsController.php";
 
 
@@ -34,36 +40,77 @@ function Router($requestUrl = null){
 
     switch ($path) {
             
-        case "calendar":
-            
+        case "calendars":
+            switch ($method) {
+                case "GET":
+                    CorsMiddleware::handle();
+                    CalendarsController::handle($method, $input);
+                    break;
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    CalendarsController::handle($method, $input);
+                    break;
+            }
+        case "calendar_msg": 
             switch ($method) {
                case "GET": 
                     CorsMiddleware::handle();
-                    GroupsController::handle(method: $method, input: $input);
+                    CalendarsMSGController::handle(method: $method, input: $input);
                     break;
                     
                 default:
                     CorsMiddleware::handle();
                     JsonMiddleware::handle();
-                    GroupsController::handle(method: $method, input: $input);
+                    CalendarsMSGController::handle(method: $method, input: $input);
                     break;
             }
             break;
 
-        case "calendar_msg": 
-            //Handle calendar_msg
-            break;
-
         case "events":
-            //Handle events
+            switch($method) {
+                case "GET":
+                    CorsMiddleware::handle();
+                    EventsController::handle($method, $input);
+                    break;
+                
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    EventsController::handle($method, $input);
+                    break;
+            }
             break;
 
         case "event_admins":
-            //Handle event_admins
+            switch ($method) {
+                case "GET":
+                    CorsMiddleware::handle();
+                    EventAdminsController::handle($method, $input);
+                    break;
+                
+                default: 
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    EventAdminsController::handle($method, $input);
+                    break;
+            }
             break;
 
         case "events_rsvp":
-            //Handle event_rsvp
+            
+            switch ($method) {
+               case "GET": 
+                    CorsMiddleware::handle();
+                    EventsRSVPController::handle($method, $input);
+                    break;
+                   
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    EventsRSVPController::handle($method, $input);
+                    break;
+            }
             break;
 
         case "friendships":
@@ -90,8 +137,30 @@ function Router($requestUrl = null){
                         exit();
                 }
 
-        case "private_msg":
-            //Handle private msg
+        case "private_msg": // Elias
+            switch($method) {
+                case "GET":
+                    CorsMiddleware::handle();
+                    PrivateMsgController::handle($method, $input);
+                    exit();
+                case "POST":
+                    CorsMiddleware::handle();
+                    PrivateMsgController::handle($method, $input);
+                    exit();
+                case "PATCH":
+                    CorsMiddleware::handle();
+                    PrivateMsgController::handle($method, $input);
+                    exit();
+                case "DELETE":
+                    CorsMiddleware::handle();
+                    PrivateMsgController::handle($method, $input);
+                    exit();
+                default : 
+                        CorsMiddleware::handle();
+                        http_response_code(400);
+                        echo json_encode(["error" => "No method allowed"]);
+                        exit();
+            }
             break;
 
         case "users": //Elias
@@ -160,7 +229,17 @@ function Router($requestUrl = null){
             break;      
 
         case "users_pinned_calendars":
-            //Handle users_pinned_calendars
+            switch ($method) {
+                case "GET":
+                    CorsMiddleware::handle();
+                    PinnedCalendarsController::handle($method, $input);
+                    break;
+                default:
+                    CorsMiddleware::handle();
+                    JsonMiddleware::handle();
+                    PinnedCalendarsController::handle($method, $input);
+                    break;
+            }
             break;
             
         case "backup_database":

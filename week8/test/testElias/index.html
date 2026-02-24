@@ -56,6 +56,50 @@
     <h3>Expect: Invalid pwd or email, 403</h2>
     <h3 id="userT12"></h2>
     
+    <h1>Private message test</h1>
+
+    <h2>/private_msg</h2>
+
+    <h2>/private_msg" GET OK</h1>
+    <h3>Expect: Get all private messages, 200</h2>
+    <h3 id="userT13"></h2>
+
+    <h2>/private_msg" POST OK</h1>
+    <h3>Expect: Send message, 200</h2>
+    <h3 id="userT14"></h2>
+
+    <h2>/private_msg" POST ERROR</h1>
+    <h3>Expect: Bad request, 400</h2>
+    <h3 id="userT15"></h2>
+    
+    <h2>/private_msg" POST ERROR</h1>
+    <h3>Expect: The reciver dosent exist, 404</h2>
+    <h3 id="userT16"></h2>
+
+    <h2>/private_msg" PATCH OK</h1>
+    <h3>Expect: Message updated,200</h2>
+    <h3 id="userT17"></h2>
+
+    <h2>/private_msg" PATCH ERROR</h1>
+    <h3>Expect: Bad request, 400</h2>
+    <h3 id="userT18"></h2>
+
+    <h2>/private_msg" PATCH ERROR</h1>
+    <h3>Expect: The message couldn't be found, 404</h2>
+    <h3 id="userT19"></h2>
+
+    <h2>/private_msg" DELETED OK</h1>
+    <h3>Expect: The message has succesfully deleted, 200</h2>
+    <h3 id="userT20"></h2>
+
+    <h2>/private_msg" DELETED ERROR</h1>
+    <h3>Expect: The message couldnt be found, 404</h2>
+    <h3 id="userT21"></h2>
+
+    <h2>/private_msg" DELETED ERROR</h1>
+    <h3>Expect: Bad request, 400</h2>
+    <h3 id="userT22"></h2>
+
     <script src="index.js"></script>
 </body>
 

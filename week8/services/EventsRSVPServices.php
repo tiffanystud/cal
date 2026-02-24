@@ -4,145 +4,152 @@ require_once __DIR__ . "/../repository/DBAccess.php";
 
 class EventsRSVPService {
     /* ---- GET ---- */
-    public static function getAll($userId = null, $date = null)
-    {
+    public static function getAll($input){
         
-        $db = new DBAccess("users_availabilities");
-        $items = $db->getAll();
+        $eventId = $input["eventId"] ?? null;
+        $userId = $input["userId"] ?? null;
         
-        if (!isset($userId, $date)) {
-            // Kolla format på date?
+        if (!isset($userId, $eventId)) {
             throw new Exception("Missing attributes");
         }
+        
+        $db = new DBAccess("events_rsvp");
+        $items = $db->getAll();
                    
         $filtered = [];
 
+        // Säkerställer vi bara en rad med samma userID och eventId?
         foreach ($items as $currItem) {
-            if ($currItem["userId"] == $userId && $currItem["date"] == $date ) {
+            if ($currItem["userId"] == $userId && 
+                $currItem["eventId"] == $eventId 
+                ) {
                 $filtered[] = $currItem;
             }
         }
 
         if (!$filtered) {
-            throw new Exception("Availability not found");
+            throw new Exception("RSVP not found");
         }
         
-        return $filtered;
+        return json_decode(json_encode($filtered), true);
  
     }
 
     /* --- POST ---- */
-    public static function create($userId, $date, $isAvailable, $calId){
-    
-        //validera format?
-        if (isset($userId, $date, $isAvailable, $calId)) {
-            
-            $dbUsers =  new DBAccess("users");
-            $userItems = $dbUsers->getAll();
-            
-            $dbCalendars =  new DBAccess("calendars");
-            $calendarItems = $dbCalendars->getAll();
-            
-            $userAndCalOK = false;
-            
-            // Does user & cal exist?
-            foreach ($userItems as $currUser) {
-                
-                if ($currUser["id"] == $userId) {
-                    foreach ($calendarItems as $currCal) {
-                        
-                        if ($currCal["id"] == $calId) 
-                            $userAndCalOK = true;
-                    }
-                }
-            }
-            
-            if (!$userAndCalOK) {
-                throw new Exception("User or calendar not found");
-            }
-                
+    public static function create($input){
+        
+        $eventId = $input["eventId"] ?? null;
+        $userId = $input["userId"] ?? null;
+        $isGoing = $input["isGoing"] ?? null;
+        $reminder = $input["reminder"] ?? null;
 
-            $dbUsersAvails = new DBAccess("users_availabilities");  
-            $itemsUsersAvails = $dbUsersAvails->getAll();
-            
-            
-            // Check if exists
-            foreach ($itemsUsersAvails as $currAvail) {
-                if (
-                    $currAvail["userId"] == $userId &&
-                    $currAvail["date"] == $date &&
-                    $currAvail["calId"] == $calId 
-                ) {
-                    throw new Exception("Availability already exists");
-                }
-            } 
-            
-            // Create new availability
-            $newAvailability = [
-                "id" => uniqid(),
-                "userId" => $userId,
-                "date" => $date,
-                "isAvailable" => $isAvailable,
-                "calId" => $calId
-            ];
-            
-            $result = $dbUsersAvails->postData($newAvailability);
-            return $result;        
-                
+        if (!isset($eventId, $userId, $isGoing, $reminder )) {
+            throw new Exception("Missing attributes");
         }
-
-        throw new Exception( "Missing Attributes");
-
+            
+        $db =  new DBAccess("events_rsvp");
+        $items = $db->getAll();
+        
+        // Does RSVP exist
+        foreach ($items as $currItem) {
+            if ($currItem["userId"] == $userId && 
+                $currItem["eventId"] == $eventId) {
+                throw new Exception("RSVP already exists");
+            }
+        }
+    
+        
+        // Create new RSVP
+        $date = date("Y-m-d");
+        $newRSVP = [
+            "id" => uniqid(),
+            "eventId" => $eventId,
+            "userId" => $userId,
+            "date" =>  $date,
+            "isGoing" => $isGoing,
+            "reminder" => $reminder
+        ];
+        
+        $result = $db->postData($newRSVP);
+        return $result;        
+            
     }
+
+
 
     /* --- PATCH ---- */
     public static function update($input)
     {
-
-        $db = new DBAccess("users_availabilities");
+            
+        $eventId = $input["eventId"] ?? null;
+        $userId = $input["userId"] ?? null;
+        $isGoing = $input["isGoing"] ?? null;
+        $reminder = $input["reminder"] ?? null;
+        
+        if (!isset($eventId, $userId, $isGoing, $reminder)) {
+            throw new Exception("Missing attributes");
+        }
+        
+        $db = new DBAccess("events_rsvp");
         $items = $db->getAll();
         
         foreach ($items as $currAvailability) {
             if (
-                $currAvailability["userId"] == $input["userId"] &&
-                $currAvailability["date"] == $input["date"] &&
-                $currAvailability["calId"] == $input["calId"] 
+                $currAvailability["userId"] == $userId &&
+                $currAvailability["eventId"] == $eventId
                 ) {
-                    // Chech if availability already is the same
-                    if ( $currAvailability["isAvailable"] == $input["isAvailable"] ) {
+                    // Chech if RSVP already is the same (change possible for isGoing/reminder)
+                    if ($currAvailability["isGoing"] == $input["isGoing"] &&
+                        $currAvailability["reminder"] == $input["reminder"]
+                    ) {
                         throw new Exception("No changes made");
                     }
                     
+                    // Uppdara date som "latest change" eller när RSVP är skapad?
+                    $date = date("Y-m-d");
+                    
+                    if ($currAvailability["isGoing"] !== $input["isGoing"]) {
+                        $changes = ["isGoing" => $input["isGoing"], "date" => $date];
+                    } else {
+                        $changes = ["reminder" => $input["reminder"], "date" => $date];   
+                    }
+                    
                     // Updated item
-                    return $db->patchData($currAvailability["id"], ["isAvailable" => $input["isAvailable"]]);
+                    return $db->patchData($currAvailability["id"],$changes);
             }
                 
         }
                 
-        throw new Exception("Availability not found");
+        throw new Exception("RSVP not found");
         
     }
 
 
     /* --- DELETE ---- */
-    public static function delete($userId, $date, $calId)
+    public static function delete($input)
     {
 
-        $db = new DBAccess("users_availabilities");
+        $eventId = $input["eventId"] ?? null;
+        $userId = $input["userId"] ?? null;
+        
+        if (!isset($eventId, $userId)) {
+            throw new Exception("Missing attributes");
+        }
+        
+        $db = new DBAccess("events_rsvp");
         $items = $db->getAll();
         
         foreach($items as $currAvailability) {
             if (
-                $currAvailability["userId"] == $userId &&
-                $currAvailability["date"] == $date &&
-                $currAvailability["calId"] == $calId 
+                $currAvailability["eventId"] == $eventId &&
+                $currAvailability["userId"] == $userId
                 ) {
                     // Returns deleted item
                     return $db->deleteData($currAvailability["id"]);
                 }
         }
     
-        throw new Exception("Availability not found");
+        throw new Exception("RSVP not found");
         
     }
 

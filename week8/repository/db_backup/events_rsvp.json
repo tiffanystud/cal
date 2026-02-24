@@ -5,6 +5,7 @@
             "eventId": "65e10aa11c001",
             "userId": "65e10aa11a002",
             "date": "2026-02-20",
+            "isGoing": "maybe",
             "reminder": true
         },
         {
@@ -12,6 +13,7 @@
             "eventId": "65e10aa11c003",
             "userId": "65e10aa11a005",
             "date": "2026-02-21",
+            "isGoing": "yes",
             "reminder": false
         },
         {
@@ -19,6 +21,7 @@
             "eventId": "65e10aa11c006",
             "userId": "65e10aa11a006",
             "date": "2026-02-22",
+            "isGoing": "yes",
             "reminder": true
         },
         {
@@ -26,6 +29,7 @@
             "eventId": "65e10aa11c008",
             "userId": "65e10aa11a007",
             "date": "2026-02-23",
+            "isGoing": "no",
             "reminder": false
         },
         {
@@ -33,6 +37,7 @@
             "eventId": "65e10aa11c00a",
             "userId": "65e10aa11a008",
             "date": "2026-02-24",
+            "isGoing": "maybe",
             "reminder": true
         }
     ]

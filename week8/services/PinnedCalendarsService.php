@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../repository/DBAccess.php";
+
 class PinnedCalendarsService{
 
     public static function pinnedCalendarsGetAll(){
@@ -19,7 +21,7 @@ class PinnedCalendarsService{
         $pinnedCalendarTable = $db->findById($input["userId"]);
 
         if(empty($pinnedCalendarTable)){
-            throw new emptyCalenders("No calendars found by userId");
+            throw new Exception("No calendars found by userId");
         } else {
             return $pinnedCalendarTable;
         }
@@ -31,11 +33,17 @@ class PinnedCalendarsService{
 
         foreach($pinnedCalendarTable as $table){
             if($table["calId"] == $input["calId"]){
-                throw new Excpetion("Calendar already exists");
+                throw new Exception("Calendar already exists");
             }
         }
 
-        return $db->postData($input);
+        $newData = [
+            "id" => uniqid(),
+            "userId" => $input["userId"],
+            "calId" => $input["calId"],
+        ];
+        return $db->postData($newData);
+
     }
 
     public static function pinnedCalendarsPatch($input){
@@ -45,7 +53,7 @@ class PinnedCalendarsService{
         $changeData = [];
         foreach($input as $key => $data){
             if($key != "id"){
-                array_push($changeData, $data[$key]);
+                $changeData[$key] = $data;
             }
         }
         if(!count($changeData) > 1){
@@ -59,16 +67,22 @@ class PinnedCalendarsService{
         $db = new DBAccess("pinned_calendars");
         $pinnedCalendarTable = $db->getAll();
 
-        if(!$input["id"] > 1){
-            throw Exception("Id has to be positive");
-        } else {
-            $db->deleteData($input["id"]);
+        $checkCal = false;
+        foreach($pinnedCalendarTable as $pinCal){
+            if($pinCal["id"] != $input["id"]){
+                $checkCal = true;
+                break;
+            }
         }
+        
+        if($checkCal){
+            $db->deleteData($input["id"]);
+        } else {
+            throw new Exception("Pinned calendar doesent exist");
+        }
+        
 
     }
-
-
-
     
 
 }

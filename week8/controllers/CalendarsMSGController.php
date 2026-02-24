@@ -1,7 +1,8 @@
+
 <?php
 
-require_once __DIR__ . "/../services/EventsRSVPServices.php";
-class EventsRSVPController {
+require_once __DIR__ . "/../services/CalendarsMSGService.php";
+class CalendarsMSGController {
 
     /* -- RESPONSES -- */
     static function bubbleError($exc, $sender){
@@ -13,11 +14,14 @@ class EventsRSVPController {
                 $responseCode = 400;
                 break;
 
-            case "RSVP not found":
+            case "Calendar messages not found":
+            case "Invalid calendar":
+            case "Message not found":
+            case "Messages not found":
                 $responseCode = 404;
                 break;
 
-            case "RSVP already exists":
+            case "Message already sent":
                 $responseCode = 409;
                 break;
 
@@ -82,7 +86,7 @@ class EventsRSVPController {
 
             try {
 
-                $result = EventsRSVPService::getAll($input);
+                $result = CalendarsMSGService::getAll($input);
                 return self::bubbleData($result, 200);
 
             } catch (Exception $exc) {
@@ -97,7 +101,7 @@ class EventsRSVPController {
 
             try {
                  
-                $result = EventsRSVPService::create($input);
+                $result = CalendarsMSGService::create($input);
                 return self::bubbleMessage($result, 201);
 
             } catch (Exception $exc) {
@@ -113,7 +117,7 @@ class EventsRSVPController {
 
             try {
                     
-                $result = EventsRSVPService::update($input);
+                $result = CalendarsMSGService::update($input);
                 return self::bubbleMessage($result, 200);
 
             } catch (Exception $exc) {
@@ -128,7 +132,7 @@ class EventsRSVPController {
 
             try {
                     
-                $result = EventsRSVPService::delete($input);
+                $result = CalendarsMSGService::delete($input);
                 return self::bubbleMessage($result, 200);
 
             } catch (Exception $exc) {
