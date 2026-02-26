@@ -43,7 +43,7 @@ class EventsService {
         $tags = $input["tags"] ?? null;
         $calId = $input["calId"] ?? null;
 
-        if (!$type || !$name || !$desc || !$location || $conf === null || !$calId) {
+        if (!$type || !$name || !$location || $conf === null || !$calId) {
             throw new Exception("Missing attributes");
         }
 
@@ -57,7 +57,9 @@ class EventsService {
 
         //userId ska även senare kollas om den är admin i den specificerade calId
         //Kasta exception om inte
-
+        if ($desc === null) {
+            $desc === "No description";
+        }
         $newEvent = [
             "id" => uniqid(),
             "type" => $type,
