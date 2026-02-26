@@ -11,12 +11,19 @@
     <h2>Circles</h2>
     <div id="circles"></div>
     <style>
-        #events, #circles {
+        #circles {
             margin-top: 20px;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        #events {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
 
         cool-circle:hover {

@@ -27,13 +27,17 @@ class Event extends HTMLElement {
 customElements.define("event-box", Event);
 
 async function test() {
-    let resp = await fetch("http://localhost:8000/events");
-    let reso = await resp.json();
+    try {
+        let resp = await fetch("http://localhost:8000/events");
+        let reso = await resp.json();
 
-    for (let event of reso) {
-        let e = document.createElement("event-box");
-        e.data = event;
-        document.querySelector("#events").appendChild(e);
+        for (let event of reso) {
+            let e = document.createElement("event-box");
+            e.data = event;
+            document.querySelector("#events").appendChild(e);
+        }
+    } catch (e) {
+        console.log(e.message);
     }
 }
 
