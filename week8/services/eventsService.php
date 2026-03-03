@@ -23,7 +23,7 @@ class EventsService {
     public static function getEventsCal($cal) {
         $db = new DBAccess("events");
         $events = $db->getAll();
-        $eventsByCal = array_filter($events, fn($x) => $x["calId"] === $cal);
+        $eventsByCal = array_values(array_filter($events, fn($x) => $x["calId"] === $cal));
         if (count($eventsByCal) === 0) {
             throw new Exception("No events found");
         } else {
