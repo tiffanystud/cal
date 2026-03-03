@@ -1,25 +1,98 @@
-const button = document.querySelector("button");
+const logIn = document.querySelector("#log-in");
+const darkMode = document.querySelector("#dark-mode");
+const logOut =  document.querySelector("#log-out");
 const usrName = document.querySelector("#usrName");
 const pwd = document.querySelector("#pwd");
-const store = createStore({ usrName: null, pwd: null, isLoggedIn: false});
+const store = createStore({ usrName: null, pwd: null, isLoggedIn: false, darkMode: false, cals: []});
 
-store.subscribe((state) => {
+class Calendar extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        this.innerHTML = `
+        <h2>${this.data.name}</h2>
+        <p>${this.data.type} calendar</p>
+        <p>Events:</p>
+        `;
+        this.style.backgroundColor = "yellow";
+        this.style.padding = "10px";
+        this.style.borderRadius = "10px";
+        this.style.display = "block";
+    }
+}
+
+customElements.define("calendar-box", Calendar);
+
+store.subscribe("log", (state) => {
   console.log("State changed:", state);
 });
 
-//store.setState({ count: 1 });
-credentials = {
-    usrName: "test",
-    pwd: "123"
+if (store.getState().darkMode) {
+    document.body.style.backgroundColor = "gray";
 }
-button.addEventListener("click", () => {
-    if (usrName.value === credentials.usrName && pwd.value === credentials.pwd) {
-        store.setState({usrName: credentials.usrName, pwd: credentials.pwd, isLoggedIn: true});
+
+darkMode.addEventListener("click", () => {
+    if (!store.getState().darkMode) {
+        store.setState({usrName: store.getState().usrName, pwd: store.getState().pwd, isLoggedIn: store.getState().isLoggedIn, darkMode: true, cals: store.getState().cals}, ["log"]);
+        document.body.style.backgroundColor = "gray";
     } else {
-        console.log("Incorrect username or password");
+        store.setState({usrName: store.getState().usrName, pwd: store.getState().pwd, isLoggedIn: store.getState().isLoggedIn, darkMode: false, cals: store.getState().cals}, ["log"]);
+        document.body.style.backgroundColor = "white";
+    }
+})
+
+logIn.addEventListener("click", async () => {
+    let resp = await fetch("http://localhost:8000/users");
+    let reso = await resp.json();
+    
+    let userFound = false;
+    for (let user of reso) {
+        document.querySelector("#status").style.display = "none";
+
+        if (user.name === usrName.value && user.pwd === pwd.value) {
+            let usersCalsResp = await fetch(`http://localhost:8000/users_calendars?userId=${user.id}`);
+            let usersCalsReso = await usersCalsResp.json();
+            let calsResp = await fetch(`http://localhost:8000/calendars`);
+            let calsReso = await calsResp.json();
+            for (let userCal of usersCalsReso) {
+                for (let cal of calsReso) {
+                    if (userCal.calId === cal.id) {
+                        store.getState().cals.push(cal);
+                    }
+                }
+            }
+            store.setState({usrName: user.name, pwd: user.pwd, isLoggedIn: true, darkMode: store.getState().darkMode, cals: store.getState().cals}, ["log"]);
+            logOut.style.display = "inline";
+            userFound = true;
+            break;
+        }
+    }
+    if (!userFound) {
+        document.querySelector("#status").textContent = "Incorrect username or password, try again"; 
+        return;
     }
 
-    let p = document.createElement("p");
-    p.textContent = `Welcome ${store.getState().usrName}!`;
-    document.body.appendChild(p);
+    if (store.getState().isLoggedIn) {
+        document.querySelector("div").style.display = "block";
+    }
+
+    for (let cal of store.getState().cals) {
+        let div = document.createElement("calendar-box");
+        div.data = cal;
+        let resp = await fetch(`http://localhost:8000/events?calId=${cal.id}`);
+        let reso = await resp.json();
+        console.log(reso);
+        //document.querySelector("#cals").appendChild(div);
+    }
+});
+
+logOut.addEventListener("click", () => {
+    logOut.style.display = "none";
+    document.querySelector("#status").textContent = "Successfully logged out!";
+    document.querySelector("#status").style.display = "block";
+    document.querySelector("div").style.display = "none";
+    document.querySelector("#cals").innerHTML = "";
+    store.setState({ usrName: null, pwd: null, isLoggedIn: false, darkMode: store.getState().darkMode, cals: []}, ["log"]);
 });

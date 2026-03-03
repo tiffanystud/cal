@@ -8,7 +8,15 @@
 <body>
     <input id="usrName" type="text">
     <input id="pwd" type="text">
-    <button>Log in</button>
+    <button id="log-in">Log in</button>
+    <button id="log-out" style="display: none;">Log out</button>
+    <button id="dark-mode">Dark mode</button>
+    <p id="status"></p>
+    <div style="background-color: lime; display: none;">
+        <p>You are now logged in!</p>
+    </div>
+    <div id="cals">
+    </div>
     <script src="store.js"></script>
     <script src="state.js"></script>
 </body>

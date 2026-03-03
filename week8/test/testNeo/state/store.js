@@ -1,18 +1,26 @@
 function createStore(initialState) {
     let state = initialState;
-    const listeners = [];
+    const listeners = {};
 
     function getState() {
         return state;
     }
 
-    function setState(newState) {
+    function setState(newState, funcs = []) {
         state = newState;
-        listeners.forEach(listener => listener(state));
+        if (funcs.length !== 0) {
+            funcs.forEach((x) => {
+                listeners[x](state);
+            });
+        } else {
+            for (let key in listeners) {
+                listeners[key](state);
+            }
+        }
     }
 
-    function subscribe(listener) {
-        listeners.push(listener);
+    function subscribe(name, listener) {
+        listeners[name] = listener;
     }
 
     return {
