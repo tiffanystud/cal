@@ -1,4 +1,4 @@
-class Store {
+export class Store {
     static allStates = [];
     static allListeners = {};
     constructor(initialState) {

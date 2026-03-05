@@ -1,12 +1,18 @@
-
+import displayHome from "../views/home/home.js";
 const routes = { // Navbaren
-    "/home": () => //Do something,
-    "/home/groupsView": () => 
+    "/home": () => {
+      displayHome();
+    },
+    "/home/groupsView": () => {
 
-  };
+    }
+};
 
 
 
 function UrlRouter() {
-    const url = window.location.pathname
+    const url = window.location.pathname;
+    routes[url]();
 }
+
+window.addEventListener("popstate", UrlRouter);
