@@ -4,15 +4,15 @@
 Instruktioner för att köra test:
 
 1. Starta API
-    1. Serva hela rotmappen (week8) med port 8000.
-        1. cd week8 
+    1. Serva hela rotmappen (calApp/api) med port 8000.
+        1. cd calApp/api 
         2. php -S localhost:8000
     2. Nu körs API på port 8000 (http://localhost:8000)
 
 
 2. Starta test/dashboard
     1. Serva testmappen (testName) med port 8001 (php -S localhost:8000)
-        1. cd week8/test/testName
+        1. cd calApp/api/test
         2. php -S localhost:8001
     2. Nu körs dashboard på port 8001
 
