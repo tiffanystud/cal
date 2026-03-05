@@ -1,6 +1,6 @@
 class Store {
     static allStates = [];
-    static listeners = {};
+    static allListeners = {};
     constructor(initialState) {
         this.state = initialState;
         this.lastState = null;
@@ -17,10 +17,10 @@ class Store {
         throw new Error("Not allowed");
     }
     subscribe(eventName, listener) {
-        if (!Store.listeners[eventName]) Store.listeners[eventName] = [];
-        Store.listeners[eventName].push(listener);
+        if (!Store.allListeners[eventName]) Store.allListeners[eventName] = [];
+        Store.allListeners[eventName].push(listener);
     }
     notify(eventName) {
-        Store.listeners[eventName].forEach(listener => listener(this.state));
+        Store.allListeners[eventName].forEach(listener => listener(this.state));
     }
 }
