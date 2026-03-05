@@ -14,7 +14,7 @@ class Store {
             return false;
         }
         this.lastState = this.state;
-        this.state = newState;
+        this.state = Object.assign(this.state, newState);
     }
     set state(value) {
         throw new Error("Not allowed");
