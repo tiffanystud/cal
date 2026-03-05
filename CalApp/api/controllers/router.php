@@ -3,7 +3,7 @@
 // Middleware
 require_once __DIR__ . "/../middleware/Middleware.php";
 
-// Controllera
+// Kontrollera
 require_once "PrivateMsgController.php";
 require_once "UserController.php";
 require_once "GroupsController.php";
