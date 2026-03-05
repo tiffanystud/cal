@@ -227,7 +227,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "event_admins",
-        "/resources/EventsAdminsTest.php"
+        "/enteties/EventsAdminsTest.php"
     );
     await runRequest(
         "POST",
@@ -244,7 +244,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "event_admins",
-        "/resources/EventsAdminsTest.php"
+        "/enteties/EventsAdminsTest.php"
     );
     await runRequest(
         "POST",
@@ -258,7 +258,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "privateMSG",
-        "/resources/PrivateMSGTest.php"
+        "/enteties/PrivateMSGTest.php"
     );
     await runRequest(
         "POST",
@@ -273,7 +273,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "users",
-        "/resources/UsersTest.php"
+        "/enteties/UsersTest.php"
     );
     await runRequest(
         "POST",
@@ -288,7 +288,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "usersAvailabilities",
-        "/resources/UsersAvailabilitiesTest.php"
+        "/enteties/UsersAvailabilitiesTest.php"
     );
     await runRequest(
         "POST",
@@ -303,7 +303,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "eventsRSVP",
-        "/resources/EventsRSVPTest.php"
+        "/enteties/EventsRSVPTest.php"
     );
     await runRequest(
         "POST",
@@ -318,7 +318,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "calendarsMSG",
-        "/resources/CalendarsMSGTest.php"
+        "/enteties/CalendarsMSGTest.php"
     );
     await runRequest(
         "POST",
@@ -332,7 +332,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "calendars",
-        "/resources/CalendarsTest.php"
+        "/enteties/CalendarsTest.php"
     );
     await runRequest(
         "POST",
@@ -346,7 +346,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "pinnedCalendars",
-        "/resources/PinnedCalendarsTest.php"
+        "/enteties/PinnedCalendarsTest.php"
     );
     await runRequest(
         "POST",
@@ -360,7 +360,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "events",
-        "/resources/EventsTest.php"
+        "/enteties/EventsTest.php"
     );
     await runRequest(
         "POST",
@@ -375,7 +375,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "friendships",
-        "/resources/FriendshipsTest.php"
+        "/enteties/FriendshipsTest.php"
     );
     await runRequest(
         "POST",
@@ -390,7 +390,7 @@ async function runAllTests() {
     );
     await loadTestsForResource(
         "users_calendars",
-        "/resources/UsersCalendarsTest.php"
+        "/enteties/UsersCalendarsTest.php"
     );
     await runRequest(
         "POST",
