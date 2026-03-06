@@ -7,12 +7,13 @@ export class AppInput extends HTMLElement {
         
         // SE ÖVER **, följ Eriks förslag ist
         this.shadowRoot.innerHTML = `
-            <style>
-                @import "./appInput.css";
-            </style>
+            <link rel="stylesheet" href="/CalApp/client/components/appInput/appInput.css">
             
-            <label class="label"></label>
-            <input class="input" />
+            <div class="label-input-container">
+                <label class="label"></label>
+                <input class="input" />
+            </div>
+
         `
     }
     

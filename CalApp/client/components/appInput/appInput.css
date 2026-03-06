@@ -4,8 +4,15 @@
     width: 100%;
 }
 
+.label-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .label {
     display: block;
+    font-weight: bold;
+    font-size: larger;
     margin-bottom: 4px;
     color: #333;
 }
@@ -15,6 +22,7 @@
     padding: 12px;
     font-size: 1rem;
     border-radius: 8px;
+    background-color: lightgrey;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
