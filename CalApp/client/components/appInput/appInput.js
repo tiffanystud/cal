@@ -31,13 +31,15 @@ export class AppInput extends HTMLElement {
         }
     }
     
+     // Komponentens "public API" 
     getValue() {
-        // ... this.shadowRoot...
+        const inputValue = this.shadowRoot.querySelector("input").value;
+        return inputValue;
     }
     
-    setValue(newVal) {
-        //... this.shadowRoot... tilldela nytt värde
+    setValue(newValue) {
+        this.shadowRoot.querySelector(".input").value = newValue;
     }
 }
 
-// customElements.define("app-input", AppInput);
+customElements.define("app-input", AppInput);
