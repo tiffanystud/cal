@@ -1,5 +1,5 @@
 // API-calls
-
+// Här görs alla fetch från client
 
 export async function apiRequest( {entity, method, body = null} ) {
     
@@ -20,5 +20,6 @@ export async function apiRequest( {entity, method, body = null} ) {
         throw new Error(data.error || "Unknown API error");
     }
     
+    // Om ej data då
     return data; 
 }
