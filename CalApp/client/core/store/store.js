@@ -1,3 +1,10 @@
+/* 
+    Stöd vid utveckling: 
+
+    store.js - vid api response
+    - Uppdatera store, ex.: store.notify("eventsUppdated");
+    - notify vid state change (ej som PubSub är vid events)
+*/
 
 export class Store {
     
