@@ -44,3 +44,13 @@ export class AppInput extends HTMLElement {
 }
 
 customElements.define("app-input", AppInput);
+
+
+/* 
+    <app-input  
+        width="50%"
+        label="Input-field header text"
+        placeholder="Enter input"
+    ></app-input>
+    
+*/
