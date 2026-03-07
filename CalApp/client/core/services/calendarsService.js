@@ -2,8 +2,10 @@
 import { apiRequest } from "./api";
 import { Pubsub } from "../store/pubsub";
 import { Store } from "../store/store";
+import { EVENTS } from "../store/events";
 
-Pubsub.subscribe("request:sent:calendars:post", async function (payload) {
+// "request:sent:calendars:post"
+Pubsub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.POST, async function (payload) {
     
     try {
         
@@ -14,11 +16,18 @@ Pubsub.subscribe("request:sent:calendars:post", async function (payload) {
             body: payload
         });
 
-        // Publish att response och resource är recieved 
-        Pubsub.publish("response:recieved:calendars:post", response)
-        Pubsub.publish("resource:recieved:calendars:post", response)
+        // Publish att response och resource är recieved '
+        // "response:recieved:calendars:post
+        Pubsub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARS.POST, response)
+        // "resource:recieved:calendars:post"
+        Pubsub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.POST, response)
         
-        const currState = Store.getState().data.cals;
+        // Se över store objektet
+        const currCals = Store.getState().data.cals;
+        const newState = {...Store.getState().data, cals: [...currCals, response]}
+        Store.setState({
+            data: ""
+        })
         
     } catch {
         
