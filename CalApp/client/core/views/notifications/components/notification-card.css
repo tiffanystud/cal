@@ -1,0 +1,24 @@
+h2 {
+    margin: 5px;
+}
+
+.noti-body {
+    background-color: lime;
+}
+
+.noti-body h3 {
+    margin: 5px;
+}
+
+.noti-body .desc {
+    font-size: 18px;
+}
+
+.noti-body .location {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+notification-card {
+    display: flex;
+    flex-direction: column;
+}

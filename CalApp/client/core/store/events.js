@@ -11,6 +11,13 @@ export const EVENTS = {
                 GET:  "request:sent:calendars:get",
                 PATCH:  "request:sent:calendars:patch",
                 DELETE: "request:sent:calendars:delete",
+            },
+
+            EVENTS: {
+                POST: "request:sent:events:post",
+                GET: "request:sent:events:get",
+                PATCH: "request:sent:events:patch",
+                DELETE: "request:sent:events:delete",
             }
         },
 
@@ -18,6 +25,13 @@ export const EVENTS = {
             CALENDARS: {
                 POST: "request:received:calendars:post",
                 GET:  "request:received:calendars:get",
+            },
+
+            EVENTS: {
+                POST: "request:received:events:post",
+                GET: "request:received:events:get",
+                PATCH: "request:received:events:patch",
+                DELETE: "request:received:events:delete",
             }
         },
         

@@ -1,6 +1,7 @@
 
 // import displayHome from "../views/home/home.js";
 import {CreateCalendarView} from "../views/createCalendar/createCalendarView.js"; 
+import {CreateNotificationsView} from "../views/notifications/notifications.js";
 
 
 const routes = {
@@ -15,6 +16,10 @@ const routes = {
     }, */
     "/createNewCalendar": () => {
         const view = new CreateCalendarView(document.querySelector("#app"));
+        view.render();
+    },
+    "/notifications": () => {
+        const view = new CreateNotificationsView(document.querySelector("#app"));
         view.render();
     }
 };

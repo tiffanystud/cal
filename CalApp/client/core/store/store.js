@@ -12,13 +12,13 @@ export class Store {
     static allListeners = {};
     
     constructor(initialState) {
-        this.state = initialState;
+        this._state = initialState;
         this.lastState = null;
-        Store.allStates.push(this.state)
+        Store.allStates.push(this._state)
     }
     
     getState() {
-        return structuredClone(this.state);
+        return structuredClone(this._state);
     }
     
     setState(newState) {
@@ -28,9 +28,9 @@ export class Store {
             return false;
         }
         
-        this.lastState = this.state;
+        this.lastState = this._state;
         // target, source (shallow merge?)
-        this.state = Object.assign(this.state, newState);
+        this._state = Object.assign(this._state, newState);
     }
     
     set state(value) {
@@ -44,6 +44,16 @@ export class Store {
     
     // skicka event
     notify(eventName) {
-        Store.allListeners[eventName].forEach(listener => listener(this.state));
+        if (!Store.allListeners[eventName]) {
+            return "No listeners for event"
+        } else {
+            Store.allListeners[eventName].forEach(listener => listener(this._state));
+        }
     }
 }
+
+export const store = new Store({
+    data: {
+
+    }
+});
