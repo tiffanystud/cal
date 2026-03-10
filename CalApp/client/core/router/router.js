@@ -6,10 +6,10 @@ import {CreateNotificationsView} from "../views/notifications/notifications.js";
 
 const routes = {
     "/": () => {
-      displayHome();
+        displayHome();
     },
     "groupsView": () => {
-      groupsView();
+        groupsView();
     },
     "/createNewCalendar": () => {
         const view = new CreateCalendarView(document.querySelector("#app"));
@@ -22,9 +22,9 @@ const routes = {
 };
 
 export function UrlRouter() {
-/*     const url = window.location.pathname;
-    routes[url](); */
-    
+    /*     const url = window.location.pathname;
+        routes[url](); */
+
     const fullPath = window.location.pathname;
     const path = "/" + fullPath.split("/").pop(); // tar sista delen
 

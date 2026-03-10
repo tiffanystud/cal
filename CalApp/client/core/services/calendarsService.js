@@ -84,4 +84,41 @@ export function initCalendarService() {
             }
 
         })
-    }
+
+        PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARSEVENTS.GET, async function (payload) {
+
+            console.log("EVENT RECEIVED", payload);
+
+            try {
+
+                // Skicka request data och payload till api.js
+                const response = await apiRequest("/events");
+
+                // Publish att response och resource är recieved 
+                PubSub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARSEVENTS.GET, response)
+                PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARSEVENTS.GET, response)
+
+                // Se över store objektet
+                const currEvents = Store.getState().data.cals;
+                const newEvents = [...currEvents, response];
+
+                // Uppdatera state
+                Store.setState({
+                    data: {
+                        ...Store.getState().data,
+                        events: newEvents
+                    }
+                });
+
+                // Efterr setSStatte alltid notis på vad som hänt
+                Store.notify("eventsUpdated");
+
+            } catch {
+
+                // console.log
+
+            }
+
+
+        }
+}

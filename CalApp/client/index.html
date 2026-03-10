@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cal</title>
 </head>
-    <body>
-        <style>
-            #app {
-                height: 100dvh;
-                width: 390px;
-                background-color: lightblue;
-            }
-            body {
-                display: flex;
-                justify-content: center;
-                margin: 0;
-            }
-        </style>
-       
-        <div id="app"></div>
-        <!--
+
+<body>
+    <style>
+        #app {
+            height: 100dvh;
+            width: 390px;
+            background-color: lightblue;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+    </style>
+
+    <div id="app"></div>
+    <!--
         <button onclick="history.pushState({}, '', '/createNewCalendar'); window.dispatchEvent(new PopStateEvent('popstate'))">Test createNewCalendar</button>
         <toggle-btn></toggle-btn>
         -->
-        
-        
-        <script type="module" src="index.js"></script>
-        <script type="module" src="../client/core/views/groupsView/groupsView.js"></script>
 
 
-    
-    </body>
+    <script type="module" src="index.js"></script>
+    <script type="module" src="../client/core/views/groupsView/groupsView.js"></script>
+
+
+
+</body>
+
 </html>
 
 <!-- http://127.0.0.1:49770/CalApp/client/index.html -->

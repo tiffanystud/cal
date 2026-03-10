@@ -3,16 +3,17 @@ class GroupDescription extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
-        this.render();
+
+        store.subscribe("store:selected:calendar", function () {
+            this.render(calendar);
+        })
     }
 
-    html() {
-        const cal = state.userData.calendar;
-
+    html(calendar) {
         return `
         <div>
-            <h1>${cal.name}</h1>
-            <p>Klassgrupp för ${cal.name}</p>
+            <h1>${calendar.name}</h1>
+            <p>Klassgrupp för ${calendar.name}</p>
         </div>
         `;
     }
@@ -27,9 +28,9 @@ class GroupDescription extends HTMLElement {
         `;
     }
 
-    render() {
+    render(calendar) {
         this.shadowRoot.innerHTML = `
-        ${this.html()}
+        ${this.html(calendar)}
         ${this.style()} 
         `;
     }

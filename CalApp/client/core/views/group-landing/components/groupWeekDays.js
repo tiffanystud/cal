@@ -4,6 +4,8 @@ class GroupWeekDays extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
         this.render();
+
+        // Här ska den subscriba till alla events
     }
 
     html() {
@@ -11,31 +13,31 @@ class GroupWeekDays extends HTMLElement {
         const date = new Date();
 
         return `
-        <div>
+        <div id="Monday">
             <p>Mån</p>
             <p></p>
         </div>
-        <div>
+        <div id="Tuesday">
             <p>Tis</p>
             <p></p>
         </div>
-        <div>
+        <div id="Wednesday">
             <p>Ons</p>
             <p></p>
         </div>
-        <div>
+        <div id="Thursday">
             <p>Tors</p>
             <p></p>
         </div>
-        <div>
+        <div id="Friday">
             <p>Fre</p>
             <p></p>
         </div>
-        <div>
+        <div id="Saturday">
             <p>Lör</p>
             <p></p>
         </div>
-        <div>
+        <div id="Sunday">
             <p>Sön</p>
             <p></p>
         </div>
