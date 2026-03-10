@@ -1,36 +1,59 @@
 
-// import displayHome from "../views/home/home.js";
-import {CreateCalendarView} from "../views/createCalendar/createCalendarView.js"; 
-import groupsView from "../views/groupsView/groupsView.js";
+import {myGroupView} from "../views/myGroupView/myGroupView.js";
+
+export function handleRouter(pathName) {
+    console.log(pathName)
+    let segments = pathName.split("/").filter(Boolean);
+    console.log(segments)
+    let path = "";
+    if(segments[0])
+    if(segments[0] === "home" && segments[1] === "myGroupView") { // /home/myGroupView
+        console.log("myGroupView")
+        myGroupView();
+    } else if(segments[0] === "home" && segments[1] === "myCalView") { // /home/myCalView
+        console.log("myCalView")
+        //Do something
+    } else if(segments[0] === "home") { // home
+        console.log("home page")
+        //Do something
+    } else {
+        console.log("404: Page not found")
+    }
+}
 
 
+
+
+
+
+
+
+
+/*
 const routes = {
-    "/": () => {
-      displayHome();
+    "/CalApp/index.html": () => {
+        console.log("/CalApp/index.html page");
     },
-    "groupsView": () => {
-      groupsView();
+    "/": () => {
+        console.log("/ page");
+    },
+    "/groupsView": () => {
+        console.log("/groupsView page");
+        groupsView();
     },
     "/createNewCalendar": () => {
         const view = new CreateCalendarView(document.querySelector("#app"));
         view.render();
     }
 };
-
+  
 export function UrlRouter() {
-/*     const url = window.location.pathname;
-    routes[url](); */
-    
-    const fullPath = window.location.pathname;
-    const path = "/" + fullPath.split("/").pop(); // tar sista delen
-
+    const path = window.location.pathname;
     if (routes[path]) {
-        routes[path]();
+      routes[path]();
     } else {
-        console.warn("No route found: ", path);
-        // routes["/"]();
+      console.warn("No route found:", path);
     }
 }
 
-// Lyssnar på framåt och tillbaka 
-window.addEventListener("popstate", UrlRouter);
+*/
