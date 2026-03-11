@@ -2,9 +2,25 @@ export class GroupContainerBoxComp extends HTMLElement {
     constructor() {
         super();
         const shadowRoot = this.attachShadow({mode : "open"});
-
         shadowRoot.innerHTML = `
-            <link rel="stylesheet" href="style.css">
+            <style>
+                .box {
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    background-color: lightgrey;
+                }
+                .box img {
+                    flex: 5;
+                    object-fit: cover;
+                }
+                .groupDetailBox {
+                    flex: 3; /* 30% av utrymmet */
+                }
+                .nextEventBox {
+                    flex:2
+                }
+            </style>
 
             <div class="box">
                 <img src="" alt="Group image">
@@ -18,9 +34,7 @@ export class GroupContainerBoxComp extends HTMLElement {
                     <p>X</p>
                 </div>
             </div>
-
         `
     }
-   
 
 }

@@ -1,17 +1,41 @@
+export function handleRouter(pathName) {
+    let segments = pathName.split("/").filter(Boolean);
 
-// import displayHome from "../views/home/home.js";
-import { CreateCalendarView } from "../views/createCalendar/createCalendarView.js";
-import { CreateNotificationsView } from "../views/notifications/notifications.js";
-import { createGroupLandingView } from "../views/groupLanding/groupLanding.js";
-import { HomeView } from "../views/home/homeView.js";
+    if (segments[0] === "client") {
+        segments.splice(0, 1);
+    }
+    console.log(`ROUTER: ${segments}`);
 
 
+    if (segments[0] === "home" && segments[1] === "myGroupView") {
+        console.log("myGroupView");
+    } else if (segments[0] === "home" && segments[1] === "myCalView") {
+        console.log("myCalView");
+    } else if (segments[0] === "home") {
+        console.log("home page");
+    } else {
+        console.log("404: Page not found");
+    }
+}
+
+
+
+
+
+
+
+
+
+/*
 const routes = {
-    "/": () => {
-        const app = document.querySelector("#app");
-        app.replaceChildren(new HomeView());
+    "/CalApp/index.html": () => {
+        console.log("/CalApp/index.html page");
     },
-    "groupsView": () => {
+    "/": () => {
+        console.log("/ page");
+    },
+    "/groupsView": () => {
+        console.log("/groupsView page");
         groupsView();
     },
     "/createNewCalendar": () => {
@@ -26,21 +50,14 @@ const routes = {
         createGroupLandingView();
     }
 };
-
+  
 export function UrlRouter() {
-    /*     const url = window.location.pathname;
-        routes[url](); */
-
-    const fullPath = window.location.pathname;
-    const path = "/" + fullPath.split("/").pop(); // tar sista delen
-
+    const path = window.location.pathname;
     if (routes[path]) {
-        routes[path]();
+      routes[path]();
     } else {
-        console.warn("No route found: ", path);
-        // routes["/"]();
+      console.warn("No route found:", path);
     }
 }
 
-// Lyssnar på framåt och tillbaka 
-window.addEventListener("popstate", UrlRouter);
+*/

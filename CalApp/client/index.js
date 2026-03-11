@@ -1,17 +1,16 @@
-
-import { UrlRouter } from "./core/router/router.js";
-
-// comps
-import "./components/appInput/appInput.js";
-import "./components/toggleBtn/toggleBtn.js";
-import "./components/bottomNav/bottomNav.js";
-
+import { handleRouter } from "./core/router/router.js";
 
 // services
 import { initCalendarService } from "./core/services/calendarsService.js";
-import { initNotificationsService } from "./core/services/notificationsService.js";
-// Kör routern
-UrlRouter();
+
+
+
+handleRouter(window.location.pathname);
+
+// back/forward support
+window.addEventListener("popstate", () => {
+    handleRouter(window.location.pathname);
+});
 
 initCalendarService();
 initNotificationsService();
