@@ -1,41 +1,33 @@
-export class LoginView extends HTMLElement{
-    constructor(){
+import "./components/button.js";
+import "./components/passwordInput.js";
+import "./components/userNameInput.js"
+
+
+export class LoginView extends HTMLElement {
+    constructor() {
         super();
-        this.attachShadow({mode: "open"});
+        this.app = app;
         this.currentView = "login";
     }
-    connectedCallback(){
-        this.render()
-    }
 
-    switchView(view){
-        this.currentView = view;
-        this.render()
-    }
-    render(){
+    render() {
 
-        this.shadowRoot.innerHTML = `
-            <link rel="stylesheet" href="/CalApp/client/core/views/login/loginView.css">
+        this.app.innerHTML = `
+
+            <h2>Login</h2>
+
+                <username-input></username-input>
+                <password-input></password-input>
+                <login-button></login-button>
             
-            <h2>Welcome</h2>
-            
-            <app-input
-                label="Description"
-                placeholder="Enter username"
-                width="100%"
-                height="100px"
-                id="username"
-            ></app-input>
-            
-            <app-input
-                label="Description"
-                placeholder="Enter password"
-                width="100%"
-                height="100px"
-                id="password"
-            ></app-input>
-            
-            <button id="Log in">Login</button>
+            <style>
+                #app {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                }
+
+            </style>
         `;
     }
 
