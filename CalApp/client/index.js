@@ -4,6 +4,7 @@ import { handleRouter } from "./core/router/router.js";
 import { initCalendarService } from "./core/services/calendarsService.js";
 
 
+
 handleRouter(window.location.pathname);
 
 // back/forward support

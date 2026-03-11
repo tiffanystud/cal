@@ -1,12 +1,11 @@
-
-
 export function handleRouter(pathName) {
     let segments = pathName.split("/").filter(Boolean);
-    console.log(`ROUTER: ${segments}`);
 
     if (segments[0] === "client") {
         segments.splice(0, 1);
     }
+    console.log(`ROUTER: ${segments}`);
+
 
     if (segments[0] === "home" && segments[1] === "myGroupView") {
         console.log("myGroupView");
