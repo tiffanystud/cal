@@ -47,14 +47,21 @@ export class WeekDays extends HTMLElement{
         .day-cell{
             margin:0;
             font-size: 12px;
-            height: 45px;
+            height: 40px;
+            padding: 4px;
             display:flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
         .day-cell p{
             margin: 0;
+        }
+        #today{
+            padding: 0 4px;
+            border-radius: 4px;
+            background-color: #9ccea9;
         }
         `;
 
@@ -64,7 +71,11 @@ export class WeekDays extends HTMLElement{
         let html = ``;
         let weekdays = this.getCurrWeek();
         for (let day of weekdays){
-            html += `<div class="day-cell"><p>${day.label}</p><p>${day.date}</p></div>`;
+            if(day.isToday){
+                html += `<div class="day-cell" id="today"><p>${day.label}</p><p>${day.date}</p></div>`;
+            } else{
+                html += `<div class="day-cell"><p>${day.label}</p><p>${day.date}</p></div>`;
+            }
         }
         this.shadowRoot.innerHTML = `<style>${this.style()}</style><div id="week">${html}</div>`;
     };
