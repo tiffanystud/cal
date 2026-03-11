@@ -1,0 +1,16 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: lightgrey;
+}
+.box img {
+    flex: 5;
+    object-fit: cover;
+}
+.groupDetailBox {
+    flex: 3; /* 30% av utrymmet */
+}
+.nextEventBox {
+    flex:2
+}
