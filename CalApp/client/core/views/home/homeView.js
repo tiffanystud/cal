@@ -14,6 +14,10 @@ export class HomeView extends HTMLElement{
             if (store.pages.currentPage === "home") {
                 this.render();
             }
+            if (store.pages.currentPage === "my-groups"){
+                this.currentView = "my-groups";
+                this.render();
+            }
         });
     }
     connectedCallback(){
