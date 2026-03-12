@@ -10,6 +10,11 @@ export class HomeView extends HTMLElement{
         super();
         this.attachShadow({mode: "open"});
         this.currentView = "my-calendar";
+        store.subscribe("pageChanged", () => {
+            if (store.pages.currentPage === "home") {
+                this.render();
+            }
+        });
     }
     connectedCallback(){
         console.log("homeview mounted")
