@@ -48,16 +48,10 @@ export class CreateCalendarView {
 
     addListeners() {
         
+        
+        // + Lägg till ev "view specifika" eventListeners på globala komponenter 
+        
         const createBtn = this.root.querySelector("#createBtn");
-
-        /* 
-            {
-              "id": "65e10aa11b002",
-                "creatorId": "65e10aa11a002",
-                "name": "Studiegrupp",
-                "type": "private"
-            }
-        */
         
         createBtn.addEventListener("click", () => {
                         
