@@ -21,10 +21,6 @@ function resolveRoute(path) {
             store.setState({ currentPage: "home" });
             break;
 
-        case "/about":
-            store.setState({ currentPage: "about" });
-            break;
-
         case "/calendar":
             store.setState({ currentPage: "calendar" });
             break;
@@ -38,6 +34,7 @@ function resolveRoute(path) {
 }
 
 export const Router = {
+    
     navigate(path) {
         history.pushState({}, "", path);
         resolveRoute(path);
