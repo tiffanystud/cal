@@ -1,4 +1,5 @@
-import { PubSub } from "../../core/store/pubsub";
+
+import { PubSub } from "../../core/store/pubsub.js";
 
 // Ha bara globala eventlisteners som ej krockar med view specifika. Håll modulärt 
 export class AddMembers extends HTMLElement {
@@ -14,7 +15,7 @@ export class AddMembers extends HTMLElement {
             
             <div class="container-calendar-members">
                 
-                <h3 class="title"></h3>
+                <h3 class="titleElem"></h3>
                 
                 <div class="members-container">
                     
@@ -30,12 +31,12 @@ export class AddMembers extends HTMLElement {
     
     connectedCallback() {
         
-        this.title = this.shadowRoot.querySelector(".title");
+        this.titleElem = this.shadowRoot.querySelector(".titleElem");
         this.addMemberBtn = this.shadowRoot.querySelector(".add-member-btn");
         this.membersContainer = this.shadowRoot.querySelector(".added-members-container");
     
         // Set title modularly
-        this.shadowRoot.querySelector(".title").textContent = this.getAttribute("title") || "";
+        this.shadowRoot.querySelector(".titleElem").textContent = this.getAttribute("titleElem") || "Add user";
         
         // When user clicks "+", open a search modal? -> *** TODO ***
         this.addMemberBtn.addEventListener("click", () => {

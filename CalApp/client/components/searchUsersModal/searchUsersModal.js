@@ -1,4 +1,5 @@
-import { PubSub } from "../../core/store/pubsub";
+import { PubSub } from "../../core/store/pubsub.js";
+import { apiRequest } from "../../core/services/api.js"; 
 
 export class SearchUsersModal extends HTMLElement {
 
@@ -66,25 +67,32 @@ export class SearchUsersModal extends HTMLElement {
         this.backdrop.classList.add("hidden");
     }
 
-    // Fake search 
-    searchUsers(query) {
+    // Fetch users from API and filter
+    async searchUsers(query) {
 
-        // Om tom söksträng → visa inget
+        // Om tom söksträng > visa inget
         if (!query) {
             this.resultsContainer.innerHTML = "";
             return;
         }
 
-        // Dummy data (ersätt med API)
-        const dummyUsers = [
-            { id: 1, name: "Anna" },
-            { id: 2, name: "Björn" },
-            { id: 3, name: "Cecilia" },
-            { id: 4, name: "David" },
-            { id: 5, name: "Elin" }
-        ];
+        let allUsers = [];
 
-        const filtered = dummyUsers.filter(u =>
+        try {
+            // GET /users > returnerar alla users
+            allUsers = await apiRequest({
+                entity: "users",
+                method: "GET"
+            });
+
+        } catch (err) {
+            console.error("API error: ", err);
+            this.resultsContainer.innerHTML = "<div>Error loading users</div>";
+            return;
+        }
+
+        // Filter users by name (frontend search)
+        const filtered = allUsers.filter(u =>
             u.name.toLowerCase().includes(query.toLowerCase())
         );
 
@@ -101,7 +109,7 @@ export class SearchUsersModal extends HTMLElement {
             row.classList.add("result-row");
             row.textContent = user.name;
 
-            // Klick på user = publicera event 
+            // Klick på user > publicera event 
             row.addEventListener("click", () => {
                 PubSub.publish("Users::UserSelected", user);
                 this.closeModal();
