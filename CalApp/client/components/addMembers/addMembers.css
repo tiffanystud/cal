@@ -23,22 +23,6 @@
     margin-left: -10px;
 }
 
-.member1 {
-    background-color: bisque;
-}
-
-.member2 {
-    background-color: lightpink;
+.member-add-margin {
     margin-left: -15px;
-}
-
-.member3 {
-    background-color: lightskyblue;
-    margin-left: -15px;
-}
-
-.member4 {
-    background-color: lightsalmon;
-    margin-left: -15px;
-
 }
