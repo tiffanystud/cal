@@ -9,7 +9,7 @@ import "./components/toggleBtn/toggleBtn.js";
 
 // SERVICES. (views i renderApp.js)
 //import "../services/calendarService.js";
-import "./core/services/calendarService.js";
+//import "./core/services/calendarService.js";
 
 
 

@@ -1,5 +1,5 @@
 import { store } from "../../store/store.js";
-import { PubSub } from "../../store/pubsub.js";
+import { pubSub } from "../../store/pubsub.js";
 import { EVENTS } from "../../store/events.js";
 import { LandingButton } from "./components/button.js";
 import { MyCalLandingView } from "./components/myCalLandingView.js";
@@ -10,11 +10,11 @@ export class HomeView extends HTMLElement{
         super();
         this.attachShadow({mode: "open"});
         this.currentView = "my-calendar";
-        store.subscribe("pageChanged", () => {
-            if (store.pages.currentPage === "home") {
+        pubSub.subscribe("pageChanged", () => {
+            if (window.location.pathname === "CalApp/client/home" || "CalApp/client/") {
                 this.render();
             }
-            if (store.pages.currentPage === "my-groups"){
+            if (window.location.pathname === "CalApp/client/home/my-groups"){
                 this.currentView = "my-groups";
                 this.render();
             }
@@ -26,6 +26,7 @@ export class HomeView extends HTMLElement{
     }
 
     switchView(view){
+        view === "my-calendar" ? window.location.assign("/") : window.location.assign("/home/my-groups");
         this.currentView = view;
         this.render()
     }
@@ -73,3 +74,5 @@ export class HomeView extends HTMLElement{
 }
 
 customElements.define("home-view", HomeView)
+
+///KAnske lägga currentView i constructorn typ currentView = "my-calendar"

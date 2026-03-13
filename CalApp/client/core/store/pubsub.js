@@ -29,4 +29,4 @@ export class Pubsub {
 
 }
 
-export const PubSub = new Pubsub();
+export const pubSub = new Pubsub();

@@ -1,4 +1,5 @@
 import { store } from "../store/store.js";
+import { pubSub } from "../store/pubsub.js";
 
 // Andra förslag på lösning av router? 
 
@@ -19,22 +20,8 @@ function resolveRoute(path) {
     
     // Gör lösning ovan så detta fungerar
     view = path[1];
-    store.setState({ currentPage: view });
-
-    
-/*     switch (cleanPath) {
-        case "/":
-            store.setState({ currentPage: "home" });
-            break;
-
-        case "/calendar":
-            store.setState({ currentPage: "calendar" });
-            break;
-
-        default:
-            store.setState({ currentPage: "notfound" });
-            break;
-    } */
+    pubSub.publish("pageChanged");
+//    store.setState({ currentPage: view });
 
 
 }
@@ -48,6 +35,7 @@ export const Router = {
 
     init() {
         resolveRoute(window.location.pathname);
+        console.log(window.location.pathname);
 
         window.addEventListener("popstate", () => {
             resolveRoute(window.location.pathname);
