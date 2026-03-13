@@ -8,6 +8,10 @@
 </head>
     <body>
         <style>
+            a:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
             #app {
                 height: 100dvh;
                 width: 390px;
@@ -23,7 +27,7 @@
         </style>
        
         <div id="app">
-            <a href="notifications">Klicka</a>
+            <a id="notifications">Notifications</a>
         </div>
         
         <!-- <button onclick="history.pushState({}, '', '/notifications'); window.dispatchEvent(new PopStateEvent('popstate'))">Test createNewCalendar</button>

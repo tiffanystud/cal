@@ -1,6 +1,6 @@
 
-import { EVENTS } from "/CalApp/client/core/store/events.js"
-import { store } from "/CalApp/client/core/store/store.js"
+import { EVENTS } from "/core/store/events.js"
+import { store } from "/core/store/store.js"
 
 export class BottomNav extends HTMLElement { 
     

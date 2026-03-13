@@ -1,8 +1,11 @@
+import { PubSub } from "../store/pubsub.js";
 import { store } from "../store/store.js";
+import { CreateNotificationsView } from "../views/notifications/notifications.js";
 
 // Andra förslag på lösning av router? 
 
 function resolveRoute(path) {
+    console.log("resolveRoute runs");
     const cleanPath = path.split("?")[0];
 
     let view; 
@@ -22,7 +25,7 @@ function resolveRoute(path) {
     store.setState({ currentPage: view });
 
     
-/*     switch (cleanPath) {
+    switch (cleanPath) {
         case "/":
             store.setState({ currentPage: "home" });
             break;
@@ -31,10 +34,15 @@ function resolveRoute(path) {
             store.setState({ currentPage: "calendar" });
             break;
 
+        case "/notifications":
+            let notiView = new CreateNotificationsView(document.querySelector("#app"));
+            PubSub.publish("pageChanged", "notifications");
+            break;
+
         default:
             store.setState({ currentPage: "notfound" });
             break;
-    } */
+    } 
 
 
 }

@@ -19,7 +19,7 @@ export const EVENTS = {
                 DELETE: "request:sent:calendarsevents:delete",
             },
             EVENTS: {
-                POST: "request:sentsevents:post",
+                POST: "request:sent:events:post",
                 GET: "request:sent:events:get",
                 PATCH: "request:sent:events:patch",
                 DELETE: "request:sent:events:delete",
@@ -34,6 +34,12 @@ export const EVENTS = {
             CALENDARSEVENTS: {
                 POST: "request:received:calendarsevents:post",
                 GET: "request:received:calendarsevents:get",
+            },
+            EVENTS: {
+                POST: "request:received:events:post",
+                GET: "request:received:events:get",
+                PATCH: "request:received:events:patch",
+                DELETE: "request:received:events:delete",
             }
         },
 
@@ -45,6 +51,12 @@ export const EVENTS = {
             CALENDARSEVENTS: {
                 POST: "request:error:calendarsevents:post",
                 GET: "request:error:calendarsevents:get",
+            },
+            EVENTS: {
+                POST: "request:error:events:post",
+                GET: "request:error:events:get",
+                PATCH: "request:error:events:patch",
+                DELETE: "request:error:events:delete",
             }
         }
     },
@@ -58,7 +70,7 @@ export const EVENTS = {
             CALENDARSEVENTS: {
                 POST: "request:error:calendarsevents:post",
                 GET: "request:error:calendarsevents:get",
-            }
+            },
         },
 
         RECEIVED: {
