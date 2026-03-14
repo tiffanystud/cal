@@ -58,11 +58,18 @@ export class CreateCalendarView {
             const nameInputContainer = this.root.querySelector("#calName").getValue();
             const descInputContainer = this.root.querySelector("#calDesc").getValue();
             
+            let value = "private";
+            
+            const groupType = document.querySelector.querySelector("inactive-header-text");
+            if (groupType) {
+                value = "public"
+            }
+            
             // Mockdata
             const payload = {
                 creatorId: "65e10aa11a062",
-                name: "Studiegrupp",
-                type: "private"
+                name: nameInputContainer,
+                type: value
             }
             
             // Listener?
