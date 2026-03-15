@@ -1,8 +1,5 @@
-
-
-#createBtn {
-    margin-top: 100px;
-    padding: 10px 20px;
+.titleElem {
+    margin-bottom: 2px;
 }
 
 .members-container {
@@ -10,7 +7,7 @@
     flex-direction: row;
 }
 
-.added-members {
+.added-members-container {
     display: flex;
 }
 
@@ -27,27 +24,12 @@
     background-color: rgb(179, 179, 179);
     text-align: center;
     border: 2px solid rgb(45, 45, 45);
-    margin-left: -10px;
 }
 
-.add-member-btn:hover{
+.add-member-btn:hover {
     cursor: pointer;
 }
 
-.member1 {
-    background-color: bisque;
-}
-.member2 {
-    background-color: lightpink;
-    margin-left: -15px;
-
-}
-.member3 {
-    background-color: lightskyblue;
-    margin-left: -15px;
-}
-
-.member4 {
-    background-color: lightsalmon;
+.member-add-margin {
     margin-left: -15px;
 }
