@@ -11,43 +11,49 @@ export class GroupWeekDays extends HTMLElement {
     html() {
         const event = state.userData.events
         const date = new Date();
+        const weekDays = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
 
         return `
-        <div id="Monday">
-            <p>Mån</p>
-            <p></p>
+        <div id="weekDaysOuter">
+            div id="Monday">
+                <p>Mån</p>
+                <p></p>
+            </div>
+            <div id="Tuesday">
+                <p>Tis</p>
+                <p></p>
+            </div>
+            <div id="Wednesday">
+                <p>Ons</p>
+                <p></p>
+            </div>
+            <div id="Thursday">
+                <p>Tors</p>
+                <p></p>
+            </div>
+            <div id="Friday">
+                <p>Fre</p>
+                <p></p>
+            </div>
+            <div id="Saturday">
+                <p>Lör</p>
+                <p></p>
+            </div>
+            <div id="Sunday">
+                <p>Sön</p>
+                <p></p>
+            </div>
         </div>
-        <div id="Tuesday">
-            <p>Tis</p>
-            <p></p>
-        </div>
-        <div id="Wednesday">
-            <p>Ons</p>
-            <p></p>
-        </div>
-        <div id="Thursday">
-            <p>Tors</p>
-            <p></p>
-        </div>
-        <div id="Friday">
-            <p>Fre</p>
-            <p></p>
-        </div>
-        <div id="Saturday">
-            <p>Lör</p>
-            <p></p>
-        </div>
-        <div id="Sunday">
-            <p>Sön</p>
-            <p></p>
-        </div>
-        
         `;
     }
 
     style() {
         return `
-            div{
+            #weekDaysOuter {
+                display: flex;
+            }
+
+            #weekDaysOuter div{
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
