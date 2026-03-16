@@ -25,11 +25,25 @@ export class HomeView extends HTMLElement{
         console.log("homeview mounted")
         this.render()
     }
+    sub() {
+        pubSub.subscribe("change:view", route => {
+            if (route.mainPath != "home") {
+                console.log("wrong");
+                return;
+            }
+            if (route.subPath != "event") {
+                console.log("wrong");
+                return;
+            }
+            console.log("created")
+            this.render();
+        })
+    }
 
     switchView(view){
         view === "my-groups" ? history.pushState({}, "", "/CalApp/client/home/my-groups"): history.pushState({}, "", "/CalApp/client/");
         this.currentView = view;
-        pubSub.publish("pageChanged");
+        pubSub.publish("change:view");
         this.render();
     }
     render(){

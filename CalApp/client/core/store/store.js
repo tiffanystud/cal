@@ -15,7 +15,7 @@ export class Store {
     }
     
     // responseStatus för att säkerställa att DB uppdateras innan state 
-    setState(newState, responseStatus) {
+    setState(newState, responseStatus = "ok") {
         
         // Neka fel format
         if (typeof newState !== "object" || Array.isArray(newState)) {

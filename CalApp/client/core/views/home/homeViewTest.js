@@ -1,4 +1,5 @@
 import { HomeView } from "./homeView.js"
+import { loginSimulation } from "../../../loginTest.js";
 
 export function renderHome() {
     let app = document.getElementById("app");
