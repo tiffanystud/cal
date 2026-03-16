@@ -101,7 +101,7 @@ export class AddMembers extends HTMLElement {
     }
     
     randomColor() {
-        const colors = ["#ff9999", "#99ccff", "#ffcc99", "#cc99ff", "#99ffcc"];
+        const colors = ["#ff9999", "#99ccff", "#b7e2e6", "#ffcc99", "#d0b8ac", "#cc99ff", "#cdb4db", "#99ffcc", "#acd8aa", "#add8e6", "#81c6e8"  ];
         return colors[Math.floor(Math.random() * colors.length)];
     }
     
