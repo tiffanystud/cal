@@ -15,7 +15,7 @@ export class GroupWeekDays extends HTMLElement {
         for (let i = 0; i < array.length; i++) {
             if (array[i] == dayName) {
                 return date.getDate() + i;
-            } o
+            }
 
         }
 
@@ -62,6 +62,7 @@ export class GroupWeekDays extends HTMLElement {
 
     style() {
         return `
+        <style>
             #weekDaysOuter {
                 display: flex;
             }
@@ -72,7 +73,7 @@ export class GroupWeekDays extends HTMLElement {
                 justify-content: center;
                 align-items: center;
             }
-        
+        </style>
         `;
     }
 

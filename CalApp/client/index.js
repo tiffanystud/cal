@@ -1,6 +1,6 @@
 // ROUTER
-// import { Router } from "./core/router/router.js"
-import { TestRouter } from "./core/router/router.js";
+import { Router } from "./core/router/router.js"
+
 
 // // GLOBAL COMPONENTS
 // import "./components/appInput/appInput.js";
