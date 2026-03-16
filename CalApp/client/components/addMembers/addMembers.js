@@ -1,7 +1,31 @@
 
 import { PubSub } from "../../core/store/pubsub.js";
 
-// Ha bara globala eventlisteners som ej krockar med view specifika. Håll modulärt 
+/* Komponent struktur
+
+    A. Initialiseras med:
+        <add-members
+            titleElem="Add Admins">   -> Syns i UI
+            userListName="admins">   -> Används för att skapa calendar (se B)
+        </add-members>
+
+    B. Förväntar sig att skicka värde när: 
+        - En knapp i viewn (t.ex. #createBtn) hämtar värdena och skicka dem vidare.
+            ..eventList."click".. => {
+                document.querySelector('add-members[userListName="admins"]').getValue();
+            }"   
+    
+    C. Varje view:
+        - Hämta komponentens värde via getValue()
+        - Skicka vidare data (ex. via PubSub > API)
+
+    D. Komponenten:
+        - Öppna SearchModal via PubSub
+        - Ta emot valda users via PubSub
+        - getValue() som ger public API
+        
+*/
+
 export class AddMembers extends HTMLElement {
     
     allMembers = [];
@@ -29,24 +53,29 @@ export class AddMembers extends HTMLElement {
         `;
     }
     
+    // Set title, Toggle membership (pubsub.sub), Open search modal (pubsub.pub)
     connectedCallback() {
         
         this.titleElem = this.shadowRoot.querySelector(".titleElem");
         this.addMemberBtn = this.shadowRoot.querySelector(".add-member-btn");
         this.membersContainer = this.shadowRoot.querySelector(".added-members-container");
     
-        // Set title modularly
+        // Sets title modularly
         this.shadowRoot.querySelector(".titleElem").textContent = this.getAttribute("titleElem") || "Add user";
         
-        // When user clicks "+", open a search modal? -> *** TODO ***
+        // When user clicks "+"
         this.addMemberBtn.addEventListener("click", () => {
-            PubSub.publish("Users::OpenSearchModal"); // Eller liknade
+            // "this" will be the instance of AddMembers 
+            // (so you can use multiple addMembers in one view w/search Module)
+            PubSub.publish("Users::OpenSearchModal", {context: this});
         });
         
-        // Global listeneer and toggle member
-        // Måste unsubscribas senare (disconnectedCallback)
-        this.unsubscribe = PubSub.subscribe("Users::UserSelected", selectedUser => {
-            this.toggleMembership(selectedUser);
+        // Global listener and toggle member (unsubscribed later in disconnectedCallback)
+        this.unsubscribe = PubSub.subscribe("Users::UserSelected", componentData => {
+            
+            if (componentData.context !== this) return; // Ignore if events not for "this" (comp.)
+            this.toggleMembership(componentData.user);
+        
         });
 
     }
@@ -72,6 +101,7 @@ export class AddMembers extends HTMLElement {
         this.renderMembers();
     }
     
+    // Create DOM elems
     renderMembers() {
         
         this.membersContainer.innerHTML = "";
@@ -100,8 +130,9 @@ export class AddMembers extends HTMLElement {
         });
     }
     
+    // Give BG colors to renderMembers
     randomColor() {
-        const colors = ["#ff9999", "#99ccff", "#ffcc99", "#cc99ff", "#99ffcc"];
+        const colors = ["#ff9999", "#99ccff", "#b7e2e6", "#ffcc99", "#d0b8ac", "#cc99ff", "#cdb4db", "#99ffcc", "#acd8aa", "#add8e6", "#81c6e8"  ];
         return colors[Math.floor(Math.random() * colors.length)];
     }
     

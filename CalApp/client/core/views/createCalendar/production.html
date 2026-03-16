@@ -3,24 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>UNDER PRODUCTION</title>
 </head>
 <body>
     
     <link rel="stylesheet" href="/CalApp/client/core/views/createCalendar/createCalendarView.css">
 
+            <h2>Create new calendar</h2>
 
-    <app-input
-        label="Input-field header text"
-        placeholder="Enter input"    
-    ></app-input>
-    
-    <add-members
-        titleElem="Add Admins"
-    ></add-members> 
-
-    <toggle-btn></toggle-btn>
-    <search-users-modal></search-users-modal> 
+            <app-input
+                label="Calendar name"
+                placeholder="Enter name"
+                width="100%"
+                id="calName"
+            ></app-input>
+            
+            <app-input
+                label="Description"
+                placeholder="Enter description of the group"
+                width="100%"
+                height="100px"
+                id="calDesc"
+            ></app-input>
+        
+            <toggle-btn
+                inactive-header-text="Make calendar public"
+                inactive-info-text="If privare only members will be able to see calendar"
+                active-header-text="Make calendar public"
+                active-info-text="Calendar is now set to public and will be available to all users"
+            ></toggle-btn>
+            
+            <add-members
+                titleElem="Add Admins"  
+                userListName="admins">   
+            </add-members>
+            
+            <add-members
+                titleElem="Add Members"  
+                userListName="members">
+            </add-members>
+            
+            <button id="createBtn">Create</button>
     
     <script type="module" src="production.js"></script>
 </body>

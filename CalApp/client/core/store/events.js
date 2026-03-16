@@ -1,131 +1,148 @@
+// mall - domain:status:entity:action
+// exempel: request:sent:calendars:post
+
+const RESOURCES = [
+    "calendars",
+    "calendarsevents",
+    "events",
+    "users",
+    "usergroups"
+];
+
+const CRUD_ACTIONS = ["post", "get", "patch", "delete"];
+const READ_ACTIONS = ["post", "get"];
+
+// Builds all actions for ONE resource.
+// Ex: { POST: "request:sent:calendars:post", GET: "request:sent:calendars:get" }
+function buildEventActionsForResource(domain, status, resource, actions) {
+
+    const events = {};
+
+    for (const action of actions) {
+
+        const key = action.toUpperCase();
+
+        events[key] = `${domain}:${status}:${resource}:${action}`;
+
+    }
+
+    return events;
+}
 
 
-// mall - domän:status:entitet:action   (ex. request:sent:calendars:post)
+// Builds the EVENTS whole resource level (CALENDARS, USERS etc).
+// Ex: { CALENDARS: { POST: "request:sent:calendars:post" }, USERS: {...} }
+function buildResourcesWithActions(domain, status, actions) {
 
+    const resources = {};
+
+    for (const resource of RESOURCES) {
+
+        const key = resource.toUpperCase();
+
+        resources[key] =
+            buildEventActionsForResource(
+                domain,
+                status,
+                resource,
+                actions
+            );
+
+    }
+
+    return resources;
+}
+
+
+// Builds store update events
+// Ex: { CALENDARS: "store:updated:calendars", USERS: "store:updated:users" }
+function buildStoreUpdatedEvents() {
+
+    const events = {};
+
+    for (const resource of RESOURCES) {
+
+        const key = resource.toUpperCase();
+
+        events[key] = `store:updated:${resource}`;
+
+    }
+
+    return events;
+}
+
+
+// Ex EVENTS.REQUEST.SENT.CALENDARS.POST > "request:sent:calendars:post"
 export const EVENTS = {
 
     REQUEST: {
-        SENT: {
-            CALENDARS: {
-                POST: "request:sent:calendars:post",
-                GET: "request:sent:calendars:get",
-                PATCH: "request:sent:calendars:patch",
-                DELETE: "request:sent:calendars:delete",
-            },
-            CALENDARSEVENTS: {
-                POST: "request:sent:calendarsevents:post",
-                GET: "request:sent:calendarsevents:get",
-                PATCH: "request:sent:calendarsevents:patch",
-                DELETE: "request:sent:calendarsevents:delete",
-            },
-            EVENTS: {
-                POST: "request:sentsevents:post",
-                GET: "request:sent:events:get",
-                PATCH: "request:sent:events:patch",
-                DELETE: "request:sent:events:delete",
-            }
-        },
 
-        RECEIVED: {
-            CALENDARS: {
-                POST: "request:received:calendars:post",
-                GET: "request:received:calendars:get",
-            },
-            CALENDARSEVENTS: {
-                POST: "request:received:calendarsevents:post",
-                GET: "request:received:calendarsevents:get",
-            }
-        },
+        SENT: buildResourcesWithActions(
+            "request",
+            "sent",
+            CRUD_ACTIONS
+        ),
 
-        ERROR: {
-            CALENDARS: {
-                POST: "request:error:calendars:post",
-                GET: "request:error:calendars:get",
-            },
-            CALENDARSEVENTS: {
-                POST: "request:error:calendarsevents:post",
-                GET: "request:error:calendarsevents:get",
-            }
-        }
+        RECEIVED: buildResourcesWithActions(
+            "request",
+            "received",
+            READ_ACTIONS
+        ),
+
+        ERROR: buildResourcesWithActions(
+            "request",
+            "error",
+            READ_ACTIONS
+        )
+
     },
 
     RESPONSE: {
-        SENT: {
-            CALENDARS: {
-                POST: "request:error:calendars:post",
-                GET: "request:error:calendars:get",
-            },
-            CALENDARSEVENTS: {
-                POST: "request:error:calendarsevents:post",
-                GET: "request:error:calendarsevents:get",
-            }
-        },
 
-        RECEIVED: {
-            CALENDARS: {
-                POST: "response:received:calendars:post",
-                GET: "response:received:calendars:get",
-            },
-            CALENDARSEVENTS: {
-                POST: "response:received:calendarsevents:post",
-                GET: "response:received:calendarsevents:get",
-            },
-            USERS: {
-                POST: "response:received:users:post",
-                GET: "response:received:users:get",
-            }
-        },
+        SENT: buildResourcesWithActions(
+            "request",
+            "error",
+            READ_ACTIONS
+        ),
 
-        ERROR: {
-            CALENDARS: {
-                POST: "response:error:calendars:post",
-                GET: "response:error:calendars:get",
-            },
-            CALENDARSEVENTS: {
-                POST: "response:error:calendarsevents:post",
-                GET: "response:error:calendarsevents:get",
-            }
-        }
+        RECEIVED: buildResourcesWithActions(
+            "response",
+            "received",
+            READ_ACTIONS
+        ),
+
+        ERROR: buildResourcesWithActions(
+            "response",
+            "error",
+            READ_ACTIONS
+        )
+
     },
 
     RESOURCE: {
-        RECEIVED: {
 
-            USERS: {
-                POST: "resource:received:users:post",
-                GET: "resource:received:users:get",
-            },
+        RECEIVED: buildResourcesWithActions(
+            "resource",
+            "received",
+            READ_ACTIONS
+        ),
 
-            CALENDARS: {
-                POST: "resource:received:calendars:post",
-                GET: "resource:received:calendars:get",
-            },
+        ERROR: buildResourcesWithActions(
+            "resource",
+            "error",
+            READ_ACTIONS
+        )
 
-            CALENDARSEVENTS: {
-                POST: "resource:received:calendarsevents:post",
-                GET: "resource:received:calendarsevents:get",
-            }
-        },
-
-        ERROR: {
-            CALENDARS: {
-                POST: "resource:error:calendars:post",
-                GET: "resource:error:calendars:get",
-            },
-            CALENDARSEVENTS: {
-                POST: "resource:error:calendarsevents:post",
-                GET: "resource:error:calendarsevents:get",
-            }
-        }
     },
 
     STORE: {
-        UPDATED: {
-            CALENDARS: "store:updated:calendars",
-            CALENDARSEVENTS: "store:updated:calendarsevents",
-        },
+
+        UPDATED: buildStoreUpdatedEvents(),
+
         SELECTED: {
-            CALENDARS: "store:selected:calendar"
+            CALENDARS: "store:selected:calendars"
         }
-    },
+
+    }
+
 };

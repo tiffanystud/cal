@@ -17,7 +17,7 @@ import { TestRouter } from "./core/router/router.js";
 
 import "./core/views/groupLanding/groupLanding.js";
 
-let test = new TestRouter(window.location.pathname);
+let test = new Router(window.location.pathname);
 
 test.init();
 

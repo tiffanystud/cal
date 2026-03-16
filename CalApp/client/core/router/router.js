@@ -1,8 +1,7 @@
 import { PubSub } from "../store/pubsub.js";
 
-// ROUTER FÖRSLAG
 // ROUTERN PUBLICERAR ETT EVENT, MED URL OCH VYN SUBSCRIBAR PÅ EVENTET SOM SEDAN GER URL ELLER PARAMS OCH RENDERAR
-export class TestRouter {
+export class Router {
     constructor(url) {
         this.url = url.split("/").filter(Boolean);
         this.mainPath = this.url[0];
@@ -19,12 +18,12 @@ export class TestRouter {
 
     navigate(path) {
         history.pushState({}, "", path);
-        new TestRouter(path);
+        new Router(path);
     }
 
     init() {
         window.addEventListener("popstate", () => {
-            new TestRouter(window.location.pathname);
+            new Router(window.location.pathname);
         });
     }
 

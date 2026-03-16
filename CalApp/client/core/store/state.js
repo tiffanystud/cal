@@ -12,14 +12,23 @@ export const state = {
     },
 
     userData: {
+        
         cals: [{
             id: 1,
             creatorId: 2,
             name: "VIP",
             type: "public"
         }],
-
-
+        
+        usergroups: [
+            {
+            "id": "65e10aa11d001",
+            "userId": "65e10aa11a001",
+            "calId": "65e10aa11b001",
+            "isAdmin": true
+            }
+        ],
+        
         events: {
             id: 1,
             date: "2026-03-05",

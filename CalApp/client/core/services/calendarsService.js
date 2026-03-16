@@ -6,9 +6,9 @@ import { EVENTS } from "../store/events.js";
 
 console.log("Calendar service loaded");
 
-export function initCalendarService() {
+export function calendarService() {
 
-    // EVENT GET FOR CALENDARS
+    // GET /calendars
     PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.GET, async function (payload) {
 
         console.log("EVENT RECEIVED", payload);
@@ -24,7 +24,7 @@ export function initCalendarService() {
 
             // Se över store objektet
             const currCals = Store.getState().data.cals;
-            const newCals = [...currCals, response];
+            const newCals = [...currCals, ...response];
 
             // Uppdatera state
             Store.setState({
@@ -36,83 +36,90 @@ export function initCalendarService() {
 
 
         } catch {
-
-            // console.log
-
+            
+            console.error("CALENDARS GET ERROR:", err);
+            PubSub.publish(EVENTS.REQUEST.ERROR.CALENDARS.GET, err);
+            
         }
 
     })
 
-    // catch event: "request:sent:calendars:post"
+    // POST /calendars
     PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.POST, async function (payload) {
 
-        console.log("EVENT RECEIVED", payload);
+        const calendarPayload = payload.calendarPayload;
+        const membershipPayload = payload.membershipPayload;
+
+        const admins = membershipPayload.admins;
+        const members = membershipPayload.members;
 
         try {
-
-            // Skicka request data och payload till api.js
             const response = await apiRequest({
                 entity: "calendars",
                 method: "POST",
-                body: payload
+                body: calendarPayload
             });
 
-            // Publish att response och resource är recieved 
-            PubSub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARS.POST, response)
-            PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.POST, response)
+            // If ok (trigga // POST /calendars (received)
+            PubSub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARS.POST, {
+                calendar: response,
+                admins: admins,
+                members: members
+            });
+            
+            // Response (om ngn bara vull lysssna på d)
+            PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.POST, response);
 
-            // Se över store objektet
-            const currCals = Store.getState().data.cals;
-            const newCals = [...currCals, response];
+            const curr = Store.getState().data.cals;
+            const updatedCals = [...curr, response];
 
-            // Uppdatera state
+            // Uppdatera cals
             Store.setState({
                 data: {
                     ...Store.getState().data,
-                    cals: newCals
+                    cals: updatedCals
                 }
             });
 
-
-        } catch {
-
-            // console.log
-
+        } catch (err) {
+            
+            console.error("CALENDARS POST ERROR:", err);
+            PubSub.publish(EVENTS.RESPONSE.ERROR.CALENDARS.POST, err);
+            
         }
+    });
 
-    })
+    
+    // POST /calendars (received)
+    PubSub.subscribe(EVENTS.RESPONSE.RECEIVED.CALENDARS.POST, function (pubsubData) {
 
-    PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARSEVENTS.GET, async function (payload) {
+        // Create memberships in group
+        
+        const calendar = pubsubData.calendar;
+        const admins = pubsubData.admins;
+        const members = pubsubData.members;
 
-        console.log("EVENT RECEIVED", payload);
+        const calendarId = calendar.id;
 
-        try {
-
-            // Skicka request data och payload till api.js
-            const response = await apiRequest("/events");
-
-            // Publish att response och resource är recieved 
-            PubSub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARSEVENTS.GET, response)
-            PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARSEVENTS.GET, response)
-
-            // Se över store objektet
-            const currEvents = Store.getState().data.cals;
-            const newEvents = [...currEvents, response];
-
-            // Uppdatera state
-            Store.setState({
-                data: {
-                    ...Store.getState().data,
-                    events: newEvents
-                }
+        // Trigga userGroups (admins)
+        for (const currAdmin of admins) {
+            
+            PubSub.publish(EVENTS.REQUEST.SENT.USERGROUPS.POST, {
+                calendarId: calendarId,
+                userId: currAdmin.id,
+                isAdmin: true
             });
-
-        } catch {
-
-            // console.log
-
         }
 
-    })
+        // Trigga userGroups (members)
+        for (const currMember of members) {
+
+            PubSub.publish(EVENTS.REQUEST.SENT.USERGROUPS.POST, {
+                calendarId: calendarId,
+                userId: currMember.id,
+                isAdmin: false
+            });
+        }
+    });
 
 }

@@ -35,7 +35,8 @@ export class SearchUsersModal extends HTMLElement {
         this.resultsContainer = this.shadowRoot.querySelector(".results-container");
 
         // Open modal (global event)
-        this.unsubscribeOpen = PubSub.subscribe("Users::OpenSearchModal", () => {
+        this.unsubscribeOpen = PubSub.subscribe("Users::OpenSearchModal", componentData => {
+            this.currContext = componentData.context; // What component opens modal
             this.openModal();
         });
 
@@ -103,15 +104,18 @@ export class SearchUsersModal extends HTMLElement {
 
         this.resultsContainer.innerHTML = "";
 
-        users.forEach(user => {
+        users.forEach(currUser => {
 
             const row = document.createElement("div");
             row.classList.add("result-row");
-            row.textContent = user.name;
+            row.textContent = currUser.name;
 
             // Klick på user > publicera event 
             row.addEventListener("click", () => {
-                PubSub.publish("Users::UserSelected", user);
+                PubSub.publish("Users::UserSelected", {
+                    user: currUser,
+                    context: this.currContext // From comp. using search module
+                });
                 this.closeModal();
             });
 
