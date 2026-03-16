@@ -14,6 +14,7 @@ export class CreateCalendarView {
         
         this.root.innerHTML = `
             <link rel="stylesheet" href="/CalApp/client/core/views/createCalendar/createCalendarView.css">
+            
             <h2>Create new calendar</h2>
 
             <app-input
@@ -30,13 +31,19 @@ export class CreateCalendarView {
                 height="100px"
                 id="calDesc"
             ></app-input>
-            
+        
             <toggle-btn
                 inactive-header-text="Make calendar public"
                 inactive-info-text="If set to private only invited members will be able to see calendar"
                 active-header-text="Make calendar public"
                 active-info-text="Calendar is now set to public and will be available to all users"
             ></toggle-btn>
+            
+            <search-users-modal></search-users-modal>
+
+            <add-members titleElem="Add Admins" userListName="admins"></add-members>
+            <add-members titleElem="Add Members" userListName="members"></add-members>
+
             
             <button id="createBtn">Create</button>
             
@@ -58,33 +65,21 @@ export class CreateCalendarView {
             const admins = document.querySelector('add-members[userListName="admins"]').getValue();
             const members = document.querySelector('add-members[userListName="members"]').getValue();
             
-            // Create calendar
-            const calendarName = document.querySelector("#calName").getValue(); 
-            // const creatorId = Store.getState(); // Hämta inloggat id ***
-            let typeOfGroup = "private";
+            let value = "private";
             
             const groupType = document.querySelector.querySelector("inactive-header-text");
-            if (groupType) { typeOfGroup = "public" }
-            
-            const calendarPayload = {
-                creatorId: "", // Store
-                name: calendarName,
-                // description: document.querySelector("#calDesc").getValue(), // Finns ej i DB ***
-                type: typeOfGroup
+            if (groupType) {
+                value = "public"
             }
             
-            const membershipPayload = {
-                name: document.querySelector("#calName").getValue(),
-                type: typeOfGroup,
-                admins: admins,
-                members: members
-            };
-            
+            // Mockdata
             const payload = {
                 calendarPayload: calendarPayload,
                 membershipPayload: membershipPayload
             }
-
+            
+            // Listener?
+            
             PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload);
             
         });

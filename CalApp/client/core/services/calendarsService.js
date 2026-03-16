@@ -6,9 +6,9 @@ import { EVENTS } from "../store/events.js";
 
 console.log("Calendar service loaded");
 
-export function calendarService() {
+export function initCalendarService() {
 
-    // GET /calendars
+    // EVENT GET FOR CALENDARS
     PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.GET, async function (payload) {
 
         console.log("EVENT RECEIVED", payload);
