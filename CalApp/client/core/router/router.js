@@ -1,29 +1,32 @@
-import { store } from "../store/store.js";
-//import { PubSub } from "../store/pubsub.js";
+import { PubSub } from "../store/pubsub.js";
 
-export function routerHandle(path) {
-    const cleanPath = path.split("?")[0];
-    console.log(cleanPath)
-    switch (cleanPath) {
-        case "/":
-            console.log("currentPage: home")
-            store.setState({ currentPage: "home" });
-            break;
+// ROUTER FÖRSLAG
+// ROUTERN PUBLICERAR ETT EVENT, MED URL OCH VYN SUBSCRIBAR PÅ EVENTET SOM SEDAN GER URL ELLER PARAMS OCH RENDERAR
+export class TestRouter {
+    constructor(url) {
+        this.url = url.split("/").filter(Boolean);
+        this.mainPath = this.url[0];
+        this.subPath = this.url[1];
 
-        case "/calendar":
-            console.log("currentPage: calendar")
-            store.setState({ currentPage: "calendar" });
-            break;
+        // Change:view är eventet som alla vyer lyssnar på via subscribe, om url matchar när vyn subscribar, så renderar den
+        PubSub.publish("change:view", {
+            url: this.url,
+            mainPath: this.mainPath,
+            subPath: this.subPath,
+        })
 
-        default:
-            console.log("currentPage: notFound")
-            store.setState({ currentPage: "notfound" });
-            break;
-    } 
+    }
+
+    navigate(path) {
+        history.pushState({}, "", path);
+        new TestRouter(path);
+    }
+
+    init() {
+        window.addEventListener("popstate", () => {
+            new TestRouter(window.location.pathname);
+        });
+    }
+
+
 }
-
-
-
-
-
-
