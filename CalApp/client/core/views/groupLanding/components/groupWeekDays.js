@@ -65,6 +65,11 @@ export class GroupWeekDays extends HTMLElement {
         <style>
             #weekDaysOuter {
                 display: flex;
+                justify-content: center;
+                gap: 25px;
+                background-color: white;
+                border-radius: 10px;
+                padding: 15px;
             }
 
             #weekDaysOuter div{
@@ -72,7 +77,12 @@ export class GroupWeekDays extends HTMLElement {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                gap: 15px;
             }
+            p {
+                margin: 0;
+            }
+            
         </style>
         `;
     }

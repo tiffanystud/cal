@@ -32,6 +32,9 @@ export class EventCard extends HTMLElement {
         // for (let card of event) {
         // html += `
         return `
+        <p>Kommande evenemang</p>
+        <p>${months[date.getMonth()]}</p>
+
         <div id="eventCardOuter">
             <div id="imgCont">Image here</div>
                 <div id="eventDesc">

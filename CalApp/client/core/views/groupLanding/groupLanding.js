@@ -16,7 +16,7 @@ class CreateGroupLandingView {
                 console.log("wrong");
                 return;
             }
-            if (route.subPath != "event") {
+            if (route.subPath != "groupcalendar") {
                 console.log("wrong");
                 return;
             }
@@ -27,9 +27,17 @@ class CreateGroupLandingView {
 
     render() {
         this.app.innerHTML = `
+        <style>
+            #app {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+        </style>
+
             <h1>Hejhejhejhejhejhejhejhej</h1>
-            <event-cards></event-cards>
             <week-days></week-days>
+            <event-cards></event-cards>
         `;
     }
 
