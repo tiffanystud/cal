@@ -2,7 +2,7 @@
 export const state = {
 
     isLoggedIn: {
-        id: 1,
+        id: "65e10aa11a001",
         username: "Elias",
         email: "Elias@mau.se"
     },

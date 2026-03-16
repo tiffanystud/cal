@@ -28,20 +28,16 @@
         
             <toggle-btn
                 inactive-header-text="Make calendar public"
-                inactive-info-text="If privare only members will be able to see calendar"
+                inactive-info-text="If set to private only invited members will be able to see calendar"
                 active-header-text="Make calendar public"
                 active-info-text="Calendar is now set to public and will be available to all users"
             ></toggle-btn>
             
-            <add-members
-                titleElem="Add Admins"  
-                userListName="admins">   
-            </add-members>
-            
-            <add-members
-                titleElem="Add Members"  
-                userListName="members">
-            </add-members>
+            <search-users-modal></search-users-modal>
+
+            <add-members titleElem="Add Admins" userListName="admins"></add-members>
+            <add-members titleElem="Add Members" userListName="members"></add-members>
+
             
             <button id="createBtn">Create</button>
     

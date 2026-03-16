@@ -8,6 +8,9 @@ console.log("Calendar service loaded");
 
 export function calendarService() {
 
+    console.log("Calendar service function executed");
+
+    console.log("SERVICE LISTENS TO:", EVENTS.REQUEST.SENT.CALENDARS.POST);
     // GET /calendars
     PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.GET, async function (payload) {
 

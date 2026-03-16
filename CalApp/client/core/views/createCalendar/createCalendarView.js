@@ -14,6 +14,7 @@ export class CreateCalendarView {
         
         this.root.innerHTML = `
             <link rel="stylesheet" href="/CalApp/client/core/views/createCalendar/createCalendarView.css">
+            
             <h2>Create new calendar</h2>
 
             <app-input
@@ -30,13 +31,19 @@ export class CreateCalendarView {
                 height="100px"
                 id="calDesc"
             ></app-input>
-            
+        
             <toggle-btn
                 inactive-header-text="Make calendar public"
-                inactive-info-text="If set to private only invited members will be able to see calendar"
+                inactive-info-text="If privare only members will be able to see calendar"
                 active-header-text="Make calendar public"
                 active-info-text="Calendar is now set to public and will be available to all users"
             ></toggle-btn>
+            
+            <search-users-modal></search-users-modal>
+
+            <add-members titleElem="Add Admins" userListName="admins"></add-members>
+            <add-members titleElem="Add Members" userListName="members"></add-members>
+
             
             <button id="createBtn">Create</button>
             
@@ -58,23 +65,23 @@ export class CreateCalendarView {
             const admins = document.querySelector('add-members[userListName="admins"]').getValue();
             const members = document.querySelector('add-members[userListName="members"]').getValue();
             
+            console.log("rad 68")
             // Create calendar
+            const creatorId = Store.getState().isLoggedIn.id;
             const calendarName = document.querySelector("#calName").getValue(); 
-            // const creatorId = Store.getState(); // Hämta inloggat id ***
-            let typeOfGroup = "private";
-            
-            const groupType = document.querySelector.querySelector("inactive-header-text");
-            if (groupType) { typeOfGroup = "public" }
-            
+            const typeOfGroup = document.querySelector("toggle-btn").getValue();
+   
+               
+            console.log("rad 75")
             const calendarPayload = {
-                creatorId: "", // Store
+                creatorId: creatorId,
                 name: calendarName,
                 // description: document.querySelector("#calDesc").getValue(), // Finns ej i DB ***
                 type: typeOfGroup
             }
             
             const membershipPayload = {
-                name: document.querySelector("#calName").getValue(),
+                name: calendarName,
                 type: typeOfGroup,
                 admins: admins,
                 members: members
@@ -85,6 +92,7 @@ export class CreateCalendarView {
                 membershipPayload: membershipPayload
             }
 
+            console.log("Publishing event from createCalendar.js: "  + EVENTS.REQUEST.SENT.CALENDARS.POST, )
             PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload);
             
         });

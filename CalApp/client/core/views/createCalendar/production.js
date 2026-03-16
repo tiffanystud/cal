@@ -9,7 +9,9 @@ import "../../../components/searchUsersModal/searchUsersModal.js"
 import "../../../components/addMembers/addMembers.js"
 
 // SERVICES
-import "../../services/calendarsService.js";
-import "../../services/userGroupsService.js";
+import {calendarService} from "../../services/calendarsService.js";
+import {userGroupsService} from "../../services/userGroupsService.js";
+calendarService();
+userGroupsService();
 
 // Router.init();

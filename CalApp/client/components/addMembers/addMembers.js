@@ -65,9 +65,12 @@ export class AddMembers extends HTMLElement {
         
         // When user clicks "+"
         this.addMemberBtn.addEventListener("click", () => {
+            console.log(`evenlistener "click" from addMembersModal`)
             // "this" will be the instance of AddMembers 
             // (so you can use multiple addMembers in one view w/search Module)
             PubSub.publish("Users::OpenSearchModal", {context: this});
+            console.log(`after pubsub in evenlistener "click" from addMembersModal`)
+
         });
         
         // Global listener and toggle member (unsubscribed later in disconnectedCallback)
