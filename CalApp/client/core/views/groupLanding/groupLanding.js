@@ -2,6 +2,11 @@ import "./components/eventCard.js";
 import "./components/groupDescription.js";
 import "./components/groupWeekDays.js";
 import { PubSub } from "../../store/pubsub.js"
+import { state } from "../../store/state.js";
+import { Store } from "../../store/store.js";
+
+
+let store = new Store(state);
 
 class CreateGroupLandingView {
 
@@ -27,11 +32,15 @@ class CreateGroupLandingView {
 
             console.log("created")
 
+            let state = store.getState();
             let params = route.url.searchParams;
             let cal = state.userData.cals.find(cal => cal.id == params.get("id"));
+            if (cal.id != params.get("id")) {
+                return;
+            }
             let newState = state.currentContext.currentCal = cal;
             store.setState(newState);
-            store.notify(eventName);
+
 
             this.render();
         })

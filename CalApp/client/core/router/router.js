@@ -9,7 +9,7 @@ export class Router {
         this.subPath = this.urlPaths[1];
 
         PubSub.publish("change:view", {
-            url: this.path, //sträng
+            url: this.url, //sträng
             mainPath: this.mainPath,
             subPath: this.subPath
         });
