@@ -13,6 +13,7 @@ export class CreateCalendarView {
 
     subs() {
         console.log("SUBSCRIBE IN CALS")
+        
         PubSub.subscribe("change:view", (data) => {
             if (data.mainPath == "createGroup") {
                 this.render();
@@ -54,8 +55,15 @@ export class CreateCalendarView {
             
             <search-users-modal></search-users-modal>
 
-            <add-members titleElem="Add Admins" userListName="admins"></add-members>
-            <add-members titleElem="Add Members" userListName="members"></add-members>
+            <add-members 
+                titleElem="Add Admins" 
+                userListName="admins">
+            </add-members>
+            
+            <add-members 
+                titleElem="Add Members"
+                userListName="members">
+            </add-members>
             
             <button id="createBtn">Create</button>
             
@@ -77,14 +85,14 @@ export class CreateCalendarView {
             const admins = document.querySelector('add-members[userListName="admins"]').getValue();
             const members = document.querySelector('add-members[userListName="members"]').getValue();
             
+            console.log("HEEEEEEEJ" + admins);
             let value = "private";
             
-            const groupType = document.querySelector.querySelector("inactive-header-text");
+            const groupType = document.querySelector("inactive-header-text");
             if (groupType) {
                 value = "public"
             }
             
-            // Mockdata
             const payload = {
                 calendarPayload: calendarPayload,
                 membershipPayload: membershipPayload

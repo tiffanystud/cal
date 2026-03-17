@@ -4,11 +4,11 @@ export const newRouter = new Router(window.location.href);
 
 
 // GLOBAL COMPONENTS
+import "./components/addMembers/addMembers.js";
 import "./components/appInput/appInput.js";
 import "./components/bottomNav/bottomNav.js";
-import "./components/toggleBtn/toggleBtn.js";
-import "./components/addMembers/addMembers.js";
 import "./components/searchUsersModal/searchUsersModal.js";
+import "./components/toggleBtn/toggleBtn.js";
 
 
 // SERVICES (init all pubsub)
