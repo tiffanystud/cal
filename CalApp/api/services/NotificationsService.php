@@ -5,7 +5,7 @@ require_once "services/eventsService.php";
 require_once "services/PrivateMsgService.php";
 require_once "services/CalendarsMSGService.php";
 require_once "services/calendarsService.php";
-require_once "services/UsersCalendarService.php";
+require_once "services/UsersCalendarsService.php";
 
 
 class NotificationsService {
