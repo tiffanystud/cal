@@ -43,7 +43,7 @@ class CreateGroupLandingView {
                     currentCal: cal,
                     currentEvents: calEvents
                 }
-            }, "calendar:events", { calEvents: calEvents });
+            }, null, "calendar:events", { calEvents: calEvents });
             console.log(store.getState())
 
             this.render();

@@ -1,3 +1,4 @@
+import { state } from "./state.js";
 
 export class Store {
 
@@ -15,7 +16,9 @@ export class Store {
     }
 
     // responseStatus för att säkerställa att DB uppdateras innan state 
-    setState(newState, responseStatus) {
+    // Förväntar sig eventName för att kalla på notify internt
+    // Förväntar sig data för datan från setState
+    setState(newState, responseStatus, eventName, data) {
 
         // Neka fel format
         if (typeof newState !== "object" || Array.isArray(newState)) {
@@ -28,6 +31,8 @@ export class Store {
         this.lastState = this._state;
         // target, source (shallow merge?) OBS->->-> gör om
         this._state = Object.assign(this._state, newState);
+
+        this.notify(eventName, data);
 
 
     }
@@ -42,16 +47,15 @@ export class Store {
     }
 
     // skicka event OBS->->-> gör detta varje gång estState är utfört
-    notify(eventName) {
+    // Skickar med data för att hantera datan typ?
+    notify(eventName, data) {
         if (!Store.allListeners[eventName]) {
             return "No listeners for event"
         } else {
-            Store.allListeners[eventName].forEach(listener => listener(this._state));
+            Store.allListeners[eventName].forEach(listener => listener(data));
         }
     }
 }
 
 // ?
-export const store = new Store({
-    notis: []
-});
+export const store = new Store(state);

@@ -1,11 +1,11 @@
 
 import { PubSub } from "../../store/pubsub.js";
-import { store } from "../../store/store.js";
 import { EVENTS } from "../../store/events.js";
+import { store } from "../../store/store.js";
 // import { CalendarService } from "../../services/calendarsService.js";
 
 export class CreateCalendarView {
-    
+
     constructor() {
         this.app = document.querySelector("#app");
         this.subs();
@@ -13,7 +13,7 @@ export class CreateCalendarView {
 
     subs() {
         console.log("SUBSCRIBE IN CALS")
-        
+
         PubSub.subscribe("change:view", (data) => {
             if (data.mainPath == "createGroup") {
                 this.render();
@@ -23,16 +23,16 @@ export class CreateCalendarView {
             }
         })
     }
-    
+
     render() {
-        
+
         this.app.innerHTML = `
             <link rel="stylesheet" href="/core/views/createGroup/createGroupView.css">
             
             <h2>Create new calendar</h2>
 
             <app-input
-                label="Calendar name"
+                label="CalendarName"
                 placeholder="Enter name"
                 width="100%"
                 id="calName"
@@ -68,78 +68,67 @@ export class CreateCalendarView {
             <button id="createBtn">Create</button>
             
         `;
-        
+
         // DOM mst skapas först
         this.addListeners();
     }
 
     addListeners() {
-    
-        // + Lägg till ev "view specifika" eventListeners på globala komponenter 
-        
+
         const createBtn = this.app.querySelector("#createBtn");
-        
+
+        // Create calendar 
         createBtn.addEventListener("click", () => {
+            
             const state = store.getState();
-            console.log("HEJSANSTATE" + state);
+            const toggleStatus = document.querySelector("toggle-btn").getValue();
+            const groupNameInput = document.querySelector('app-input[label="CalendarName"]');
             
-            
-            
-            
-                       let state = store.getState();
-            let params = route.url.searchParams;
-            let cal = state.userData.cals.find(cal => cal.id == params.get("id"));
-            if (cal.id != params.get("id")) {
-                return;
-            }
-            // Calendars
-            const creatorId = state.isLoggedIn.id;
-            const toggleStatus =  document.querySelector("toggle-btn").getValue()
-            let groupType; 
+            // Calendar
+            const currGroupName = groupNameInput.getValue() || "Group";
+            const currCreatorId = state.isLoggedIn.id;
+            let currGroupType;
             if (toggleStatus == "active") {
-                groupType = "public"
+                currGroupType = "public"
             } else {
-                groupType = "private"
+                currGroupType = "private"
             }
 
-            // Membership (in calendar)
-            const admins = document.querySelector('add-members[userListName="admins"]').getValue();
-            const members = document.querySelector('add-members[userListName="members"]').getValue();
-            
-            
-            
-            console.log("BSBDKJDNLDLWKDN" + creatorId)
-            
-            const calendar = {
-                admins: admins
-            }
-            
-            const membership = {
-                members: members
-            }
-            
+            // Membership / userGroups
+            const addedAdmins = document.querySelector('add-members[userListName="admins"]').getValue();
+            const addedMembers = document.querySelector('add-members[userListName="members"]').getValue();
+
+
             const payload = {
-                calendarPayload: calendar,
-                membershipPayload: membership
+                
+                calendarPayload: {
+                    creatorId: currCreatorId,
+                    name: currGroupName,
+                    type: currGroupType
+                },
+                membershipPayload: {
+                    admins: addedAdmins,
+                    members: addedMembers
+                }
+                
             }
-            
+
             // Listener?
-            
             PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload);
-            
+
         });
     }
-    
+
     // Lyssna på förändringar i store
     subscribeToStore() {
-        
-        Store.subscribe("calendarsUpdated", () => {
-            
+
+        store.subscribe("calendarsUpdated", () => {
+
             // Utveckla store
             console.log("Created Calendar")
         })
     }
-    
+
 }
 
 new CreateCalendarView();

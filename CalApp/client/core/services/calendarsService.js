@@ -1,7 +1,7 @@
 
 import { apiRequest } from "./api.js";
 import { PubSub } from "../store/pubsub.js";
-import { Store } from "../store/store.js";
+import { store } from "../store/store.js";
 import { EVENTS } from "../store/events.js";
 
 console.log("Calendar service loaded");
@@ -15,20 +15,30 @@ export function CalendarService() {
 
         try {
 
+            const calRequest = {
+                entity: "/calendars",
+                method: "POST",
+                body: payload.calendarPayload
+            }
+
+            
+            const membershipPayload = payload.membershipPayload
             // Skicka request data och payload till api.js
-            const response = await apiRequest("/calendars");
+            console.log("BEFORE REQUETS POST CAL")
+            const response = await apiRequest(calRequest);
+            console.log("AFTER REQUETS POST CAL")
 
             // Publish att response och resource är recieved 
             PubSub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARS.GET, response)
             PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.GET, response)
 
-            const currCals = Store.getState().data.cals;
+            const currCals = store.getState().userData.cals;
             const newCals = [...currCals, ...response];
 
             // Uppdatera state
-            Store.setState({
-                data: {
-                    ...Store.getState().data,
+            store.setState({
+                userData: {
+                    ...store.getState().userData,
                     cals: newCals
                 }
             });
@@ -69,13 +79,13 @@ export function CalendarService() {
             // Response (om ngn bara vull lysssna på d)
             PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.POST, response);
 
-            const curr = Store.getState().data.cals;
+            const curr = store.getState().userData.cals;
             const updatedCals = [...curr, response];
 
             // Uppdatera cals
-            Store.setState({
-                data: {
-                    ...Store.getState().data,
+            store.setState({
+                userData: {
+                    ...store.getState().userData,
                     cals: updatedCals
                 }
             });
@@ -121,3 +131,5 @@ export function CalendarService() {
     });
 
 }
+
+CalendarService();

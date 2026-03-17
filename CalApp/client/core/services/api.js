@@ -6,6 +6,7 @@
 
 export async function apiRequest( {entity, method, body = null} ) {
     
+    console.log(`RECEIVED REQUEST: ${entity} ${method} ${body} -`)
     const options = {
         method: method.toUpperCase(),
         headers: { "Content-Type": "application/json"}       
