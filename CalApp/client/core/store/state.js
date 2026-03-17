@@ -43,6 +43,24 @@ export const state = {
             location: "Västra hamnen",
             calId: 1,
             groupId: 1
+        }, {
+            id: 2,
+            date: "2026-03-05",
+            type: "AW",
+            name: "Hej",
+            description: "Inflyttningsfest hos Elias",
+            location: "Västra hamnen",
+            calId: 1,
+            groupId: 1
+        }, {
+            id: 1,
+            date: "2025-01-06",
+            type: "AW",
+            name: "hej",
+            description: "Omg",
+            location: "Svalöv",
+            calId: 1,
+            groupId: 1
         }],
 
         friends: [{

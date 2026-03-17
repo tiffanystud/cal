@@ -20,6 +20,10 @@ export class GroupWeekDays extends HTMLElement {
 
     }
 
+    monthDays() {
+        // Måste kunna skriva ut alla datum för månaden typ!
+    }
+
     highLightToday() {
         let date = new Date();
         const array = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -37,6 +41,7 @@ export class GroupWeekDays extends HTMLElement {
 
 
         return `
+
         <div id="weekDaysOuter">
             <div id="Monday">
                 <p>Mån</p>
@@ -67,12 +72,42 @@ export class GroupWeekDays extends HTMLElement {
                 <p>${this.weekDays("Sunday")}</p>
             </div>
         </div>
+
+         <div id="calWindow">
+            <div class="weeks">
+                <div class="Monday"></div>
+                <div class="Tuesday"></div>
+                <div class="Wednesday"></div>
+                <div class="Thursday"></div>
+                <div class="Friday"></div>
+                <div class="Saturday"></div>
+                <div class="Sunday"></div>
+            </div>
+            <div class="weeks"></div>
+            <div class="weeks"></div>
+            <div class="weeks"></div>
+        </div>
         `;
     }
 
     style() {
         return `
         <style>
+            #calWindow {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 200px;
+                position: relative;
+                background-color: white;
+            }
+            #weeks {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
             #weekDaysOuter {
                 display: flex;
                 justify-content: center;

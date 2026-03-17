@@ -1,6 +1,7 @@
 import "./components/eventCard.js";
 import "./components/groupDescription.js";
 import "./components/groupWeekDays.js";
+import "../../../components/bottomNav/bottomNav.js";
 import { PubSub } from "../../store/pubsub.js"
 import { store } from "../../store/store.js";
 
@@ -13,13 +14,13 @@ class CreateGroupLandingView {
     }
 
     sub() {
-        PubSub.subscribe("change:view", route => {
+        PubSub.subscribe("change:view", async route => {
             if (route.mainPath != "home") {
                 console.log("wrong");
-                return;
+                return null;
             }
             if (!route.url.searchParams.has("id")) {
-                return;
+                return null;
             }
 
             // if (route.subPath != "groupcalendar") {
@@ -34,19 +35,23 @@ class CreateGroupLandingView {
             let params = route.url.searchParams;
             let cal = state.userData.cals.find(cal => cal.id == params.get("id"));
             if (cal.id != params.get("id")) {
-                return;
+                return null;
             }
             let calEvents = state.userData.events.filter(events => events.calId == cal.id);
+
+            // Render körs här innan setState eftersom komponent-taggarna måste finnas innan då notify skickas vid setState och 
+            // komponenterna kommer inte kunna få notify om de inte finns innan det körs.w
+            this.render();
 
             store.setState({
                 currentContext: {
                     currentCal: cal,
                     currentEvents: calEvents
                 }
-            }, null, "calendar:events", { calEvents: calEvents });
-            console.log(store.getState())
+            }, null, "calendar:events", { calEvents: calEvents, calInfo: cal })
 
-            this.render();
+
+            console.log(store.getState())
         })
     }
 
@@ -60,9 +65,10 @@ class CreateGroupLandingView {
             }
         </style>
 
-            <h1>Hejhejhejhejhejhejhejhej</h1>
+            <group-description></group-description>
             <week-days></week-days>
             <event-cards></event-cards>
+            <bottom-nav></bottom-nav>
         `;
     }
 

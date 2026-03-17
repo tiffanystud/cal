@@ -5,7 +5,7 @@ import { EVENTS } from "../../store/events.js";
 // import { CalendarService } from "../../services/calendarsService.js";
 
 export class CreateCalendarView {
-    
+
     constructor() {
         this.app = document.querySelector("#app");
         this.subs();
@@ -13,7 +13,7 @@ export class CreateCalendarView {
 
     subs() {
         console.log("SUBSCRIBE IN CALS")
-        
+
         PubSub.subscribe("change:view", (data) => {
             if (data.mainPath == "createGroup") {
                 this.render();
@@ -23,9 +23,9 @@ export class CreateCalendarView {
             }
         })
     }
-    
+
     render() {
-        
+
         this.app.innerHTML = `
             <link rel="stylesheet" href="/core/views/createGroup/createGroupView.css">
             
@@ -68,25 +68,25 @@ export class CreateCalendarView {
             <button id="createBtn">Create</button>
             
         `;
-        
+
         // DOM mst skapas först
         this.addListeners();
     }
 
     addListeners() {
-    
+
         // + Lägg till ev "view specifika" eventListeners på globala komponenter 
-        
+
         const createBtn = this.app.querySelector("#createBtn");
-        
+
         createBtn.addEventListener("click", () => {
             const state = store.getState();
             console.log("HEJSANSTATE" + state);
-            
-            
-            
-            
-                       let state = store.getState();
+
+
+
+
+            // let state = store.getState();
             let params = route.url.searchParams;
             let cal = state.userData.cals.find(cal => cal.id == params.get("id"));
             if (cal.id != params.get("id")) {
@@ -94,8 +94,8 @@ export class CreateCalendarView {
             }
             // Calendars
             const creatorId = state.isLoggedIn.id;
-            const toggleStatus =  document.querySelector("toggle-btn").getValue()
-            let groupType; 
+            const toggleStatus = document.querySelector("toggle-btn").getValue()
+            let groupType;
             if (toggleStatus == "active") {
                 groupType = "public"
             } else {
@@ -105,41 +105,41 @@ export class CreateCalendarView {
             // Membership (in calendar)
             const admins = document.querySelector('add-members[userListName="admins"]').getValue();
             const members = document.querySelector('add-members[userListName="members"]').getValue();
-            
-            
-            
+
+
+
             console.log("BSBDKJDNLDLWKDN" + creatorId)
-            
+
             const calendar = {
                 admins: admins
             }
-            
+
             const membership = {
                 members: members
             }
-            
+
             const payload = {
                 calendarPayload: calendar,
                 membershipPayload: membership
             }
-            
+
             // Listener?
-            
+
             PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload);
-            
+
         });
     }
-    
+
     // Lyssna på förändringar i store
     subscribeToStore() {
-        
+
         Store.subscribe("calendarsUpdated", () => {
-            
+
             // Utveckla store
             console.log("Created Calendar")
         })
     }
-    
+
 }
 
 new CreateCalendarView();

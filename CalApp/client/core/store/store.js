@@ -34,6 +34,7 @@ export class Store {
 
         this.notify(eventName, data);
 
+        return { ok: true };
 
     }
 
@@ -42,7 +43,10 @@ export class Store {
     }
 
     subscribe(eventName, listener) {
-        if (!Store.allListeners[eventName]) Store.allListeners[eventName] = [];
+        if (!Store.allListeners[eventName]) {
+            console.log("Hej")
+            Store.allListeners[eventName] = []
+        };
         Store.allListeners[eventName].push(listener);
     }
 
