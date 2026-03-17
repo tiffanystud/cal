@@ -2,7 +2,7 @@
 import { PubSub } from "../../store/pubsub.js";
 import { Store } from "../../store/store.js";
 import { EVENTS } from "../../store/events.js";
-import { calendarService } from "../../services/calendarsService.js";
+// import { CalendarService } from "../../services/calendarsService.js";
 
 export class CreateCalendarView {
     

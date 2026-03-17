@@ -22,7 +22,6 @@ export function CalendarService() {
             PubSub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARS.GET, response)
             PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.GET, response)
 
-            // Se över store objektet
             const currCals = Store.getState().data.cals;
             const newCals = [...currCals, ...response];
 
@@ -94,14 +93,13 @@ export function CalendarService() {
     PubSub.subscribe(EVENTS.RESPONSE.RECEIVED.CALENDARS.POST, function (pubsubData) {
 
         // Create memberships in group
-        
         const calendar = pubsubData.calendar;
         const admins = pubsubData.admins;
         const members = pubsubData.members;
 
         const calendarId = calendar.id;
 
-        // Trigga userGroups (admins)
+        // Trigga userGroups Service (admins)
         for (const currAdmin of admins) {
             
             PubSub.publish(EVENTS.REQUEST.SENT.USERGROUPS.POST, {
@@ -111,7 +109,7 @@ export function CalendarService() {
             });
         }
 
-        // Trigga userGroups (members)
+        // Trigga userGroups Service (members)
         for (const currMember of members) {
 
             PubSub.publish(EVENTS.REQUEST.SENT.USERGROUPS.POST, {
