@@ -1,6 +1,5 @@
 import { LandingButton } from "./landingButton.js";
-import { Router } from "../../../router/router.js";
-import { test } from "../../../../index.js"
+import { newRouter } from "../../../../index.js"
 import { PubSub } from "../../../store/pubsub.js";
 
 export class LandingButtonContainer extends HTMLElement {
@@ -16,6 +15,7 @@ export class LandingButtonContainer extends HTMLElement {
                     display: block;
                 }
                 #btn-container {
+                
                     width: 350px;
                     height: 80px;
                     display: flex;
@@ -50,9 +50,9 @@ export class LandingButtonContainer extends HTMLElement {
 
     switchView(view) {
         if (view == "home"){
-            test.navigate("/");
+            newRouter.navigate("/");
         } else {
-            test.navigate(`/home/${view}`);
+            newRouter.navigate(`/home/${view}`);
         }
     }
 }

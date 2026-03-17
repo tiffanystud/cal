@@ -35,8 +35,44 @@ export class AddMembers extends HTMLElement {
         this.attachShadow({ mode: "open" });
         
         this.shadowRoot.innerHTML = `
-            <link rel="stylesheet" href="/CalApp/client/components/addMembers/addMembers.css">
-            
+            <style>
+                .titleElem {
+                    margin-bottom: 2px;
+                }
+
+                .members-container {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                .added-members-container {
+                    display: flex;
+                }
+
+                .member-cirkle {
+                    background-color: lightgray;
+                    padding: 8px;
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    box-sizing: border-box;
+                }
+
+                .add-member-btn {
+                    background-color: rgb(179, 179, 179);
+                    text-align: center;
+                    border: 2px solid rgb(45, 45, 45);
+                }
+
+                .add-member-btn:hover {
+                    cursor: pointer;
+                }
+
+                .member-add-margin {
+                    margin-left: -15px;
+                }
+            </style>    
+                    
             <div class="container-calendar-members">
                 
                 <h3 class="titleElem"></h3>
@@ -51,7 +87,7 @@ export class AddMembers extends HTMLElement {
                 
             </div>
         `;
-    }
+    }    
     
     // Set title, Toggle membership (pubsub.sub), Open search modal (pubsub.pub)
     connectedCallback() {

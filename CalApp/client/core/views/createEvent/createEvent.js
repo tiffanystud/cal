@@ -10,7 +10,7 @@ export class CreateEvent extends HTMLElement {
             }
         });
         PubSub.subscribe("change:view", (data) => {
-            if(data.url === "/home/createEvent"){ //url
+            if(data.url.pathname === "/home/createEvent"){ //url
                 this.render();
             }
         });

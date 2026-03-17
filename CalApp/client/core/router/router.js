@@ -9,7 +9,6 @@ export class Router {
         this.urlPaths = this.url.pathname.split("/").filter(Boolean);
         this.mainPath = this.urlPaths[0];
         this.subPath = this.urlPaths[1];
-
         PubSub.publish("change:view", {
             url: this.url, //sträng
             mainPath: this.mainPath,

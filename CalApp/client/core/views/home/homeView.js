@@ -16,6 +16,9 @@ export class HomeView extends HTMLElement{
     }
     sub() {
         PubSub.subscribe("change:view", (data) => {
+            if(data.url.pathname === "/"){
+                this.render();
+            }
             if (data.url === "/home") {
                 this.render();
             }
@@ -32,10 +35,11 @@ export class HomeView extends HTMLElement{
         this.app.innerHTML = `
         <style>
             landing-button-container{
-                margin: 16px;
+                margin: 10px;
+                box-sizing: border-box;
             }
             my-calendar{
-                margin: 16px 16px 60px;
+                margin: 10px;
             }
         </style>
         <landing-button-container>
