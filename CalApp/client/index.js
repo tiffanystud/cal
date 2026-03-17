@@ -22,6 +22,7 @@ import "./core/views/createEvent/createEvent.js";
 import "./core/views/createCalendar/createCalendarView.js";
 import "./core/views/groupLanding/groupLanding.js";
 import "./core/views/notifications/notifications.js";
+import "./core/views/myGroupView/groupBoxContainerComp.js"; //namnbyte??
 
 
 newRouter.init();

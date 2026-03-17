@@ -44,12 +44,27 @@ export class HomeView extends HTMLElement{
             }
         </style>
         <landing-button-container>
-            <landing-button label="My Calendar" view="home" active></landing-button>
-            <landing-button label="My Groups" view="groupcalendar"></landing-button>
+            <landing-button id="myCalBtn" label="My Calendar" view="home" active></landing-button>
+            <landing-button id="myGroupsBtn" label="My Groups" view="groupcalendar"></landing-button>
         </landing-button-container>
         <my-calendar></my-calendar>
         <bottom-nav></bottom-nav>
         `;
+
+        const myGroupsBtn = this.app.querySelector("#myGroupsBtn");
+        const myCalBtn = this.app.querySelector("#myCalBtn");
+
+        myGroupsBtn.addEventListener('click', () => {
+            PubSub.publish('change:page', { 
+                page: 'myGroups' 
+            
+            });
+        });
+        myCalBtn.addEventListener('click', () => {
+            PubSub.publish('change:page', { 
+                page: 'myCal' 
+            });
+        });
 
     }
 

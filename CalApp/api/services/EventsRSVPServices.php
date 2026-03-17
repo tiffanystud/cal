@@ -20,9 +20,7 @@ class EventsRSVPService {
 
         // Säkerställer vi bara en rad med samma userID och eventId?
         foreach ($items as $currItem) {
-            if ($currItem["userId"] == $userId && 
-                $currItem["eventId"] == $eventId 
-                ) {
+            if ($currItem["userId"] == $userId && $currItem["eventId"] == $eventId ) {
                 $filtered[] = $currItem;
             }
         }
