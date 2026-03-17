@@ -32,7 +32,9 @@ export async function apiRequest( {entity, method, body = null} ) {
         // Om vi hanterar fel så här, utan att komponenten som skickade fetch, så stannar flödet direkt. Komponenten kommer ej få "fel"
         // Komponenten måste ha en try/catch vid varje apiRequest
         // throw new Error(data.error || "Unknown API error");
-        throw new Error(response);
+        let e = new Error("Request failed");
+        e.response = response;
+        throw e;
     }
     
     const data = await response.json();
