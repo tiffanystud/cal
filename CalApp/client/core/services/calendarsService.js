@@ -112,6 +112,20 @@ export function CalendarService() {
         // Trigga userGroups Service (members)
         for (const currMember of members) {
             
+            let isAlreadyAdmin = false;
+
+            // Om user redan är tiillagd som admin, ska ej user kunna vara member/!admin också
+            for (const currAdmin of admins) {
+                if (currAdmin.id === currMember.id) {
+                    isAlreadyAdmin = true;
+                    break;
+                }
+            }
+
+            if (isAlreadyAdmin) {
+                continue; // Om user finns som admin, hoppa över denna user
+            }
+
             PubSub.publish(EVENTS.REQUEST.SENT.USERGROUPS.POST, {
                 calId: calendarId,
                 userId: currMember.id,

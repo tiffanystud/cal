@@ -5,7 +5,6 @@ import { EVENTS } from "../store/events.js";
 
 console.log("UG service loaded");
 
-
 export function userGroupsService() {
 
     // POST /user_calendars
