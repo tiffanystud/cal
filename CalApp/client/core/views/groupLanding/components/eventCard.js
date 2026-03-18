@@ -15,6 +15,8 @@ export class EventCard extends HTMLElement {
         console.log(this.events);
     }
 
+
+
     html() {
         const days = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
         const months = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"];

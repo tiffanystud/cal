@@ -24,7 +24,7 @@ export class GroupContainerBoxComp extends HTMLElement {
     }
     html() {
 
-        let allHtml;
+        let allHtml; 
 
         for (let cal of this.cals) {
             allHtml += `

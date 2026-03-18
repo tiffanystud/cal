@@ -5,7 +5,7 @@ import { PubSub } from "../../../store/pubsub.js";
 export class LandingButtonContainer extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({mode: "open"});
+        this.attachShadow({ mode: "open" });
     }
 
     connectedCallback() {
@@ -50,7 +50,7 @@ export class LandingButtonContainer extends HTMLElement {
     }
 
     switchView(view) {
-        if (view == "home"){
+        if (view == "home") {
             newRouter.navigate("/");
         } else {
             newRouter.navigate(`/home/${view}`);

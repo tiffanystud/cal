@@ -6,17 +6,17 @@ import { MyCalLandingView } from "./components/myCalLandingView.js";
 import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
 
 
-export class HomeView extends HTMLElement{
-    constructor(){
+export class HomeView extends HTMLElement {
+    constructor() {
         super();
         this.app = document.querySelector("#app");
-        this.attachShadow({mode: "open"});
+        this.attachShadow({ mode: "open" });
         this.currentView = "my-calendar";
         this.sub();
     }
     sub() {
         PubSub.subscribe("change:view", (data) => {
-            if(data.url.pathname === "/"){
+            if (data.url.pathname === "/") {
                 this.render();
             }
             if (data.url === "/home") {
@@ -24,13 +24,13 @@ export class HomeView extends HTMLElement{
             }
         })
         PubSub.subscribe("change:page", (data) => {
-            if(data.page === "home"){ //bottom Nav
+            if (data.page === "home") { //bottom Nav
                 this.render();
             }
         });
     }
 
-    render(){
+    render() {
 
         this.app.innerHTML = `
         <landing-button-container>
@@ -45,14 +45,16 @@ export class HomeView extends HTMLElement{
         const myCalBtn = this.app.querySelector("#myCalBtn");
 
         myGroupsBtn.addEventListener('click', () => {
-            PubSub.publish('change:page', { 
-                page: 'myGroups' 
-            
+            PubSub.publish('change:page', {
+                page: 'myGroups'
+
             });
         });
+        // Här publicerar knapptrycket ett event så myCal kan dyka upp
         myCalBtn.addEventListener('click', () => {
-            PubSub.publish('change:page', { 
-                page: 'myCal' 
+            PubSub.publish('change:page', {
+                page: 'myCal'
+
             });
         });
 

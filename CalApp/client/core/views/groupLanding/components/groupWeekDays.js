@@ -12,9 +12,15 @@ export class GroupWeekDays extends HTMLElement {
         let date = new Date();
         const array = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
+        // for (let i = 0; i < array.length; i++) {
+        //     if (array[i] == dayName) {
+        //         return date.getDate() + i;
+        //     }
+        // }
+
         for (let i = 0; i < array.length; i++) {
-            if (array[i] == dayName) {
-                return date.getDate() + i;
+            if (dayName == array[i]) {
+                // Typ räkna ut diffen här? Kolla över!
             }
         }
 

@@ -28,6 +28,11 @@ export const state = {
             creatorId: 2,
             name: "TEST",
             type: "public"
+        }, {
+            id: "65e10aa11b001",
+            creatorId: "2",
+            name: "VIP",
+            type: "private"
         }],
 
         usergroups: [
@@ -55,7 +60,7 @@ export const state = {
             name: "Hej",
             description: "Inflyttningsfest hos Elias",
             location: "Västra hamnen",
-            calId: 1,
+            calId: "65e10aa11b001",
             groupId: 1
         }, {
             id: 1,
@@ -64,7 +69,7 @@ export const state = {
             name: "hej",
             description: "Omg",
             location: "Svalöv",
-            calId: 1,
+            calId: "65e10aa11b001",
             groupId: 1
         }],
 

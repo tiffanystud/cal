@@ -1,14 +1,14 @@
-export class LandingButton extends HTMLElement{
-    constructor(){
+export class LandingButton extends HTMLElement {
+    constructor() {
         super();
-        this.attachShadow({mode: "open"});
+        this.attachShadow({ mode: "open" });
     }
 
-    connectedCallback(){
+    connectedCallback() {
         this.render();
     }
 
-    render(){
+    render() {
         //if (!this.shadowRoot) return;
         const label = this.getAttribute("label") || "Button";
         this.shadowRoot.innerHTML = `
@@ -25,12 +25,13 @@ export class LandingButton extends HTMLElement{
                 font-weight: 600;
                 background-color: #858585;
                 border: none;
+                cursor: pointer;
             }
         </style>
         <button>${label}</button>
         `;
     }
-    
+
 }
 
 customElements.define("landing-button", LandingButton);
