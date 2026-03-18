@@ -23,6 +23,11 @@ export const state = {
             creatorId: 2,
             name: "VIP",
             type: "public"
+        }, {
+            id: 2,
+            creatorId: 2,
+            name: "TEST",
+            type: "public"
         }],
 
         usergroups: [
