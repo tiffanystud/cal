@@ -1,12 +1,12 @@
 // API-calls
-// Här görs alla fetch från client
 // Alla som använder denna funktionen ska wrappa fetchen med try/catch
 
 
-
+// Entity (matcha i router.php)
 export async function apiRequest( {entity, method, body = null} ) {
     
     console.log(`RECEIVED REQUEST: ${entity} ${method} ${body} -`)
+    
     const options = {
         method: method.toUpperCase(),
         headers: { "Content-Type": "application/json"}       
@@ -17,7 +17,6 @@ export async function apiRequest( {entity, method, body = null} ) {
     }
     
     const BASE_URL = "http://localhost:8000";
-    // ex. "/calendars", { method: "POST", headers: { headers: "Cont.."} }
     
     let response;
     
@@ -32,7 +31,7 @@ export async function apiRequest( {entity, method, body = null} ) {
     if (!response.ok) {
         // Om vi hanterar fel så här, utan att komponenten som skickade fetch, så stannar flödet direkt. Komponenten kommer ej få "fel"
         // Komponenten måste ha en try/catch vid varje apiRequest
-        // throw new Error(data.error || "Unknown API error");
+        // Ok flöde? utan att stanna upp?
         let e = new Error("Request failed");
         e.response = response;
         throw e;
@@ -40,10 +39,8 @@ export async function apiRequest( {entity, method, body = null} ) {
     
     const data = await response.json();
     
+    // Uppdarera så denna del alltid returnerar något som alla kan lösa och förstå, komponenter som views (response?)
     
-    // Om ej data då
-    // Uppdarera så denna funktion returnera något som alla kan lösa och förstår (response?)
-    
-    // Status måste alltid returnera en (= tom) body + status
+    // Status måste alltid returneras och en (ev. tom) body + status
     return data; 
 }

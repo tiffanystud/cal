@@ -101,16 +101,12 @@ export class AddMembers extends HTMLElement {
         
         // When user clicks "+"
         this.addMemberBtn.addEventListener("click", () => {
-            console.log("HEJ FRÅN ADDMEMBERS CLICK 1")
             PubSub.publish("Users::OpenSearchModal", {context: this}); // Eller liknade
         });
-        
-        console.log("HEJ FRÅN ADDMEMBERS CLICK 2")
-        
+                
         // Global listener and toggle member (unsubscribed later in disconnectedCallback)
         this.unsubscribe = PubSub.subscribe("Users::UserSelected", componentData => {
             
-            console.log("HEJ FRÅN ADDMEMBERS CLICK 3")
             if (!componentData || componentData.context !== this) return;
             this.toggleMembership(componentData.user);
         
