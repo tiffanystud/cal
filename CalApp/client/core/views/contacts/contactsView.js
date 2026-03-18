@@ -15,21 +15,25 @@ export class ContactsView extends HTMLElement{
         this.sub();
     }
     sub() {
-
         PubSub.subscribe("change:page", (data) => {
             if (data.page === "contacts"){
-                this.renderMyContacts();
+                this.render();
             }
 
         });
         PubSub.subscribe("change:view", (data) => {
             if (data.page === "contacts"){
-                this.renderMyContacts();
+                this.render();
             }
 
         });
     }
-    renderMyContacts(){
+    render(){
+        const params = new URLSearchParams(location.search);
+        const isGroupContext =
+            location.pathname.startsWith("/groups") &&
+            params.has("id");
+        const groupId = params.get("id");
         this.app.innerHTML = `
         <style>
             app-input{
@@ -40,36 +44,23 @@ export class ContactsView extends HTMLElement{
                 display: flex;
                 flex-direction: column;
                 justify-contents: center;
+                font-family: Helvetica;
             }
             h3{
             text-align: center;
             font-size: 14px;
-            font-family: Helvetica;
             }
         </style>
         <landing-button-container>
-            <landing-button label="My Calendar" view="home" active></landing-button>
-            <landing-button label="My Groups" view="groupcalendar"></landing-button>
+            <landing-button label="My Calendar" view="home" ${isGroupContext ? "" : "active"}></landing-button>
+            <landing-button label="My Groups" view="groupcalendar"${isGroupContext ? "active" : ""}></landing-button>
         </landing-button-container>
         <div class="view">
             <div class="rubrik"></div>
             <h3>My Contacts</h3>
             <app-input placeholder="Search" width="350px"></app-input>
-            <contact-card-container></contact-card-container>
+            <contact-card-container context="${isGroupContext ? "group" : "friends"}" group-id="${groupId || ''}"></contact-card-container>
         </div>
-        <bottom-nav></bottom-nav>
-        `;
-
-    }
-    
-
-    render(){
-
-        this.app.innerHTML = `
-        <landing-button-container>
-            <landing-button label="My Calendar" view="home" active></landing-button>
-            <landing-button label="My Groups" view="groupcalendar"></landing-button>
-        </landing-button-container>
         <bottom-nav></bottom-nav>
         `;
 
@@ -80,3 +71,4 @@ export class ContactsView extends HTMLElement{
 customElements.define("contacts-view", ContactsView)
 
 new ContactsView();
+
