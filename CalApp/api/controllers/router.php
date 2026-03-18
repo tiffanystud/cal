@@ -146,7 +146,7 @@ function Router($requestUrl = null){
                 }
                 break;
 
-        case "private_msg": // Elias
+        case "private_msg": 
             switch($method) {
                 case "GET":
                     CorsMiddleware::handle();

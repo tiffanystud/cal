@@ -12,13 +12,15 @@ export class CreateCalendarView {
     }
 
     subs() {
-        console.log("SUBSCRIBE IN CALS")
 
         PubSub.subscribe("change:view", (data) => {
             if (data.mainPath == "createGroup") {
                 this.render();
             }
             if (data.mainPath == "home/createGroup") {
+                this.render();
+            }
+            if (data.mainPath == "calendars/createGroup") {
                 this.render();
             }
         })
@@ -32,7 +34,7 @@ export class CreateCalendarView {
             <h2>Create new calendar</h2>
 
             <app-input
-                label="CalendarName"
+                label="Calendar Name"
                 placeholder="Enter name"
                 width="100%"
                 id="calName"
@@ -81,50 +83,15 @@ export class CreateCalendarView {
         createBtn.addEventListener("click", () => {
 
             const state = store.getState();
-            console.log("HEJSANSTATE" + state);
-
-
-
-
-            // let state = store.getState();
-            let params = route.url.searchParams;
-            let cal = state.userData.cals.find(cal => cal.id == params.get("id"));
-            if (cal.id != params.get("id")) {
-                return;
-            }
-            // Calendars
-            const creatorId = state.isLoggedIn.id;
             const toggleStatus = document.querySelector("toggle-btn").getValue()
-            let groupType;
-            const groupNameInput = document.querySelector('app-input[label="CalendarName"]');
+            const groupNameInput = document.querySelector('app-input[label="Calendar Name"]');
 
             // Calendar
             const currGroupName = groupNameInput.getValue() || "Group";
             const currCreatorId = state.isLoggedIn.id;
-            let currGroupType;
-            if (toggleStatus == "active") {
-                currGroupType = "public"
-            } else {
-                currGroupType = "private"
-            }
+            const currGroupType = toggleStatus === "active" ? "private" : "public";
 
-            // Membership (in calendar)
-            const admins = document.querySelector('add-members[userListName="admins"]').getValue();
-            const members = document.querySelector('add-members[userListName="members"]').getValue();
-
-
-
-            console.log("BSBDKJDNLDLWKDN" + creatorId)
-
-            const calendar = {
-                admins: admins
-            }
-
-            const membership = {
-                members: members
-            }
-
-            // Membership / userGroups
+            // Memberships / userGroups
             const addedAdmins = document.querySelector('add-members[userListName="admins"]').getValue();
             const addedMembers = document.querySelector('add-members[userListName="members"]').getValue();
 
@@ -143,8 +110,7 @@ export class CreateCalendarView {
 
             }
 
-            // Listener?
-
+            // PUBLISH LISTENER (SENT)
             PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload);
 
         });

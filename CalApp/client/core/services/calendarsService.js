@@ -9,24 +9,16 @@ console.log("Calendar service loaded");
 export function CalendarService() {
 
     // EVENT GET FOR CALENDARS
-    PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.GET, async function (payload) {
-
-        console.log("EVENT RECEIVED", payload);
+    PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.GET, async function () {
 
         try {
 
             const calRequest = {
                 entity: "/calendars",
-                method: "POST",
-                body: payload.calendarPayload
+                method: "GET",
             }
 
-            
-            const membershipPayload = payload.membershipPayload
-            // Skicka request data och payload till api.js
-            console.log("BEFORE REQUETS POST CAL")
             const response = await apiRequest(calRequest);
-            console.log("AFTER REQUETS POST CAL")
 
             // Publish att response och resource är recieved 
             PubSub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARS.GET, response)
@@ -69,6 +61,7 @@ export function CalendarService() {
                 body: calendarPayload
             });
 
+            
             // If ok (trigga // POST /calendars (received)
             PubSub.publish(EVENTS.RESPONSE.RECEIVED.CALENDARS.POST, {
                 calendar: response,
@@ -76,9 +69,6 @@ export function CalendarService() {
                 members: members
             });
             
-            // Response (om ngn bara vull lysssna på d)
-            PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.POST, response);
-
             const curr = store.getState().userData.cals;
             const updatedCals = [...curr, response];
 
@@ -106,24 +96,38 @@ export function CalendarService() {
         const calendar = pubsubData.calendar;
         const admins = pubsubData.admins;
         const members = pubsubData.members;
-
         const calendarId = calendar.id;
+        
 
         // Trigga userGroups Service (admins)
         for (const currAdmin of admins) {
             
             PubSub.publish(EVENTS.REQUEST.SENT.USERGROUPS.POST, {
-                calendarId: calendarId,
+                calId: calendarId,
                 userId: currAdmin.id,
                 isAdmin: true
             });
         }
-
+        
         // Trigga userGroups Service (members)
         for (const currMember of members) {
+            
+            let isAlreadyAdmin = false;
+
+            // Om user redan är tiillagd som admin, ska ej user kunna vara member/!admin också
+            for (const currAdmin of admins) {
+                if (currAdmin.id === currMember.id) {
+                    isAlreadyAdmin = true;
+                    break;
+                }
+            }
+
+            if (isAlreadyAdmin) {
+                continue; // Om user finns som admin, hoppa över denna user
+            }
 
             PubSub.publish(EVENTS.REQUEST.SENT.USERGROUPS.POST, {
-                calendarId: calendarId,
+                calId: calendarId,
                 userId: currMember.id,
                 isAdmin: false
             });
