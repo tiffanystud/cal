@@ -2,6 +2,7 @@
 import { EVENTS } from "/core/store/events.js"
 import { store } from "/core/store/store.js"
 import { PubSub } from "../../core/store/pubsub.js";
+import { newRouter } from "../../index.js";
 
 export class BottomNav extends HTMLElement { 
     
@@ -45,7 +46,7 @@ export class BottomNav extends HTMLElement {
                     <img class="icon-light" src="/../../assets/icons/home-light.png">
                 </button>
                 
-                <button class="nav-btn users">
+                <button class="nav-btn contacts">
                     <img class="icon-dark" src="/../../assets/icons/users-dark.png">
                     <img class="icon-light" src="../../assets/icons/users-light.png">
                 </button>
@@ -55,7 +56,7 @@ export class BottomNav extends HTMLElement {
                     <img class="icon-light" src="/../../assets/icons/add-light.png">
                 </button>
                 
-                <button class="nav-btn notiflications">
+                <button class="nav-btn notifications">
                     <img class="icon-dark" src="/../../assets/icons/send-dark.png">
                     <img class="icon-light" src="/../../assets/icons/send-light.png">
                 </button>
@@ -88,6 +89,7 @@ export class BottomNav extends HTMLElement {
                     PubSub.publish("change:page", {
                         page: currPage
                     });
+                    this.switchView(currPage);
 
                     // Sätt page till vad man trycker på
 /*                     store.setState({
@@ -105,6 +107,16 @@ export class BottomNav extends HTMLElement {
                 })
             })
             
+        }
+        switchView(view) {
+            const currentPath = window.location.pathname.split("/").filter(Boolean);
+            const main = currentPath[0] || "home";
+
+            if (view === "home") {
+                newRouter.navigate(`/${main}`);
+            } else {
+                newRouter.navigate(`/${main}/${view}`);
+            }
         }
 }
 customElements.define("bottom-nav", BottomNav);

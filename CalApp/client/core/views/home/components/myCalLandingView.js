@@ -8,10 +8,12 @@ export class MyCalLandingView extends HTMLElement {
         this.render();
     }
 
+
     render() {
         this.shadowRoot.innerHTML = `
             <style>
                 :host{
+                    margin: 10px;
                     display: block;
                 }
             </style>

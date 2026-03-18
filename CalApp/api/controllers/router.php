@@ -22,7 +22,12 @@ require_once "NotificationsController.php";
 require_once "UsersNotificationsController.php";
 
 
-function Router($requestUrl = null){   
+function Router($requestUrl = null){
+    CorsMiddleware::handle();
+    if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    http_response_code(200);
+    exit();
+}
     
     if ($requestUrl === null) {
         $requestUrl = $_SERVER["REQUEST_URI"] ?? "";
@@ -266,6 +271,7 @@ function Router($requestUrl = null){
                     NotificationsController::handle($method, $input);
                     break;
             }
+            break;
 
             case "users_notifications":
             switch($method) {
@@ -279,6 +285,7 @@ function Router($requestUrl = null){
                     UsersNotificationsController::handle($method, $input);
                     break;
             }
+            break;
             
         default:
             http_response_code(404); 

@@ -5,7 +5,8 @@ import { CreateNotificationsView } from "../views/notifications/notifications.js
 // ROUTERN PUBLICERAR ETT EVENT, MED URL OCH VYN SUBSCRIBAR PÅ EVENTET SOM SEDAN GER URL ELLER PARAMS OCH RENDERAR
 export class Router {
     constructor(url) {
-        this.url = new URL(url); // sträng
+        this.url = new URL(url, window.location.origin); // sträng
+        console.log(url);
         this.urlPaths = this.url.pathname.split("/").filter(Boolean);
         this.mainPath = this.urlPaths[0];
         this.subPath = this.urlPaths[1];
@@ -16,15 +17,13 @@ export class Router {
             subPath: this.subPath
         });
 
-
-
-
     }
 
     navigate(path) {
-        console.log("Navigate func")
+        console.log("Navigate func");
         history.pushState({}, "", path);
         new Router(path);
+
     }
 
     init() {

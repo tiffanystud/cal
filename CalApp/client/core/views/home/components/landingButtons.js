@@ -15,7 +15,8 @@ export class LandingButtonContainer extends HTMLElement {
                     display: block;
                 }
                 #btn-container {
-                
+                    margin: 10px;
+                    box-sizing: border-box;
                     width: 350px;
                     height: 80px;
                     display: flex;
