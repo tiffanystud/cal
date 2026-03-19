@@ -6,8 +6,6 @@ import { NotificationCard } from "./components/notification-card.js";
 import { RegularButton } from "../../../components/regularButton/regularButton.js";
 import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
 
-customElements.define("notification-card", NotificationCard);
-customElements.define("regular-button", RegularButton);
 
 export class CreateNotificationsView {
     constructor(root) {
@@ -54,7 +52,6 @@ export class CreateNotificationsView {
                 entity: `notifications?userId=${store.getState().isLoggedIn.id}`,
                 method: "GET"
             });
-            console.log(notifications);
 
             notifications = notifications.sort((a, b) => a.notiContent.time.localeCompare(b.notiContent.time));
             notifications = notifications.sort((a, b) => new Date(a.notiContent.date) - new Date(b.notiContent.date));
@@ -73,6 +70,20 @@ export class CreateNotificationsView {
             console.log(store.getState().userData.notis);
             for (let noti of store.getState().userData.notis) {
                 let notiCard = document.createElement("notification-card");
+                if (noti.type === "message") {
+                    let sender = await apiRequest({
+                        entity: `users?id=${noti.notiContent.senderId}`,
+                        method: "GET"
+                    });
+                    notiCard.sender = sender;
+                    if (noti.notiContent.calId) {
+                        let cal = await apiRequest({
+                            entity: `calendars?id=${noti.notiContent.calId}`,
+                            method: "GET"
+                        });
+                        notiCard.cal = cal;
+                    }
+                }
                 notiCard.data = noti.notiContent;
                 notiCard.type = noti.type;
                 this.root.appendChild(notiCard);

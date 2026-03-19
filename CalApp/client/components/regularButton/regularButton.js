@@ -10,3 +10,5 @@ export class RegularButton extends HTMLElement {
         this.shadowRoot.querySelector("button").textContent = this.textContent;
     }
 }
+
+customElements.define("regular-button", RegularButton);
