@@ -35,6 +35,12 @@
             "creatorId": "65e10aa11a062",
             "name": "Studiegrupp",
             "type": "private"
+        },
+        {
+            "id": "69bc0311e91e4",
+            "creatorId": "65e10aa11a001",
+            "name": "Dancing Queens",
+            "type": "public"
         }
     ]
 }

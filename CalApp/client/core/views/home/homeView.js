@@ -54,7 +54,6 @@ export class HomeView extends HTMLElement {
         myCalBtn.addEventListener('click', () => {
             PubSub.publish('change:page', {
                 page: 'myCal'
-
             });
         });
 

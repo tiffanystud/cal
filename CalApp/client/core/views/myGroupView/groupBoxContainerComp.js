@@ -22,6 +22,7 @@ export class GroupContainerBoxComp extends HTMLElement {
         this.render();
         this.eventListeners();
     }
+    
     html() {
         return `
             <div class="content">
@@ -125,9 +126,9 @@ export class GroupContainerBoxComp extends HTMLElement {
             background-color: white;
             height: 80px;
         }
-        
     `;
     }
+    
     render() {
         let app = document.getElementById("app");
         let content = this.shadowRoot.innerHTML = `
@@ -153,8 +154,6 @@ export class GroupContainerBoxComp extends HTMLElement {
                 newRouter.navigate(`/home/?id=${calBox.id}`);
             })
         }
-
-
 
     }
 }

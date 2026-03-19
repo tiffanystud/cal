@@ -112,6 +112,10 @@ export class CreateCalendarView {
 
             // PUBLISH LISTENER (SENT)
             PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload);
+            // PUBLISH LISTENER (GO TO NEXT PAGE)
+            PubSub.publish("change:page", {
+                page: "myCal"
+            })
 
         });
     }

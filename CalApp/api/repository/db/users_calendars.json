@@ -47,6 +47,24 @@
             "userId": "65e10aa11a008",
             "calId": "65e10aa11b005",
             "isAdmin": true
+        },
+        {
+            "id": "69bc0311ee84c",
+            "userId": "65e10aa11a004",
+            "calId": "69bc0311e91e4",
+            "isAdmin": true
+        },
+        {
+            "id": "69bc0311efe7e",
+            "userId": "65e10aa11a001",
+            "calId": "69bc0311e91e4",
+            "isAdmin": true
+        },
+        {
+            "id": "69bc0311f034f",
+            "userId": "65e10aa11a006",
+            "calId": "69bc0311e91e4",
+            "isAdmin": false
         }
     ]
 }
