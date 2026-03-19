@@ -47,15 +47,18 @@ export class CreateNotificationsView {
     }
 
     async errorMsg(type, resp) {
-        let reso = await resp.json();
         if (type === "network") {
             this.root.innerHTML = `
             <p>Network error, server unreachable</p>
-            `
-        } else {
+            `;
+        } else if (type === "request") {
+            let reso = await resp.json();
             this.root.innerHTML = `
             <p>Status: ${resp.status}<br>${reso.error}</p>
-            `
+            `;
+        } else {
+            let reso = await resp.text();
+            this.root.innerHTML = `<p>${reso}</p>`;
         }
     }
     //köra render initialt och sedan bara display: none på allt?
@@ -125,7 +128,6 @@ export class CreateNotificationsView {
                     CreateNotificationsView.loadedNotiCards.push(notiCard);
                     this.root.appendChild(notiCard);
                 }
-                console.log(CreateNotificationsView.loadedNotiCards);
 
                 this.root.appendChild(document.createElement("bottom-nav"));
 
@@ -171,8 +173,7 @@ export class CreateNotificationsView {
                     }
                 });
             } catch (e) {
-                console.log(e.message);
-                this.errorMsg("other", e.response);
+                this.errorMsg("request", e.response);
             }    
 
             // for (let i=0; i<this.root.children.length; i++) {

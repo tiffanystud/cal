@@ -45,13 +45,17 @@ export class NotificationCard extends HTMLElement {
             }
         }
 
+        if (!this.data.read) {
+            this.shadowRoot.querySelector("h2").style.backgroundColor = "crimson";
+        }
+
         this.shadowRoot.querySelector("img").addEventListener("click", () => {
             console.log("//Send DELETE-request and delete noti if successfull");
             this.remove();
-        })
+        });
         this.shadowRoot.querySelector("button").addEventListener("click", () => {
             console.log("//Link to notification source");
-        })
+        });
     }
 
     async errorMsg(type, resp) {
