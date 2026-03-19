@@ -38,6 +38,8 @@ export class AddMembers extends HTMLElement {
             <style>
                 .titleElem {
                     margin-bottom: 2px;
+                    color: #333;
+                    font-size: 16px;
                 }
 
                 .members-container {

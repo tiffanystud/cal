@@ -24,7 +24,7 @@ export class AppInput extends HTMLElement {
                 .label {
                     display: block;
                     font-weight: bold;
-                    font-size: larger;
+                    font-size: 16px;
                     margin-bottom: 4px;
                     color: #333;
                 }
@@ -35,7 +35,7 @@ export class AppInput extends HTMLElement {
                     padding: 10px;
                     font-size: small;
                     border-radius: 8px;
-                    background-color: lightgrey;
+                    background-color:   rgb(224, 227, 227);
                     border: 1px solid #ccc;
                     box-sizing: border-box;
                     text-align:start;
