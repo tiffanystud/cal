@@ -8,6 +8,8 @@ import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
 
 
 export class CreateNotificationsView {
+    static displayInfo = {};
+    static loadedNotiCards = [];
     constructor(root) {
         this.root = root;
         PubSub.subscribe("change:view", (data) => {
@@ -21,13 +23,27 @@ export class CreateNotificationsView {
                 // });
                 // PubSub.publish(EVENTS.REQUEST.SENT.EVENTS.GET);
 
-                this.render();
+                this.root.innerHTML = `<h1 style="font-family: Helvetica;">Notifications</h1>
+                <div style="display: flex; gap: 10px;">
+                <regular-button id="mark-read">Mark all as read</regular-button>
+                <regular-button id='delete-all'>Delete all notifications</regular-button>
+                </div>
+                <p id="loading-msg">Getting notifications...</p>`;
+                this.render(document.querySelector("#loading-msg"));
+                //this.display();
             }
         });
 
         PubSub.subscribe("Network:Error", () => {
             this.errorMsg("network");
         });
+    }
+
+    display() {
+        for (let i=0; i<this.root.children.length; i++) {
+            let child = this.root.children[i];
+            child.style.display = CreateNotificationsView.displayInfo[i];
+        }
     }
 
     async errorMsg(type, resp) {
@@ -42,57 +58,24 @@ export class CreateNotificationsView {
             `
         }
     }
-
-    async render() {
-        //Hämtar "notifikationerna" när render körs. Vet inte om detta är rätt tänkt, men det funkar.
-        //Annars blev effekten oftast att state inte hunnit uppdaterats när redner kördes, så
-        //store.getState().notis var bara en tom array [] (loopen kördes inte).
-        try {
-            let notifications = await apiRequest({
-                entity: `notifications?userId=${store.getState().isLoggedIn.id}`,
-                method: "GET"
-            });
-
-            notifications = notifications.sort((a, b) => a.notiContent.time.localeCompare(b.notiContent.time));
-            notifications = notifications.sort((a, b) => new Date(a.notiContent.date) - new Date(b.notiContent.date));
-
-            store.setState({userData: {
-                ...store.getState().userData,
-                notis: notifications
-            }});
-            console.log(store.getState());
-
+    //köra render initialt och sedan bara display: none på allt?
+    //sedan display allt när change:view?
+    async render(loadingMsg) {
+        if (store.getState().userData.notis.length !== 0) {
             this.root.innerHTML = `<h1 style="font-family: Helvetica;">Notifications</h1>
             <div style="display: flex; gap: 10px;">
             <regular-button id="mark-read">Mark all as read</regular-button>
             <regular-button id='delete-all'>Delete all notifications</regular-button>
             </div>`;
-            console.log(store.getState().userData.notis);
-            for (let noti of store.getState().userData.notis) {
-                let notiCard = document.createElement("notification-card");
-                if (noti.type === "message") {
-                    let sender = await apiRequest({
-                        entity: `users?id=${noti.notiContent.senderId}`,
-                        method: "GET"
-                    });
-                    notiCard.sender = sender;
-                    if (noti.notiContent.calId) {
-                        let cal = await apiRequest({
-                            entity: `calendars?id=${noti.notiContent.calId}`,
-                            method: "GET"
-                        });
-                        notiCard.cal = cal;
-                    }
-                }
-                notiCard.data = noti.notiContent;
-                notiCard.type = noti.type;
+
+            for (let notiCard of CreateNotificationsView.loadedNotiCards) {
                 this.root.appendChild(notiCard);
             }
 
             this.root.appendChild(document.createElement("bottom-nav"));
 
             document.querySelector("#mark-read").addEventListener("click", () => {
-                console.log("//Skicka request att markera alla som lästa");
+                    console.log("//Skicka request att markera alla som lästa");
             });
 
             document.querySelector("#delete-all").addEventListener("click", () => {
@@ -103,16 +86,104 @@ export class CreateNotificationsView {
                 });
                 this.root.innerHTML += "<p>No notifications to view!</p>";
             });
-        } catch (e) {
-            this.errorMsg("other", e.response);
+        } else {
+            try {
+                let notifications = await apiRequest({
+                    entity: `notifications?userId=${store.getState().isLoggedIn.id}`,
+                    method: "GET"
+                });
+
+                notifications = notifications.sort((a, b) => a.notiContent.time.localeCompare(b.notiContent.time));
+                notifications = notifications.sort((a, b) => new Date(a.notiContent.date) - new Date(b.notiContent.date));
+
+                store.setState({userData: {
+                    ...store.getState().userData,
+                    notis: notifications
+                }});
+                console.log(store.getState());
+                console.log(store.getState().userData.notis);
+
+                for (let noti of store.getState().userData.notis) {
+                    let notiCard = document.createElement("notification-card");
+                    if (noti.type === "message") {
+                        let sender = await apiRequest({
+                            entity: `users?id=${noti.notiContent.senderId}`,
+                            method: "GET"
+                        });
+                        notiCard.sender = sender;
+                        if (noti.notiContent.calId) {
+                            let cal = await apiRequest({
+                                entity: `calendars?id=${noti.notiContent.calId}`,
+                                method: "GET"
+                            });
+                            notiCard.cal = cal;
+                        }
+                    }
+                    notiCard.data = noti.notiContent;
+                    notiCard.notiId = noti.id;
+                    notiCard.type = noti.type;
+                    CreateNotificationsView.loadedNotiCards.push(notiCard);
+                    this.root.appendChild(notiCard);
+                }
+                console.log(CreateNotificationsView.loadedNotiCards);
+
+                this.root.appendChild(document.createElement("bottom-nav"));
+
+                document.querySelector("#mark-read").addEventListener("click", () => {
+                    console.log("//Skicka request att markera alla som lästa");
+                });
+
+                document.querySelector("#delete-all").addEventListener("click", () => {
+                    //Skicka request att ta bort alla notifikationer. Om request går bra gör:
+                    let notis = document.querySelectorAll("notification-card");
+                    notis.forEach((x) => {
+                        this.root.removeChild(x);
+                    });
+                    this.root.innerHTML += "<p>No notifications to view!</p>";
+                });
+
+                loadingMsg.remove();
+
+                store.subscribe("notis", async (data) => {
+                    for (let noti of store.getState().userData.notis) {
+                        let exists = CreateNotificationsView.loadedNotiCards.find((x) => x.notiId === noti.id);
+                        if (exists) continue;
+
+                        let notiCard = document.createElement("notification-card");
+                        if (noti.type === "message") {
+                            let sender = await apiRequest({
+                                entity: `users?id=${noti.notiContent.senderId}`,
+                                method: "GET"
+                            });
+                            notiCard.sender = sender;
+                            if (noti.notiContent.calId) {
+                                let cal = await apiRequest({
+                                    entity: `calendars?id=${noti.notiContent.calId}`,
+                                    method: "GET"
+                                });
+                                notiCard.cal = cal;
+                            }
+                        }
+                        notiCard.data = noti.notiContent;
+                        notiCard.notiId = noti.id;
+                        notiCard.type = noti.type;
+                        CreateNotificationsView.loadedNotiCards.push(notiCard);
+                    }
+                });
+            } catch (e) {
+                console.log(e.message);
+                this.errorMsg("other", e.response);
+            }    
+
+            // for (let i=0; i<this.root.children.length; i++) {
+            //     let child = this.root.children[i];
+            //     CreateNotificationsView.displayInfo[i] = child.style.display;
+            //     child.style.display = "none";
+            // }
+            // console.log(CreateNotificationsView.displayInfo);
         } 
     }
-
-    subscribeToStore() {
-        store.subscribe("notificationsUpdated", (state) => {
-            //Do something
-        });
-    }
+    
 }
 
 new CreateNotificationsView(document.querySelector("#app"));

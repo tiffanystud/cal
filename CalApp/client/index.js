@@ -14,6 +14,7 @@ import "./components/toggleBtn/toggleBtn.js";
 // SERVICES (init all pubsub)
 import "./core/services/calendarsService.js"
 import "./core/services/userGroupsService.js";
+import "./core/services/notificationsService.js";
 
 
 // VIEWS
