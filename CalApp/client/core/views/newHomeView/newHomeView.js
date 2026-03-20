@@ -1,3 +1,5 @@
+
+
 class CreateGroupLandingView {
 
     constructor() {
@@ -6,6 +8,11 @@ class CreateGroupLandingView {
     }
 
     sub() {
+        PubSub.subscribe("change:view", (data) => {
+            if (data.url.pathname === "/newHomeViewTest") {
+                this.render();
+            }
+        })
     }
 
 

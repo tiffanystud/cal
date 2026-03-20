@@ -8,20 +8,38 @@ class FilterCals extends HTMLElement {
         this.filterdCals = [];
 
         store.subscribe(filterdCals, data => {
-            
+
         })
     }
 
     html() {
-        return `
-
-        `
+        for (let cal of this.filterdCals) {
+            return `
+                <div class="calBoxes" id="${cal.id}">
+                    <p>${cal.name}</p>   
+                </div>
+            `
+        }
     }
 
     style() {
-
+        return `
+            <style>
+                .calBoxes {
+                    display: flex;
+                    gap: 5px;
+                }
+            </style>
+        `
     }
 
+    eventListeners() {
+        let allCals = this.shadowRoot.querySelectorAll("calBoxes");
+        for (let pressedCals of allCals) {
+            // subscribe through store
+            pressedCals.style.backgroundColor = "blue";
+        }
+    }
 
     render() {
         this.shadowRoot.innerHTML = `
@@ -33,3 +51,5 @@ class FilterCals extends HTMLElement {
 
 
 }
+
+customElements.define("filter-cals", FilterCals);

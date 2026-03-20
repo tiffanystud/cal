@@ -50,10 +50,10 @@ export class HomeView extends HTMLElement {
 
             });
         });
-        
+
         // Byt ut så att home?id=2 är en "group/calendar"
-        
-        
+
+
         // Här publicerar knapptrycket ett event så myCal kan dyka upp
         myCalBtn.addEventListener('click', () => {
             PubSub.publish('change:page', {
