@@ -2,7 +2,8 @@ import { store } from "../../store/store.js";
 import { PubSub } from "../../store/pubsub.js";
 import { EVENTS } from "../../store/events.js";
 import { LandingButtonContainer } from "./components/landingButtons.js";
-import { MyCalLandingView } from "./components/myCalLandingView.js";
+import { CalDetailBtn } from "./components/calDetailBtn.js";
+import { CalRender } from "./components/calRender.js";
 import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
 
 
@@ -33,34 +34,10 @@ export class HomeView extends HTMLElement {
     render() {
 
         this.app.innerHTML = `
-        <landing-button-container>
-            <landing-button id="myCalBtn" label="My Calendar" view="home" active></landing-button>
-            <landing-button id="myGroupsBtn" label="My Groups" view="groupcalendar"></landing-button>
-        </landing-button-container>
-        <my-calendar></my-calendar>
+        <cal-detail-btn></cal-detail-btn>
+        <cal-render></cal-render>
         <bottom-nav></bottom-nav>
         `;
-
-        const myGroupsBtn = this.app.querySelector("#myGroupsBtn");
-        const myCalBtn = this.app.querySelector("#myCalBtn");
-
-        myGroupsBtn.addEventListener('click', () => {
-            PubSub.publish('change:page', {
-                page: 'myGroups'
-
-            });
-        });
-
-        // Byt ut så att home?id=2 är en "group/calendar"
-
-
-        // Här publicerar knapptrycket ett event så myCal kan dyka upp
-        myCalBtn.addEventListener('click', () => {
-            PubSub.publish('change:page', {
-                page: 'myCal'
-            });
-        });
-
     }
 
 }

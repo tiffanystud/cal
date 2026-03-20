@@ -31,7 +31,6 @@ export class ContactsView extends HTMLElement{
     }
     async render(){
         const params = new URLSearchParams(location.search);
-        console.log(location.pathname);
         const isGroupContext =
 //            location.pathname.startsWith("home/groups") &&
             params.has("id");

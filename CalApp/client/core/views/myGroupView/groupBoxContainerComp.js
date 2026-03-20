@@ -17,7 +17,7 @@ export class GroupContainerBoxComp extends HTMLElement {
             }
         });
 
-        this.cals = store.getState().userData.cals;
+        this.cals = store.getState().cals;
 
         this.eventListeners();
     }
