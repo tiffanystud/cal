@@ -4,11 +4,13 @@ import { EVENTS } from "../../store/events.js";
 import { store } from "../../store/store.js";
 // import { CalendarService } from "../../services/calendarsService.js";
 
-export class CreateCalendarView {
+export class CreateCalendarView extends HTMLElement {
 
     constructor() {
-        this.app = document.querySelector("#app");
-        this.subs();
+        
+        super();
+        this.attachShadow({mode: "open"});
+        
     }
 
     subs() {
@@ -28,9 +30,8 @@ export class CreateCalendarView {
 
     render() {
 
-        this.app.innerHTML = `
-            <link rel="stylesheet" href="/core/views/createGroup/createGroupView.css">
-            
+        this.shadowRoot.innerHTML = `
+                    
             <h2>Create new calendar</h2>
 
             <app-input
@@ -112,10 +113,6 @@ export class CreateCalendarView {
 
             // PUBLISH LISTENER (SENT)
             PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload);
-            // PUBLISH LISTENER (GO TO NEXT PAGE)
-            PubSub.publish("change:page", {
-                page: "myCal"
-            })
 
         });
     }

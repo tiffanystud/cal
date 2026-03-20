@@ -137,6 +137,11 @@ export function CalendarService() {
                 }
             });
 
+            // PUBLISH LISTENER (GO TO NEXT PAGE)
+            PubSub.publish("change:page", {
+                page: "myCal"
+            })
+            
         } catch (err) {
             
             console.log("CALENDARS POST ERROR:", err);
