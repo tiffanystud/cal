@@ -16,15 +16,36 @@
             box-sizing: border-box;
             overflow: scroll;
             padding: 10px;
+            position: relative;
         }
 
         body {
             display: flex;
-            justify-content: center;
-            margin: 0;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
         }
+
+        #devLoginPanel {
+            width: 390px;
+            padding: 10px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ccc;
+            background-color: #f5f5f5;
+            font-family: sans-serif;
+        }
+        
     </style>
 
+    <!-- DEVELOPMENT    -->
+    <div id="devLoginPanel">
+        <input id="dummyUserId" placeholder="Enter user ID" />
+        <button id="dummyLoginBtn">Dummy Login</button>
+        <button id="dummyLogoutBtn">Dummy Logout</button>
+        <div id="dummyUserInfo"></div>
+    </div>
+    
+    
     <div id="app">
         
     </div>

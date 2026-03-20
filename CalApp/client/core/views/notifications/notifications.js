@@ -5,6 +5,8 @@ import { EVENTS } from "../../store/events.js";
 import { NotificationCard } from "./components/notification-card.js";
 import { RegularButton } from "../../../components/regularButton/regularButton.js";
 import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
+import { NotificationsBar } from "../../../components/notificationsBar/notificationsBar.js";
+import { ANotification } from "../../../components/notificationsBar/notificationsBar.js";
 
 
 export class CreateNotificationsView {
@@ -34,9 +36,38 @@ export class CreateNotificationsView {
             }
         });
 
+        PubSub.subscribe("change:view", (data) => {
+            if (data.mainPath === "notiTest") {
+                this.notiTest();
+            }
+        })
+
         PubSub.subscribe("Network:Error", () => {
             this.errorMsg("network");
         });
+    }
+
+    async notiTest() {
+        let h4 = document.createElement("h4");
+        h4.textContent = "Notifications";
+        h4.style.margin = 0;
+        this.root.appendChild(h4);
+        let notifications = await apiRequest({
+            entity: `notifications?userId=${store.getState().isLoggedIn.id}`,
+            method: "GET"
+        });
+
+        notifications = notifications.sort((a, b) => a.notiContent.time.localeCompare(b.notiContent.time));
+        notifications = notifications.sort((a, b) => new Date(a.notiContent.date) - new Date(b.notiContent.date));
+
+        store.setState({notis:
+            [ ...store.getState().notis, ...notifications ]
+        });
+        console.log(store.getState().notis);
+
+        let notiBar = document.createElement("notifications-bar");
+        notiBar.notis = store.getState().notis;
+        this.root.appendChild(notiBar);
     }
 
     display() {

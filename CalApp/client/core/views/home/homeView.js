@@ -38,6 +38,7 @@ export class HomeView extends HTMLElement {
         <cal-render></cal-render>
         <bottom-nav></bottom-nav>
         `;
+        
     }
 
 }

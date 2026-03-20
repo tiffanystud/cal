@@ -66,7 +66,7 @@ export class CalDetailBtn extends HTMLElement{
         const dropdown = this.shadowRoot.querySelector("#dropdown");
 
         let isDown = false;
-        let holdTime = 1000;
+        let holdTime = 200;
 
         let clicked = 0;
 
@@ -91,7 +91,6 @@ export class CalDetailBtn extends HTMLElement{
 
             this.detail = item.textContent;
             detailButton.textContent = this.detail;
-            console.log(item.id);
             PubSub.publish("change:detailbtn", item.id);
             this.toggleDropdown(false);
         });

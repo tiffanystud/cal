@@ -6,8 +6,8 @@
             "receiverId": "65e10aa11a002",
             "date": "2026-02-20",
             "time": "13:00:00",
-            "content": "Hej!",
-            "hasChange": false
+            "content": "Hej! Har du sett kursutvecklingen på Volvo B idag? Den dippade precis som vi väntade oss efter kvartalsrapporten. Jag la in en order i morse.",
+            "hasChange": true
         },
         {
             "id": "65e10aa152002",
@@ -15,7 +15,7 @@
             "receiverId": "65e10aa11a003",
             "date": "2026-02-21",
             "time": "14:00:00",
-            "content": "Hur g\u00e5r det?",
+            "content": "Hur går det? Btw jag har inte berättat det för nån men min brorsa jobbar på Ericsson och han sa att de ska annonsera ett förvärv nästa vecka. Vi pratade om det igår över middag. Tänkte du kanske ville veta.",
             "hasChange": false
         },
         {
@@ -24,7 +24,7 @@
             "receiverId": "65e10aa11a005",
             "date": "2026-02-22",
             "time": "15:00:00",
-            "content": "Ses imorgon?",
+            "content": "Ses imorgon? Behöver prata av mig. Det är slut med Lisa.",
             "hasChange": false
         },
         {
@@ -33,16 +33,1024 @@
             "receiverId": "65e10aa11a007",
             "date": "2026-02-23",
             "time": "16:00:00",
-            "content": "Skickar filerna snart.",
-            "hasChange": false
+            "content": "Skickar filerna snart. Och nej jag har inte glömt att du skyldig mig en öl sedan oktober. Jag håller räkning.",
+            "hasChange": true
         },
         {
             "id": "699dab043acd9",
-            "senderId": "65e10aa152005",
-            "receiverId": "65e10aa11a002",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65e10aa11a00a",
             "date": "2026-02-24",
             "time": "13:43:32",
             "content": "Go bears",
+            "hasChange": true
+        },
+        {
+            "id": "65f422152001",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-10",
+            "time": "08:10",
+            "content": "God morgon!! Okej men varför mådde jag SÅ dåligt igår. Och varför sa du inte till mig att sluta dricka vid 23? Det är ditt jobb som kompis.",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152002",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a003",
+            "date": "2025-11-01",
+            "time": "16:20",
+            "content": "Pluggar du inför tentan? Jag har inte öppnat boken en enda gång och den är om tre dagar. Jag tänker skylla på sjukdom. Det är nästan sant, jag mår sjuk av tanken på den.",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152003",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a009",
+            "date": "2026-09-19",
+            "time": "19:40",
+            "content": "Ses vi på Spy Bar ikväll? Och kan du snälla inte bjuda med Markus den här gången. Jag orkar verkligen inte med hans energi efter allt som hänt. Du vet vad jag menar.",
+            "hasChange": true
+        },
+        {
+            "id": "65f422152004",
+            "senderId": "65f3aa11a007",
+            "receiverId": "65f3aa11a008",
+            "date": "2027-02-14",
+            "time": "18:00",
+            "content": "Redo för yogapasset? Eller ska vi bara låtsas att vi tänkt gå och beställa pizza istället. Jag är lika nöjd med båda alternativen ärligt talat.",
+            "hasChange": true
+        },
+        {
+            "id": "65f422152005",
+            "senderId": "65f3aa11a00b",
+            "receiverId": "65f3aa11a00c",
+            "date": "2025-05-11",
+            "time": "15:30",
+            "content": "Kommer du till träningen? Jag vet att du sa att knäet värker men det gör mitt också och jag kommer ändå. Vi lider tillsammans.",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152006",
+            "senderId": "65f3aa11a00d",
+            "receiverId": "65f3aa11a00e",
+            "date": "2027-01-07",
+            "time": "09:50",
+            "content": "Springer du ikväll? Emma bröt upp med mig igår. Jag behöver röra på mig annars fastnar jag bara i soffan och stirrar i taket hela kvällen. Du behöver inte säga något, ba spring med mig.",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152007",
+            "senderId": "65f3aa11a010",
+            "receiverId": "65f3aa11a011",
+            "date": "2026-04-01",
+            "time": "10:40",
+            "content": "Har du fixat kameran? Och ta bort bilderna från förra workshopen innan du lämnar den, du vet vilka jag menar. De ska definitivt inte hamna i fel händer.",
+            "hasChange": true
+        },
+        {
+            "id": "65f422152008",
+            "senderId": "65f3aa11a012",
+            "receiverId": "65f3aa11a013",
+            "date": "2025-12-17",
+            "time": "18:20",
+            "content": "Kodkväll imorgon!! Förresten, hur är det egentligen med dig? Du verkade inte som dig själv senast. Hoppas allt är okej, vi kan prata om det om du vill.",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152009",
+            "senderId": "65f3aa11a015",
+            "receiverId": "65f3aa11a018",
+            "date": "2027-03-01",
+            "time": "07:40",
+            "content": "Kickoff snart! Btw pratade du med Henrik om det vi diskuterade? Han sitter på den informationen om förvärvet och om vi agerar innan pressreleasen på torsdag så... ja du fattar. Men var diskret.",
+            "hasChange": true
+        },
+        {
+            "id": "65f42215200a",
+            "senderId": "65f3aa11a019",
+            "receiverId": "65f3aa11a01c",
+            "date": "2025-08-24",
+            "time": "12:10",
+            "content": "Redo för matchen? Jag sov inte ett skit inatt. Tänkte på breakupen hela natten. Men jag kommer, fotboll är enda grejen som funkar just nu.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_b001",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a003",
+            "date": "2025-11-01",
+            "time": "16:45",
+            "content": "Va?? Ericsson?? Hur säker är han på det?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_b002",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a002",
+            "date": "2025-11-01",
+            "time": "16:52",
+            "content": "Ganska säker. Han var med på ett internt möte förra veckan. Nämde ett bolag i Finland. Mer sa han inte men det räcker väl.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_b003",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a003",
+            "date": "2025-11-01",
+            "time": "17:03",
+            "content": "Jag köper inte jättemycket men lite... det kan ju inte skada? Det är inte olagligt om man inte är anställd va?",
+            "hasChange": true
+        },
+        {
+            "id": "msg_b004",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a002",
+            "date": "2025-11-01",
+            "time": "17:10",
+            "content": "Vet faktiskt inte. Kanske googla det innan. Men jag hoppar inte i det, känns lite läskigt. Berätta inte för fler.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_b005",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a003",
+            "date": "2025-11-01",
+            "time": "17:14",
+            "content": "Nej nej såklart inte. Ok jag skippar det. Pluggar vi nu eller?",
+            "hasChange": true
+        },
+        {
+            "id": "msg_b006",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a002",
+            "date": "2025-11-01",
+            "time": "17:15",
+            "content": "Jag har inte ens hittat rätt bok ännu.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_b007",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a003",
+            "date": "2025-11-01",
+            "time": "17:16",
+            "content": "Vi är sådana idioter.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_b008",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a002",
+            "date": "2025-11-01",
+            "time": "17:16",
+            "content": "Ja.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_c001",
+            "senderId": "65f3aa11a00e",
+            "receiverId": "65f3aa11a00d",
+            "date": "2027-01-07",
+            "time": "10:05",
+            "content": "Självklart springer jag med dig. Ses vid stadion 18? Och va hände egentligen?",
+            "hasChange": true
+        },
+        {
+            "id": "msg_c002",
+            "senderId": "65f3aa11a00d",
+            "receiverId": "65f3aa11a00e",
+            "date": "2027-01-07",
+            "time": "10:22",
+            "content": "Hon sa att hon inte kände sig sedd. Att jag alltid prioriterar jobbet. Och att hon bestämt sig för länge sedan men inte velat säga det.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_c003",
+            "senderId": "65f3aa11a00e",
+            "receiverId": "65f3aa11a00d",
+            "date": "2027-01-07",
+            "time": "10:30",
+            "content": "Det låter jättejobbigt. Hur länge hade ni varit ihop, tre år?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_c004",
+            "senderId": "65f3aa11a00d",
+            "receiverId": "65f3aa11a00e",
+            "date": "2027-01-07",
+            "time": "10:31",
+            "content": "Tre och ett halvt.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_c005",
+            "senderId": "65f3aa11a00e",
+            "receiverId": "65f3aa11a00d",
+            "date": "2027-01-07",
+            "time": "10:35",
+            "content": "Jag vet inte vad man säger. Men 18 vid stadion. Jag tar med kaffe.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_c006",
+            "senderId": "65f3aa11a00d",
+            "receiverId": "65f3aa11a00e",
+            "date": "2027-01-07",
+            "time": "10:36",
+            "content": "Tack.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_c007",
+            "senderId": "65f3aa11a00d",
+            "receiverId": "65f3aa11a00e",
+            "date": "2027-01-08",
+            "time": "21:15",
+            "content": "Det hjälpte faktiskt. Att bara springa och inte prata så mycket. Tack för igår.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_c008",
+            "senderId": "65f3aa11a00e",
+            "receiverId": "65f3aa11a00d",
+            "date": "2027-01-08",
+            "time": "21:40",
+            "content": "Alltid. Springer vi på torsdag också?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_c009",
+            "senderId": "65f3aa11a00d",
+            "receiverId": "65f3aa11a00e",
+            "date": "2027-01-08",
+            "time": "21:42",
+            "content": "Ja. Och kanske fredag. Och lördag.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_c010",
+            "senderId": "65f3aa11a00e",
+            "receiverId": "65f3aa11a00d",
+            "date": "2027-01-08",
+            "time": "21:44",
+            "content": "Jag orkar inte lördag men jag följer med ändå.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_d001",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-10",
+            "time": "08:35",
+            "content": "Du sa att du skulle vakta mig!! Jag minns ingenting efter den där tequilan.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_d002",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-10",
+            "time": "08:50",
+            "content": "Jag var inte i bättre skick själv om jag ska vara ärlig. Vi sjöng på bussen hem. Det finns video.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_d003",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-10",
+            "time": "08:51",
+            "content": "RADERA DEN",
+            "hasChange": true
+        },
+        {
+            "id": "msg_d004",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-10",
+            "time": "08:52",
+            "content": "Aldrig. Det är min försäkring.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_d005",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-10",
+            "time": "08:55",
+            "content": "Mot vad?",
+            "hasChange": true
+        },
+        {
+            "id": "msg_d006",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-10",
+            "time": "08:56",
+            "content": "Mot att du berättar för Sofia att jag glömde hennes födelsedag förra månaden.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_d007",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-10",
+            "time": "08:57",
+            "content": "DU GLÖMDE SOFIAS FÖDELSEDAG??",
+            "hasChange": true
+        },
+        {
+            "id": "msg_d008",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-10",
+            "time": "08:58",
+            "content": "Det är därför det finns en video nu. Vi är jämlika.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_d009",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-10",
+            "time": "09:10",
+            "content": "Okej. Vapenvila. Men vi berättar aldrig för Sofia något av det här.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_d010",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-10",
+            "time": "09:11",
+            "content": "Avtal. Ska vi äta lunch senare? Jag klarar inte jobba förmiddagen.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_d011",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-10",
+            "time": "09:12",
+            "content": "12 vid den vanliga stället.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_e001",
+            "senderId": "65f3aa11a007",
+            "receiverId": "65f3aa11a008",
+            "date": "2027-02-14",
+            "time": "18:20",
+            "content": "Okej pizza vinner. Jag pallar inte ens tänka på att röra på mig idag.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_e002",
+            "senderId": "65f3aa11a008",
+            "receiverId": "65f3aa11a007",
+            "date": "2027-02-14",
+            "time": "18:25",
+            "content": "Visste det haha! Jag beställer. Vanlig margherita till dig?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_e003",
+            "senderId": "65f3aa11a007",
+            "receiverId": "65f3aa11a008",
+            "date": "2027-02-14",
+            "time": "18:26",
+            "content": "Ja, men ta extra ost",
+            "hasChange": false
+        },
+        {
+            "id": "msg_e004",
+            "senderId": "65f3aa11a008",
+            "receiverId": "65f3aa11a007",
+            "date": "2027-02-14",
+            "time": "18:27",
+            "content": "40 min",
+            "hasChange": false
+        },
+        {
+            "id": "msg_e005",
+            "senderId": "65f3aa11a007",
+            "receiverId": "65f3aa11a008",
+            "date": "2027-02-14",
+            "time": "19:15",
+            "content": "Det här var det bästa beslutet vi tagit den här månaden.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_e006",
+            "senderId": "65f3aa11a008",
+            "receiverId": "65f3aa11a007",
+            "date": "2027-02-14",
+            "time": "19:17",
+            "content": "Det är februari. Vi har inte tagit många bra beslut.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_e007",
+            "senderId": "65f3aa11a007",
+            "receiverId": "65f3aa11a008",
+            "date": "2027-02-14",
+            "time": "19:18",
+            "content": "Sant. Ska vi boka yoga nästa vecka på riktigt den här gången?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_e008",
+            "senderId": "65f3aa11a008",
+            "receiverId": "65f3aa11a007",
+            "date": "2027-02-14",
+            "time": "19:20",
+            "content": "Absolut. Men fråga mig igen på tisdag.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_f001",
+            "senderId": "65f3aa11a019",
+            "receiverId": "65f3aa11a01c",
+            "date": "2025-08-24",
+            "time": "12:35",
+            "content": "Jag också. Men vi kör. Semifinal, man mår skit men man spelar.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_f002",
+            "senderId": "65f3aa11a01c",
+            "receiverId": "65f3aa11a019",
+            "date": "2025-08-24",
+            "time": "12:50",
+            "content": "Exakt. Vad hände med henne? Ni var väl bra?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_f003",
+            "senderId": "65f3aa11a019",
+            "receiverId": "65f3aa11a01c",
+            "date": "2025-08-24",
+            "time": "13:05",
+            "content": "Trodde det. Men hon sa att hon träffat någon annan. Hade pågått ett tag tydligen. Fick reda på det via Instagram av alla ställen.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_f004",
+            "senderId": "65f3aa11a01c",
+            "receiverId": "65f3aa11a019",
+            "date": "2025-08-24",
+            "time": "13:08",
+            "content": "Det är skitigt. Verkligen. Jag är ledsen.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_f005",
+            "senderId": "65f3aa11a019",
+            "receiverId": "65f3aa11a01c",
+            "date": "2025-08-24",
+            "time": "13:10",
+            "content": "Det är okej. Inte okej, men du vet. Vi pratar efter matchen.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_f006",
+            "senderId": "65f3aa11a01c",
+            "receiverId": "65f3aa11a019",
+            "date": "2025-08-27",
+            "time": "18:45",
+            "content": "Bra match idag. Hur mår du nu?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_f007",
+            "senderId": "65f3aa11a019",
+            "receiverId": "65f3aa11a01c",
+            "date": "2025-08-27",
+            "time": "19:20",
+            "content": "Bättre när vi vann. Fortfarande inte jättebra men det går framåt.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_f008",
+            "senderId": "65f3aa11a01c",
+            "receiverId": "65f3aa11a019",
+            "date": "2025-08-27",
+            "time": "19:22",
+            "content": "Det tar tid. Men du vet var jag finns.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_g001",
+            "senderId": "65f3aa11a015",
+            "receiverId": "65f3aa11a018",
+            "date": "2027-03-01",
+            "time": "08:05",
+            "content": "Sandra, läste du igenom materialet inför kickoff?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_g002",
+            "senderId": "65f3aa11a018",
+            "receiverId": "65f3aa11a015",
+            "date": "2027-03-01",
+            "time": "08:20",
+            "content": "Delvis. Varför, är det något specifikt jag borde notera?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_g003",
+            "senderId": "65f3aa11a015",
+            "receiverId": "65f3aa11a018",
+            "date": "2027-03-01",
+            "time": "08:30",
+            "content": "Kickoff snart! Btw pratade du med Henrik om det vi diskuterade? Han sitter på den informationen om förvärvet och om vi agerar innan pressreleasen på torsdag så... ja du fattar. Men var diskret.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_g004",
+            "senderId": "65f3aa11a018",
+            "receiverId": "65f3aa11a015",
+            "date": "2027-03-01",
+            "time": "08:45",
+            "content": "Ahmed. Jag vill inte att du skriver sånthär till mig. Inte ens på det här sättet.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_g005",
+            "senderId": "65f3aa11a015",
+            "receiverId": "65f3aa11a018",
+            "date": "2027-03-01",
+            "time": "08:50",
+            "content": "Lugn, det är ingen som ser. Vi pratar när vi ses.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_g006",
+            "senderId": "65f3aa11a018",
+            "receiverId": "65f3aa11a015",
+            "date": "2027-03-01",
+            "time": "08:52",
+            "content": "Det är inte det som är poängen. Jag ses vid kickoff men det här samtalet avslutar vi nu.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_h001",
+            "senderId": "65f3aa11a00b",
+            "receiverId": "65f3aa11a00c",
+            "date": "2025-05-11",
+            "time": "16:00",
+            "content": "Ja jag kommer. Knäet får hänga med.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_h002",
+            "senderId": "65f3aa11a00c",
+            "receiverId": "65f3aa11a00b",
+            "date": "2025-05-11",
+            "time": "16:10",
+            "content": "Bra. Tar du med vattenflaskan den här gången eller glömmer du den igen?",
+            "hasChange": true
+        },
+        {
+            "id": "msg_h003",
+            "senderId": "65f3aa11a00b",
+            "receiverId": "65f3aa11a00c",
+            "date": "2025-05-11",
+            "time": "16:12",
+            "content": "Jag glömde den EN gång.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_h004",
+            "senderId": "65f3aa11a00c",
+            "receiverId": "65f3aa11a00b",
+            "date": "2025-05-11",
+            "time": "16:13",
+            "content": "Tre gånger.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_h005",
+            "senderId": "65f3aa11a00b",
+            "receiverId": "65f3aa11a00c",
+            "date": "2025-05-11",
+            "time": "16:14",
+            "content": "Ok tre. Men den här gången tar jag med den.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_h006",
+            "senderId": "65f3aa11a00c",
+            "receiverId": "65f3aa11a00b",
+            "date": "2025-05-13",
+            "time": "20:10",
+            "content": "Du glömde flaskan.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_h007",
+            "senderId": "65f3aa11a00b",
+            "receiverId": "65f3aa11a00c",
+            "date": "2025-05-13",
+            "time": "20:11",
+            "content": "Ingen kommentar.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_i001",
+            "senderId": "65f3aa11a012",
+            "receiverId": "65f3aa11a013",
+            "date": "2025-12-17",
+            "time": "19:00",
+            "content": "Hej, det är lite si och så. Stressad mest. Men det löser sig säkert.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_i002",
+            "senderId": "65f3aa11a013",
+            "receiverId": "65f3aa11a012",
+            "date": "2025-12-17",
+            "time": "19:15",
+            "content": "Vad är det som stressar? Jobbet igen?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_i003",
+            "senderId": "65f3aa11a012",
+            "receiverId": "65f3aa11a013",
+            "date": "2025-12-17",
+            "time": "19:30",
+            "content": "Ja, och lite grejer hemma. Jag berättar imorgon, lättare ansikte mot ansikte.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_i004",
+            "senderId": "65f3aa11a013",
+            "receiverId": "65f3aa11a012",
+            "date": "2025-12-17",
+            "time": "19:32",
+            "content": "Självklart. Och du vet att det alltid går att prata, kodkväll eller inte.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_i005",
+            "senderId": "65f3aa11a012",
+            "receiverId": "65f3aa11a013",
+            "date": "2025-12-17",
+            "time": "19:35",
+            "content": "Vet det. Tack. Ses imorgon.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_i006",
+            "senderId": "65f3aa11a013",
+            "receiverId": "65f3aa11a012",
+            "date": "2025-12-19",
+            "time": "23:40",
+            "content": "Glad att du kom ikväll. Mådde du lite bättre?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_i007",
+            "senderId": "65f3aa11a012",
+            "receiverId": "65f3aa11a013",
+            "date": "2025-12-19",
+            "time": "23:55",
+            "content": "Ja faktiskt. Det hjälper att sitta och koda och bara vara i rummet med folk. Tack för att du frågade.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_j001",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a009",
+            "date": "2026-09-19",
+            "time": "20:00",
+            "content": "Han är typ fixerad vid att vara med överallt och det är så awkward efter det som hände på jobbet.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_j002",
+            "senderId": "65f3aa11a009",
+            "receiverId": "65f3aa11a003",
+            "date": "2026-09-19",
+            "time": "20:10",
+            "content": "Ja jag vet vad du menar. Han var på AW senast också och satt och kommenterade allting. Jag bjuder inte med honom.",
+            "hasChange": false
+        },
+        {
+            "id": "msg_j003",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a009",
+            "date": "2026-09-19",
+            "time": "20:12",
+            "content": "Tack. Faith kommer va?",
+            "hasChange": false
+        },
+        {
+            "id": "msg_j004",
+            "senderId": "65f3aa11a009",
+            "receiverId": "65f3aa11a003",
+            "date": "2026-09-19",
+            "time": "20:14",
+            "content": "Ja hon är redan på väg. Ses om en timme?",
+            "hasChange": true
+        },
+        {
+            "id": "msg_j005",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a009",
+            "date": "2026-09-19",
+            "time": "20:15",
+            "content": "Perfekt. Tar en fördrink här hemma och så ses vi där.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_j006",
+            "senderId": "65f3aa11a009",
+            "receiverId": "65f3aa11a003",
+            "date": "2026-09-22",
+            "time": "14:30",
+            "content": "Vad kul det var! Fast jag är förkrossad idag.",
+            "hasChange": true
+        },
+        {
+            "id": "msg_j007",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a009",
+            "date": "2026-09-22",
+            "time": "15:00",
+            "content": "Haha samma. Men det var värt det. Vi gör om det snart.",
+            "hasChange": true
+        },
+        {
+            "id": "65f900152001",
+            "senderId": "699dab0435090",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-21",
+            "time": "10:15",
+            "content": "Hej Elias! Tänkte bara säga att jag gillade din presentation igår. Grymt jobbat.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152002",
+            "senderId": "65e10aa11a001",
+            "receiverId": "699dab0435090",
+            "date": "2026-03-21",
+            "time": "10:22",
+            "content": "Tack Alina! Det betyder mycket. Ska du på AW:n nästa vecka?",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152003",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-21",
+            "time": "11:05",
+            "content": "Neo! Har du fixat API-grejen än? Jag fastnade totalt.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152004",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-21",
+            "time": "11:12",
+            "content": "Haha ja, jag kan visa dig. Det var en missing header som sabbade allt.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152001",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "09:40",
+            "content": "Neo, btw… vi måste börja planera maten inför avslutningsfesten. Jag lovade ju att vi skulle fixa det tillsammans.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152002",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "09:45",
+            "content": "Just det! Jag hade helt glömt. Hur många blir vi? Och vad tänker du för vibe? Buffé? Plock? Något enkelt?",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152003",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "09:52",
+            "content": "Jag tänkte typ plockmat. Lite wraps, sallader, kanske någon varm rätt. Men vi måste ta hänsyn till allergier också. Jag vet att Alina inte tål nötter.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152003",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "09:52",
+            "content": "Jag tänkte typ plockmat. Lite wraps, sallader, kanske någon varm rätt. Men vi måste ta hänsyn till allergier också. Jag vet att Alina inte tål nötter.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152004",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "09:58",
+            "content": "Bra att du säger det. Philip är laktosintolerant också. Och Erik äter inte gluten. Vi kanske ska göra en lista?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152004",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "09:58",
+            "content": "Bra att du säger det. Philip är laktosintolerant också. Och Erik äter inte gluten. Vi kanske ska göra en lista?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152005",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "10:05",
+            "content": "Okej: Alina = inga nötter. Philip = laktos. Erik = gluten. Jag = inget starkt. Du = äter allt som inte rör sig. Stämmer?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152005",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "10:05",
+            "content": "Okej: Alina = inga nötter. Philip = laktos. Erik = gluten. Jag = inget starkt. Du = äter allt som inte rör sig. Stämmer?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152006",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "10:09",
+            "content": "Korrekt. Jag är basically en golden retriever med bättre impulskontroll. Men okej, vi kör nötfritt, laktosfritt och glutenfritt alternativ.",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152007",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "10:15",
+            "content": "Jag kan göra en stor pastasallad (glutenfri variant till Erik), wraps med kyckling och vego, och en laktosfri potatisgratäng. Du kan göra… vadå?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152008",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "10:20",
+            "content": "Jag fixar snacks, dippar, bröd (glutenfritt också), och någon varm rätt. Typ chili? Kan göra en mild och en stark.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152009",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "10:25",
+            "content": "Perfekt. Och vi måste ha dessert. Jag tänker laktosfri kladdkaka och fruktsallad. Ingen kan klaga på det.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc2215200a",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "10:30",
+            "content": "Låter som en plan. Vi handlar på fredag? Jag kör bil så vi slipper bära allt.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152005",
+            "senderId": "699dab0435090",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-21",
+            "time": "12:30",
+            "content": "Philip, såg du att kursen flyttades? Jag hade helt missat det.",
+            "hasChange": true
+        },
+        {
+            "id": "65f900152006",
+            "senderId": "65f3aa11a002",
+            "receiverId": "699dab0435090",
+            "date": "2026-03-21",
+            "time": "12:34",
+            "content": "Japp! Tänkte skriva till dig. Ny tid är mycket bättre imo.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152007",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-21",
+            "time": "13:10",
+            "content": "Elias, du måste hjälpa mig med SQL-grejen. Jag får panik.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152008",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-21",
+            "time": "13:15",
+            "content": "Haha lugn, jag fixar. Skicka din query.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152001",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:10",
+            "content": "Elias, är du vaken? Jag sitter med uppgiften och jag fattar inte vad läraren menar med 'reflekterande analys'. Det är ju bara ord?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc33152002",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-23",
+            "time": "14:15",
+            "content": "Haha jo, det är basically 'skriv vad du tänker men låtsas att det är djupt'. Vad är det du fastnar på?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc33152003",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:18",
+            "content": "Allt? Jag skrev tre meningar och det låter som att jag är en robot som försöker låta mänsklig.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152004",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-23",
+            "time": "14:22",
+            "content": "Skriv vad du faktiskt tyckte om uppgiften. Typ: 'Jag insåg att jag alltid gör X när jag borde göra Y'. Det brukar funka.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152005",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:25",
+            "content": "Okej, så typ: 'Jag insåg att jag prokrastinerar tills jag får panik och sen jobbar jag som en galning'? Är det för ärligt?",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152006",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-23",
+            "time": "14:28",
+            "content": "Det är ärligt, men du kan paketera det lite snyggare. Typ: 'Jag märkte att jag tenderar att arbeta bäst under tidspress'.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152007",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:32",
+            "content": "Ahhh smart. Okej, jag gör så. Tack! Du räddade mig från att skriva 'hjälp' som min analys.",
+            "hasChange": true
+        },
+        {
+            "id": "65fc33152007",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:32",
+            "content": "Ahhh smart. Okej, jag gör så. Tack! Du räddade mig från att skriva 'hjälp' som min analys.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152008",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-23",
+            "time": "14:35",
+            "content": "Gör inte det. Läraren hade ringt studenthälsan. Lycka till nu!",
             "hasChange": false
         }
     ]

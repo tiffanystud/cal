@@ -80,6 +80,7 @@ export function CalendarService() {
                     name: "Creator"
                 });
             }
+            
             // START OF ROLLBACK (needs to add at least one member)
 
             // Check if any admins has been added

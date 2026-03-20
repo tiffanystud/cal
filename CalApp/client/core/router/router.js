@@ -1,6 +1,5 @@
+
 import { PubSub } from "../store/pubsub.js";
-import { store } from "../store/store.js";
-import { CreateNotificationsView } from "../views/notifications/notifications.js";
 
 // ROUTERN PUBLICERAR ETT EVENT, MED URL OCH VYN SUBSCRIBAR PÅ EVENTET SOM SEDAN GER URL ELLER PARAMS OCH RENDERAR
 export class Router {

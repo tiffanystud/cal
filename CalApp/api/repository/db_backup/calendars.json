@@ -26,8 +26,98 @@
         },
         {
             "id": "699d8717f007a",
-            "creatorId": "3",
+            "creatorId": "65f3be11b009",
             "name": "LatestTestgroup",
+            "type": "public"
+        },
+        {
+            "id": "69ac867f767b5",
+            "creatorId": "65f3aa11a003",
+            "name": "Studiegrupp",
+            "type": "private"
+        },
+        {
+            "id": "69bc0311e91e4",
+            "creatorId": "65e10aa11a001",
+            "name": "Dancing Queens",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b001",
+            "creatorId": "65f3aa11a001",
+            "name": "MAU Tech Support",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b002",
+            "creatorId": "65f3aa11a003",
+            "name": "Ekonomi HT26",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b003",
+            "creatorId": "65f3aa11a007",
+            "name": "Yoga Mindfulness Club",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b004",
+            "creatorId": "65f3aa11a009",
+            "name": "Spy Bar Crew",
+            "type": "private"
+        },
+        {
+            "id": "65f3bb11b00d",
+            "creatorId": "65f3aa11a009",
+            "name": "Spy Bar VIP",
+            "type": "private"
+        },
+        {
+            "id": "65f3bb11b005",
+            "creatorId": "65f3aa11a00b",
+            "name": "Malmö Futsal Team",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b006",
+            "creatorId": "65f3aa11a00d",
+            "name": "Lund Running Club",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b007",
+            "creatorId": "65f3aa11a010",
+            "name": "Foto & Film Studio",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b008",
+            "creatorId": "65f3aa11a012",
+            "name": "Coding Night Group",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b009",
+            "creatorId": "65f3aa11a015",
+            "name": "Projekt Orion",
+            "type": "private"
+        },
+        {
+            "id": "65f3bb11b00a",
+            "creatorId": "65f3aa11a017",
+            "name": "Team Global Outreach",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b00b",
+            "creatorId": "65f3aa11a019",
+            "name": "Malmö Gaming League",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b00c",
+            "creatorId": "65f3aa11a01c",
+            "name": "Sustainability Research Lab",
             "type": "public"
         }
     ]

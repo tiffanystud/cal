@@ -1,5 +1,61 @@
 
+
 export const state = {
+    
+    isLoggedIn: {
+        id: "",
+        username: "",
+        email: ""
+    },
+    
+    currentContext: {
+        currentCal: {},
+        currentEvents: []
+    },
+    
+    cals: [],
+    
+    usergroups: [],
+    
+    events: [],
+    
+    friends: [],
+    
+    privateMessages: [],
+    
+    calendarMessages: [],
+    
+    userPinnedCalendars: [],
+    
+    availabilites: [],
+    
+    notis: []
+    
+};
+
+
+// Same as above, but cleaner structure when in use in store.js
+export const stateSchema = {
+    isLoggedIn: {
+        id: "",
+        username: "",
+        email: ""
+    },
+    cals: [],
+    usergroups: [],
+    events: [],
+    friends: [],
+    privateMessages: [],
+    calendarMessages: [],
+    userPinnedCalendars: [],
+    availabilites: [],
+    notis: []
+};
+
+
+
+// OLD
+/* export const state = {
 
     isLoggedIn: {
         id: "65e10aa11a001",
@@ -113,4 +169,4 @@ export const state = {
     }],
 
     notis: []
-}
+} */

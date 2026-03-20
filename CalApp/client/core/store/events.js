@@ -1,5 +1,5 @@
-// mall - domain:status:entity:action
-// exempel: request:sent:calendars:post
+
+// mall - domain:status:entity:action - exempel: request:sent:calendars:post
 
 const RESOURCES = [
     "calendars",
@@ -12,7 +12,7 @@ const RESOURCES = [
 const CRUD_ACTIONS = ["post", "get", "patch", "delete"];
 const READ_ACTIONS = ["post", "get"];
 
-// Builds all actions for ONE resource.
+// Builds all actions for ONE resource
 // Ex: { POST: "request:sent:calendars:post", GET: "request:sent:calendars:get" }
 function buildEventActionsForResource(domain, status, resource, actions) {
 
@@ -21,9 +21,7 @@ function buildEventActionsForResource(domain, status, resource, actions) {
     for (const action of actions) {
 
         const key = action.toUpperCase();
-
         events[key] = `${domain}:${status}:${resource}:${action}`;
-
     }
 
     return events;
@@ -39,7 +37,6 @@ function buildResourcesWithActions(domain, status, actions) {
     for (const resource of RESOURCES) {
 
         const key = resource.toUpperCase();
-
         resources[key] =
             buildEventActionsForResource(
                 domain,
@@ -63,7 +60,6 @@ function buildStoreUpdatedEvents() {
     for (const resource of RESOURCES) {
 
         const key = resource.toUpperCase();
-
         events[key] = `store:updated:${resource}`;
 
     }
