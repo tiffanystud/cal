@@ -2,7 +2,6 @@ import { store } from "../../store/store.js";
 import { PubSub } from "../../store/pubsub.js";
 import { EVENTS } from "../../store/events.js";
 import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
-import { LandingButtonContainer } from "../home/components/landingButtons.js";
 import { AppInput } from "../../../components/appInput/appInput.js";
 import { ContactCardContainer } from "./components/contactCardContainer.js";
 import { apiRequest } from "../../services/api.js";
@@ -48,7 +47,6 @@ export class ContactsView extends HTMLElement{
                 return err;
             }
         }
-        console.log(context);
         this.app.innerHTML = `
         <style>
             app-input{
@@ -66,10 +64,6 @@ export class ContactsView extends HTMLElement{
             font-size: 14px;
             }
         </style>
-        <landing-button-container>
-            <landing-button label="My Calendar" view="home" ${isGroupContext ? "" : "active"}></landing-button>
-            <landing-button label="My Groups" view="groupcalendar"${isGroupContext ? "active" : ""}></landing-button>
-        </landing-button-container>
         <div class="view">
             <div class="rubrik"></div>
             <h3>${context}</h3>
