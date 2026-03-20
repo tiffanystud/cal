@@ -91,7 +91,6 @@ export class CalDetailBtn extends HTMLElement{
 
             this.detail = item.textContent;
             detailButton.textContent = this.detail;
-            console.log(item.id);
             PubSub.publish("change:detailbtn", item.id);
             this.toggleDropdown(false);
         });
