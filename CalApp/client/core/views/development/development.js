@@ -1,4 +1,6 @@
 import { store } from "../../store/store.js";
+import { PubSub } from "../../store/pubsub.js";
+import { EVENTS } from "../../store/events.js";
 
 export class dummyLogin {
 
@@ -22,6 +24,7 @@ export class dummyLogin {
     }
 
     async login() {
+        
         const userId = this.input.value.trim();
 
         if (!userId) {
@@ -29,27 +32,45 @@ export class dummyLogin {
             return;
         }
 
+        // Pubba att någon försöker logga in
+        PubSub.publish(EVENTS.STATE.LOGIN.START, { userId });
+        
         store.setState({
             isLoggedIn: { id: userId }
         });
-
+        
         await store.loadState(userId);
         
+        // Pubba att någon har loggat in
+        PubSub.publish(EVENTS.STATE.LOGIN.SUCCESS, { userId });
+        PubSub.publish(EVENTS.STORE.UPDATED.ISLOGGEDIN);
+
         console.log("------ DEVELOPMENT PRODUCTION LOGS -------")
         console.log(store.getState())
         console.log("------ DEVELOPMENT PRODUCTION LOGS -------")
     }
 
     logout() {
+        
+        // Pubba att någon vill logga ut
+        PubSub.publish(EVENTS.STATE.LOGOUT.START);
+        
         store.resetState();
+        
+        // Pubba att någon har loggat ut
+        PubSub.publish(EVENTS.STATE.LOGOUT.SUCCESS)
+        PubSub.publish(EVENTS.STORE.UPDATED.ISLOGGEDIN);
+
     }
 
     updateUI(isLoggedIn) {
 
         if (isLoggedIn && isLoggedIn.id) {
+            
             this.container.style.backgroundColor = "#d0ffd0";
             this.info.textContent = `Logged in as: ${isLoggedIn.username || "(loading...)"}`;
         } else {
+            
             this.container.style.backgroundColor = "#ffd0d0";
             this.info.textContent = "Not logged in";
         }

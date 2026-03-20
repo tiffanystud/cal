@@ -47,7 +47,7 @@ export class Store {
         
         if (!Store.allListeners[keyName]) {
             
-            console.log("New subscription: ", keyName, " with listener: ", listener);
+            console.log('New subscription: "', keyName, '" with listener: "', listener, '"');
             Store.allListeners[keyName] = []
             
         };
@@ -61,7 +61,8 @@ export class Store {
             
             return "No listeners for event"
         } else {
-            
+
+            console.log('New nofify: "', keyName, '" with: "', data, '"');
             Store.allListeners[keyName].forEach(listener => listener(data))
         }
     }

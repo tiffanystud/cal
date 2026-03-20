@@ -31,6 +31,16 @@ import "./core/views/newHomeView/newHomeView.js";
 
 // DEVELOPMENT
 import "./core/views/development/development.js";
+import { EVENTS } from "./core/store/events.js";
+import { PubSub } from "./core/store/pubsub.js";
+PubSub.subscribe("change:view", (data) => {
+    const page = data.mainPath;     // från router ex. "createGroup"
+    const key = page.toUpperCase(); // "CREATEGROUP"
+
+    if (EVENTS.VIEW.PAGE.SHOW[key]) {
+        PubSub.publish(EVENTS.VIEW.PAGE.SHOW[key], data);
+    }
+});
 
 
 // START

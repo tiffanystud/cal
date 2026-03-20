@@ -16,6 +16,12 @@ export class HomeView extends HTMLElement {
         this.sub();
     }
     sub() {
+        
+        // Test av EVENTS (init i index.js)
+        PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.HOME, (data) => {
+            this.render(data);
+        });
+        
         PubSub.subscribe("change:view", (data) => {
             if (data.url.pathname === "/") {
                 this.render();

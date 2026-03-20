@@ -1,10 +1,13 @@
 
 export class Pubsub {
+    
     constructor() {
         this.events = {};
     }
 
     subscribe(event, callBack) {
+    
+        console.log("New sub: ", event, " with: ", callBack)
         if (!this.events[event]) {
             this.events[event] = [];
         }
@@ -18,6 +21,8 @@ export class Pubsub {
     }
 
     publish(event, data = null) {
+        
+        console.log("New pub: ", event, " with: ", data)
         if (!this.events[event]) {
             return;
         }

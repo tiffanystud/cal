@@ -782,6 +782,276 @@
             "time": "15:00",
             "content": "Haha samma. Men det var värt det. Vi gör om det snart.",
             "hasChange": true
+        },
+        {
+            "id": "65f900152001",
+            "senderId": "699dab0435090",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-21",
+            "time": "10:15",
+            "content": "Hej Elias! Tänkte bara säga att jag gillade din presentation igår. Grymt jobbat.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152002",
+            "senderId": "65e10aa11a001",
+            "receiverId": "699dab0435090",
+            "date": "2026-03-21",
+            "time": "10:22",
+            "content": "Tack Alina! Det betyder mycket. Ska du på AW:n nästa vecka?",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152003",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-21",
+            "time": "11:05",
+            "content": "Neo! Har du fixat API-grejen än? Jag fastnade totalt.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152004",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-21",
+            "time": "11:12",
+            "content": "Haha ja, jag kan visa dig. Det var en missing header som sabbade allt.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152001",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "09:40",
+            "content": "Neo, btw… vi måste börja planera maten inför avslutningsfesten. Jag lovade ju att vi skulle fixa det tillsammans.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152002",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "09:45",
+            "content": "Just det! Jag hade helt glömt. Hur många blir vi? Och vad tänker du för vibe? Buffé? Plock? Något enkelt?",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152003",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "09:52",
+            "content": "Jag tänkte typ plockmat. Lite wraps, sallader, kanske någon varm rätt. Men vi måste ta hänsyn till allergier också. Jag vet att Alina inte tål nötter.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152003",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "09:52",
+            "content": "Jag tänkte typ plockmat. Lite wraps, sallader, kanske någon varm rätt. Men vi måste ta hänsyn till allergier också. Jag vet att Alina inte tål nötter.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152004",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "09:58",
+            "content": "Bra att du säger det. Philip är laktosintolerant också. Och Erik äter inte gluten. Vi kanske ska göra en lista?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152004",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "09:58",
+            "content": "Bra att du säger det. Philip är laktosintolerant också. Och Erik äter inte gluten. Vi kanske ska göra en lista?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152005",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "10:05",
+            "content": "Okej: Alina = inga nötter. Philip = laktos. Erik = gluten. Jag = inget starkt. Du = äter allt som inte rör sig. Stämmer?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152005",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "10:05",
+            "content": "Okej: Alina = inga nötter. Philip = laktos. Erik = gluten. Jag = inget starkt. Du = äter allt som inte rör sig. Stämmer?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152006",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "10:09",
+            "content": "Korrekt. Jag är basically en golden retriever med bättre impulskontroll. Men okej, vi kör nötfritt, laktosfritt och glutenfritt alternativ.",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152007",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "10:15",
+            "content": "Jag kan göra en stor pastasallad (glutenfri variant till Erik), wraps med kyckling och vego, och en laktosfri potatisgratäng. Du kan göra… vadå?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc22152008",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "10:20",
+            "content": "Jag fixar snacks, dippar, bröd (glutenfritt också), och någon varm rätt. Typ chili? Kan göra en mild och en stark.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc22152009",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65f3aa11a001",
+            "date": "2026-03-22",
+            "time": "10:25",
+            "content": "Perfekt. Och vi måste ha dessert. Jag tänker laktosfri kladdkaka och fruktsallad. Ingen kan klaga på det.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc2215200a",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-22",
+            "time": "10:30",
+            "content": "Låter som en plan. Vi handlar på fredag? Jag kör bil så vi slipper bära allt.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152005",
+            "senderId": "699dab0435090",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-21",
+            "time": "12:30",
+            "content": "Philip, såg du att kursen flyttades? Jag hade helt missat det.",
+            "hasChange": true
+        },
+        {
+            "id": "65f900152006",
+            "senderId": "65f3aa11a002",
+            "receiverId": "699dab0435090",
+            "date": "2026-03-21",
+            "time": "12:34",
+            "content": "Japp! Tänkte skriva till dig. Ny tid är mycket bättre imo.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152007",
+            "senderId": "65e10aa11a009",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-21",
+            "time": "13:10",
+            "content": "Elias, du måste hjälpa mig med SQL-grejen. Jag får panik.",
+            "hasChange": false
+        },
+        {
+            "id": "65f900152008",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65e10aa11a009",
+            "date": "2026-03-21",
+            "time": "13:15",
+            "content": "Haha lugn, jag fixar. Skicka din query.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152001",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:10",
+            "content": "Elias, är du vaken? Jag sitter med uppgiften och jag fattar inte vad läraren menar med 'reflekterande analys'. Det är ju bara ord?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc33152002",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-23",
+            "time": "14:15",
+            "content": "Haha jo, det är basically 'skriv vad du tänker men låtsas att det är djupt'. Vad är det du fastnar på?",
+            "hasChange": true
+        },
+        {
+            "id": "65fc33152003",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:18",
+            "content": "Allt? Jag skrev tre meningar och det låter som att jag är en robot som försöker låta mänsklig.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152004",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-23",
+            "time": "14:22",
+            "content": "Skriv vad du faktiskt tyckte om uppgiften. Typ: 'Jag insåg att jag alltid gör X när jag borde göra Y'. Det brukar funka.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152005",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:25",
+            "content": "Okej, så typ: 'Jag insåg att jag prokrastinerar tills jag får panik och sen jobbar jag som en galning'? Är det för ärligt?",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152006",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-23",
+            "time": "14:28",
+            "content": "Det är ärligt, men du kan paketera det lite snyggare. Typ: 'Jag märkte att jag tenderar att arbeta bäst under tidspress'.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152007",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:32",
+            "content": "Ahhh smart. Okej, jag gör så. Tack! Du räddade mig från att skriva 'hjälp' som min analys.",
+            "hasChange": true
+        },
+        {
+            "id": "65fc33152007",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65e10aa11a001",
+            "date": "2026-03-23",
+            "time": "14:32",
+            "content": "Ahhh smart. Okej, jag gör så. Tack! Du räddade mig från att skriva 'hjälp' som min analys.",
+            "hasChange": false
+        },
+        {
+            "id": "65fc33152008",
+            "senderId": "65e10aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-23",
+            "time": "14:35",
+            "content": "Gör inte det. Läraren hade ringt studenthälsan. Lycka till nu!",
+            "hasChange": false
         }
     ]
 }

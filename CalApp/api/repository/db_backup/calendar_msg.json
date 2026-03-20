@@ -260,6 +260,42 @@
             "time": "14:45",
             "content": "Jag tar med datasetet till workshopen. Det är det reviderade från senaste mätperioden, så det bör vara mer komplett än förra versionen vi jobbade med.",
             "hasChanged": false
+        },
+        {
+            "id": "65f900153001",
+            "senderId": "65e10aa11a009",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:00",
+            "content": "Okej team, ska vi plugga ihop på söndag?",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153002",
+            "senderId": "65f3aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:05",
+            "content": "Jag är på! Behöver repetera API-delen.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153003",
+            "senderId": "699dab0435090",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:07",
+            "content": "Söndag funkar för mig också.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153004",
+            "senderId": "65e10aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:10",
+            "content": "Perfekt, jag tar med kaffe.",
+            "hasChanged": false
         }
     ]
 }
