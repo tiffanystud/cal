@@ -43,6 +43,96 @@
             "date": "2026-02-24",
             "time": "13:43:32",
             "content": "Go bears",
+            "hasChange": true
+        },
+        {
+            "id": "65f422152001",
+            "senderId": "65f3aa11a001",
+            "receiverId": "65f3aa11a002",
+            "date": "2026-03-10",
+            "time": "08:10",
+            "content": "God morgon!",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152002",
+            "senderId": "65f3aa11a002",
+            "receiverId": "65f3aa11a003",
+            "date": "2025-11-01",
+            "time": "16:20",
+            "content": "Pluggar du inför tentan?",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152003",
+            "senderId": "65f3aa11a003",
+            "receiverId": "65f3aa11a009",
+            "date": "2026-09-19",
+            "time": "19:40",
+            "content": "Ses vi på Spy Bar?",
+            "hasChange": true
+        },
+        {
+            "id": "65f422152004",
+            "senderId": "65f3aa11a007",
+            "receiverId": "65f3aa11a008",
+            "date": "2027-02-14",
+            "time": "18:00",
+            "content": "Redo för yogapasset?",
+            "hasChange": true
+        },
+        {
+            "id": "65f422152005",
+            "senderId": "65f3aa11a00b",
+            "receiverId": "65f3aa11a00c",
+            "date": "2025-05-11",
+            "time": "15:30",
+            "content": "Kommer du till träningen?",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152006",
+            "senderId": "65f3aa11a00d",
+            "receiverId": "65f3aa11a00e",
+            "date": "2027-01-07",
+            "time": "09:50",
+            "content": "Springer du ikväll?",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152007",
+            "senderId": "65f3aa11a010",
+            "receiverId": "65f3aa11a011",
+            "date": "2026-04-01",
+            "time": "10:40",
+            "content": "Har du fixat kameran?",
+            "hasChange": true
+        },
+        {
+            "id": "65f422152008",
+            "senderId": "65f3aa11a012",
+            "receiverId": "65f3aa11a013",
+            "date": "2025-12-17",
+            "time": "18:20",
+            "content": "Kodkväll imorgon!",
+            "hasChange": false
+        },
+        {
+            "id": "65f422152009",
+            "senderId": "65f3aa11a015",
+            "receiverId": "65f3aa11a018",
+            "date": "2027-03-01",
+            "time": "07:40",
+            "content": "Kickoff snart!",
+            "hasChange": true
+        },
+        {
+            "id": "65f42215200a",
+            "senderId": "65f3aa11a019",
+            "receiverId": "65f3aa11a01c",
+            "date": "2025-08-24",
+            "time": "12:10",
+            "content": "Redo för matchen?",
             "hasChange": false
         }
     ]

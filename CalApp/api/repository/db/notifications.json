@@ -131,6 +131,76 @@
             "messageId": null,
             "eventId": "65e10aa11c006",
             "read": false
+        },
+        {
+            "id": "65f43344b5011",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153001",
+                "senderId": "65f3aa11a001",
+                "calId": "65f3bb11b001",
+                "date": "2026-03-10",
+                "time": "09:15",
+                "content": "Glöm inte veckomötet på torsdag.",
+                "hasChanged": false
+            },
+            "messageId": "65f411153001",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "65f43344b5012",
+            "type": "event",
+            "notiContent": {
+                "id": "65f3ee11c001",
+                "senderId": "65f3aa11a001"
+            },
+            "messageId": null,
+            "eventId": "65f3ee11c001",
+            "read": false
+        },
+        {
+            "id": "65f43344b5013",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153004",
+                "senderId": "65f3aa11a002",
+                "calId": "65f3bb11b002",
+                "date": "2025-11-03",
+                "time": "08:55",
+                "content": "Jag lägger upp anteckningarna efter lektionen.",
+                "hasChanged": false
+            },
+            "messageId": "65f411153004",
+            "eventId": null,
+            "read": true
+        },
+        {
+            "id": "65f43344b5014",
+            "type": "event",
+            "notiContent": {
+                "id": "65f3ee11c004",
+                "senderId": "65f3aa11a009"
+            },
+            "messageId": null,
+            "eventId": "65f3ee11c004",
+            "read": false
+        },
+        {
+            "id": "65f43344b5015",
+            "type": "message",
+            "notiContent": {
+                "id": "65f41115300f",
+                "senderId": "65f3aa11a012",
+                "calId": "65f3bb11b008",
+                "date": "2025-12-18",
+                "time": "19:40",
+                "content": "Kodkväll imorgon!",
+                "hasChanged": false
+            },
+            "messageId": "65f41115300f",
+            "eventId": null,
+            "read": false
         }
     ]
 }

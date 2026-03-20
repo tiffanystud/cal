@@ -207,6 +207,198 @@
             "canDelete": true,
             "canEdit": false,
             "isCreator": false
+        },
+        {
+            "id": "65f3ff143201",
+            "eventId": "65f3ee11c001",
+            "userId": "65f3aa11a001",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143202",
+            "eventId": "65f3ee11c001",
+            "userId": "65f3aa11a006",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff143203",
+            "eventId": "65f3ee11c002",
+            "userId": "65f3aa11a003",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143204",
+            "eventId": "65f3ee11c002",
+            "userId": "65f3aa11a002",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff143205",
+            "eventId": "65f3ee11c003",
+            "userId": "65f3aa11a007",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143206",
+            "eventId": "65f3ee11c003",
+            "userId": "65f3aa11a008",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff143207",
+            "eventId": "65f3ee11c004",
+            "userId": "65f3aa11a009",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143208",
+            "eventId": "65f3ee11c004",
+            "userId": "65f3aa11a00a",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff143209",
+            "eventId": "65f3ee11c005",
+            "userId": "65f3aa11a00b",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff14320a",
+            "eventId": "65f3ee11c005",
+            "userId": "65f3aa11a00c",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff14320b",
+            "eventId": "65f3ee11c006",
+            "userId": "65f3aa11a00d",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff14320c",
+            "eventId": "65f3ee11c006",
+            "userId": "65f3aa11a00e",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff14320d",
+            "eventId": "65f3ee11c007",
+            "userId": "65f3aa11a010",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff14320e",
+            "eventId": "65f3ee11c007",
+            "userId": "65f3aa11a011",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff14320f",
+            "eventId": "65f3ee11c008",
+            "userId": "65f3aa11a012",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143210",
+            "eventId": "65f3ee11c008",
+            "userId": "65f3aa11a013",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff143211",
+            "eventId": "65f3ee11c009",
+            "userId": "65f3aa11a015",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143212",
+            "eventId": "65f3ee11c009",
+            "userId": "65f3aa11a018",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff143213",
+            "eventId": "65f3ee11c00a",
+            "userId": "65f3aa11a017",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143214",
+            "eventId": "65f3ee11c00a",
+            "userId": "65f3aa11a01d",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff143215",
+            "eventId": "65f3ee11c00b",
+            "userId": "65f3aa11a019",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143216",
+            "eventId": "65f3ee11c00b",
+            "userId": "65f3aa11a01c",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
+        },
+        {
+            "id": "65f3ff143217",
+            "eventId": "65f3ee11c00c",
+            "userId": "65f3aa11a01c",
+            "canDelete": true,
+            "canEdit": true,
+            "isCreator": true
+        },
+        {
+            "id": "65f3ff143218",
+            "eventId": "65f3ee11c00c",
+            "userId": "65f3aa11a01e",
+            "canDelete": false,
+            "canEdit": true,
+            "isCreator": false
         }
     ]
 }

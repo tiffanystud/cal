@@ -2,7 +2,6 @@
 import { apiRequest } from "../services/api.js";
 import { state } from "./state.js";
 import { stateSchema } from "./state.js";
-// import { schema } from "./state.js";
 
 export class Store {
 
@@ -116,11 +115,8 @@ export class Store {
         });
 
         // Get Calendar MSG
-        // Hämta calendar messages för varje kalender användaren är med i
         const calendarMessages = [];
-
         for (let ug of usergroups) {
-
             const msgs = await apiRequest({
                 entity: `calendar_msg?senderId=${userId}&calId=${ug.calId}`,
                 method: "GET"
@@ -130,8 +126,6 @@ export class Store {
                 calendarMessages.push(msg);
             }
         }
-
-
 
         // Get Pinned cals
         const pinned = await apiRequest({
