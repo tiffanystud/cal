@@ -65,6 +65,30 @@
             "userId": "65e10aa11a006",
             "calId": "69bc0311e91e4",
             "isAdmin": false
+        },
+        {
+            "id": "69bc03e977a49",
+            "userId": "65e10aa11a001",
+            "calId": "69bc03e975743",
+            "isAdmin": true
+        },
+        {
+            "id": "69bc03e978f18",
+            "userId": "65e10aa11a00a",
+            "calId": "69bc03e975743",
+            "isAdmin": true
+        },
+        {
+            "id": "69bc0b6763a2d",
+            "userId": "65e10aa11a00a",
+            "calId": "69bc0b6761c21",
+            "isAdmin": true
+        },
+        {
+            "id": "69bc0b67649d2",
+            "userId": "65e10aa11a001",
+            "calId": "69bc0b6761c21",
+            "isAdmin": true
         }
     ]
 }

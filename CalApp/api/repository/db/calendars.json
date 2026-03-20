@@ -41,6 +41,18 @@
             "creatorId": "65e10aa11a001",
             "name": "Dancing Queens",
             "type": "public"
+        },
+        {
+            "id": "69bc03e975743",
+            "creatorId": "65e10aa11a001",
+            "name": "d",
+            "type": "private"
+        },
+        {
+            "id": "69bc0b6761c21",
+            "creatorId": "65e10aa11a001",
+            "name": "mb",
+            "type": "private"
         }
     ]
 }

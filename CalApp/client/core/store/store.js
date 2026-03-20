@@ -15,9 +15,10 @@ export class Store {
         return structuredClone(this._state);
     }
 
-    // responseStatus för att säkerställa att DB uppdateras innan state 
-    // Förväntar sig eventName för att kalla på notify internt
+    // Förväntar sig keyName för att kalla på notify internt
     // Förväntar sig data för datan från setState
+    
+    // Görs om till -> setState (newstate) {}
     setState(newState, responseStatus, eventName, data) {
 
         // Neka fel format
@@ -25,15 +26,17 @@ export class Store {
             return false;
         }
 
-        // Notify status om !ok notify redan här
-
-
         this.lastState = this._state;
-        // target, source (shallow merge?) OBS->->-> gör om
         this._state = Object.assign(this._state, newState);
 
+    
         this.notify(eventName, data);
-
+        /*    Görs om till ->     
+            for (let key in neState) {
+            this.notify(keyName, newState[keyName])
+        } */
+       
+            
         return { ok: true };
 
     }
@@ -42,24 +45,30 @@ export class Store {
         throw new Error("Not allowed");
     }
 
+    // eventName -> keyName
     subscribe(eventName, listener) {
+        
         if (!Store.allListeners[eventName]) {
-            console.log("Hej")
+            
+            console.log("Hej event ", eventName)
             Store.allListeners[eventName] = []
         };
+        
         Store.allListeners[eventName].push(listener);
     }
 
-    // skicka event OBS->->-> gör detta varje gång estState är utfört
-    // Skickar med data för att hantera datan typ?
+
+    // Byt ut till keyName 
     notify(eventName, data) {
+        
         if (!Store.allListeners[eventName]) {
+            
             return "No listeners for event"
         } else {
+            
             Store.allListeners[eventName].forEach(listener => listener(data));
         }
     }
 }
 
-// ?
 export const store = new Store(state);
