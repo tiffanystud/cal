@@ -158,7 +158,72 @@ function testUsersGetOne_404()
     ];
 }
 
+function testUsersGetByCal_200()
+{
+    $expected = [
+        "status" => 200,
+        "body" => [
+            [
+                "id" => "ID",
+                "email" => "VALUE",
+                "pwd" => "VALUE",
+                "name" => "VALUE"
+            ]
+        ]
+    ];
+    $query = [
+        "calId" => "65e10aa11b004"
+    ];
 
+
+    $actual = runRequest(
+        method: "GET",
+        endpoint: "/users",
+        data: $query
+    );
+
+    return [
+        "name" => "GET 200 (users in calendar))",
+        "method" => "GET",
+        "endpoint" => "/users",
+        "queryParams" => $query,
+        "requestBody" => null,
+        "expected" => $expected,
+        "actual" => $actual,
+        "info" => "Fetches user(s) of a specific calendar"
+    ];
+}
+
+function testUsersGetByCal_404()
+{
+    $expected = [
+        "status" => 404,
+        "body" => [
+            "error" => "Calendar not found"
+        ]
+    ];
+    $query = [
+        "calId" => "00000"
+    ];
+
+
+    $actual = runRequest(
+        method: "GET",
+        endpoint: "/users",
+        data: $query
+    );
+
+    return [
+        "name" => "GET 404 (users in calendar))",
+        "method" => "GET",
+        "endpoint" => "/users",
+        "queryParams" => $query,
+        "requestBody" => null,
+        "expected" => $expected,
+        "actual" => $actual,
+        "info" => "Fetches user(s) of a specific calendar"
+    ];
+}
 
 
 /* --- POST --- */
@@ -424,6 +489,9 @@ function runTests()
     $tests[] = testUsersGetAll_200(); 
     $tests[] = testUsersGetOne_200();
     $tests[] = testUsersGetOne_404(); 
+
+    $tests[] = testUsersGetByCal_200();
+    $tests[] = testUsersGetByCal_404();
     
     $tests[] = testUsersPost_201();
     $tests[] = testUsersPost_400();

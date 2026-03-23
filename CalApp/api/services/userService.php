@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . "/../repository/DBAccess.php";
+    require_once __DIR__ . "/UsersCalendarsService.php";
 
     class UserService {
         public static function getAllUsers()
@@ -35,6 +36,27 @@
                 return $result;
             }
             
+        }
+
+        public static function getUsersInCal($calId){
+            $relations = UsersCalendarsService::getAllRelationsByCalId($calId);
+            $dbU = new DBAccess("users");
+            $result = [];
+            foreach ($relations as $rel){
+                $user = $dbU->findById($rel["userId"]);
+                if ($user === null){
+                    error_log("Missing user with id {$rel['userId']} in relation table");
+                    continue;
+                } else {
+                    $result[] = $user;
+                }
+            }
+            if (empty($result)){
+                return ["error" => "No users found in calendar"];
+            } else {
+                return $result;
+            }
+
         }
 
         public static function changeUser($id, $data) {
