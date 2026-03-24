@@ -58,10 +58,6 @@ export class ProfileView extends HTMLElement {
 
         </style>
         <div id="content">
-            <landing-button-container>
-                <landing-button label="My Calendar" view="home" active></landing-button>
-                <landing-button label="My Groups" view="groupcalendar"></landing-button>
-            </landing-button-container>
             <h3>Profile</h3>
             <div id="container">
                 <img src="./../assets/icons/home-dark.png"></img>
