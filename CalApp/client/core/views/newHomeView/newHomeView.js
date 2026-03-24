@@ -21,16 +21,28 @@ class CreateGroupLandingView {
     render() {
         this.app.innerHTML = `
         <style>
-            #app {
+            #content {
+                height: 100%;
                 display: flex;
                 flex-direction: column;
-                gap: 50px;
             }
+            #container {
+                display: flex;
+                flex-direction: column;
+                height: 80%; 
+                overflow-y: auto;
+                gap: 10px;
+            } 
         </style>
-            <filter-cals></filter-cals>
-            <week-days></week-days>
-            <event-cards></event-cards>
+
+        <div id="content">
+            <div id="container">
+                <filter-cals></filter-cals>
+                <week-days></week-days>
+                <event-cards></event-cards>
+            </div>
             <bottom-nav></bottom-nav>
+        </div>
         `;
     }
 

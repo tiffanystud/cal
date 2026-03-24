@@ -10,12 +10,11 @@ export class Router {
     constructor(url) {
         
         this.url = new URL(url, window.location.origin); // sträng
-        
+        console.log(url);
         // "/home/profile" -> ["home", "profile"]
         this.urlPaths = this.url.pathname.split("/").filter(Boolean);
         this.mainPath = this.urlPaths[0];
         this.subPath = this.urlPaths[1];
-        
         // Payload innehåller info om vilken route som ska visas, change:view(payload)
         PubSub.publish("change:view", {
             
