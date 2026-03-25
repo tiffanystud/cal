@@ -52,21 +52,15 @@ export class CreateNotificationsView {
         h4.textContent = "Notifications";
         h4.style.margin = 0;
         this.root.appendChild(h4);
-        let notifications = await apiRequest({
-            entity: `notifications?userId=${store.getState().isLoggedIn.id}`,
-            method: "GET"
-        });
+        let notifications = store.getState().notis;
+        notifications = notifications.filter((x) => x.type === "event");
 
         notifications = notifications.sort((a, b) => a.notiContent.time.localeCompare(b.notiContent.time));
         notifications = notifications.sort((a, b) => new Date(a.notiContent.date) - new Date(b.notiContent.date));
-
-        store.setState({notis:
-            [ ...store.getState().notis, ...notifications ]
-        });
         console.log(store.getState().notis);
 
         let notiBar = document.createElement("notifications-bar");
-        notiBar.notis = store.getState().notis;
+        notiBar.notis = notifications;
         this.root.appendChild(notiBar);
     }
 

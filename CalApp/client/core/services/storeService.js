@@ -188,6 +188,21 @@ export class StoreService {
                     }
                 }
 
+                //Get notis
+                let notis;
+
+                if (userId) {
+                    try {
+                        notis = await apiRequest({
+                            entity: `notifications?userId=${userId}`,
+                            method: "GET"
+                        });
+                    } catch (e) {
+                        console.log("Notifications fetch error:", e);
+                        notis = null;
+                    }
+                }
+
 
                 // Get Events
                 let events = [];
@@ -230,7 +245,8 @@ export class StoreService {
                     privateMessages: privateMessages,
                     calendarMessages: calendarMessages,
                     userPinnedCalendars: pinned,
-                    availabilites: availabilities
+                    availabilites: availabilities,
+                    notis: notis
                 });
 
                 PubSub.publish(EVENTS.STATE.LOGIN.SUCCESS, { userId });
