@@ -2,6 +2,7 @@ import { store } from "../../store/store.js";
 import { PubSub } from "../../store/pubsub.js";
 import { EVENTS } from "../../store/events.js";
 import { LandingButtonContainer } from "./components/landingButtons.js";
+import { NotificationsBar } from "../../../components/notificationsBar/notificationsBar.js";
 import { CalDetailBtn } from "./components/calDetailBtn.js";
 import { CalRender } from "./components/calRender.js";
 import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
@@ -64,6 +65,7 @@ export class HomeView extends HTMLElement {
     render() {
         console.log("home render runs");
         this.app.innerHTML = `
+        <notifications-bar></notifications-bar>
         <cal-detail-btn></cal-detail-btn>
         <cal-render></cal-render>
         <create-popup></create-popup>

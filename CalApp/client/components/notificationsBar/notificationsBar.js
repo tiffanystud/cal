@@ -1,4 +1,5 @@
 import { apiRequest } from "/core/services/api.js";
+import { store } from "../../core/store/store.js";
 import { NotificationCard } from "/core/views/notifications/components/notification-card.js";
 
 export class NotificationsBar extends HTMLElement {
@@ -11,7 +12,19 @@ export class NotificationsBar extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <link rel="stylesheet" href="/components/notificationsBar/notificationsBar.css">
         `
-        let eventNotis = this.notis.filter((x) => x.type === "event");
+        let notifications = store.getState().notis;
+        notifications = notifications.filter((x) => x.type === "event");
+
+        notifications = notifications.sort((a, b) => a.notiContent.time.localeCompare(b.notiContent.time));
+        notifications = notifications.sort((a, b) => new Date(a.notiContent.date) - new Date(b.notiContent.date));
+        console.log(store.getState().notis);
+
+        let eventNotis;
+        if (this.notis) {
+            eventNotis = this.notis.filter((x) => x.type === "event");
+        } else {
+            eventNotis = notifications;
+        }
         console.log(eventNotis);
         eventNotis.forEach(async (x) => {
             let event = await apiRequest({
