@@ -56,9 +56,9 @@ export class BottomNav extends HTMLElement {
                         <img class="icon-light" src="/../../assets/icons/add-light.png">
                     </button>
                     
-                    <button class="nav-btn notifications">
-                        <img class="icon-dark" src="/../../assets/icons/send-dark.png">
-                        <img class="icon-light" src="/../../assets/icons/send-light.png">
+                    <button class="nav-btn chat">
+                        <img class="icon-dark" src="/../../assets/icons/chat-dark.png">
+                        <img class="icon-light" src="/../../assets/icons/chat-light.png">
                     </button>
                     
                     <button class="nav-btn profile">
