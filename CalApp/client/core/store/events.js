@@ -14,7 +14,8 @@ const POPUPS = [
     "createGroup",
     "createEvent",
     "searchModal",
-    "createPopup"
+    "createPopup",
+    'decicionPopup'
 ];
 
 export const PAGES = [

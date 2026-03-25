@@ -1,7 +1,8 @@
 import { PubSub } from "../../core/store/pubsub.js";
-import { apiRequest } from "../../core/services/api.js"; 
+import { apiRequest } from "../../core/services/api.js";
+import { state } from "../../core/store/state.js";
 
-export class SearchUsersModal extends HTMLElement {
+export class SearchUsersModalTest extends HTMLElement {
 
     constructor() {
         super();
@@ -105,6 +106,18 @@ export class SearchUsersModal extends HTMLElement {
         this.unsubscribeOpen = PubSub.subscribe("Users::OpenSearchModal", componentData => {
             this.currContext = componentData.context; // What component opens modal
             this.openModal();
+            this.searchInput.addEventListener("input", () => {
+                const query = this.searchInput.value.trim();
+                this.searchUsers(query);
+            });
+        });
+        this.unsubscribeTags = PubSub.subscribe("Tags::OpenSearchModal", componentData => {
+            // What component opens modal
+            this.openModal();
+            this.searchInput.addEventListener("input", () => {
+                const query = this.searchInput.value.trim();
+                this.searchTags(query);
+            });
         });
 
         // Close modal
@@ -114,15 +127,21 @@ export class SearchUsersModal extends HTMLElement {
         });
 
         // Search input listener
-        this.searchInput.addEventListener("input", () => {
-            const query = this.searchInput.value.trim();
-            this.searchUsers(query);
-        });
+        // this.searchInput.addEventListener("input", () => {
+        //     const query = this.searchInput.value.trim();
+        //     if (this.unsubscribeOpen) {
+        //         this.searchUsers(query);
+        //     } else if (this.unsubscribeTags) {
+        //         this.searchTags(query);
+        //     }
+        // });
     }
 
     disconnectedCallback() {
         if (this.unsubscribeOpen) this.unsubscribeOpen();
     }
+
+
 
     openModal() {
         this.backdrop.classList.remove("hidden");
@@ -145,7 +164,7 @@ export class SearchUsersModal extends HTMLElement {
         }
 
         let allUsers = [];
-        
+
         try {
             // GET /users > returnerar alla users
             allUsers = await apiRequest({
@@ -165,6 +184,21 @@ export class SearchUsersModal extends HTMLElement {
         );
 
         this.renderResults(filtered);
+    }
+
+    searchTags(query) {
+
+        if (!query) {
+            this.resultsContainer.innerHTML = "";
+            return;
+        }
+
+        const filterdTags = state.selectedEvents.filter(event => event.tags.toLowerCase().includes(query.toLowerCase()));
+        console.log(state.selectedEvents);
+
+        this.renderResults(filterdTags);
+
+
     }
 
     renderResults(users) {
@@ -191,4 +225,4 @@ export class SearchUsersModal extends HTMLElement {
     }
 }
 
-customElements.define("search-users-modal", SearchUsersModal);
+customElements.define("search-users-modal-test", SearchUsersModalTest);

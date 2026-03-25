@@ -6,7 +6,8 @@ import { NotificationsBar } from "../../../components/notificationsBar/notificat
 import { CalDetailBtn } from "./components/calDetailBtn.js";
 import { CalRender } from "./components/calRender.js";
 import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
-
+import "./components/searchTagsBtn.js";
+import "../../../components/searchUsersModal/searchUsersModalTest.js";
 
 export class HomeView extends HTMLElement {
     constructor() {
@@ -67,8 +68,12 @@ export class HomeView extends HTMLElement {
         this.app.innerHTML = `
         <notifications-bar></notifications-bar>
         <cal-detail-btn></cal-detail-btn>
-        <cal-render></cal-render>
+        <filter-cals></filter-cals>
+        <week-chart></week-chart>
+        <search-tags></search-tags>
+        <event-cards></event-cards>
         <create-popup></create-popup>
+        <search-users-modal-test></search-users-modal-test>
         `;
 
     }
