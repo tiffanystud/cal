@@ -18,7 +18,7 @@ For the project to work, you need to start 2 different servers. Both these serve
 ## Client
 > To serve the client, navigate to the projects client folder in your terminal. The pathway to this folder can differ from device to device, depending on where you decide to store the repo. When you have navigated to the client-folder run:
 
-**php -S localhost:8001**
+`php -S localhost:8001`
 
 > in your terminal. This will start and run a PHP Developmental Server on port 8001 of localhost. To visit the server, simply type into your web browser:
 http://localhost:8001
@@ -28,7 +28,7 @@ NOTE: The port on which the client folder is served on does not matter as long a
 ## API
 > To serve the API, navigate to the projects api folder in yor terminal. The pathway to this folder can differ from device to device, depending on where you decide to store the repo. When you have navigated to the api-folder run:
 
-**php -S localhost:8000 index.php**
+`php -S localhost:8000 index.php`
 
 > in your terminal. This will start and run a PHP Developmental Server on port 8000 of localhost.
 If you attempt to visit this server via the web browser, you will most likely be met by the message:
