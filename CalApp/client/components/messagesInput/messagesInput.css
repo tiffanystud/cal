@@ -1,0 +1,21 @@
+:host {
+    padding: 0px 5px;
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    background-color: #d6d6d6;
+    gap: 5px;
+    align-items: center;
+    border: 1px solid black;
+}
+
+img {
+    justify-self: center;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+}
