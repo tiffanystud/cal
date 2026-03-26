@@ -15,7 +15,8 @@ const POPUPS = [
     "createEvent",
     "searchModal",
     "createPopup",
-    'decicionPopup'
+    "decicionPopup",
+    "ChatFeedPreview"
 ];
 
 export const PAGES = [
@@ -25,7 +26,8 @@ export const PAGES = [
     "users",
     "contacts",
     "createGroup",
-    "createEvent"
+    "createEvent",
+    "chat"
 ];
 
 

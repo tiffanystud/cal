@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .popupContainer {
+            height: 100%;
+            display: none;
+        }
+
+        .chatFeedContainer {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            height: 100%;
+            overflow: scroll;
+        }
+
+        .notificationCirkle {
+            width: 8px;
+            height: 8px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .chatBox {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .chatBox:hover {
+            background-color: whitesmoke;
+        }
+
+        .notificationCirkle {
+            width: 4px;
+            height: 4px;
+            background-color: red;
+            border-radius: 50%;
+            margin-top: -3px;
+            padding: 3px;
+        }
+
+        .groupImg {
+            border-radius: 50%;
+            background-color: cornflowerblue;
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+
+        .chatBoxContent {
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .messageContainer {
+            display: flex;
+            flex-direction: row;
+            flex-basis: 0;
+            flex-grow: 5;
+            padding: 5px 0px 5px 5px;
+            align-items: center;
+        }
+
+        .messageTextContainer {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .chatName {
+            margin: 0;
+        }
+
+        .messageContent {
+            display: flex;
+            flex-direction: row;
+            height: 28px;
+            overflow: hidden;
+        }
+
+        .textContent {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="popupContainer">
+
+        <h3>Your Chats</h3>
+        <div class="chatFeedContainer">
+
+            <div class="chatBox">
+
+                <div class="chatBoxContent">
+
+                    <div class="groupImg"></div>
+
+                    <div class="messageContainer">
+
+                        <div class="messageTextContainer">
+
+                            <h4 class="chatName">VIP</h4>
+
+                            <div class="messageContent">
+                                <p class="messageTextContent textContent">Bob: Ja vi bokade in med Köpenhamnskontoret vecka 17, hur ser den veckan ut för dig?</p>
+
+                            </div>
+                        </div>
+
+                        <div class="notificationCirkle hidden"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chatBox">
+
+                <div class="chatBoxContent">
+
+                    <div class="groupImg"></div>
+
+                    <div class="messageContainer">
+
+                        <div class="messageTextContainer">
+
+                            <h4 class="chatName">VIP</h4>
+
+                            <div class="messageContent">
+                                <p class="messageTextContent textContent">Bob: Ja vi bokade in med Köpenhamnskontoret vecka 17, hur ser den veckan ut för dig?</p>
+
+                            </div>
+                        </div>
+
+                        <div class="notificationCirkle hidden"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chatBox">
+
+                <div class="chatBoxContent">
+
+                    <div class="groupImg"></div>
+
+                    <div class="messageContainer">
+
+                        <div class="messageTextContainer">
+
+                            <h4 class="chatName">VIP</h4>
+
+                            <div class="messageContent">
+                                <p class="messageTextContent textContent">Bob: Ja vi bokade in med Köpenhamnskontoret vecka 17, hur ser den veckan ut för dig?</p>
+
+                            </div>
+                        </div>
+
+                        <div class="notificationCirkle hidden"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chatBox">
+
+                <div class="chatBoxContent">
+
+                    <div class="groupImg"></div>
+
+                    <div class="messageContainer">
+
+                        <div class="messageTextContainer">
+
+                            <h4 class="chatName">VIP</h4>
+
+                            <div class="messageContent">
+                                <p class="messageTextContent textContent">Bob: Ja vi bokade in med Köpenhamnskontoret vecka 17, hur ser den veckan ut för dig?</p>
+
+                            </div>
+                        </div>
+
+                        <div class="notificationCirkle hidden"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
