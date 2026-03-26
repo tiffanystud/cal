@@ -7,7 +7,7 @@ export function MessagesService() {
 
 
     // Payload = {userId, msgType}
-    PubSub.subscribe(EVENTS.REQUEST.MESSAGES.GET, async function (payload) {
+    PubSub.subscribe(EVENTS.REQUEST.SENT.MESSAGES.GET, async function (payload) {
 
         PubSub.publish(EVENTS.REQUEST.RECEIVED.MESSAGES.GET)
 
@@ -60,15 +60,20 @@ export function MessagesService() {
                 }
 
                 // Response
-                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, resourceUserCalendars)
-                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, resourceCalendarMsg)
-                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, resourcePrivateMsg)
-                // Resource
-                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, resourceUserCalendars)
-                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, resourceCalendarMsg)
-                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, resourcePrivateMsg)
+                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
+                    userCalendars: resourceUserCalendars,
+                    calendarMsg: resourceCalendarMsg,
+                    privateMsg: resourcePrivateMsg
+                });
 
-                
+                // Resource
+                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
+                    userCalendars: resourceUserCalendars,
+                    calendarMsg: resourceCalendarMsg,
+                    privateMsg: resourcePrivateMsg
+                })
+
+
                 return {
                     privateMSG: filteredPrivateMsg,
                     calendarMSG: filteredCalMsg
@@ -96,12 +101,15 @@ export function MessagesService() {
                     }
                 }
 
-                
                 // Response
-                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, resourcePrivateMsg)
-                
+                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
+                    privateMSG: resourcePrivateMsg
+                })
+
                 // Resource
-                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, resourcePrivateMsg)
+                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
+                    privateMSG: resourcePrivateMsg
+                })
 
                 return {
                     privateMSG: filteredPrivateMsg,
@@ -143,12 +151,16 @@ export function MessagesService() {
                 }
 
                 // Response
-                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, resourceUserCalendars)
-                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, resourceCalendarMsg)
+                PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
+                    userCalendars: resourceUserCalendars,
+                    calendarMsg: resourceCalendarMsg
+                })
 
                 // Resource
-                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, resourceUserCalendars)
-                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, resourceCalendarMsg)
+                PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
+                    userCalendars: resourceUserCalendars,
+                    calendarMsg: resourceCalendarMsg
+                })
 
                 return {
                     calendarMSG: filteredCalMsg
@@ -159,7 +171,10 @@ export function MessagesService() {
             }
         }
 
-        PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET);
+        PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, {
+            message: "Unknown msgType",
+            sentMsgType: msgType
+        });
 
     })
 

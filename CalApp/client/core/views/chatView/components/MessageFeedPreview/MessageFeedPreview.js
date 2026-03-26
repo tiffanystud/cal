@@ -10,7 +10,9 @@ export class MessageFeedPreview extends HTMLElement {
 
         super();
         this.subs();
-        this.innerHTML = `
+
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.innerHTML = `
             <style>
                 .popupContainer {
                     height: 100%;
@@ -47,15 +49,6 @@ export class MessageFeedPreview extends HTMLElement {
                     
                 .chatBox:hover {
                     background-color: whitesmoke;
-                }
-
-                .notificationCirkle {
-                    width: 4px;
-                    height: 4px;
-                    background-color: red;
-                    border-radius: 50%;
-                    margin-top: -3px;
-                    padding: 3px;
                 }
 
                 .groupImg {
@@ -111,26 +104,26 @@ export class MessageFeedPreview extends HTMLElement {
     }
 
     subs() {
-        
-        PubSub.subscribe(EVENTS.VIEW.POPUP.MESSAGES, () => {
+
+        PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW.MESSAGES, () => {
             // openPopup()
         })
-        
+
         PubSub.subscribe(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, (data) => {
             this.renderMessages(data);
         });
-        
+
     }
 
     connectedCallback() {
 
         // Gör en loading screen?
 
-        const state = getState();
+        const state = store.getState();
         const userId = state.isLoggedIn.id;
 
-        this.allMesssages = PubSub.publish(EVENTS.REQUEST.GET.MESSAGES, {
-            userId: userId,
+        this.allMesssages = PubSub.subscribe(EVENTS.REQUEST.SENT.MESSAGES.GET, {
+            userId,
             msgType: "all"
         });
 
@@ -167,8 +160,8 @@ export class MessageFeedPreview extends HTMLElement {
         if (!allMessages) return;
 
         const merged = [
-            ...allMessages.privateMSG.map(m => ({ ...m, type: "private" })),
-            ...allMessages.calendarMSG.map(m => ({ ...m, type: "calendar" }))
+            ...(allMessages.privateMSG || []).map(m => ({ ...m, type: "private" })),
+            ...(allMessages.calendarMSG || []).map(m => ({ ...m, type: "calendar" }))
         ];
 
         merged.sort((a, b) => {
