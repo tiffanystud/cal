@@ -105,9 +105,13 @@ If you send a POST, PATCH or DELETE request, the Content-Type header must be set
 ### /users
 #### GET
 > Used to: Get all users
+
 > Expected request-body: none
+
 > Possible response statuses: 200
+
 > Response-body: array of user-objects
+
 > Example response: 
 ```
     [{
