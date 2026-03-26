@@ -18,7 +18,7 @@ PubSub.subscribe("change:view", (data) => {
                 let msgBox = document.createElement("message-box");
                 if (sender.id === store.getState().isLoggedIn.id) {
                     msgBox.alignRight = true;
-                    msgBox.bg = "gold";
+                    msgBox.bg = "lightblue";
                 }
                 msgBox.message = x;
                 msgBox.users = {

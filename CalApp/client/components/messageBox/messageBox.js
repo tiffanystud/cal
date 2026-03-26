@@ -19,6 +19,7 @@ export class MessageBox extends HTMLElement {
         }
 
         if (this.bg) {
+            if (typeof this.bg !== "string") return false;
             this.shadowRoot.querySelector("#content").style.backgroundColor = this.bg;
         }
     }
