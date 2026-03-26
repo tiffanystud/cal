@@ -57,9 +57,6 @@ PubSub.subscribe("change:view", (data) => {
 // START
 newRouter.init();
 
-
-
-
 /* PubSub.subscribe("change:view", (data) => {
     console.log("INDEX.JS RECEIVED:", data.mainPath, data.subPath);
     
