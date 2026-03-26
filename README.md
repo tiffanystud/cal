@@ -91,3 +91,31 @@ NOTE: This server NEEDS to be served on port 8000. This port is reserved for the
 
 ### assets
 > The assets directory includes the icons folder. The icons folder contains icons (images) that we use on the site. This directory will also be the place for fonts and site-wide CSS files.
+
+# API Documentation
+The following section includes the API Documentation for the project. It includes all possible endpoints, methods and expected request / response bodies.
+
+## Allowed HTTP-Methods
+The API only accepts HTTP-methods GET, POST, PATCH and DELETE. A request with any other HTTP-method will be rejected.
+
+## JSON Headers 
+If you send a POST, PATCH or DELETE request, the Content-Type header must be set to application/json. If header is set to anything else, the request will be rejected.
+
+## Endpoints
+### /users
+#### GET
+> Used to: Get all users
+> Expected request-body: none
+> Possible response statuses: 200
+> Response-body: array of user-objects
+> Example response: 
+```
+    [{
+        "id": "65e10aa11a001",
+        "email": "elle@gamil.com",
+        "pwd": "testpass",
+        "name": "Elias"
+    }]
+```
+
+### POST
