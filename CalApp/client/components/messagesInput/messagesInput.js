@@ -14,9 +14,8 @@ export class MessagesInput extends HTMLElement {
         appInput.setAttribute("placeholder", "Write message here...");
         this.shadowRoot.appendChild(appInput);
         
-        let sendIcon = document.createElement("img");
-        sendIcon.src = "../assets/icons/send-dark.png";
-        sendIcon.alt = "Send Icon";
+        let sendIcon = document.createElement("button");
+        sendIcon.innerHTML = "<img src='../assets/icons/send-dark.png' alt='Send Icon'>";
         this.shadowRoot.appendChild(sendIcon);
 
         sendIcon.addEventListener("click", () => {

@@ -7,7 +7,8 @@ const RESOURCES = [
     "events",
     "users",
     "usergroups",
-    "isloggedin"
+    "isloggedin",
+    "messages"
 ];
 
 const POPUPS = [
@@ -15,7 +16,8 @@ const POPUPS = [
     "createEvent",
     "searchModal",
     "createPopup",
-    'decicionPopup'
+    "decicionPopup",
+    "ChatFeedPreview"
 ];
 
 export const PAGES = [
@@ -25,7 +27,9 @@ export const PAGES = [
     "users",
     "contacts",
     "createGroup",
-    "createEvent"
+    "createEvent",
+    "chat",
+    "messages"
 ];
 
 
@@ -136,6 +140,7 @@ function buildPageShowEvents() {
 export const EVENTS = {
 
     // Sysem Events (login/logout)
+    // EVENTS.STATE.LOGIN.START
     STATE: {
 
         LOGIN: {
@@ -150,7 +155,8 @@ export const EVENTS = {
         }
     },
 
-    // Data Events (updated data, user selected a resource)
+    // Data Events (updated in store, user select resource)
+    // EVENTS.STORE.UPDATED.RESOURCE
     STORE: {
 
         UPDATED: buildStoreUpdatedEvents(),
@@ -158,7 +164,8 @@ export const EVENTS = {
 
     },
 
-    // UI Events
+    // EVENTS.VIRW.PAGE.SHOW 
+    // EVENTS.VIRW.POPUP.SHOW
     VIEW: {
 
         PAGE: {
@@ -177,6 +184,7 @@ export const EVENTS = {
     },
 
     // API Events
+    // EVENTS.REQUEST.SENT.RESOURCE.ACTION
     REQUEST: {
 
         SENT: buildResourcesWithActions("request", "sent", CRUD_ACTIONS),
@@ -186,6 +194,7 @@ export const EVENTS = {
     },
 
     // API Events
+    // EVENTS.RESPONSE.SENT.RESOURCE.ACTION
     RESPONSE: {
 
         SENT: buildResourcesWithActions("request", "error", READ_ACTIONS),
@@ -195,6 +204,7 @@ export const EVENTS = {
     },
 
     // API Events
+    // EVENTS.RESOURCE.RECEIVED.RESOURCE.ACTION
     RESOURCE: {
 
         RECEIVED: buildResourcesWithActions("resource", "received", READ_ACTIONS),

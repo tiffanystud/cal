@@ -8,6 +8,11 @@
     border: 1px solid black;
 }
 
+button {
+    background: none;
+    border: none;
+}
+
 img {
     justify-self: center;
 }

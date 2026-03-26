@@ -10,7 +10,6 @@ export class Router {
     constructor(url) {
         
         this.url = new URL(url, window.location.origin); // sträng
-        console.log(url);
         // "/home/profile" -> ["home", "profile"]
         this.urlPaths = this.url.pathname.split("/").filter(Boolean);
         this.mainPath = this.urlPaths[0];
@@ -24,14 +23,12 @@ export class Router {
             
         });
         
-        console.log("Router constructor, url:", url);
         
     }
 
     // Ändra URL i webbläsaren, kör constructor med path
     navigate(path) {
         
-        console.log("Navigate func");
 
         // pushState ändrar URL i webbläsaren utan att ladda om sidan
         history.pushState({}, "", path);
@@ -44,7 +41,6 @@ export class Router {
     // Läs in current path, kör navigate sen
     init() {
         
-        console.log("Init func");
         
         // Take current path in search field and popstates
         window.addEventListener("popstate", () => {

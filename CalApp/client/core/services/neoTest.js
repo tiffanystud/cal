@@ -3,18 +3,31 @@ import { EVENTS } from "../store/events.js";
 import { store } from "../store/store.js";
 import { MessagesInput } from "../../components/messagesInput/messagesInput.js";
 import { MessageBox } from "../../components/messageBox/messageBox.js";
+import { apiRequest } from "./api.js";
 
 PubSub.subscribe("change:view", (data) => {
     if (data.mainPath === "msgTest") {
-        document.querySelector("#content").innerHTML = "<messages-input></messages-input>";
-        PubSub.subscribe(EVENTS.STATE.LOGIN.SUCCESS, () => {
-            let currentStore = store.getState();
-            let userPrivMsgs = currentStore.privateMessages.filter((x) => x.senderId === currentStore.isLoggedIn.id || x.receiverId === currentStore.isLoggedIn.id);
-            userPrivMsgs.forEach((x) => {
+        PubSub.subscribe(EVENTS.STATE.LOGIN.SUCCESS, async () => {
+            let allUsers = await apiRequest({
+                entity: "users",
+                method: "GET"
+            });
+            store.getState().privateMessages.forEach((x) => {
+                let sender = allUsers.find((y) => y.id === x.senderId);
+                let receiver = allUsers.find((y) => y.id === x.receiverId);
                 let msgBox = document.createElement("message-box");
+                if (sender.id === store.getState().isLoggedIn.id) {
+                    msgBox.alignRight = true;
+                    msgBox.bg = "lightblue";
+                }
                 msgBox.message = x;
+                msgBox.users = {
+                    sender: sender,
+                    receiver: receiver
+                }
                 document.querySelector("#app").appendChild(msgBox);
             })
+            document.querySelector("#app").appendChild(document.createElement("messages-input"));
         }) 
     }
 });

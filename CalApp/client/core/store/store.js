@@ -47,7 +47,6 @@ export class Store {
 
         if (!Store.allListeners[keyName]) {
 
-            console.log('New store sub:', keyName, ' with listener: ', listener);
             Store.allListeners[keyName] = []
 
         };
@@ -63,7 +62,6 @@ export class Store {
 
         } else {
 
-            console.log('New store nofify:', keyName, ' with: ', data);
             Store.allListeners[keyName].forEach(listener => listener(data));
         }
     }

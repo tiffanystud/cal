@@ -1,5 +1,6 @@
 import { PubSub } from "../../store/pubsub.js";
 import { store } from "../../store/store.js"
+import { EVENTS } from "../../store/events.js";
 import "./components/editProfile.js"
 
 export class ProfileView extends HTMLElement {
@@ -13,10 +14,17 @@ export class ProfileView extends HTMLElement {
             }
         });
         PubSub.subscribe("change:view", (data) => {
-            if (data.mainPath === "calendars" && data.subPath === "profile") {
+            if (data.mainPath === "home" && data.subPath === "profile") {
                 this.render();
             }
+
+        
         });
+        //PubSub.subscribe("change:view", (data) => {
+        //    if (data.mainPath === "calendars" && data.subPath === "profile") {
+        //        this.render();
+        //    }
+        //});
     }
     render() {
         let app = document.getElementById("app");
@@ -67,9 +75,7 @@ export class ProfileView extends HTMLElement {
                     <button class=" btnProfile profileBtnEdit ">Edit profile</button>
                     <button class=" btnProfile profileLogout">Log out</button>
                 </div>
-            </div>
-            <bottom-nav>
-            
+            </div>            
         </div>            
         `;
 

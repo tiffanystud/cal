@@ -1,10 +1,18 @@
-import { EVENTS } from "../../core/store/events";
+/* 
+<desicion-popup 
+    popupHeader="Ta bort kalender?"
+    popuptext="Detta går inte att ångra."
+    popupBtnCancel="Nej, avbryt"
+    popupBtnDelete="Ja, ta bort">
+</desicion-popup>
+*/
 
+import { EVENTS } from "../../core/store/events.js";
+import { PubSub } from "../../core/store/pubsub.js"
 
-export class desicionPopup extends HTMLElement {
+export class DesicionPopup extends HTMLElement {
 
     constructor() {
-
         super();
         this.attachShadow({ mode: "open" });
 
@@ -18,6 +26,11 @@ export class desicionPopup extends HTMLElement {
                     justify-content: center;
                     align-items: center;
                     z-index: 99999;
+                }
+
+                /* Hidden state */
+                .hidden {
+                    display: none;
                 }
 
                 .container {
@@ -111,65 +124,92 @@ export class desicionPopup extends HTMLElement {
             </style>
             
             <div class="modal-backdrop hidden">
-            <div class="container">
+                <div class="container">
 
-                <div class="closeContainer">
-                    <button class="popupBtnClose">x</button>
-                </div>
-                <div class="popupContainer">
-                    <div class="popupHeading">
-                        <div class="popupCirkle">x</div>
-                        <h3 class="popupHeader">Are you sure?</h3>
+                    <div class="closeContainer">
+                        <button class="popupBtnClose">x</button>
                     </div>
-                    <p class="popuptext">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi alias nemo, ut, similique porro numquam.</p>
-                    <div class="popupBtnContainer">
-                        <button class="popupBtnCancel popupBtnAll">No, cancel</button>
-                        <button class="popupBtnDelete popupBtnAll">Yes, delete</button>
+
+                    <div class="popupContainer">
+                        <div class="popupHeading">
+                            <div class="popupCirkle">x</div>
+                            <h3 class="popupHeader">Are you sure?</h3>
+                        </div>
+
+                        <p class="popuptext">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+
+                        <div class="popupBtnContainer">
+                            <button class="popupBtnCancel popupBtnAll">No, cancel</button>
+                            <button class="popupBtnDelete popupBtnAll">Yes, delete</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
-        </div>
         `;
+        
+        this.subs();
+        
     }
 
+    subs() {
+        
+        PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW.DESICIONPOPUP, (componentData) => {
+            this.currContext = componentData.context; // Vilken komponent öppnar popupen
+            this.openModal();
+        })
+        
+    }
+    
     connectedCallback() {
 
-        // Open modal (global event)
-        this.unsubscribeOpen = PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW["decicionPopup"], componentData => {
-            this.currContext = componentData.context; // What component opens modal (calendarID)
-            this.render();
-        });
-
+        // Elements
         this.backdrop = this.shadowRoot.querySelector(".modal-backdrop");
         this.closeBtn = this.shadowRoot.querySelector(".popupBtnClose");
         this.cancelBtn = this.shadowRoot.querySelector(".popupBtnCancel");
         this.deleteBtn = this.shadowRoot.querySelector(".popupBtnDelete");
+        this.headerElem = this.shadowRoot.querySelector(".popupHeader");
+        this.textElem = this.shadowRoot.querySelector(".popuptext");
 
-        // Close modal
+        // Set text or use default
+        this.headerElem.innerText = this.getAttribute("popupHeader") || "Are you sure?";
+        this.textElem.innerText = this.getAttribute("popuptext") || "This process cannot be undone.";
+        this.cancelBtn.innerText = this.getAttribute("popupBtnCancel") || "No, cancel";
+        this.deleteBtn.innerText = this.getAttribute("popupBtnDelete") || "Yes, proceed";
+
+
+        // Close
         this.closeBtn.addEventListener("click", () => this.closeModal());
+
         this.backdrop.addEventListener("click", e => {
             if (e.target === this.backdrop) this.closeModal();
         });
 
-        // Close popup
+        // Cancel BTN
         this.cancelBtn.addEventListener("click", () => {
-            // HEJHOPP
-        })
-        
-        // Confirm desicion 
+            PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME);
+            this.closeModal();
+        });
+
+        // Confirm BTN
         this.deleteBtn.addEventListener("click", () => {
-            // HEJHOPP
-        })
-        
-        
+            PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME);
+            PubSub.publish(EVENTS.STORE.UPDATED.CALENDARS);
+            // Ska context skickas vidare?
+            this.closeModal();
+        });
     }
 
+    // Open
     openModal() {
         this.backdrop.classList.remove("hidden");
     }
 
+    // Close
     closeModal() {
         this.backdrop.classList.add("hidden");
     }
 }
-
+customElements.define("decision-popup", DesicionPopup);

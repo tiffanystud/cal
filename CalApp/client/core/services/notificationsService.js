@@ -11,4 +11,3 @@ export async function initNotificationsService() {
 
 //initNotificationsService();
 
-console.log("Noti service loaded");

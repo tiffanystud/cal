@@ -4,7 +4,6 @@ import { PubSub } from "../store/pubsub.js";
 import { store } from "../store/store.js";
 import { EVENTS } from "../store/events.js";
 
-console.log("Calendar service loaded");
 
 export function CalendarService() {
 

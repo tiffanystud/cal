@@ -3,7 +3,6 @@ import { PubSub } from "../store/pubsub.js";
 import { store } from "../store/store.js";
 import { EVENTS } from "../store/events.js";
 
-console.log("Store service loaded");
 
 export class StoreService {
 
@@ -77,9 +76,11 @@ export class StoreService {
 
                 try {
                     privateMessages = await apiRequest({
-                        entity: `private_msg?userId=${userId}`,
+                        entity: `private_msg`,
                         method: "GET"
                     });
+
+                    privateMessages = privateMessages.filter((x) => x.senderId === userId || x.receiverId === userId);
 
                     if (!privateMessages) {
                         privateMessages = [];
@@ -269,10 +270,6 @@ export class StoreService {
 
             PubSub.publish(EVENTS.STATE.LOGOUT.SUCCESS);
             PubSub.publish(EVENTS.STORE.UPDATED.ISLOGGEDIN);
-
-            console.log("------ DEVELOPMENT PRODUCTION LOGS -------")
-            console.log("State: ", store.getState())
-            console.log("------ DEVELOPMENT PRODUCTION LOGS -------")
 
         });
     }

@@ -21,7 +21,7 @@ export class CalRender extends HTMLElement {
                     display: block;
                 }
             </style>
-            <event-card-container></event-card-container>
+            <event-cards></event-cards>
         `;
     }
 }

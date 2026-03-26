@@ -1,5 +1,6 @@
 import { store } from "../../../store/store.js";
 import { PubSub } from "../../../store/pubsub.js";
+import { EVENTS } from "../../../store/events.js";
 
 class FilterCals extends HTMLElement {
 
@@ -30,10 +31,17 @@ class FilterCals extends HTMLElement {
     style() {
         return `
             <style>
+                #filter-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    flex-wrap: wrap;
+                }
                 #cals {
                     display: flex;
                     gap: 5px;
                     flex-wrap: wrap;
+                    flex: 1;
                 }
                 .calBoxes {
                     display: flex;
@@ -44,6 +52,21 @@ class FilterCals extends HTMLElement {
                     padding: 10px;
                     border-radius: 10px;
                     cursor: pointer;
+                }
+                #createGroupBtn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: white;
+                    border: none;
+                    cursor: pointer;
+                    font-weight: bold;
+                    white-space: nowrap;
+                }
+                #createGroupBtn:hover {
+                    background-color: #e0e0e0;
                 }
             </style>
         `
@@ -65,15 +88,22 @@ class FilterCals extends HTMLElement {
                 }
             })
         }
+
+        const createGroupBtn = this.shadowRoot.querySelector("#createGroupBtn");
+        createGroupBtn.addEventListener("click", () => {
+            PubSub.publish(EVENTS.VIEW.POPUP.SHOW.CREATEGROUP);
+        });
     }
 
     render() {
         this.shadowRoot.innerHTML = `
             ${this.style()}
-            <div id="cals">
-             ${this.html()}
+            <div id="filter-container">
+                <div id="cals">
+                    ${this.html()}
+                </div>
+                <button id="createGroupBtn">+ Create Group</button>
             </div>
-        
         `
     }
 

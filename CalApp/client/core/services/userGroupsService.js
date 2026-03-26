@@ -3,7 +3,6 @@ import { PubSub } from "../store/pubsub.js";
 import { store } from "../store/store.js";
 import { EVENTS } from "../store/events.js";
 
-console.log("UG service loaded");
 
 export function userGroupsService() {
 

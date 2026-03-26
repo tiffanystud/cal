@@ -19,6 +19,7 @@ import "./core/services/notificationsService.js";
 import "./core/services/storeService.js"
 import "./core/services/homeService.js";
 import "./core/services/neoTest.js";
+import "./core/services/messagesService.js";
 
 // VIEWS
 import "./core/views/createEvent/createEvent.js";
@@ -31,6 +32,7 @@ import "./core/views/profileView/profileView.js";
 import "./core/views/login/loginView.js"
 import "./core/views/newHomeView/newHomeView.js";
 import "./core/views/home/homeView.js";
+import "./core/views/chatView/chatView.js"
 
 // DEVELOPMENT
 import "./core/views/development/development.js";
@@ -56,9 +58,6 @@ PubSub.subscribe("change:view", (data) => {
 
 // START
 newRouter.init();
-
-
-
 
 /* PubSub.subscribe("change:view", (data) => {
     console.log("INDEX.JS RECEIVED:", data.mainPath, data.subPath);
