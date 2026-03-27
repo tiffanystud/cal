@@ -52,6 +52,11 @@ export class HomeView extends HTMLElement {
                 this.render();
             }
         })
+        PubSub.subscribe("change:page", (data) => {
+            if (data.page === "home") {
+                this.render();
+            }
+        })
 
         PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW, (data) => {
             if (data === "home") { //bottom Nav

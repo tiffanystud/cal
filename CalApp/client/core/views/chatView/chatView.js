@@ -1,6 +1,5 @@
 import { store } from "../../store/store.js";
 import { PubSub } from "../../store/pubsub.js";
-import { apiRequest } from "../../services/api.js";
 
 
 export class ChatView extends HTMLElement {
@@ -46,6 +45,7 @@ export class ChatView extends HTMLElement {
         <h2>Chats</h2>
         <app-input id="searchBar" placeholder="Type calender or a friend to chat"></app-input>
         <div id="data"></div>
+        <div id="messageContainer"></div>
     `
     const searchBar = content.querySelector("#searchBar");
     let dataDiv = content.querySelector("#data");
@@ -74,7 +74,8 @@ export class ChatView extends HTMLElement {
         if (cal.name) {
             allDataWithType.push({
                 name: cal.name,
-                type: "calendar"
+                type: "calendar",
+                id: cal.id
             });
         }
     }
@@ -84,13 +85,13 @@ export class ChatView extends HTMLElement {
         if (friend.name) {
             allDataWithType.push({
                 name: friend.name,
-                type: "friend"
+                type: "friend",
             });
         }
     }
 
 
-    searchBar.addEventListener("input", function(event) {
+    searchBar.addEventListener("input", () => {
         dataDiv.innerHTML = "";
 
         let valueInput = searchBar.getValue().toLowerCase();
@@ -111,17 +112,65 @@ export class ChatView extends HTMLElement {
                     div.appendChild(pName);
                     div.appendChild(pType);
                     divContainer.appendChild(div);
+                    divContainer.addEventListener("click" , () => {
+                        this.something(state.isLoggedIn.id, data.id,state )
+                    })
                     dataDiv.appendChild(divContainer);
+                    
                 }
             }
         }
-
-    
-
-
-        
-        
     })}
+    something(myId, calId,state) { //only cal id for now
+        let messageContainer = document.getElementById("messageContainer");
+
+        for(let calmess of state.calendarMessages) {
+            console.log(calmess);
+            let messageBox = document.createElement("message-box");
+            messageBox.message = calmess;
+            if(calmess.senderId === myId) {
+                console.log("my mess")
+                messageBox.users = {
+                    sender: myId,
+                    receiver: calId
+                }
+                messageBox.alignRight = true;      
+
+            } else {
+                console.log("Other")
+
+                messageBox.users = {
+                    sender: calmess.senderId,
+                    receiver: calId
+                }
+
+            } 
+            messageContainer.appendChild(messageBox)
+        }
+
+        
+        /*
+        let messages = [
+            {
+                content: "Hej!",
+                date: "2026-03-27",
+                time: "14:30",
+                senderId: myId
+            },
+            {
+                content: "Tja!",
+                date: "2026-03-27",
+                time: "14:31",
+                senderId: friendId
+            }
+        ];
+        */
+        
+
+
+        
+
+    }
     
 
 }

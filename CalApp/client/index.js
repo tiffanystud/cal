@@ -10,6 +10,7 @@ import "./components/bottomNav/bottomNav.js";
 import "./components/searchUsersModal/searchUsersModal.js";
 import "./components/toggleBtn/toggleBtn.js";
 import "./components/createPopup/createPopup.js";
+import "./components/messageBox/messageBox.js";
 
 
 // SERVICES (init all pubsub)
@@ -53,6 +54,7 @@ PubSub.subscribe("change:view", (data) => {
         PubSub.publish(EVENTS.VIEW.PAGE.SHOW[mainPath.toUpperCase()], data);
         return;
     }
+
 });
 
 
