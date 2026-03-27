@@ -20,11 +20,6 @@ export class ProfileView extends HTMLElement {
 
         
         });
-        //PubSub.subscribe("change:view", (data) => {
-        //    if (data.mainPath === "calendars" && data.subPath === "profile") {
-        //        this.render();
-        //    }
-        //});
     }
     render() {
         let app = document.getElementById("app");

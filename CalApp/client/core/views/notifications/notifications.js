@@ -16,14 +16,6 @@ export class CreateNotificationsView {
         this.root = root;
         PubSub.subscribe("change:view", (data) => {
             if (data.mainPath === "home" && data.subPath === "notifications") {
-                //Testade att koppla samman notify och publish men fungerade inte när man 
-                //skrev /notifications direkt in i URL:en och render() metoden kördes 6 gånger
-                //för någon anledning
-
-                // store.subscribe("notis", () => {
-                //     this.render();
-                // });
-                // PubSub.publish(EVENTS.REQUEST.SENT.EVENTS.GET);
 
                 this.root.innerHTML = `<h1 style="font-family: Helvetica;">Notifications</h1>
                 <div style="display: flex; gap: 10px;">
@@ -200,12 +192,7 @@ export class CreateNotificationsView {
                 this.errorMsg("request", e.response);
             }    
 
-            // for (let i=0; i<this.root.children.length; i++) {
-            //     let child = this.root.children[i];
-            //     CreateNotificationsView.displayInfo[i] = child.style.display;
-            //     child.style.display = "none";
-            // }
-            // console.log(CreateNotificationsView.displayInfo);
+            
         } 
     }
     
