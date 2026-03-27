@@ -33,6 +33,16 @@ export function MessagesService() {
                     method: "GET"
                 })
 
+                const resourceCalendars = await apiRequest({
+                    entity: "/calendars",
+                    method: "GET"
+                })
+
+                const resourceUsers = await apiRequest({
+                    entity: "/users",
+                    method: "GET"
+                })
+
                 // Get users calendars
                 let filteredUGCals = []
                 for (let currUg of resourceUserCalendars) {
@@ -54,17 +64,20 @@ export function MessagesService() {
                 // Get users private msgs
                 let filteredPrivateMsg = [];
                 for (let currPM of resourcePrivateMsg) {
-                    if (currPM.senderId == userId || currPM.receiver == userId) {
+                    if (currPM.senderId == userId || currPM.receiverId == userId) {
                         filteredPrivateMsg.push(currPM);
                     }
                 }
 
+
                 // Response
                 PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
-                    userCalendars: resourceUserCalendars,
-                    calendarMsg: resourceCalendarMsg,
-                    privateMsg: resourcePrivateMsg
+                    privateMSG: filteredPrivateMsg,
+                    calendarMSG: filteredCalMsg,
+                    users: resourceUsers,
+                    calendars: resourceCalendars
                 });
+
 
                 // Resource
                 PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
@@ -94,16 +107,22 @@ export function MessagesService() {
                     method: "GET"
                 })
 
+                const resourceUsers = await apiRequest({
+                    entity: "/users",
+                    method: "GET"
+                })
+
                 let filteredPrivateMsg = [];
                 for (let currPM of resourcePrivateMsg) {
-                    if (currPM.senderId == userId || currPM.receiver == userId) {
+                    if (currPM.senderId == userId || currPM.receiverId == userId) {
                         filteredPrivateMsg.push(currPM);
                     }
                 }
 
                 // Response
                 PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
-                    privateMSG: resourcePrivateMsg
+                    privateMSG: filteredPrivateMsg,
+                    users: resourceUsers
                 })
 
                 // Resource
@@ -130,6 +149,16 @@ export function MessagesService() {
 
                 const resourceCalendarMsg = await apiRequest({
                     entity: "/calendar_msg",
+                    method: "GET"
+                })
+
+                const resourceCalendars = await apiRequest({
+                    entity: "/calendars",
+                    method: "GET"
+                })
+
+                const resourceUsers = await apiRequest({
+                    entity: "/users",
                     method: "GET"
                 })
 
