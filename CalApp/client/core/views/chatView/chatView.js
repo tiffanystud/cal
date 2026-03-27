@@ -1,13 +1,14 @@
 import { store } from "../../store/store.js";
 import { PubSub } from "../../store/pubsub.js";
-import { apiRequest } from "../../services/api.js";
-
+import { EVENTS } from "../../store/events.js";
+import "./components/MessageFeedPreview/MessageFeedPreview.js";
 
 export class ChatView extends HTMLElement {
     constructor() {
         super();
         this.state;
         this.attachShadow({ mode: "open" });
+        
         PubSub.subscribe("change:page", (data) => {
             console.log("SUB FIRED", data);
             if (data.page === "chat") {
@@ -15,6 +16,7 @@ export class ChatView extends HTMLElement {
             }
 
         });
+        
         PubSub.subscribe("change:view", (data) => {
 
             if (data.mainPath === "home" && data.subPath === "chat") {
@@ -46,6 +48,7 @@ export class ChatView extends HTMLElement {
         <h2>Chats</h2>
         <app-input id="searchBar" placeholder="Type calender or a friend to chat"></app-input>
         <div id="data"></div>
+        <message-feed-preview></message-feed-preview>
     `
     const searchBar = content.querySelector("#searchBar");
     let dataDiv = content.querySelector("#data");
@@ -117,9 +120,8 @@ export class ChatView extends HTMLElement {
         }
 
     
-
-
-        
+        // Render messages
+        PubSub.publish(EVENTS.VIEW.POPUP.SHOW.MESSAGES);
         
     })}
     

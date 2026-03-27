@@ -4,6 +4,7 @@ import { EVENTS } from "../../../../store/events.js";
 import { PubSub } from "../../../../store/pubsub.js";
 import { store } from "../../../../store/store.js";
 
+console.log("MESSAGEFEED LOADEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEDDDDDDDDDDDDDDDDDDDDDDDDDD")
 export class MessageFeedPreview extends HTMLElement {
 
     constructor() {
@@ -137,7 +138,8 @@ export class MessageFeedPreview extends HTMLElement {
             userId,
             msgType: "all"
         });
-
+ 
+        console.log()
     }
 
     disconnectedCallback() {
