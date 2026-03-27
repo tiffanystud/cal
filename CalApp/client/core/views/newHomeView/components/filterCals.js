@@ -8,7 +8,6 @@ class FilterCals extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
         this.userCals = store.getState().cals;
-        console.log(this.userCals);
         this.render();
 
         // store.subscribe("cals", (data) => {

@@ -85,7 +85,7 @@ export default class EditProfile extends HTMLElement {
                 }});
             }
         } catch(error) {
-            console.log(error);
+
         }
     }
     async updatePass(inputValue) {
@@ -99,9 +99,9 @@ export default class EditProfile extends HTMLElement {
         }
         try {
             let data = await apiRequest(sendObj);
-            console.log(data);
+
         } catch(error) {
-            console.log(error);
+
         }
     }
     async updateEmail(inputValue) {
@@ -115,14 +115,14 @@ export default class EditProfile extends HTMLElement {
         }
         try {
             let data = await apiRequest(sendObj);
-            console.log(data);
+
             store.setState({isLoggedIn: {
                 ...store.getState().isLoggedIn,
                 email: inputValue
             }});
-            console.log(store.getState());     
+
         } catch(error) {
-            console.log(error);
+
         }
 
     }

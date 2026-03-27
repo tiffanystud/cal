@@ -1,4 +1,3 @@
-import { AppInput } from "../appInput/appInput.js";
 
 export class MessagesInput extends HTMLElement {
     constructor() {

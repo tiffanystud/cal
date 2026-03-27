@@ -1,8 +1,6 @@
 import { PubSub } from "../store/pubsub.js";
 import { EVENTS } from "../store/events.js";
 import { store } from "../store/store.js";
-import { MessagesInput } from "../../components/messagesInput/messagesInput.js";
-import { MessageBox } from "../../components/messageBox/messageBox.js";
 import { apiRequest } from "./api.js";
 
 PubSub.subscribe("change:view", (data) => {
@@ -31,5 +29,3 @@ PubSub.subscribe("change:view", (data) => {
         }) 
     }
 });
-
-console.log("neoTest service runs");

@@ -1,11 +1,6 @@
-import { store } from "../../store/store.js";
+
 import { PubSub } from "../../store/pubsub.js";
 import { EVENTS } from "../../store/events.js";
-import { LandingButtonContainer } from "./components/landingButtons.js";
-import { NotificationsBar } from "../../../components/notificationsBar/notificationsBar.js";
-import { CalDetailBtn } from "./components/calDetailBtn.js";
-import { CalRender } from "./components/calRender.js";
-import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
 import "./components/searchTagsBtn.js";
 import "../../../components/searchUsersModal/searchUsersModalTest.js";
 import "./components/eventCardPopup.js";

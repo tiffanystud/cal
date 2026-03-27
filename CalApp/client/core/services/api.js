@@ -24,8 +24,6 @@ export async function apiRequest({ entity, method, body = null }) {
         response = await fetch(`${BASE_URL}/${entity}`, options);
 
     } catch (err) {
-
-        console.error("Network error:", err);
         PubSub.publish("Network::Error");
 
         // Ge komponenten det den behöver för att förstå men inte stanna upp
@@ -34,23 +32,19 @@ export async function apiRequest({ entity, method, body = null }) {
 
     // Handle type of !ok from api
     if (response.status === 404) {
-        console.warn("404 Not Found: ", entity);
         return [];
     }
 
     if (response.status === 400) {
-        console.warn("400 Bad Request: ", entity);
         return null;
     }
 
     if (response.status === 409) {
-        console.warn("409 Bad Request: ", entity);
         return null;
     }
 
     // Throw error om annat serverfel, kanske annat alt här?
     if (!response.ok) {
-        console.error("Server error: ", response.status);
         return null;
     }
 

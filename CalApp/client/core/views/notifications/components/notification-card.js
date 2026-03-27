@@ -62,12 +62,9 @@ export class NotificationCard extends HTMLElement {
         // }
 
         this.shadowRoot.querySelector("img").addEventListener("click", (e) => {
-            console.log("//Close notification");
             e.target.parentElement.offsetParent.remove();
         });
-        this.shadowRoot.querySelector("button").addEventListener("click", () => {
-            console.log("//Link to notification source");
-        });
+
     }
 
     async errorMsg(type, resp) {

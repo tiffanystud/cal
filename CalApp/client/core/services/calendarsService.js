@@ -37,7 +37,6 @@ export function CalendarService() {
 
         } catch {
 
-            console.error("CALENDARS GET ERROR:", err);
             PubSub.publish(EVENTS.REQUEST.ERROR.CALENDARS.GET, err);
 
         }
@@ -112,7 +111,6 @@ export function CalendarService() {
                     }
                 });
 
-                console.error("At least one member needs to be added to create a calendar");
                 return;
             }
 
@@ -144,7 +142,6 @@ export function CalendarService() {
 
         } catch (err) {
 
-            console.log("CALENDARS POST ERROR:", err);
             PubSub.publish(EVENTS.RESPONSE.ERROR.CALENDARS.POST, err);
 
         }

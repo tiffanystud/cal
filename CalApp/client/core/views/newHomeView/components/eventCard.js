@@ -14,7 +14,7 @@ export class EventCard extends HTMLElement {
             this.render();
             this.eventListeners();
         })
-        console.log(this.events);
+        
     }
 
 

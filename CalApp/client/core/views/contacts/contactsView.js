@@ -1,9 +1,4 @@
-import { store } from "../../store/store.js";
 import { PubSub } from "../../store/pubsub.js";
-import { EVENTS } from "../../store/events.js";
-import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
-import { AppInput } from "../../../components/appInput/appInput.js";
-import { ContactCardContainer } from "./components/contactCardContainer.js";
 import { apiRequest } from "../../services/api.js";
 
 
@@ -19,7 +14,6 @@ export class ContactsView extends HTMLElement {
         PubSub.subscribe("change:page", (data) => {
 
             if (data.page === "contacts") {
-                console.log(data, "runs");
                 this.render();
             }
 

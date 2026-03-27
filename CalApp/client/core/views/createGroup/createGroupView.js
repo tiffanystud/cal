@@ -2,7 +2,6 @@
 import { PubSub } from "../../store/pubsub.js";
 import { EVENTS } from "../../store/events.js";
 import { store } from "../../store/store.js";
-// import { CalendarService } from "../../services/calendarsService.js";
 
 export class CreateCalendarView {
 
@@ -97,7 +96,6 @@ export class CreateCalendarView {
             // Calendar
             const currGroupName = groupNameInput.getValue() || "Group";
             const currDescription = descriptionInput.getValue() || "";
-            console.log(currDescription, "heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
             const currCreatorId = state.isLoggedIn.id;
             const currGroupType = toggleStatus === "active" ? "private" : "public";
 
@@ -131,9 +129,7 @@ export class CreateCalendarView {
     subscribeToStore() {
 
         store.subscribe("calendarsUpdated", () => {
-
-            // Utveckla store
-            console.log("Created Calendar")
+            // FOR FURTHER DEVELOPMENT
         })
     }
 

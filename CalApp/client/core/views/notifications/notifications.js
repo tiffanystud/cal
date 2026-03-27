@@ -1,13 +1,6 @@
 import { apiRequest } from "../../services/api.js";
 import { PubSub } from "../../store/pubsub.js";
 import { store } from "../../store/store.js";
-import { EVENTS } from "../../store/events.js";
-import { NotificationCard } from "./components/notification-card.js";
-import { RegularButton } from "../../../components/regularButton/regularButton.js";
-import { BottomNav } from "../../../components/bottomNav/bottomNav.js";
-import { NotificationsBar } from "../../../components/notificationsBar/notificationsBar.js";
-import { ANotification } from "../../../components/notificationsBar/notificationsBar.js";
-
 
 export class CreateNotificationsView {
     static displayInfo = {};
@@ -57,7 +50,6 @@ export class CreateNotificationsView {
 
         notifications = notifications.sort((a, b) => a.notiContent.time.localeCompare(b.notiContent.time));
         notifications = notifications.sort((a, b) => new Date(a.notiContent.date) - new Date(b.notiContent.date));
-        console.log(store.getState().notis);
 
         let notiBar = document.createElement("notifications-bar");
         notiBar.notis = notifications;
@@ -86,6 +78,7 @@ export class CreateNotificationsView {
             this.root.innerHTML = `<p>${reso}</p>`;
         }
     }
+    
     //köra render initialt och sedan bara display: none på allt?
     //sedan display allt när change:view?
     async render(loadingMsg) {
@@ -101,10 +94,6 @@ export class CreateNotificationsView {
             }
 
             this.root.appendChild(document.createElement("bottom-nav"));
-
-            document.querySelector("#mark-read").addEventListener("click", () => {
-                    console.log("//Skicka request att markera alla som lästa");
-            });
 
             document.querySelector("#delete-all").addEventListener("click", () => {
                 //Skicka request att ta bort alla notifikationer. Om request går bra gör:
@@ -128,7 +117,7 @@ export class CreateNotificationsView {
                     ...store.getState().userData,
                     notis: notifications
                 }});
-                console.log(store.getState());
+
 
                 for (let noti of store.getState().userData.notis) {
                     let notiCard = document.createElement("notification-card");
@@ -155,9 +144,6 @@ export class CreateNotificationsView {
 
                 this.root.appendChild(document.createElement("bottom-nav"));
 
-                document.querySelector("#mark-read").addEventListener("click", () => {
-                    console.log("//Skicka request att markera alla som lästa");
-                });
 
                 document.querySelector("#delete-all").addEventListener("click", () => {
                     //Skicka request att ta bort alla notifikationer. Om request går bra gör:
@@ -200,12 +186,6 @@ export class CreateNotificationsView {
                 this.errorMsg("request", e.response);
             }    
 
-            // for (let i=0; i<this.root.children.length; i++) {
-            //     let child = this.root.children[i];
-            //     CreateNotificationsView.displayInfo[i] = child.style.display;
-            //     child.style.display = "none";
-            // }
-            // console.log(CreateNotificationsView.displayInfo);
         } 
     }
     

@@ -18,8 +18,6 @@ class CreateGroupLandingView {
         PubSub.subscribe("change:view", route => {
             if (route.mainPath == "home" && route.url.searchParams.has("id")) {
 
-                console.log("created")
-
                 // VI måste göra en instans först av store, då det är en klass, så gör det!
                 let state = store.getState();
                 let params = route.url.searchParams;
@@ -39,9 +37,6 @@ class CreateGroupLandingView {
                         currentEvents: calEvents
                     }
                 }, null, "calendar:events", { calEvents: calEvents, calInfo: cal })
-
-
-                console.log(store.getState())
 
             }
         })
@@ -66,7 +61,6 @@ class CreateGroupLandingView {
 
                 // Hämtar events för den calendar
                 let calEvents = state.userData.events.filter(events => events.calId == userCal.id);
-                console.log(userCal)
 
                 // Först renderas komponentaggarna innan den notifyar, så komponenten finns när notify körs
                 this.render();

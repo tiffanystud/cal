@@ -21,7 +21,6 @@ export class StoreService {
                 });
 
                 if (!currUser) {
-                    console.error("No user returned from API");
                     return;
                 }
 
@@ -47,7 +46,6 @@ export class StoreService {
                     }
 
                 } catch (err) {
-                    console.error("Usergroups fetch error:", err);
                     usergroups = [];
                 }
 
@@ -66,7 +64,6 @@ export class StoreService {
                     }
 
                 } catch (err) {
-                    console.error("Friends fetch error:", err);
                     friends = [];
                 }
 
@@ -87,7 +84,6 @@ export class StoreService {
                     }
 
                 } catch (err) {
-                    console.error("Private messages fetch error:", err);
                     privateMessages = [];
                 }
 
@@ -116,7 +112,6 @@ export class StoreService {
                             }
 
                         } catch (err) {
-                            console.error("Calendar messages fetch error:", err);
                             msgs = [];
                         }
                     }
@@ -137,7 +132,6 @@ export class StoreService {
                     }
 
                 } catch (err) {
-                    console.error("Pinned fetch error:", err);
                     pinned = [];
                 }
 
@@ -156,7 +150,6 @@ export class StoreService {
                     }
 
                 } catch (err) {
-                    console.error("Availabilities fetch error:", err);
                     availabilities = [];
                 }
 
@@ -183,7 +176,6 @@ export class StoreService {
                             cals.push(cal);
 
                         } catch (err) {
-                            console.error("Calendar fetch error:", err);
                             cal = null;
                         }
                     }
@@ -199,7 +191,6 @@ export class StoreService {
                             method: "GET"
                         });
                     } catch (e) {
-                        console.log("Notifications fetch error:", e);
                         notis = null;
                     }
                 }
@@ -230,7 +221,6 @@ export class StoreService {
                             }
 
                         } catch (err) {
-                            console.error("Events fetch error:", err);
                             eventsForCal = [];
                         }
                     }

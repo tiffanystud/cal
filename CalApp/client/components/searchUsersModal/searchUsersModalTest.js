@@ -176,7 +176,6 @@ export class SearchUsersModalTest extends HTMLElement {
             });
 
         } catch (err) {
-            console.error("API error: ", err);
             this.resultsContainer.innerHTML = "<div>Error loading users</div>";
             return;
         }
@@ -199,11 +198,7 @@ export class SearchUsersModalTest extends HTMLElement {
         }
 
         let state = store.getState();
-        console.log(state.selectedEvents);
         const filterdTags = state.selectedEvents.filter(event => event.tags.includes(query));
-        console.log(state.selectedEvents);
-        console.log(filterdTags);
-
 
         // Dessa tre rader sätter in alla tags strängar och gör en ny array utan duplikationer, så det inte dupliceras i render
         let allTagsString = filterdTags.map(event => event.tags);

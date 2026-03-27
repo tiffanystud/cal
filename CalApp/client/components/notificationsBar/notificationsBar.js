@@ -17,7 +17,6 @@ export class NotificationsBar extends HTMLElement {
 
         notifications = notifications.sort((a, b) => a.notiContent.time.localeCompare(b.notiContent.time));
         notifications = notifications.sort((a, b) => new Date(a.notiContent.date) - new Date(b.notiContent.date));
-        console.log(store.getState().notis);
 
         let eventNotis;
         if (this.notis) {
@@ -30,7 +29,7 @@ export class NotificationsBar extends HTMLElement {
             this.shadowRoot.innerHTML += "<p>No new notifications!</p>";
             return;
         }
-        console.log(eventNotis);
+
         eventNotis.forEach(async (x) => {
             let event = await apiRequest({
                 entity: `events?eventId=${x.eventId}`,

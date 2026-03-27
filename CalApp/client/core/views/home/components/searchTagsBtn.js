@@ -71,8 +71,6 @@ export class SearchTags extends HTMLElement {
 
             store.setState({ "selectedEvents": filteredEvents });
 
-            console.log(store.getState().selectedTags)
-
             let tagsDiv = document.createElement("div");
             tagsDiv.classList.add("tags");
             tagsDiv.innerHTML = data.selectedItem;

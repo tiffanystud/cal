@@ -35,7 +35,7 @@ import "./core/views/newHomeView/newHomeView.js";
 import "./core/views/home/homeView.js";
 import "./core/views/chatView/chatView.js"
 
-// DEVELOPMENT
+// DEVELOPMENT (dummy-login)
 import "./core/views/development/development.js";
 import { EVENTS } from "./core/store/events.js";
 import { PubSub } from "./core/store/pubsub.js";
@@ -60,15 +60,3 @@ PubSub.subscribe("change:view", (data) => {
 
 // START
 newRouter.init();
-
-/* PubSub.subscribe("change:view", (data) => {
-    console.log("INDEX.JS RECEIVED:", data.mainPath, data.subPath);
-    
-    const page = data.mainPath;     // från router ex. "createGroup"
-    const key = page.toUpperCase(); // "CREATEGROUP"
-
-    if (EVENTS.VIEW.PAGE.SHOW[key]) {
-        PubSub.publish(EVENTS.VIEW.PAGE.SHOW[key], data);
-    console.log("INDEX.JS MAPPING:", { mainPath: page, subPath: data.subPath, key, event: EVENTS.VIEW.PAGE.SHOW[key] });
-    }
-}); */
