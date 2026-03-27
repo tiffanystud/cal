@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . "/../repository/DBAccess.php";
-//require_once __DIR__ . "CalendarService.php";
 
 class CalendarsMSGService {
     /* ---- GET ---- */
