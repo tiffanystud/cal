@@ -72,13 +72,13 @@ class CalendarsController{
         if($method == "DELETE"){
             try{
                 if(!isset($input["id"])){
-                    return self::sendResponse(["error" => "Only creator can delete group"], 400);
+                    return self::sendResponse(["error" => "Missing attributes"], 400);
                 } else {
                     return self::sendResponse(CalendarsService::calendarsDelete($input), 200);
                 }
 
             } catch(Exception $error){
-                return self::sendResponse(["error" => $error->getMessage()], 400);
+                return self::sendResponse(["error" => $error->getMessage()], 404);
             }
 
 

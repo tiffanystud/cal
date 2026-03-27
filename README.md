@@ -309,3 +309,662 @@ If you send a POST, PATCH or DELETE request, the Content-Type header must be set
 }
 ```
 
+> 400 Bad Request | Attributes missing in request-body
+```js
+{
+    error: "Missing attributes"
+}
+```
+
+> 409 Conflict | User trying to create calendar is already in a calendar with provided name
+```js
+{
+    error: "User is already in group with same name"
+}
+```
+
+#### PATCH
+- Used to: edit or change existing calendar
+- Expected request-body: 
+```js
+{
+    id: "string", 
+    name: "string?",
+    description: "string?",
+    type: "string?"
+}
+```
+- Possible response statuses: 200, 400
+- Response-body: Edited calendar-object or error-object
+- Example response:
+> 200 OK | Calendar was successfully edited
+```json
+{
+    "id": "65e10aa11b001",
+    "creatorId": "65e10aa11a001",
+    "name": "New name",
+    "description": "New desc",
+    "type": "public"
+}
+```
+
+> 400 Bad Request | id attribute was not set
+```js
+{
+    error: "Id missing"
+}
+```
+
+> 400 Bad Request | No values to change were provided
+```js
+{
+    error: "No values to change"
+}
+```
+
+#### DELETE
+- Used to: Delete a calendar from database
+- Expected request-body:
+```js
+{
+    id: string,
+    creatorId: string
+}
+```
+- Possible response statuses: 200, 400, 404
+- Response-body: Deleted calendar-object or error-object
+- Example response:
+> 200 OK | Calendar was successfully deleted
+```json
+{
+    "id": "65e10aa11b001",
+    "creatorId": "65e10aa11a001",
+    "name": "Projekt A",
+    "description": "En samlingsplats f\u00f6r allt som r\u00f6r projektet.",
+    "type": "public"
+}
+```
+
+> 400 Bad Request | If id attribute is missing
+```js
+{
+    error: "Missing attribtes"
+}
+```
+
+> 404 Not Found | No calendar with provided id was found
+```js
+{
+    error: "No calendar exists to delete"
+}
+```
+
+### /calendars?id=id
+#### GET
+- Used to: Get specific calendar from its id
+- Expected request-body: none, but "id" request-param expected
+- Possible response statuses: 200, 400, 404
+- Response-body: calendar-object or error-object
+- Example response:
+> 200 OK | Calendar was found and returned
+```json
+{
+    "id": "65e10aa11b001",
+    "creatorId": "65e10aa11a001",
+    "name": "Projekt A",
+    "description": "En samlingsplats f\u00f6r allt som r\u00f6r projektet.",
+    "type": "public"
+}
+```
+
+> 400 Bad Request | If any other parameter but id is set
+```js
+{
+    error: "Value missing"
+}
+```
+
+> 404 Not Found | No calendar found with provided id
+```js
+{
+    error: "No calendars found"
+}
+```
+
+### /users_calendars
+#### GET
+- Used to: Get all connections between users and calendars
+- Expected request-body: none
+- Possible response statuses 200
+- Response-body: array of user_calendars-objects
+- Example response:
+> 200 OK 
+```json
+{
+    "id": "65e10aa11d001",
+    "userId": "65e10aa11a001",
+    "calId": "65e10aa11b001",
+    "isAdmin": true
+}
+```
+
+#### POST
+- Used to: Create a new connection between user and calendar
+- Expexted request-body:
+```js
+{
+    userId: string,
+    calId: string,
+    isAdmin: bool
+}
+```
+- Possible response statuses: 201, 400, 404, 409
+- Response-body: user_calendars conncetion-object or error-object
+- Example response:
+> 201 Created | A new connection was created
+```json
+{
+    "id": "65e10aa11d001",
+    "userId": "65e10aa11a001",
+    "calId": "65e10aa11b001",
+    "isAdmin": true
+}
+```
+
+> 400 Bad Request | Required attributes missing
+```js
+{
+    error: "Missing atttributes"
+}
+```
+
+> 404 Not Found | Either provided user or calendar was not found
+```js
+{
+    error: "User or cal not found"
+}
+```
+
+> 409 Conflict | The connection already exists
+```js
+{
+    error: "User is already in cal"
+}
+```
+
+#### PATCH
+- Used to: change admin-status of a user by editing isAdmin key in connection
+- Expected request-body: 
+```json
+{
+    "id": "65e10aa11d001",
+    "userId": "65e10aa11a001",
+    "calId": "65e10aa11b001",
+    "isAdmin": true
+}
+```
+- Possible reponse statuses: 200, 400, 404
+- Response-body: success-object or error-object
+- Example response:
+> 200 OK | Admin status of user was changed
+```js
+{
+    success: "Admin status changed!"
+}
+```
+
+> 400 Bad Request | Missing required attributes
+```js
+{
+    error: "User ID / CAL ID missing"
+}
+```
+
+> 400 Bad Request | User is not a member of the specified calendar
+```js
+{
+    error: "User not in calendar"
+}
+```
+
+> 404 Not Found | No user with specified ID was found
+```js
+{
+    error: "User not found."
+}
+```
+
+#### DELETE
+- Used to: Delete users_calendars connection
+- Expected request-body: 
+```js
+{
+    userId: string,
+    calId:string
+}
+```
+- Possible response statuses: 200, 400, 404
+- Response-body: success-object or error-object
+- Example response:
+> 200 OK | Connection successfully deleted
+```js
+{
+    message: "Deleted successfully!"
+}
+```
+
+> 400 Bad Request | userId or calId attributes missing
+```js
+{
+    error: "User ID / Cal ID missing"
+}
+```
+
+> 404 Not Found | No user or cal was found for specified ids
+```js
+{
+    error: "User not found / Cal not found"
+}
+```
+> 404 Not Found | No connection with specified ids was found
+```js
+{
+    error: "Relation not found"
+}
+```
+
+### /users_calendars?calId=id
+#### GET
+- Used to: Get all users_calendars connections for a specific calId
+- Expected request-body: none, but request-param "calId" expected
+- Possible response statuses: 200, 404
+- Request-body: array of connections or error-object
+- Example response:
+> 200 OK | Connections were found
+```json
+[{
+    "id": "65e10aa11d001",
+    "userId": "65e10aa11a001",
+    "calId": "65e10aa11b001",
+    "isAdmin": true
+}]
+```
+
+> 404 Not Found | No calendar was found with specified calId
+```js
+{
+    error: "Calendar not found"
+}
+```
+
+### /users_calendars?userId=id
+#### GET
+- Used to: Get all connections from a specific userId
+- Expected request-body: none, but request-param "userId" expected
+- Possible response statuses: 200, 404
+- Request-body: array of connection-objects or error-object
+- Example response:
+> 200 OK | Connections found
+```json
+[{
+    "id": "65e10aa11d001",
+    "userId": "65e10aa11a001",
+    "calId": "65e10aa11b001",
+    "isAdmin": true
+}]
+```
+
+> 404 Not Found | No connections were found with specified userId
+```js
+{
+    error: "User not found"
+}
+```
+
+### /users_calendars?id=id
+#### GET
+- Used to: Get a specific connections from its id
+- Expected request-body: none, but request-param "id" expected
+- Possible response statuses: 200, 404
+- Response-body: connection-object or error-object
+- Example response:
+> 200 OK | Connection found
+```json
+{
+    "id": "65e10aa11d001",
+    "userId": "65e10aa11a001",
+    "calId": "65e10aa11b001",
+    "isAdmin": true
+}
+```
+
+> 404 Not Found | No connection with specified id was found
+```js
+{
+    error: "Relation not found"
+}
+```
+
+### /events
+#### GET
+- Used to: Get all events from database
+- Expected request-body: none
+- Possible response statuses: 200
+- Response-body: array of event-objects
+- Example response:
+> 200 OK
+```json
+{
+    "id": "65e10aa11c001",
+    "date": "2026-03-01",
+    "time": "18:00",
+    "type": "lecture",
+    "name": "Sprint Review",
+    "description": "Genomg\u00e5ng av sprintens leverabler och resultat i enlighet med fastst\u00e4lld agenda.",
+    "location": "Zoom",
+    "needsConfirmation": false,
+    "participationLimits": null,
+    "tags": "review",
+    "calId": "65e10aa11b001"
+}
+```
+
+#### POST
+- Used to: Create a new event and add it to the database
+- Expected request-body:
+```js
+{
+    type: string,
+    name: string,
+    date: string,
+    time: string,
+    location: string,
+    needsConfirmation: bool,
+    tags: "string?",
+    participationLimit: "string?",
+    description: "string?",
+    calId: string
+}
+```
+- Possible response statuses: 201, 400, 404
+- Response-body: created event-object or error-object
+- Example response:
+> 201 Created | Event was created
+```json
+{
+    "id": "65e10aa11c001",
+    "date": "2026-03-01",
+    "time": "18:00",
+    "type": "lecture",
+    "name": "Sprint Review",
+    "description": "Genomg\u00e5ng av sprintens leverabler och resultat i enlighet med fastst\u00e4lld agenda.",
+    "location": "Zoom",
+    "needsConfirmation": false,
+    "participationLimits": null,
+    "tags": "review",
+    "calId": "65e10aa11b001"
+}
+```
+
+> 400 Bad Request | Any required attributes are missing
+```js
+{
+    error: "Missing attributes"
+}
+```
+
+> 404 Not Found | No calendar for specified calId was found
+```js
+{
+    error: "Cal not found"
+}
+```
+
+#### PATCH
+- Used to: Edit an existing event
+- Expected request-body:
+```js
+{
+    eventId: string
+    type: "string?",
+    name: "string?",
+    date: "string?",
+    time: "string?",
+    location: "string?",
+    needsConfirmation: "bool?",
+    tags: "string?",
+    participationLimit: "string?",
+    description: "string?",
+    calId: string
+}
+```
+- Possible response statuses: 200, 400, 404
+- Response-body: Edited event-object or error-object
+- Example response:
+> 200 OK | Event was edited
+```json
+{
+    "id": "65e10aa11c001",
+    "date": "2026-03-01",
+    "time": "19:00",
+    "type": "lecture",
+    "name": "New Name",
+    "description": "new desc",
+    "location": "New location",
+    "needsConfirmation": false,
+    "participationLimits": null,
+    "tags": "review",
+    "calId": "65e10aa11b001"
+}
+```
+
+> 400 Bad Request | Any of the required attributes are missing
+```js
+{
+    error: "Missing attributes"
+}
+```
+
+> 404 Not Found | No event or calendar was found for specified calId or eventId
+```js
+{
+    error: "Not found"
+}
+```
+
+#### DELETE
+- Used to: Delete an event
+- Expected request-body:
+```js
+{
+    calId: string,
+    eventId: string
+}
+```
+- Possible response statuses: 200, 400, 404
+- Response-body: succes-object or error-object
+- Example response:
+> 200 OK | Event deleted
+```js
+{
+    success: "Event deleted successfully"
+}
+```
+
+> 400 Bad Request | calId or eventId attribute missing
+```js
+{
+    error: "Missing attributes"
+}
+```
+
+> 404 Not Found | No event or calendar was found with specified ids
+```js
+{
+    error: "Not found"
+}
+```
+
+### /events?calId=id
+#### GET
+- Used to: Get all events from a specific calendar
+- Expected request-body: none, but request-param "calId" expected
+- Possible response statuses: 200, 404
+- Request-body: array of event-objects or error-object
+- Example response:
+> 200 OK | Events found
+```json
+[{
+    "id": "65e10aa11c001",
+    "date": "2026-03-01",
+    "time": "18:00",
+    "type": "lecture",
+    "name": "Sprint Review",
+    "description": "Genomg\u00e5ng av sprintens leverabler och resultat i enlighet med fastst\u00e4lld agenda.",
+    "location": "Zoom",
+    "needsConfirmation": false,
+    "participationLimits": null,
+    "tags": "review",
+    "calId": "65e10aa11b001"
+}]
+```
+
+> 404 Not Found | No events were found in the specified calendar
+```js
+{
+    error: "No event(s) found"
+}
+```
+
+### /events?eventId=id
+- Used to: get a specific event from its ID.
+- Expected request-body: none, but request-param "eventId" expected
+- Possible response statuses: 200, 404
+- Request-body: event-object or error-object
+- Example request:
+> 200 OK | Event found
+```json
+{
+    "id": "65e10aa11c001",
+    "date": "2026-03-01",
+    "time": "18:00",
+    "type": "lecture",
+    "name": "Sprint Review",
+    "description": "Genomg\u00e5ng av sprintens leverabler och resultat i enlighet med fastst\u00e4lld agenda.",
+    "location": "Zoom",
+    "needsConfirmation": false,
+    "participationLimits": null,
+    "tags": "review",
+    "calId": "65e10aa11b001"
+}
+```
+
+> 404 Not Found | No event was found for specified id
+```js
+{
+    error: "No events(s) found"
+}
+```
+
+### /event_admins
+#### GET
+- Used to: Get all event_admins connections
+- Expected request-body: none
+- Possible response statuses: 200
+- Response-body: array of event_admins connection-objects
+- Example request:
+> 200 OK
+```json
+[{
+    "id": "65e10aa143201",
+    "eventId": "65e10aa11c001",
+    "userId": "65e10aa11a001",
+    "canDelete": true,
+    "canEdit": true,
+    "isCreator": true
+}]
+```
+
+#### POST
+- Used to: Create a new event_admins connection
+- Expected request-body: 
+```js
+{
+    userId: string,
+    eventId: string,
+    canDelete: bool,
+    canEdir: bool,
+    isCreator: bool
+}
+```
+- Possible response statuses: 201, 400, 404
+- Response-body: Created connection-object or error-object
+- Example response:
+> 201 Created | Connection created
+```json
+{
+    "id": "65e10aa143201",
+    "eventId": "65e10aa11c001",
+    "userId": "65e10aa11a001",
+    "canDelete": true,
+    "canEdit": true,
+    "isCreator": true
+}
+```
+
+> 400 Bad Request | Any required attributes are missing
+```js
+{
+    error: "Missing attributes"
+}
+```
+
+> 404 Not Found | No event or user was found with specified ids
+```js
+{
+    error: "Not found"
+}
+```
+
+#### PATCH
+- Used to: edit existing event_admins connection
+- Expected request-body:
+```js
+{
+    userId: string,
+    eventId: string,
+    canDelete: "bool?",
+    canEdit: "bool?",
+    isCreator: "bool?"
+}
+```
+- Possible response statuses: 200, 400, 404
+- Response-body: edited event_admins connection-object or error-object
+- Example response:
+> 200 OK | event_admins-object edited
+```json
+{
+    "id": "65e10aa143201",
+    "eventId": "65e10aa11c001",
+    "userId": "65e10aa11a001",
+    "canDelete": true,
+    "canEdit": true,
+    "isCreator": true
+}
+```
+
+> 400 Bad Request | evenId or userId attribute missing
+```js
+{
+    error: "Missing attributes"
+}
+```
+
+> 404 Not Found | No event or user was found with specified ids
+```js
+{
+    error: "Not found"
+}
+```
+
+#### DELETE

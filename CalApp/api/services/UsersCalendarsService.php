@@ -152,7 +152,7 @@ class UsersCalendarsService {
             }
         }
         if (!$relId) {
-            throw new Exception("Relation not found.");
+            throw new Exception("Relation not found.", 404);
         }
 
 
