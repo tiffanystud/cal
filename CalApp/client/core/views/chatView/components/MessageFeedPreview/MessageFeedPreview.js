@@ -99,7 +99,7 @@ export class MessageFeedPreview extends HTMLElement {
             </style>
             
             <div class="popupContainer">
-                <h3>Your Chats</h3>
+                <h3>All messages</h3>
                 <div class="chatFeedContainer"></div>
             </div>
         `;
@@ -139,7 +139,7 @@ export class MessageFeedPreview extends HTMLElement {
 
         // Triggers renderMessages from subs()
         this.allMesssages = PubSub.publish(EVENTS.REQUEST.SENT.MESSAGES.GET, {
-            userId,
+            userId: userId,
             msgType: "all"
         });
  
@@ -188,6 +188,8 @@ export class MessageFeedPreview extends HTMLElement {
 
         if (!allMessages) return;
 
+        console.log(allMessages, allMessages.users, allMessages.calendars, "TRYING TO BUILD")
+        
         this.users = allMessages.users || [];
         this.calendars = allMessages.calendars || [];
 

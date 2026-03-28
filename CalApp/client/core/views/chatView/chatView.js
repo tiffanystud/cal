@@ -1,7 +1,6 @@
 import { store } from "../../store/store.js";
 import { PubSub } from "../../store/pubsub.js";
-import { apiRequest } from "../../services/api.js";
-
+import "./components/MessageFeedPreview/MessageFeedPreview.js"
 
 export class ChatView extends HTMLElement {
     constructor() {
@@ -42,12 +41,12 @@ export class ChatView extends HTMLElement {
             #data {
                 background: grey;
                 padding: 5px;
-
             }
         </style>
-        <h2>Chats</h2>
+        <h2>Messages</h2>
         <app-input id="searchBar" placeholder="Type calender or a friend to chat"></app-input>
         <div id="data"></div>
+        <message-feed-preview></message-feed-preview>
     `
     const searchBar = content.querySelector("#searchBar");
     let dataDiv = content.querySelector("#data");

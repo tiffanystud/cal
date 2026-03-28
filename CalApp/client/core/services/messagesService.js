@@ -13,55 +13,47 @@ export function MessagesService() {
 
         const userId = payload.userId;
         const msgType = payload.msgType;
-
         if (msgType == "all") {
 
             try {
 
                 const resourceUserCalendars = await apiRequest({
-                    entity: "/user_calendars",
+                    entity: "user_calendars",
                     method: "GET"
-                })
+                });
 
                 const resourcePrivateMsg = await apiRequest({
-                    entity: "/private_msg",
+                    entity: "private_msg",
                     method: "GET"
-                })
-
-                const resourceCalendarMsg = await apiRequest({
-                    entity: "/calendar_msg",
-                    method: "GET"
-                })
+                });
 
                 const resourceCalendars = await apiRequest({
-                    entity: "/calendars",
+                    entity: "calendars",
                     method: "GET"
-                })
+                });
 
                 const resourceUsers = await apiRequest({
-                    entity: "/users",
+                    entity: "users",
                     method: "GET"
-                })
+                });
 
-                // Get users calendars
-                let filteredUGCals = []
-                for (let currUg of resourceUserCalendars) {
-                    if (currUg.userId == userId) {
-                        filteredUGCals.push(currUg);
-                    }
-                }
+                // Filter User Cals
+                const userCalIds = resourceUserCalendars.filter(uc => uc.userId == userId).map(uc => uc.calId);
 
-                // Get all calendar msgs for all UGS
+                // Get all cals for User Cals
                 let filteredCalMsg = [];
-                for (let currCalMsg of resourceCalendarMsg) {
-                    for (let currUG of filteredUGCals) {
-                        if (currCalMsg.calId == currUG.calId) {
-                            filteredCalMsg.push(currCalMsg);
-                        }
-                    }
+                for (let calId of userCalIds) {
+
+                    const calendarMsgs = await apiRequest({
+                        entity: "calendar_msg",
+                        method: "GET",
+                        query: { calId: calId }
+                    });
+
+                    filteredCalMsg.push(...calendarMsgs);
                 }
 
-                // Get users private msgs
+                // All PMGS
                 let filteredPrivateMsg = [];
                 for (let currPM of resourcePrivateMsg) {
                     if (currPM.senderId == userId || currPM.receiverId == userId) {
@@ -69,8 +61,7 @@ export function MessagesService() {
                     }
                 }
 
-
-                // Response
+                // Response 
                 PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
                     privateMSG: filteredPrivateMsg,
                     calendarMSG: filteredCalMsg,
@@ -78,26 +69,17 @@ export function MessagesService() {
                     calendars: resourceCalendars
                 }, true);
 
-
                 // Resource
                 PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
                     userCalendars: resourceUserCalendars,
-                    calendarMsg: resourceCalendarMsg,
+                    calendarMsg: filteredCalMsg,
                     privateMsg: resourcePrivateMsg
-                }, true)
-
-
-                return {
-                    privateMSG: filteredPrivateMsg,
-                    calendarMSG: filteredCalMsg
-                }
+                }, true);
 
             } catch (err) {
-
-                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err, true)
-
+                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err, true);
             }
-
+            
         } else if (msgType == "private") {
 
             try {
