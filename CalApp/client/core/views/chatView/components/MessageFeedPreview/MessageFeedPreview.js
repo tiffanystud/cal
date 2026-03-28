@@ -4,7 +4,6 @@ import { EVENTS } from "../../../../store/events.js";
 import { PubSub } from "../../../../store/pubsub.js";
 import { store } from "../../../../store/store.js";
 
-console.log("MESSAGEFEED LOADEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEDDDDDDDDDDDDDDDDDDDDDDDDDD")
 export class MessageFeedPreview extends HTMLElement {
 
     constructor() {
@@ -111,7 +110,7 @@ export class MessageFeedPreview extends HTMLElement {
 
         // Subscribe popup show, save returned unsubscribe fn
         this.subscriptions.push(
-            PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW.MESSAGES, () => {
+            PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW.MESSAGEFEEDPREVIEW, () => {
                 this.openPopup();
             })
         );
@@ -119,6 +118,11 @@ export class MessageFeedPreview extends HTMLElement {
         // Subscribe messages received, save returned unsubscribe fn
         this.subscriptions.push(
             PubSub.subscribe(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, (data) => {
+                this.renderMessages(data);
+            })
+        );
+        this.subscriptions.push(
+            PubSub.subscribe(EVENTS.DATA.UPDATED.MESSAGES, (data) => {
                 this.renderMessages(data);
             })
         );

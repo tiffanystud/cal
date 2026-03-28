@@ -33,27 +33,28 @@ export class dummyLogin {
         }
 
         // Pubba att någon försöker logga in (triggar storeService)
-        PubSub.publish(EVENTS.STATE.LOGIN.START, { userId }, true);
+        PubSub.publish(EVENTS.AUTH.LOGIN.START, { userId }, true);
 
         store.setState({
             isLoggedIn: { id: userId }
         });
 
-        // Pubba att någon vill logga in och status har uppdaterats
-        PubSub.publish(EVENTS.STORE.UPDATED.ISLOGGEDIN, true);
+        // Pubba att någon vill logga in och state har uppdaterats
+        PubSub.publish(EVENTS.DATA.UPDATED.ISLOGGEDIN, true);
+
 
     }
 
     logout() {
 
         // Pubba att någon vill logga ut
-        PubSub.publish(EVENTS.STATE.LOGOUT.START, true);
+        PubSub.publish(EVENTS.AUTH.LOGOUT.START, true);
 
         store.resetState();
 
         // Pubba att någon har loggat ut
-        PubSub.publish(EVENTS.STATE.LOGOUT.SUCCESS, true)
-        PubSub.publish(EVENTS.STORE.UPDATED.ISLOGGEDIN, true);
+        PubSub.publish(EVENTS.AUTH.LOGOUT.SUCCESS, true)
+        PubSub.publish(EVENTS.DATA.UPDATED.ISLOGGEDIN, true);
 
     }
 
