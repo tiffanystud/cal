@@ -77,7 +77,6 @@ export class CreateCalendarView {
             
         `;
 
-        // DOM mst skapas först
         this.addListeners();
     }
 
@@ -103,7 +102,6 @@ export class CreateCalendarView {
             const addedAdmins = document.querySelector('add-members[userListName="admins"]').getValue();
             const addedMembers = document.querySelector('add-members[userListName="members"]').getValue();
 
-
             const payload = {
 
                 calendarPayload: {
@@ -120,7 +118,7 @@ export class CreateCalendarView {
             }
 
             // PUBLISH LISTENER (SENT)
-            PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload);
+            PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.POST, payload, true);
 
         });
     }
@@ -128,9 +126,11 @@ export class CreateCalendarView {
     // Lyssna på förändringar i store
     subscribeToStore() {
 
-        store.subscribe("calendarsUpdated", () => {
+        store.subscribe(EVENTS.DATA.UPDATED.CALENDARS, () => {
             // FOR FURTHER DEVELOPMENT
         })
+        
+        
     }
 
 }

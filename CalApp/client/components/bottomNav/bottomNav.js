@@ -1,6 +1,5 @@
 
-import { EVENTS } from "/core/store/events.js"
-import { store } from "/core/store/store.js"
+import { EVENTS } from "../../core/store/events.js"
 import { PubSub } from "../../core/store/pubsub.js";
 import { newRouter } from "../../index.js";
 
@@ -90,24 +89,16 @@ export class BottomNav extends HTMLElement {
                 PubSub.publish("change:page", {
                     page: currPage
                 }); 
+                
                 PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME, {
                     page: currPage
                 }); 
                 
+                PubSub.publish(EVENTS.VIEW.PAGE.SHOW.ANY, {
+                    page: currPage
+                }); 
+                
                 this.switchView(currPage);
-
-                // Sätt page till vad man trycker på
-                /*                     store.setState({
-                                        data: {
-                                            ...store.getState().data,
-                                            pages: {
-                                                currentPage: currPage
-                                            }
-                                        }
-                                    }); */
-
-                // se över i events 
-                // store.notify(EVENTS.STORE.UPDATED)
 
             })
         })

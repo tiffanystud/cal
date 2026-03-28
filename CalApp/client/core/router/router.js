@@ -9,19 +9,20 @@ export class Router {
     // Publicera event (vilken paage) som vyer lysssnar på
     constructor(url) {
         
-        this.url = new URL(url, window.location.origin); // sträng
+        this.url = new URL(url, window.location.origin); 
         // "/home/profile" -> ["home", "profile"]
         this.urlPaths = this.url.pathname.split("/").filter(Boolean);
         this.mainPath = this.urlPaths[0];
         this.subPath = this.urlPaths[1];
+        
         // Payload innehåller info om vilken route som ska visas, change:view(payload)
         PubSub.publish("change:view", {
             
-            url: this.url, //sträng <- NEJ!!! detta blir ett URL-objekt
+            url: this.url, 
             mainPath: this.mainPath,
             subPath: this.subPath
             
-        });
+        }, true);
         
         
     }
@@ -40,7 +41,6 @@ export class Router {
     
     // Läs in current path, kör navigate sen
     init() {
-        
         
         // Take current path in search field and popstates
         window.addEventListener("popstate", () => {

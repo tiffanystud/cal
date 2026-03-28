@@ -9,7 +9,7 @@ export function MessagesService() {
     // Payload = {userId, msgType}
     PubSub.subscribe(EVENTS.REQUEST.SENT.MESSAGES.GET, async function (payload) {
 
-        PubSub.publish(EVENTS.REQUEST.RECEIVED.MESSAGES.GET)
+        PubSub.publish(EVENTS.REQUEST.RECEIVED.MESSAGES.GET, true);
 
         const userId = payload.userId;
         const msgType = payload.msgType;
@@ -76,7 +76,7 @@ export function MessagesService() {
                     calendarMSG: filteredCalMsg,
                     users: resourceUsers,
                     calendars: resourceCalendars
-                });
+                }, true);
 
 
                 // Resource
@@ -84,7 +84,7 @@ export function MessagesService() {
                     userCalendars: resourceUserCalendars,
                     calendarMsg: resourceCalendarMsg,
                     privateMsg: resourcePrivateMsg
-                })
+                }, true)
 
 
                 return {
@@ -94,7 +94,7 @@ export function MessagesService() {
 
             } catch (err) {
 
-                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err)
+                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err, true)
 
             }
 
@@ -123,12 +123,12 @@ export function MessagesService() {
                 PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
                     privateMSG: filteredPrivateMsg,
                     users: resourceUsers
-                })
+                }, true)
 
                 // Resource
                 PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
                     privateMSG: resourcePrivateMsg
-                })
+                }, true)
 
                 return {
                     privateMSG: filteredPrivateMsg,
@@ -183,27 +183,27 @@ export function MessagesService() {
                 PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
                     userCalendars: resourceUserCalendars,
                     calendarMsg: resourceCalendarMsg
-                })
+                }, true)
 
                 // Resource
                 PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
                     userCalendars: resourceUserCalendars,
                     calendarMsg: resourceCalendarMsg
-                })
+                }, true)
 
                 return {
                     calendarMSG: filteredCalMsg
                 }
 
             } catch (err) {
-                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err)
+                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err, true)
             }
         }
 
         PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, {
             message: "Unknown msgType",
             sentMsgType: msgType
-        });
+        }, true);
 
     })
 

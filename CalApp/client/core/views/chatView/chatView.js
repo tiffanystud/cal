@@ -10,7 +10,7 @@ export class ChatView extends HTMLElement {
         this.attachShadow({ mode: "open" });
         
         PubSub.subscribe("change:page", (data) => {
-            console.log("SUB FIRED", data);
+            console.log("C:P SUB FIRED", data);
             if (data.page === "chat") {
                 this.render();
             }
