@@ -12,7 +12,6 @@ class CalendarsController{
     }
 
 
-
     public static function handle($method, $input){
 
         if($method == "GET"){
