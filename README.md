@@ -95,7 +95,7 @@ NOTE: This server NEEDS to be served on port 8000. This port is reserved for the
 # API Documentation
 The following section includes the API Documentation for the project. It includes all possible endpoints, methods and expected request / response bodies. 
 All responses from are sent as JSON.
-Shortcuts to all endpoints:
+> Shortcuts to all endpoints:
 - [/users](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users)
 - [/users?id=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#usersidid)
 - [/calendars](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#calendars)
