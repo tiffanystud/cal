@@ -44,8 +44,7 @@ NOTE: This server NEEDS to be served on port 8000. This port is reserved for the
 - test - directory
 
 ### index.php
-> This index.php file acts as the gateway to our API. All requests are first handled by this file. If you start a PHP developemental server without specifying a file, all requests will default to index.php. To make sure that everything goes smoothly however, we recomend to assign index.php as the root file when starting the server 
-(See [API]https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#api).
+> This index.php file acts as the gateway to our API. All requests are first handled by this file. If you start a PHP developemental server without specifying a file, all requests will default to index.php. To make sure that everything goes smoothly however, we recomend to assign index.php as the root file when starting the server (See [API](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#api)).
 
 ### controllers
 > The controllers directory includes router.php and controllers for evert endpoint in the API. router.php is where the request first is handled, and the endpoint is checked. If the endpoint is valid the router will run the appropriate controller-file. The controller-files handle the request on a surface level. They control and checks request-method and runs appropriate service-file. The controller-files also sends response when it has gotten an answer from the service-files.
