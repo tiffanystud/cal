@@ -4,20 +4,21 @@
 require_once __DIR__ . "/../middleware/Middleware.php";
 
 // Controllers
-require_once "UserController.php";
-require_once "GroupsController.php";
-require_once "UsersCalendarsController.php";
-require_once "UsersAvailabilitiesController.php";
-require_once "EventsRSVPController.php";
-require_once "EventsController.php";
-require_once "CalendarsMSGController.php";
-require_once "EventAdminsController.php";
+require_once "users/UserController.php";
+require_once "users/UsersCalendarsController.php";
+require_once "users/UsersAvailabilitiesController.php";
+require_once "users/FriendshipsController.php";
+
+require_once "events/EventsRSVPController.php";
+require_once "events/EventsController.php";
+require_once "events/EventAdminsController.php";
+
+require_once "calendars/CalendarsMSGController.php";
+require_once "calendars/CalendarsController.php";
+require_once "calendars/PinnedCalendarsController.php";
+
 require_once "BackupDBController.php";
 require_once "RestoreDBController.php";
-require_once "CalendarsController.php";
-require_once "PinnedCalendarsController.php";
-require_once "FriendshipsController.php";
-require_once "NotificationsController.php";
 
 
 function Router($requestUrl = null){
