@@ -95,6 +95,19 @@ NOTE: This server NEEDS to be served on port 8000. This port is reserved for the
 # API Documentation
 The following section includes the API Documentation for the project. It includes all possible endpoints, methods and expected request / response bodies. 
 All responses from are sent as JSON.
+Shortcuts to all endpoints:
+- [/users](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users)
+- [/users?id=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#usersidid)
+- [/calendars](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#calendars)
+- [/calendars?id=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#calendarsidid)
+- [/users_calendars](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users_calendars)
+- [/users_calendars?calId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users_calendarscalidid)
+- [/users_calendars?userId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users_calendarsuseridid)
+- [/events](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#events)
+- [/events?calId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#eventscalidid)
+- [/events?eventId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#eventseventidid)
+- [/event_admins](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#event_admins)
+- []
 
 ## Allowed HTTP-Methods
 The API only accepts HTTP-methods GET, POST, PATCH and DELETE. A request with any other HTTP-method will be rejected.
@@ -999,6 +1012,85 @@ If you send a POST, PATCH or DELETE request, the Content-Type header must be set
     error: "Not found"
 }
 ```
+
+### /event_admins?eventId=id&userId=id
+#### GET
+- Used to: Get specific event_admins connection with specified ids
+- Expected request-body: none, but request-params "eventId" and "userId" expected
+- Possible response statuses: 200, 400
+- Reponse-body: event_admins connection-object or error-object
+- Example response:
+> 200 OK | Coonnection found
+```json
+{
+    "id": "65e10aa143201",
+    "eventId": "65e10aa11c001",
+    "userId": "65e10aa11a001",
+    "canDelete": true,
+    "canEdit": true,
+    "isCreator": true
+}
+```
+
+> 404 Not Found | No connection found
+```js
+{
+    error: "Not found"
+}
+```
+
+### /event_admins?eventId
+#### GET
+- Used to: Get all connections from specific eventId
+- Expected request-body: non, but request-param "eventId" expected
+- Possible response statuses: 200, 404
+- Response-body: array of connection-objects or error-object
+- Example response
+> 200 OK | Connections found
+```json
+[{
+    "id": "65e10aa143201",
+    "eventId": "65e10aa11c001",
+    "userId": "65e10aa11a001",
+    "canDelete": true,
+    "canEdit": true,
+    "isCreator": true
+}]
+```
+
+> 404 Not Found | No connections found
+```js
+{
+    error: "Not Found"
+}
+```
+
+### /event_admins?userId=id
+#### GET
+- Used to: get all connections from specific userId
+- Expected request-body: none, but request-param "userId" expected
+- Possible response statuses: 200, 404
+- Response-body: array of connection-objects or error-object
+- Expected response
+> 200 OK | Connections found
+```json
+[{
+    "id": "65e10aa143201",
+    "eventId": "65e10aa11c001",
+    "userId": "65e10aa11a001",
+    "canDelete": true,
+    "canEdit": true,
+    "isCreator": true
+}]
+```
+
+> 404 Not Found | No connections found
+```js
+{
+    error: "Not found"
+}
+```
+
 ### /friendships?userId=string
 #### GET
 - Used to: Get all users friendship from database
