@@ -113,7 +113,12 @@ Shortcuts to all endpoints:
 - [/friendships?userId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#friendshipsuseridstring)
 - [/friendships?userId1=id&userId2=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#friendshipsuserid1stringuserid2string)
 - [/private_msg](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#private_msg)
-- [/]
+- [/private_msg?senderId=id&receiverId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#private_msgsenderidstringreceiveridstring)
+- [/calendar_msg](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#calendar_msg)
+- [/calendar_msg?calId=id&senderId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#calendar_msgcalidstringsenderidstring)
+- [/events_rsvp](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#events_rsvp)
+- [/users_availabilities](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users_availabilities)
+- [/users_availabilities?userId=id&date=string](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users_availabilitiesuseridstringdatestring)
 
 ## Allowed HTTP-Methods
 The API only accepts HTTP-methods GET, POST, PATCH and DELETE. A request with any other HTTP-method will be rejected.
