@@ -143,7 +143,7 @@
         {
             "id": "65f900bb11b01",
             "creatorId": "65e10aa11a009",
-            "name": "Penta Squad",
+            "name": "Penta",
             "description": "Planering av gruppens aktiviteter.",
             "type": "private"
         },
@@ -156,24 +156,178 @@
         },
         {
             "id": "69c31731daf11",
-            "creatorId": "",
-            "name": "Hejsan",
-            "description": "",
+            "creatorId": "66c9de01a090",
+            "name": "Språk lunch",
+            "description": "Vi ses varannan tisdag på saluhallen. Ojämna veckor.",
             "type": "private"
         },
         {
             "id": "69c31914a2768",
-            "creatorId": "",
-            "name": "c",
+            "creatorId": "6812ab12d311",
+            "name": "Nordic Food Festivals",
+            "description": "",
+            "type": "public"
+        },
+        {
+            "id": "69c31a3bdbf80",
+            "creatorId": "67b8ab56d245",
+            "name": "Costco Finds",
+            "description": "heyy",
+            "type": "private"
+        },
+        {
+            "id": "69bc03e975743",
+            "creatorId": "65e10aa11a001",
+            "name": "Bagerisällskapet",
+            "description": "Baktillfällen där vi fokuserar på ekologiskt hållbara- och svenskproducerade råvaror.",
+            "type": "private"
+        },
+        {
+            "id": "69bc0b6761c21",
+            "creatorId": "65e10aa11a001",
+            "name": "Malmö REKO-Ring",
+            "description": "Vi tycker att kedjan mellan producent och konsument borde vara mycket kortare! Vi vill göra det enklare att stötta småskaliga, lokala initiativ. REKO-ringen innebär direkthandel där producenternas matsvinn och dyra mellanhänder minimeras. Varor förhandsbeställs på Penta betalas innan konsumenter och producenter träffas för samordnad varuutlämning varje vecka.",
+            "type": "public"
+        },
+        {
+            "id": "6a1f3c84e209",
+            "creatorId": "65f3aa11a001",
+            "name": "Techno & Rave Koordination",
+            "description": "Inte för alla. Om du vet, vet du. Hemliga adresser skickas 2h innan. Glöm inte svart.",
+            "type": "private"
+        },
+        {
+            "id": "6b2e4d95f310",
+            "creatorId": "65f3aa11a002",
+            "name": "Podcast: Två Killar En Mikrofon",
+            "description": "Inspelningsschema, gästbokningar och alla de gånger vi säger 'vi fixar det live' och sedan inte gör det. En kalender för Sveriges troligtvis mest oförberedda men ärliga poddprojekt.",
+            "type": "private"
+        },
+        {
+            "id": "6c3a5e06a421",
+            "creatorId": "65f3aa11a00b",
+            "name": "Rabattkod Jägarna",
+            "description": "Delar de bästa koderna, drop-tider och kampanjer. Ingen betalar full pris här.",
+            "type": "public"
+        },
+        {
+            "id": "6d4b6f17b532",
+            "creatorId": "65f3aa11a00c",
+            "name": "Flashback Filosoferna",
+            "description": "Träffar där vi diskuterar trådar som borde ha lästs igår. Allt från samhällskritik till konspirationer som kanske inte är konspirationer. Kaffe och åsikter ingår.",
+            "type": "private"
+        },
+        {
+            "id": "6e5c7028c643",
+            "creatorId": "66b8cd90f089",
+            "name": "Malmö Street Food Crawl",
+            "description": "",
+            "type": "public"
+        },
+        {
+            "id": "6f6d8139d754",
+            "creatorId": "66c9de01a090",
+            "name": "Solpanels-nördarnas Mötesplats",
+            "description": "För oss som verkligen tänkte för djupt på elräkningen och nu bygger egna off-grid-system. Workshops, gemensamma inköp och tekniska djupdykningar.",
+            "type": "public"
+        },
+        {
+            "id": "6a7e924ae865",
+            "creatorId": "65f3bb11b009",
+            "name": "Sebbe & Gänget",
             "description": "",
             "type": "private"
         },
         {
-            "id": "69c31a3bdbf80",
-            "creatorId": "",
-            "name": "ka",
-            "description": "heyy",
+            "id": "6b8fa35bf976",
+            "creatorId": "66daef12b101",
+            "name": "Afrikansk Litteraturklubb",
+            "description": "En kalender för läsecirkeln som faktiskt läser. Vi täcker allt från Achebe till nya röster. Mötena är på engelska men hjärtat är globalt.",
+            "type": "public"
+        },
+        {
+            "id": "6c90b46ca087",
+            "creatorId": "65f3aa11a010",
+            "name": "Golden Hour Fotografi",
+            "description": "Spontana shoots vid soluppgång och solnedgång. Platser annonseras kvällen innan. Ta med kameran, lämna planen hemma.",
+            "type": "public"
+        },
+        {
+            "id": "6da1c57db198",
+            "creatorId": "66ebfa23c112",
+            "name": "Meditationscirkeln",
+            "description": "Veckovis stillhet, guidade sessioner och ibland bara tystnad. Välkommen oavsett erfarenhet.",
+            "type": "public"
+        },
+        {
+            "id": "6eb2d68ec209",
+            "creatorId": "65f3aa11a016",
+            "name": "True Crime Torsdagar",
+            "description": "Vi samlas varje torsdag, äter för mycket chips och analyserar fall som polisen uppenbarligen inte förstår. Hobby-detektiver välkomna.",
             "type": "private"
+        },
+        {
+            "id": "6fc3e79fd31a",
+            "creatorId": "66f6ab78d067",
+            "name": "Latinamerika Cultural Exchange",
+            "description": "Events, film nights, language tandem sessions and everything that connects the diaspora. Todos bienvenidos.",
+            "type": "public"
+        },
+        {
+            "id": "6ad4f80ae42b",
+            "creatorId": "65f3aa11a018",
+            "name": "Vinylsamlarnas Börs",
+            "description": "Köp, sälj, byt skivor. Träffas en gång i månaden i någons källare och låtsas som att vi inte köper för mycket.",
+            "type": "private"
+        },
+        {
+            "id": "6be5091bf53c",
+            "creatorId": "6796ef34b223",
+            "name": "Fantasy Football Kommissionen",
+            "description": "",
+            "type": "private"
+        },
+        {
+            "id": "6cf61a2ca64d",
+            "creatorId": "6c9fef341223",
+            "name": "Tennis Academy Malmö",
+            "description": "Bokningar, turneringsschema och träningsupplägg för alla nivåer. Från nybörjare till de som tar det lite väl seriöst.",
+            "type": "public"
+        },
+        {
+            "id": "6da72b3db75e",
+            "creatorId": "65f3aa11a01a",
+            "name": "Anonyma Överkonsumenter",
+            "description": "En support-kalender för oss som köper saker vi inte behöver och delar hauls vi skäms lite för. Dömningsfritt. Mestadels.",
+            "type": "private"
+        },
+        {
+            "id": "6eb83c4ec86f",
+            "creatorId": "66a7bc89e078",
+            "name": "Klimataktivism Nätverk",
+            "description": "Koordinering av aktioner, demonstrationer och lokala initiativ. Planeten väntar inte och det gör inte vi heller.",
+            "type": "public"
+        },
+        {
+            "id": "6fc94d5fd979",
+            "creatorId": "65f3aa11a00e",
+            "name": "Anime & Manga Screening",
+            "description": "Fredagskvällar med projektorduk, japansk snacks och djupa diskussioner om karaktärsutveckling som egentligen handlar om oss själva.",
+            "type": "public"
+        },
+        {
+            "id": "6ada5e60ea8a",
+            "creatorId": "67dacd78f267",
+            "name": "Cairo Connect",
+            "description": "A calendar for the Egyptian community abroad — cultural events, eid planning, and keeping traditions alive far from home.",
+            "type": "private"
+        },
+        {
+            "id": "6beb6f71fb9b",
+            "creatorId": "65f3aa11a014",
+            "name": "Spontana Middagar",
+            "description": "Ingen planering, ingen meny bestämd i förväg. Bara ett datum, en adress och förväntningen att någon vet hur man lagar mat. Någon vet väl det?",
+            "type": "public"
         }
     ]
 }

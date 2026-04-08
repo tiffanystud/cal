@@ -19,8 +19,12 @@ export class Store {
 
 
     // Expects: {key1: callback1, key2: callback2...}, supports multiple keys
-    setState(newState) {
+    setState(newState, consoleLogIt = false) {
 
+        if (consoleLogIt) {
+            console.log("New store setState: ", newState);
+        }
+        
         // Reject invalid format
         if (typeof newState !== "object" || Array.isArray(newState)) {
             return false;
@@ -42,8 +46,12 @@ export class Store {
         throw new Error("Not allowed");
     }
 
-    subscribe(keyName, listener) {
+    subscribe(keyName, listener, consoleLogIt = false) {
 
+        if (consoleLogIt) {
+            console.log("New store subscribe: ", keyName, " with listener: ", listener);
+        }
+        
         if (!Store.allListeners[keyName]) {
 
             Store.allListeners[keyName] = []
@@ -53,8 +61,12 @@ export class Store {
         Store.allListeners[keyName].push(listener);
     }
 
-    notify(keyName, data) {
+    notify(keyName, data, consoleLogIt = false) {
 
+        if (consoleLogIt) {
+            console.log("New store notify: ", keyName, " with data: ", data);
+        }
+        
         if (!Store.allListeners[keyName]) {
 
             return "No listeners for event"
@@ -67,8 +79,12 @@ export class Store {
 
 
     // Reset state.js (if user logs ut etc)
-    resetState() {
+    resetState(consoleLogIt = false) {
 
+        if (consoleLogIt) {
+            console.log("New store resetState");
+        }
+        
         this._state = structuredClone(stateSchema);
 
         // Notify about state change per key
@@ -81,4 +97,3 @@ export class Store {
 }
 
 export const store = new Store(state);
-

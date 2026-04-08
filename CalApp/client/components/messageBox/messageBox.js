@@ -1,3 +1,7 @@
+/* 
+
+*/
+
 export class MessageBox extends HTMLElement {
     constructor() {
         super();
@@ -6,11 +10,11 @@ export class MessageBox extends HTMLElement {
 
     connectedCallback() {
         this.shadowRoot.innerHTML = `
-        <link rel="stylesheet" href="/components/messageBox/messageBox.css">
-        <label id="sender-date">${this.users.sender.name} - ${this.message.date}, ${this.message.time}</label>
-        <div id="message">
-        <p id="content">${this.message.content}</p>
-        </div>
+            <link rel="stylesheet" href="/components/messageBox/messageBox.css">
+            <label id="sender-date">${this.users.sender.name} - ${this.message.date}, ${this.message.time}</label>
+            <div id="message">
+                <p id="content">${this.message.content}</p>
+            </div>
         `
 
         if (this.alignRight) {

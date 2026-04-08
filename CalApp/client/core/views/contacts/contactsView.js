@@ -1,6 +1,7 @@
 import { PubSub } from "../../store/pubsub.js";
+import { EVENTS } from "../../store/events.js";
 import { apiRequest } from "../../services/api.js";
-
+import "./components/contactCardContainer.js"
 
 export class ContactsView extends HTMLElement {
     constructor() {
@@ -19,6 +20,22 @@ export class ContactsView extends HTMLElement {
 
         });
 
+        PubSub.subscribe("change:view", (data) => {
+
+            if (data.mainPath === "home" && data.subPath === "contacts") {
+                this.render();
+            }
+
+        });
+        
+        PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.ANY, (data) => {
+
+            if (data.page === "contacts") {
+                this.render();
+            }
+
+        }, true);
+        
         PubSub.subscribe("change:view", (data) => {
 
             if (data.mainPath === "home" && data.subPath === "contacts") {

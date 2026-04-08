@@ -8,7 +8,8 @@ export class StoreService {
 
     constructor() {
 
-        PubSub.subscribe(EVENTS.STATE.LOGIN.START, async (payload) => {
+
+        PubSub.subscribe(EVENTS.AUTH.LOGIN.START, async (payload) => {
 
             const userId = payload.userId;
 
@@ -30,12 +31,13 @@ export class StoreService {
                         username: currUser.name,
                         email: currUser.email
                     }
-                });
+                }, true);
 
                 // Get UGs
                 let usergroups;
 
                 try {
+                    
                     usergroups = await apiRequest({
                         entity: `users_calendars?userId=${userId}`,
                         method: "GET"
@@ -54,6 +56,7 @@ export class StoreService {
                 let friends;
 
                 try {
+                    
                     friends = await apiRequest({
                         entity: `friendships?userId=${userId}`,
                         method: "GET"
@@ -72,6 +75,7 @@ export class StoreService {
                 let privateMessages;
 
                 try {
+                    
                     privateMessages = await apiRequest({
                         entity: `private_msg`,
                         method: "GET"
@@ -226,8 +230,6 @@ export class StoreService {
                     }
                 }
 
-                // UPDATE STORE
-                // UPDATE STATE (all data)
                 store.setState({
                     usergroups: usergroups,
                     cals: cals,
@@ -236,32 +238,31 @@ export class StoreService {
                     privateMessages: privateMessages,
                     calendarMessages: calendarMessages,
                     userPinnedCalendars: pinned,
-                    availabilites: availabilities,
+                    availabilities: availabilities,
                     notis: notis
-                });
+                }, true);
 
-                PubSub.publish(EVENTS.STATE.LOGIN.SUCCESS, { userId });
+                PubSub.publish(EVENTS.AUTH.LOGIN.SUCCESS, { userId }, true);
 
-                console.log("------ DEVELOPMENT PRODUCTION LOGS -------")
-                console.log("State: ", store.getState())
-                console.log("------ DEVELOPMENT PRODUCTION LOGS -------")
 
             } catch (err) {
 
-                console.error("StoreService login error:", err);
-                PubSub.publish(EVENTS.STATE.LOGIN.ERROR, err);
+                PubSub.publish(EVENTS.AUTH.LOGIN.ERROR, err, true);
+
 
             }
-        });
+        }, true);
 
-        PubSub.subscribe(EVENTS.STATE.LOGOUT.START, () => {
+
+        PubSub.subscribe(EVENTS.AUTH.LOGOUT.START, () => {
 
             store.resetState();
 
-            PubSub.publish(EVENTS.STATE.LOGOUT.SUCCESS);
-            PubSub.publish(EVENTS.STORE.UPDATED.ISLOGGEDIN);
+            PubSub.publish(EVENTS.AUTH.LOGOUT.SUCCESS, null, true);
+            PubSub.publish(EVENTS.DATA.UPDATED.ISLOGGEDIN, null, true);
 
-        });
+        }, true);
+
     }
 }
 

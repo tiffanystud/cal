@@ -20,40 +20,38 @@ export class HomeView extends HTMLElement {
 
     sub() {
 
-
-        PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.HOME, (data) => {
-            if (data.page === "home") {
-                this.render(data);
-            }
-
-        });
-
-        PubSub.subscribe(EVENTS.STATE.LOGIN.SUCCESS, () => {
-            // Re-render home, inloggad
-            PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME, { page: "home" });
-        });
-
-        PubSub.subscribe(EVENTS.STATE.LOGOUT.SUCCESS, () => {
-            // Re-render home, utloggad
-            PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME, { page: "home" });
-        });
-
         PubSub.subscribe("change:view", (data) => {
             if (data.url === "/home") {
                 this.render();
             }
         })
+        
         PubSub.subscribe("change:page", (data) => {
             if (data.page === "home") {
                 this.render();
             }
         })
 
-        PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW, (data) => {
-            if (data === "home") { //bottom Nav
+        PubSub.subscribe(EVENTS.AUTH.LOGIN.SUCCESS, () => {
+            PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME, { page: "home" }, true);
+        }, true);
+
+        PubSub.subscribe(EVENTS.AUTH.LOGOUT.SUCCESS, () => {
+            PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME, { page: "home" }, true);
+        }, true);
+        
+        PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.HOME, (data) => {
+            if (data.page === "home") {
                 this.render();
             }
-        });
+        }, true);
+
+        PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.ANY, (data) => {
+            if (data.page === "home") { //bottom Nav
+                this.render();
+            }
+        }, true);
+
     }
 
     render() {

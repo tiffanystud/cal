@@ -52,7 +52,7 @@ export class SearchTags extends HTMLElement {
 
     eventListeners() {
         this.shadowRoot.querySelector("#searchBtn").addEventListener("click", () => {
-            PubSub.publish("Tags::OpenSearchModal");
+            PubSub.publish("Tags::OpenSearchModal", true);
         })
 
         PubSub.subscribe("Users::Selected", data => {
@@ -69,7 +69,7 @@ export class SearchTags extends HTMLElement {
                 filteredEvents = currentEvents.filter(event => event.tags == tags);
             }
 
-            store.setState({ "selectedEvents": filteredEvents });
+            store.setState({ "selectedEvents": filteredEvents }, true);
 
             let tagsDiv = document.createElement("div");
             tagsDiv.classList.add("tags");
@@ -82,9 +82,9 @@ export class SearchTags extends HTMLElement {
 
 
             closeBtn.addEventListener("click", () => {
-                store.setState({ "selectedEvents": currentEvents });
+                store.setState({ "selectedEvents": currentEvents }, true);
                 let newTags = store.getState().selectedTags.filter(tag => tag != data.selectedItem);
-                store.setState({ "selectedTags": newTags })
+                store.setState({ "selectedTags": newTags }, true)
                 // PubSub.publish("SELECTEDCALS.EVENTS.STATE.POST", state.selectedCals);
                 tagsDiv.remove();
             })

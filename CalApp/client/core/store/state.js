@@ -47,7 +47,7 @@ export const stateSchema = {
     privateMessages: [],
     calendarMessages: [],
     userPinnedCalendars: [],
-    availabilites: [],
+    availabilities: [],
     notis: []
 };
 

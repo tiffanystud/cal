@@ -1,6 +1,7 @@
 
 import { apiRequest } from "./api.js";
 import { PubSub } from "../store/pubsub.js";
+import { store } from "../store/store.js";
 import { EVENTS } from "../store/events.js";
 
 export function MessagesService() {
@@ -9,7 +10,7 @@ export function MessagesService() {
     // Payload = {userId, msgType}
     PubSub.subscribe(EVENTS.REQUEST.SENT.MESSAGES.GET, async function (payload) {
 
-        PubSub.publish(EVENTS.REQUEST.RECEIVED.MESSAGES.GET)
+        PubSub.publish(EVENTS.REQUEST.RECEIVED.MESSAGES.GET, true);
 
         const userId = payload.userId;
         const msgType = payload.msgType;
@@ -18,50 +19,31 @@ export function MessagesService() {
 
             try {
 
-                const resourceUserCalendars = await apiRequest({
-                    entity: "/user_calendars",
-                    method: "GET"
-                })
+                const state = store.getState();
 
-                const resourcePrivateMsg = await apiRequest({
-                    entity: "/private_msg",
-                    method: "GET"
-                })
-
-                const resourceCalendarMsg = await apiRequest({
-                    entity: "/calendar_msg",
-                    method: "GET"
-                })
-
-                const resourceCalendars = await apiRequest({
-                    entity: "/calendars",
-                    method: "GET"
-                })
-
+                const resourceUserCalendars = state.usergroups;
+                const resourcePrivateMsg = state.privateMessages;
+                const resourceCalendarMsg = state.calendarMessages;
+                const resourceCalendars = state.cals;
                 const resourceUsers = await apiRequest({
-                    entity: "/users",
+                    entity: "users",
                     method: "GET"
                 })
 
-                // Get users calendars
-                let filteredUGCals = []
-                for (let currUg of resourceUserCalendars) {
-                    if (currUg.userId == userId) {
-                        filteredUGCals.push(currUg);
-                    }
-                }
+                // Filter User Cals
+                const userCalIds = resourceUserCalendars
+                    .filter(uc => uc.userId == userId)
+                    .map(uc => uc.calId);
 
-                // Get all calendar msgs for all UGS
+                // Get all cals for User Cals
                 let filteredCalMsg = [];
                 for (let currCalMsg of resourceCalendarMsg) {
-                    for (let currUG of filteredUGCals) {
-                        if (currCalMsg.calId == currUG.calId) {
-                            filteredCalMsg.push(currCalMsg);
-                        }
+                    if (userCalIds.includes(currCalMsg.calId)) {
+                        filteredCalMsg.push(currCalMsg);
                     }
                 }
 
-                // Get users private msgs
+                // All PMGS
                 let filteredPrivateMsg = [];
                 for (let currPM of resourcePrivateMsg) {
                     if (currPM.senderId == userId || currPM.receiverId == userId) {
@@ -69,35 +51,24 @@ export function MessagesService() {
                     }
                 }
 
-
-                // Response
+                // Response 
                 PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
                     privateMSG: filteredPrivateMsg,
                     calendarMSG: filteredCalMsg,
                     users: resourceUsers,
                     calendars: resourceCalendars
-                });
-
+                }, true);
 
                 // Resource
                 PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
                     userCalendars: resourceUserCalendars,
-                    calendarMsg: resourceCalendarMsg,
+                    calendarMsg: filteredCalMsg,
                     privateMsg: resourcePrivateMsg
-                })
-
-
-                return {
-                    privateMSG: filteredPrivateMsg,
-                    calendarMSG: filteredCalMsg
-                }
+                }, true);
 
             } catch (err) {
-
-                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err)
-
+                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err, true);
             }
-
         } else if (msgType == "private") {
 
             try {
@@ -123,12 +94,12 @@ export function MessagesService() {
                 PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
                     privateMSG: filteredPrivateMsg,
                     users: resourceUsers
-                })
+                }, true)
 
                 // Resource
                 PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
                     privateMSG: resourcePrivateMsg
-                })
+                }, true)
 
                 return {
                     privateMSG: filteredPrivateMsg,
@@ -183,29 +154,59 @@ export function MessagesService() {
                 PubSub.publish(EVENTS.RESPONSE.RECEIVED.MESSAGES.GET, {
                     userCalendars: resourceUserCalendars,
                     calendarMsg: resourceCalendarMsg
-                })
+                }, true)
+
 
                 // Resource
                 PubSub.publish(EVENTS.RESOURCE.RECEIVED.MESSAGES.GET, {
                     userCalendars: resourceUserCalendars,
                     calendarMsg: resourceCalendarMsg
-                })
+                }, true)
 
                 return {
                     calendarMSG: filteredCalMsg
                 }
 
             } catch (err) {
-                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err)
+                PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, err, true)
             }
         }
 
         PubSub.publish(EVENTS.REQUEST.ERROR.MESSAGES.GET, {
             message: "Unknown msgType",
             sentMsgType: msgType
-        });
+        }, true);
 
     })
+
+
+    PubSub.subscribe(EVENTS.DATA.SELECTED.MESSAGES, async (payload) => {
+
+        const resourceUsers = await apiRequest({
+            entity: "users",
+            method: "GET"
+        });
+
+        const resourcePrivate = await apiRequest({
+            entity: "private_msg",
+            method: "GET"
+        });
+
+        const resourceCalendar = await apiRequest({
+            entity: "calendar_msg",
+            method: "GET"
+        });
+
+        PubSub.publish(EVENTS.DATA.RETURNED.MESSAGES, {
+            users: resourceUsers,
+            privateMSG: resourcePrivate,
+            calendarMSG: resourceCalendar,
+            chatType: payload.chatType,
+            chatId: payload.chatId
+        });
+
+    });
+
 
 }
 

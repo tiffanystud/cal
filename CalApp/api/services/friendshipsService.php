@@ -25,7 +25,10 @@ class FriendshipsService{
         foreach ($friendsIds as $fId){
             $friend = $usersDb->findById($fId);
             if ($friend) {
-                $friends[] = ["name" => $friend["name"]];
+                $friends[] = [
+                    "id" => $friend["id"],
+                    "name" => $friend["name"]
+                ];
             }
         }
         return $friends;

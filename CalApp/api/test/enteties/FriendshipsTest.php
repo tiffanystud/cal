@@ -64,6 +64,7 @@ function testGet_200()
     $expected = [
         "status" => 200,
         "body" => [[
+            "id" => "id",
             "name" => "name"
         ]]
     ];

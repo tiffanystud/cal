@@ -12,6 +12,7 @@ export class HomeService {
             });
             this.addSelectedEvents(cal);
         })
+        
         PubSub.subscribe("SELECTEDCALS.EVENTS.STATE.DELETE", cal => {
             store.setState({
                 "selectedCals": store.getState().selectedCals.filter(cals => cals.id != cal.id)

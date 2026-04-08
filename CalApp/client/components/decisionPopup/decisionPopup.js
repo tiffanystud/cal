@@ -1,10 +1,14 @@
 /* 
+
 <desicion-popup 
     popupHeader="Ta bort kalender?"
     popuptext="Detta går inte att ångra."
     popupBtnCancel="Nej, avbryt"
-    popupBtnDelete="Ja, ta bort">
+    popupBtnConfirm="Ja, ta bort">
 </desicion-popup>
+
+Trigger rendering - see subs()
+
 */
 
 import { EVENTS } from "../../core/store/events.js";
@@ -13,6 +17,7 @@ import { PubSub } from "../../core/store/pubsub.js"
 export class DesicionPopup extends HTMLElement {
 
     constructor() {
+        
         super();
         this.attachShadow({ mode: "open" });
 
@@ -117,7 +122,7 @@ export class DesicionPopup extends HTMLElement {
                     background-color: rgb(104, 143, 216);
                 }
 
-                .popupBtnDelete {
+                .popupBtnConfirm> {
                     background-color: transparent;
                     color: red;
                 }
@@ -133,17 +138,16 @@ export class DesicionPopup extends HTMLElement {
                     <div class="popupContainer">
                         <div class="popupHeading">
                             <div class="popupCirkle">x</div>
-                            <h3 class="popupHeader">Are you sure?</h3>
+                            <h3 class="popupHeader"></h3>
                         </div>
 
-                        <p class="popuptext">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>
+                        <p class="popuptext"></p>
 
                         <div class="popupBtnContainer">
-                            <button class="popupBtnCancel popupBtnAll">No, cancel</button>
-                            <button class="popupBtnDelete popupBtnAll">Yes, delete</button>
+                            <button class="popupBtnCancel popupBtnAll"></button>
+                            <button class="popupBtnConfirm popupBtnAll"></button>
                         </div>
+                        
                     </div>
 
                 </div>
@@ -156,8 +160,9 @@ export class DesicionPopup extends HTMLElement {
 
     subs() {
         
-        PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW.DESICIONPOPUP, (componentData) => {
-            this.currContext = componentData.context; // Vilken komponent öppnar popupen
+        // Trigger rendering, publish this:
+        PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW.DECISIONPOPUP, (componentData) => {
+            this.currContext = componentData.context; // What component that opens this popup
             this.openModal();
         })
         
@@ -169,7 +174,7 @@ export class DesicionPopup extends HTMLElement {
         this.backdrop = this.shadowRoot.querySelector(".modal-backdrop");
         this.closeBtn = this.shadowRoot.querySelector(".popupBtnClose");
         this.cancelBtn = this.shadowRoot.querySelector(".popupBtnCancel");
-        this.deleteBtn = this.shadowRoot.querySelector(".popupBtnDelete");
+        this.confirmBtn = this.shadowRoot.querySelector(".popupBtnConfirm");
         this.headerElem = this.shadowRoot.querySelector(".popupHeader");
         this.textElem = this.shadowRoot.querySelector(".popuptext");
 
@@ -177,12 +182,10 @@ export class DesicionPopup extends HTMLElement {
         this.headerElem.innerText = this.getAttribute("popupHeader") || "Are you sure?";
         this.textElem.innerText = this.getAttribute("popuptext") || "This process cannot be undone.";
         this.cancelBtn.innerText = this.getAttribute("popupBtnCancel") || "No, cancel";
-        this.deleteBtn.innerText = this.getAttribute("popupBtnDelete") || "Yes, proceed";
-
+        this.confirmBtn.innerText = this.getAttribute("popupBtnConfirm") || "Yes, proceed";
 
         // Close
         this.closeBtn.addEventListener("click", () => this.closeModal());
-
         this.backdrop.addEventListener("click", e => {
             if (e.target === this.backdrop) this.closeModal();
         });
@@ -194,12 +197,12 @@ export class DesicionPopup extends HTMLElement {
         });
 
         // Confirm BTN
-        this.deleteBtn.addEventListener("click", () => {
+        this.confirmBtn.addEventListener("click", () => {
             PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME);
-            PubSub.publish(EVENTS.STORE.UPDATED.CALENDARS);
             // Ska context skickas vidare?
             this.closeModal();
         });
+        
     }
 
     // Open
@@ -209,7 +212,9 @@ export class DesicionPopup extends HTMLElement {
 
     // Close
     closeModal() {
+        PubSub.publish(EVENTS.VIEW.POPUP.CLOSE.DECISIONPOPUP)
         this.backdrop.classList.add("hidden");
     }
 }
+
 customElements.define("decision-popup", DesicionPopup);
