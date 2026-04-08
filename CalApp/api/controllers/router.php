@@ -4,7 +4,6 @@
 require_once __DIR__ . "/../middleware/Middleware.php";
 
 // Controllers
-require_once "PrivateMsgController.php";
 require_once "UserController.php";
 require_once "GroupsController.php";
 require_once "UsersCalendarsController.php";
@@ -19,7 +18,6 @@ require_once "CalendarsController.php";
 require_once "PinnedCalendarsController.php";
 require_once "FriendshipsController.php";
 require_once "NotificationsController.php";
-require_once "UsersNotificationsController.php";
 
 
 function Router($requestUrl = null){
