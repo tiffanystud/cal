@@ -1393,36 +1393,6 @@ If you send a POST, PATCH or DELETE request, the Content-Type header must be set
 ```
 
 ### /calendar_msg
-#### GET
-- Used to: Get all messages for a specific calendar
-- Expected request-body: none, but request-params "senderId" and "calId" expected
-- Possible response statuses: 200, 400, 404
-- Response-body: array of calendar_msg-objects or error-object
-- Example response:
-> 200 OK | Messages were found and returned
-```json
-[{
-    "id": "string",
-    "senderId": "string",
-    "calId": "string",
-    "date": "YYYY-MM-DD",
-    "time": "HH:MM:SS",
-    "content": "string",
-    "hasChanged": true
-}]
-```
-> 400 Bad Request | Missing required query parameters
-```json
-{
-    error: "Missing attributes"
-}
-```
-> 404 Not Found | No messages found for specified calendar
-```json
-{
-    error: "Messages not found"
-}
-```
 #### POST
 - Used to: Create a new calendar message
 - Expected request-body:
