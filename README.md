@@ -587,7 +587,7 @@ If you send a POST, PATCH or DELETE request, the Content-Type header must be set
 > 400 Bad Request | userId or calId attributes missing
 ```js
 {
-    error: "User ID / Cal ID missing"
+    error: "Missing attributes"
 }
 ```
 
