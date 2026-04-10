@@ -1,6 +1,6 @@
 // ROUTER
 import { Router } from "./core/router/router.js";
-export const newRouter = new Router(window.location.href);
+// export const newRouter = new Router(window.location.href);
 
 
 // GLOBAL COMPONENTS
@@ -59,4 +59,4 @@ PubSub.subscribe("change:view", (data) => {
 
 
 // START
-newRouter.init();
+Router.init();

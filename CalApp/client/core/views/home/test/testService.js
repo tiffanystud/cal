@@ -1,31 +1,28 @@
-
-import { PubSub } from "../../../store/pubsub";
-import { EVENTS } from "../../../store/events";
+import { PubSub } from "../../../store/pubsub.js";
+import { EVENTS } from "../../../store/events.js";
+import { Router } from "../../../router/router.js";
 
 export class testService {
 
     constructor() {
-
         this.subs();
         this.eListeners();
-        this.url = window.location.origin; // ***
     }
 
     subs() {
-
         // Router pub?
-        PubSub.subscribe("change:page", (data) => {
-            if (data.page === "home") {
+        PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.ANY, (data) => {
+            if (data.mainPath === "home") {
                 this.render();
             }
         })
 
-        // Login
+        // Login som vid på home
         PubSub.subscribe(EVENTS.AUTH.LOGIN.SUCCESS, () => {
             PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME, { page: "home" }, true);
         }, true);
 
-        // Logout
+        // Logout som sker vid profile
         PubSub.subscribe(EVENTS.AUTH.LOGOUT.SUCCESS, () => {
             PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME, { page: "home" }, true);
         }, true);
@@ -43,6 +40,9 @@ export class testService {
 
         testContainer.addEventListener("click", () => {
 
+            this.setURL(urlParams)
+
+            // Sker vid knappryck, och skickar med searchParams
             PubSub.publish(
                 EVENTS.VIEW.POPUP.SHOW.TEST1,
                 () => { },
@@ -55,10 +55,11 @@ export class testService {
 
             this.setURL(urlParams)
 
+            // Sker vid knappryck, och skickar med searchParams
             PubSub.publish(
                 EVENTS.VIEW.POPUP.SHOW.TEST2,
                 function (urlParams) {
-                    // ???
+
                 },
                 false
             )
@@ -67,18 +68,8 @@ export class testService {
     }
 
     setURL(newURL) {
-
         // Sätt url till view
-        
-        urlPaths = newURL.pathname.split("/").filter(Boolean);
-        mainPath = urlPaths[0];
-        subPath = urlPaths[1];
-        
-        newURL.preventDefault();
-        window.history.pushState({}, "", test);
-        const viewUrl = new URL(newURL, window.location.origin);
-
-        this.url = viewUrl;
+        Router.updateUrl(newURL);
 
     }
 
