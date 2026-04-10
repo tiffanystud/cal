@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../services/UsersCalendarsService.php";
+require_once __DIR__ . "/../sendJSON.php";
 
 class UsersCalendarsController {
 
@@ -9,13 +10,16 @@ class UsersCalendarsController {
             if ($method === "GET") {
                 if (empty($input)) {
                     $data = UsersCalendarsService::getAll();
-                    sendJson($data, 200);
+                    sendJSON($data, 200);
+                    return;
                 } else if (isset($input["userId"])) {
                     $data = UsersCalendarsService::getByParam($input);
-                    sendJson($data, 200);
+                    sendJSON($data, 200);
+                    return;
                 } else if (isset($input["calId"])) {
                     $data = UsersCalendarsService::getByParam($input);
-                    sendJson($data, 200);
+                    sendJSON($data, 200);
+                    return;
                 } else {
                     throw new Exception("Missing attributes");
                 }
@@ -26,7 +30,8 @@ class UsersCalendarsController {
                     throw new Exception("Missing attributes");
                 }
                 $data = UsersCalendarsService::post($input);
-                sendJson($data, 201);
+                sendJSON($data, 201);
+                return;
             }
     
             if ($method === "PATCH") {
@@ -34,7 +39,8 @@ class UsersCalendarsController {
                     throw new Exception("User ID / CAL ID missing");
                 }
                 $data = UsersCalendarsService::patch($input);
-                sendJson($data, 200);
+                sendJSON($data, 200);
+                return;
             }
     
             if ($method === "DELETE") {
@@ -42,7 +48,8 @@ class UsersCalendarsController {
                     throw new Exception("User ID / Cal ID missing");
                 }
                 $data = UsersCalendarsService::delete($input);
-                sendJson($data, 200);
+                sendJSON($data, 200);
+                return;
             }
 
             // Hantera okända metoder
@@ -58,44 +65,44 @@ class UsersCalendarsController {
 
         // Generella fel
         if ($message === "Missing attributes") {
-            sendJson(["error" => "Missing attributes"], 400);
+            sendJSON(["error" => "Missing attributes"], 400);
         }
 
         // GET
         if ($message === "No calendars found") {
-            sendJson(["error" => "No calendars found"], 404);
+            sendJSON(["error" => "No calendars found"], 404);
         }
         if ($message === "Calendar not found") {
-            sendJson(["error" => "Calendar not found"], 404);
+            sendJSON(["error" => "Calendar not found"], 404);
         }
         if ($message === "User not found") {
-            sendJson(["error" => "User not found"], 404);
+            sendJSON(["error" => "User not found"], 404);
         }
 
         // POST
         if ($message === "User or cal not found") {
-            sendJson(["error" => "User or cal not found"], 404);
+            sendJSON(["error" => "User or cal not found"], 404);
         }
         if ($message === "User is already in cal") {
-            sendJson(["error" => "User is already in cal"], 409);
+            sendJSON(["error" => "User is already in cal"], 409);
         }
 
         // PATCH
         if ($message === "User ID / CAL ID missing") {
-            sendJson(["error" => "User ID / CAL ID missing"], 400);
+            sendJSON(["error" => "User ID / CAL ID missing"], 400);
         }
         if ($message === "User not in calendar") {
-            sendJson(["error" => "User not in calendar"], 400);
+            sendJSON(["error" => "User not in calendar"], 400);
         }
 
         // DELETE
         if ($message === "User not found / Cal not found") {
-            sendJson(["error" => "User not found / Cal not found"], 404);
+            sendJSON(["error" => "User not found / Cal not found"], 404);
         }
         if ($message === "Relation not found") {
-            sendJson(["error" => "Relation not found"], 404);
+            sendJSON(["error" => "Relation not found"], 404);
         }
 
-        sendJson(["error" => "Internal server error"], 500);
+        sendJSON(["error" => "Internal server error"], 500);
     }
 }
