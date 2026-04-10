@@ -23,7 +23,7 @@ export class Router {
         history.pushState({}, "", path);
 
         PubSub.publish(EVENTS.VIEW.PAGE.SHOW.ANY, {
-
+            entireUrl: this.url,
             mainPath: this.mainPath,
             subPath: this.subPath
         }, true);
