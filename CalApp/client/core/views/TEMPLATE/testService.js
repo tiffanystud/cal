@@ -40,13 +40,9 @@ export class testService {
 
         testContainer.addEventListener("click", () => {
 
-            this.setURL(urlParams)
-
-            // Sker vid knappryck, och skickar med searchParams
-            PubSub.publish(
-                EVENTS.VIEW.POPUP.SHOW.TEST1,
-                () => { },
-                false
+            // Sker vid knappryck, skickar ej searchParams
+            PubSub.publish(EVENTS.VIEW.POPUP.SHOW.TEST1,
+                () => { }
             )
 
         });
@@ -56,12 +52,10 @@ export class testService {
             this.setURL(urlParams)
 
             // Sker vid knappryck, och skickar med searchParams
-            PubSub.publish(
-                EVENTS.VIEW.POPUP.SHOW.TEST2,
+            PubSub.publish(EVENTS.VIEW.POPUP.SHOW.TEST2,
                 function (urlParams) {
-
-                },
-                false
+                    return urlParams;
+                }
             )
         })
 
