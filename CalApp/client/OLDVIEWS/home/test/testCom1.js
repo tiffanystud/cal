@@ -1,5 +1,8 @@
-/* Allmän komponent/popup som ej kan länkas till */
 
+
+/* 
+
+*/
 import { PubSub } from "../../../store/pubsub.js";
 import { EVENTS } from "../../../store/events.js";
 
@@ -70,7 +73,7 @@ export class TestComp1 extends HTMLElement {
 
         this.isOpen = false;
 
-        PubSub.publish(EVENTS.VIEW.POPUP.CLOSE.TEST1,
+        PubSub.publish(EVENTS.VIEW.POPUP.CLOSED.TEST1,
             this.data || null
         );
 
