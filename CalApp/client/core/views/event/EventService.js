@@ -1,7 +1,7 @@
-import { EVENTS } from "../../store/events.js";
-import { PubSub } from "../../store/pubsub.js";
+import { EVENTS } from "../../store/Events.js";
+import { PubSub } from "../../store/Pubsub.js";
 import { Router } from "../../router/router.js";
-import { store } from "../../store/store.js";
+import { store } from "../../store/Store.js";
 
 
 

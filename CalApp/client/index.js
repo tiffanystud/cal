@@ -37,8 +37,8 @@ import "./core/OLDVIEWS/chatView/chatView.js"
 
 // DEVELOPMENT (dummy-login)
 import "./core/OLDVIEWS/development/development.js";
-import { EVENTS } from "./core/store/events.js";
-import { PubSub } from "./core/store/pubsub.js";
+import { EVENTS } from "./core/store/Events.js";
+import { PubSub } from "./core/store/Pubsub.js";
 PubSub.subscribe("change:view", (data) => {
 
     const { mainPath, subPath } = data;
