@@ -1,6 +1,6 @@
 // ROUTER
 import { Router } from "./core/router/router.js";
-export const newRouter = new Router(window.location.href);
+// export const newRouter = new Router(window.location.href);
 
 
 // GLOBAL COMPONENTS
@@ -23,20 +23,20 @@ import "./core/services/neoTest.js";
 import "./core/services/messagesService.js";
 
 // VIEWS
-import "./core/views/createEvent/createEvent.js";
-import "./core/views/createGroup/createGroupView.js";
-import "./core/views/groupLanding/groupLanding.js";
-import "./core/views/notifications/notifications.js";
-import "./core/views/myGroupView/groupBoxContainerComp.js";
-import "./core/views/contacts/contactsView.js";
-import "./core/views/profileView/profileView.js";
-import "./core/views/login/loginView.js"
-import "./core/views/newHomeView/newHomeView.js";
-import "./core/views/home/homeView.js";
-import "./core/views/chatView/chatView.js"
+import "./core/OLDVIEWS/createEvent/createEvent.js";
+import "./core/OLDVIEWS/createGroup/createGroupView.js";
+import "./core/OLDVIEWS/groupLanding/groupLanding.js";
+import "./core/OLDVIEWS/notifications/notifications.js";
+import "./core/OLDVIEWS/myGroupView/groupBoxContainerComp.js";
+import "./core/OLDVIEWS/contacts/contactsView.js";
+import "./core/OLDVIEWS/profileView/profileView.js";
+import "./core/OLDVIEWS/login/loginView.js"
+import "./core/OLDVIEWS/newHomeView/newHomeView.js";
+import "./core/OLDVIEWS/home/homeView.js";
+import "./core/OLDVIEWS/chatView/chatView.js"
 
 // DEVELOPMENT (dummy-login)
-import "./core/views/development/development.js";
+import "./core/OLDVIEWS/development/development.js";
 import { EVENTS } from "./core/store/events.js";
 import { PubSub } from "./core/store/pubsub.js";
 PubSub.subscribe("change:view", (data) => {
@@ -59,4 +59,4 @@ PubSub.subscribe("change:view", (data) => {
 
 
 // START
-newRouter.init();
+Router.init();

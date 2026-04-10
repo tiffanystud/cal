@@ -50,13 +50,14 @@ export const EVENTS = {
     DATA: {
 
         UPDATED: {
+            TEST: "data:updated:test",
             CALENDARS: "data:updated:calendars",
             CALENDARSEVENTS: "data:updated:calendarsevents",
             EVENTS: "data:updated:events",
             USERS: "data:updated:users",
             USERGROUPS: "data:updated:usergroups",
             ISLOGGEDIN: "data:updated:isloggedin",
-            MESSAGES: "data:updated:messages"
+            MESSAGES: "data:updated:messages",
         },
 
         RETURNED: {
@@ -64,6 +65,7 @@ export const EVENTS = {
         },
 
         SELECTED: {
+            TEST: "data:updated:test",
             CALENDARS: "data:selected:calendars",
             CALENDARSEVENTS: "data:selected:calendarsevents",
             EVENTS: "data:selected:events",
@@ -108,15 +110,15 @@ export const EVENTS = {
                 TEST2: "view:popup:test2:show"
             },
 
-            CLOSE: {
-                CREATEGROUP: "view:popup:createGroup:close",
-                CREATEEVENT: "view:popup:createEvent:close",
-                SEARCHMODAL: "view:popup:searchModal:close",
-                CREATEPOPUP: "view:popup:createPopup:close",
-                DECISIONPOPUP: "view:popup:decisionpopup:close",
-                MESSAGEFEEDPREVIEW: "view:popup:messagefeedpreview:close",
-                TEST1: "view:popup:test1:close",
-                TEST2: "view:popup:test2:close"
+            CLOSED: {
+                CREATEGROUP: "view:popup:createGroup:closed",
+                CREATEEVENT: "view:popup:createEvent:closed",
+                SEARCHMODAL: "view:popup:searchModal:closed",
+                CREATEPOPUP: "view:popup:createPopup:closed",
+                DECISIONPOPUP: "view:popup:decisionpopup:closed",
+                MESSAGEFEEDPREVIEW: "view:popup:messagefeedpreview:closed",
+                TEST1: "view:popup:test1:closed",
+                TEST2: "view:popup:test2:closed"
             }
 
         }

@@ -1,8 +1,8 @@
 
-import { apiRequest } from "./api.js";
-import { PubSub } from "../store/pubsub.js";
-import { store } from "../store/store.js";
-import { EVENTS } from "../store/events.js";
+import { apiRequest } from "../../../services/api.js";
+import { PubSub } from "../../../store/pubsub.js";
+import { store } from "../../../store/store.js";
+import { EVENTS } from "../../../store/events.js";
 
 
 export function CalendarService() {

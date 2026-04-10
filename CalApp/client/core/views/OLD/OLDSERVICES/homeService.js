@@ -1,5 +1,5 @@
-import { PubSub } from "../store/pubsub.js";
-import { store } from "../store/store.js";
+import { PubSub } from "../../../store/pubsub.js";
+import { store } from "../../../store/store.js";
 
 export class HomeService {
 

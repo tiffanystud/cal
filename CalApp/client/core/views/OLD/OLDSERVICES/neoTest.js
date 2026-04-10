@@ -1,7 +1,7 @@
-import { PubSub } from "../store/pubsub.js";
-import { EVENTS } from "../store/events.js";
-import { store } from "../store/store.js";
-import { apiRequest } from "./api.js";
+import { PubSub } from "../../../store/pubsub.js";
+import { EVENTS } from "../../../store/events.js";
+import { store } from "../../../store/store.js";
+import { apiRequest } from "../../../services/api.js";
 
 PubSub.subscribe("change:view", (data) => {
     if (data.mainPath === "msgTest") {
