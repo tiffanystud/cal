@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . "/../services/PrivateMsgService.php";
+    require_once __DIR__ . "/../../services/PrivateMsgService.php";
     class PrivateMsgController {
         public static function handle($method, $input) {
             if($method === "GET") {

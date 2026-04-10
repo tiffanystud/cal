@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../services/PinnedCalendarsService.php";
+require_once __DIR__ . "/../../services/PinnedCalendarsService.php";
 
 class PinnedCalendarsController{
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../services/EventsRSVPServices.php";
+require_once __DIR__ . "/../../services/EventsRSVPServices.php";
 class EventsRSVPController {
 
     /* -- RESPONSES -- */

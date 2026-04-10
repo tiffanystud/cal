@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../services/UsersAvailabilitiesService.php";
+require_once __DIR__ . "/../../services/UsersAvailabilitiesService.php";
 class UsersAvailabilitiesController {
 
     /* -- RESPONSES -- */

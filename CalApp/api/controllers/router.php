@@ -4,18 +4,18 @@
 require_once __DIR__ . "/../middleware/Middleware.php";
 
 // Controllers
-require_once "users/UserController.php";
-require_once "users/UsersAvailabilitiesController.php";
-require_once "users/FriendshipsController.php";
+require_once __DIR__ . "/users/UserController.php";
+require_once __DIR__ . "/users/UsersAvailabilitiesController.php";
+require_once __DIR__ . "/users/FriendshipsController.php";
 
-require_once "events/EventsRSVPController.php";
-require_once "events/EventsController.php";
-require_once "events/EventAdminsController.php";
+require_once __DIR__ . "/events/EventsRSVPController.php";
+require_once __DIR__ . "/events/EventsController.php";
+require_once __DIR__ . "/events/EventAdminsController.php";
 
-require_once "calendars/CalendarsMSGController.php";
-require_once "calendars/CalendarsController.php";
-require_once "calendars/PinnedCalendarsController.php";
-require_once "users/UsersCalendarsController.php";
+require_once __DIR__ . "/calendars/UsersCalendarsController.php";
+require_once __DIR__ . "/calendars/CalendarsMSGController.php";
+require_once __DIR__ . "/calendars/CalendarsController.php";
+require_once __DIR__ . "/calendars/PinnedCalendarsController.php";
 
 require_once "BackupDBController.php";
 require_once "RestoreDBController.php";

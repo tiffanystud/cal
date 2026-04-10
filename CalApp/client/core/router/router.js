@@ -6,7 +6,7 @@ import { PubSub } from "../store/pubsub.js";
 
 export class Router {
     
-    // Publicera event (vilken paage) som vyer lysssnar på
+    // Publicera event (vilken page) som vyer lyssnar på
     constructor(url) {
         
         this.url = new URL(url, window.location.origin); 

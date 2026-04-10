@@ -1,6 +1,6 @@
 <?php
 
-require_once "services/EventAdminsService.php";
+require_once __DIR__ . "/../../services/EventAdminsService.php";
 
 class EventAdminsController {
     public static function handle($method, $input) {

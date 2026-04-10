@@ -5,7 +5,7 @@ require_once __DIR__ . "/../repository/DBAccess.php";
 class CalendarsMSGService
 {
     /* ---- GET ---- */
-    public static function getAll($input)
+    public static function getById($input)
     {
         $senderId = $input["senderId"] ?? null;
         $calId = $input["calId"] ?? null;
@@ -17,32 +17,17 @@ class CalendarsMSGService
         $db = new DBAccess("calendar_msg");
         $items = $db->getAll();
 
-        $filtered = [];
+        $filtered = array_values(array_filter($items, fn($x) => $x["calId"] === $calId && $x["senderId"] === $senderId));
 
-        foreach ($items as $currItem) {
-
-            if ($currItem["calId"] != $calId) {
-                continue;
-            }
-
-            if ($senderId !== null && $currItem["senderId"] != $senderId) {
-                continue;
-            }
-
-            $filtered[] = $currItem;
+        if (count($filtered) === 0) {
+            throw new Exception("Not found");
         }
 
-        if (!$filtered) {
-            throw new Exception("Messages not found");
-        }
-
-        return json_decode(json_encode($filtered), true);
+        return $filtered;
     }
 
     /* --- POST ---- */
-    public static function create($input)
-    {
-
+    public static function post($input) {
         $senderId = $input["senderId"] ?? null;
         $calId = $input["calId"] ?? null;
         $content = $input["content"] ?? null;
@@ -54,17 +39,9 @@ class CalendarsMSGService
         $dbCals = new DBAccess("calendars");
         $itemsCals = $dbCals->getAll();
 
-        $foundCalendar = false;
-        // Does calendar exist
-        foreach ($itemsCals as $currItem) {
-            if ($currItem["id"] == $calId) {
-                $foundCalendar = true;
-            }
-        }
-
-        if ($foundCalendar == false) {
-            throw new Exception("Invalid calendar");
-        }
+        $foundCalendar = $dbCals->findById($calId);
+        if (!$foundCalendar) throw new Exception("Invalid calendar");
+        
 
         // Create new MSG
         $date = date("Y-m-d");
@@ -81,18 +58,13 @@ class CalendarsMSGService
         ];
 
         $dbCalMsg = new DBAccess("calendar_msg");
-
-        // New item returned
-        $result = $dbCalMsg->postData($newMSG);
-        return $result;
-
+        return $dbCalMsg->postData($newMSG);
     }
 
 
 
     /* --- PATCH ---- */
-    public static function update($input)
-    {
+    public static function patch($input) {
 
         $id = $input["id"] ?? null;
         $content = $input["content"] ?? null;
@@ -109,14 +81,10 @@ class CalendarsMSGService
 
                 $changes = ["content" => $content, "hasChanged" => true];
 
-                // Updated item
                 return $db->patchData($currItem["id"], $changes);
             }
-
         }
-
         throw new Exception("Message not found");
-
     }
 
 
@@ -131,19 +99,11 @@ class CalendarsMSGService
         }
 
         $db = new DBAccess("calendar_msg");
-        $items = $db->getAll();
+        $connection = $db->findById($id);
 
-        foreach ($items as $currItem) {
-            if (
-                $currItem["id"] == $id
-            ) {
-                // Returns deleted item
-                return $db->deleteData($id);
-            }
-        }
+        if (!$connection) throw new Exception("Message not found");
 
-        throw new Exception("Message not found");
-
+        return $db->deleteData($id);
     }
 
 }

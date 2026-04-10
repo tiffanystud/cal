@@ -2,46 +2,47 @@
 
 require_once __DIR__ . "/../repository/DBAccess.php";
 
-class CalendarsService{
+class CalendarsService {
 
-    public static function calendarsGetAll(){
+    public static function getAll() {
         $db = new DBAccess("calendars");
         $calendarTable = $db->getAll();
 
-        if(empty($calendarTable)){
+        if(count($calendarTable) === 0) {
             throw new Exception("No calendars found");
         } else {
             return $calendarTable;
         }
     }
 
-    public static function calendarsGetById($input){
+    public static function getByParams($input){
         $db = new DBAccess("calendars");
-        $calendarTableById = $db->findById($input["id"]);
+        $calendarById = $db->findById($input["id"]);
 
-        if(empty($calendarTableById)){
-            throw new Exception("No calendars found by id");
+        if(!$calendarById){
+            throw new Exception("Not found");
         } else {
-            return $calendarTableById;
+            return $calendarById;
         }
     }
 
-    public static function calendarsPost($input){
+    public static function post($input){
         $db = new DBAccess("calendars");
         $calendarTable = $db->getAll();
 
-        if($input["type"] != "public" && $input["type"] != "private"){
-            throw new Invalid("Invalid group type");  // <- varför inte exception som alla andra, undantag ??
+        $type = $input["type"] ?? null;
+        $name = $input["name"] ?? null;
+        $creatorId = $input["creatorId"] ?? null;
+        $desc = $input["description"] ?? null;
+
+        if (!$type || !$name || $creatorId) {
+            throw new Exception("Missing attributes");
         }
-        
-        foreach($calendarTable as $cals){
-            if($input["creatorId"] == $cals["creatorId"]){
-                if($input["name"] == $cals["name"]){
-                    throw new AlreadyInGroup("User is already in group with same name");  // <- varför inte exception som alla andra, undantag ??
-                }
-            }
+
+        if ($input["type"] != "public" && $input["type"] != "private") {
+            throw new Exception("Invalid group type");  
         }
-       
+
         $newData = [
             "id" => uniqid(),
             "creatorId" => $input["creatorId"],
@@ -53,51 +54,46 @@ class CalendarsService{
         
     }
 
-    public static function calendarsPatch($input){
+    public static function patch($input){
         $db = new DBAccess("calendars");
-        $calendarTable = $db->getAll(); 
+        $calendarTable = $db->getAll();
+        
+        $name = $input["name"] ?? null;
+        $desc = $input["description"] ?? null;
+
+        if (!$name && !$desc) {
+            throw new Exception("Missing attributes");
+        }
 
         $changeData = [];
-        foreach($input as $key => $data){
-            if($key != "id"){
-                $changeData[$key] = $data;
-            }
-        }
-        if(!count($changeData) > 1){
-            throw new Exception("No values to be changed");
+        if ($name && $desc) {
+            $changeData["name"] = $name;
+            $changeData["description"] = $desc;
+        } else if ($name) {
+            $changeData["name"] = $name;
         } else {
-            return $db->patchData($input["id"], $changeData);
+            $changeData["description"] = $desc;
         }
+
+        return $db->patchData($input["id"], $changeData);
 
     }
 
-    public static function calendarsDelete($input){
+    public static function delete($input){
         $db = new DBAccess("calendars");
         $calendarTable = $db->getAll();
 
-        $checkCal = false;
+        $calId = $input["calId"] ?? null;
 
-        foreach($calendarTable as $cal){
-            if($input["id"] == $cal["id"]){
-                $checkCal = true;
-                break;
-            }
-        }
-        
-        if($checkCal){
-            return $db->deleteData($input["id"]);
+        if (!$calId) throw new Exception("Missing attributes");
+
+        $cal = $db->findById($calId);
+
+        if (!$cal) {
+            throw new Exception("Not found");
         } else {
-            throw new Exception("No calendar exists to delete");
+            $db->deleteData($calId);
         }
     }
-
-
-
-
-    
 }
-
-
-
-
 ?>
