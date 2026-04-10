@@ -1,59 +1,89 @@
 
 <?php
 
-require_once __DIR__ . "/../../services/CalendarsMSGService.php";
-require_once __DIR__ . "/../sendJSON.php";
+require_once __DIR__ . "/../services/CalendarsMSGService.php";
+require_once __DIR__ . "sendJSON.php";
 
 class CalendarsMSGController {
-    public static function handle($method, $input) {
-        if ($method === "GET") {
-            try {
-                sendJSON(CalendarsMSGService::getById($input), 200);
-            } catch (Exception $e) {
-                $msg = $e->getMessage();
-                $data = ["error" => $msg];
-                if ($msg === "Missing attributes") {
-                    sendJSON($data, 400);
-                } else if ($msg === "Messages not found") {
-                    sendJSON($data, 404);
+    
+    public static function handle($method, $input){
+
+        try {
+            if($method === "GET") {
+                if(!isset($input["calId"])) {
+                    throw new Exception("Missing attributes");
                 }
-            }
-        } else if ($method === "POST") {
-            try {
-                sendJSON(CalendarsMSGService::post($input), 200);
-            } catch (Exception $e) {
-                $msg = $e->getMessage();
-                $data = ["error" => $msg];
-                if ($msg === "Missing attributes") {
-                    sendJSON($data, 400);
-                } else if ($msg === "Invalid calendar") {
-                    sendJSON($data, 404);
+                $data = CalendarsMSGService::getByParams($input);
+                sendJson([$data],200);
+    
+            } else if($method === "POST") {
+                if(!isset($input["senderId"]) || !isset($input["calId"]) || !isset($input["content"])  ) {
+                    throw new Exception("Missing attributes");
                 }
-            }
-        } else if ($method === "PATCH") {
-            try {
-                sendJSON(CreateMSGService::patch($input), 200);
-            } catch (Exception $e) {
-                $msg = $e->getMessage();
-                $data = ["error" => $msg];
-                if ($msg === "Missing attributes") {
-                    sendJSON($data, 400);
-                } else if ($msg === "Messages not found") {
-                    sendJSON($data, 404);
+                $data = CalendarsMSGService::post($input);
+                sendJson([$data],201);
+                
+            } else if($method === "PATCH") {
+                if(!isset($input["id"]) || !isset($input["calId"]) || !isset($input["content"])  ) {
+                    throw new Exception("Missing attributes");
                 }
-            }
-        } else if ($method === "DELETE") {
-            try {
-                sendJSON(CalendarsMSGService::delete($input), 200);
-            } catch (Exception $e) {
-                $msg = $e->getMessage();
-                $data = ["error" => $msg];
-                if ($msg === "Missing attributes") {
-                    sendJSON($data, 400);
-                } else if ($msg === "Messages not found") {
-                    sendJSON($data, 404);
+                $data = CalendarsMSGService::patch($input);
+                sendJson([$data],200);
+                
+            } else if($method === "DELETE") {
+                if(!isset($input["id"])) {
+                    throw new Exception("Missing attributes");
                 }
+                $data = CalendarsMSGService::delete($input);
+                sendJson([$data],200);
+    
             }
+        } catch(Exception $error) {
+            self::errorHandler($error);
         }
+
+        
+
+
+    }
+    public static function errorHandler($error) {
+        $message = $error->getMessage(); 
+
+        //GET PARAMS
+        if($message === "Missing attributes" ){
+            sendJson(["error" => "Missing attributes"], 400);
+        }
+        if($message === "Messages not found" ){
+            sendJson(["error" => "Messages not found"], 404);
+        }
+
+
+        //POST
+        if($message === "Missing attributes") {
+            sendJson(["error" => "Missing attributes"], 400);
+        }
+        if($message === "Invalid calendar") {
+            sendJson(["error" => "Invalid calendar"], 404);
+
+        }
+
+
+        //PATCH
+        if($message === "Missing attributes") {
+            sendJson(["error" => "Missing attributes"], 400);
+        }
+        if($message === "Message not found") {
+            sendJson(["error" => "Message not found"], 404);
+        }
+
+        
+        //DELETE
+        if($message === "Missing attributes") {
+            sendJson(["error" => "Missing attributes"], 400);
+        } 
+        if($message === "Message not found") {
+            sendJson(["error" => "Message not found"], 404);
+        }
+
     }
 }

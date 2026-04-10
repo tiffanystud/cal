@@ -6,10 +6,8 @@ class CalendarsController{
 
     public static function handle($method, $input){
 
-
-
-        if($method === "GET") {
-            try {
+        try {
+            if($method === "GET") {
                 if(empty($input)) {
                     $data = CalendarsService::getAll();
                     sendJson([$data],200);
@@ -20,25 +18,16 @@ class CalendarsController{
                     $data = CalendarsService::getByParams($input);
                     sendJson([$data],200);
                 }
-            } catch(Exception $error) {
-                self::errorHandler($error);
-            }
-            
 
-        } else if($method === "POST") {
-            try {
+            } else if($method === "POST") {
+                
                 if(!isset($input["userId"]) || !isset($input["name"]) || !isset($input["type"])) {
                     throw new Exception("Missing attributes");
                 } 
                 $data = CalendarsService::post($input);
                 sendJson([$data],200);
-
-            } catch(Exception $error) {
-                self::errorHandler($error);
-            }
-
-        } else if($method === "PATCH") {
-            try {
+    
+            } else if($method === "PATCH") {
                 if(!isset($input["id"])) {
                     throw new Exception("Id missing");
                 } 
@@ -48,24 +37,19 @@ class CalendarsController{
                 $data = CalendarsService::patch($input);
                 sendJson([$data], 200);
                 
-            } catch(Exception $error) {
-                self::errorHandler($error);
-            }
-
-        } else if($method === "DELETE") {
-            try {
+            } else if($method === "DELETE") {
+               
                 if(!isset($input["id"]) || !isset($input["creatorId"])) {
                     throw new Exception("Missing attributes");
                 } 
                 $data = CalendarsService::delete($input);
                 sendJson([$data], 200);
-
-            } catch(Exception $error) {
-                self::errorHandler($error);
+    
             }
 
+        } catch(Exception $error) {
+            self::errorHandler($error);
         }
-
 
     }
     public static function errorHandler($error) {
