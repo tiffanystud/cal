@@ -4,7 +4,7 @@ require_once __DIR__ . "/../repository/DBAccess.php";
 
 class EventsRSVPService {
     /* ---- GET ---- */
-    public static function getAll($input){
+    public static function getByParams($input){
         
         $eventId = $input["eventId"] ?? null;
         $userId = $input["userId"] ?? null;
@@ -16,21 +16,12 @@ class EventsRSVPService {
         $db = new DBAccess("events_rsvp");
         $items = $db->getAll();
                    
-        $filtered = [];
+        $filtered = array_values(array_filter($items, fn($x) => $x["eventId"] === $eventId && $x["userId"] === $userId));
 
-        // Säkerställer vi bara en rad med samma userID och eventId?
-        foreach ($items as $currItem) {
-            if ($currItem["userId"] == $userId && $currItem["eventId"] == $eventId ) {
-                $filtered[] = $currItem;
-            }
-        }
-
-        if (!$filtered) {
+        if (count($filtered) === 0) {
             throw new Exception("RSVP not found");
         }
-        
-        return json_decode(json_encode($filtered), true);
- 
+        return $filtered;
     }
 
     /* --- POST ---- */
@@ -48,16 +39,10 @@ class EventsRSVPService {
         $db =  new DBAccess("events_rsvp");
         $items = $db->getAll();
         
-        // Does RSVP exist
-        foreach ($items as $currItem) {
-            if ($currItem["userId"] == $userId && 
-                $currItem["eventId"] == $eventId) {
-                throw new Exception("RSVP already exists");
-            }
-        }
+        $exists = array_find($items, fn($x) => $x["userId"] === $userId && $x["eventId"] === $eventId);
+        if ($exists) throw new Exception("RSVP already exists");
     
         
-        // Create new RSVP
         $date = date("Y-m-d");
         $newRSVP = [
             "id" => uniqid(),
@@ -68,9 +53,7 @@ class EventsRSVPService {
             "reminder" => $reminder
         ];
         
-        $result = $db->postData($newRSVP);
-        return $result;        
-            
+        return $db->postData($newRSVP);
     }
 
 
@@ -92,14 +75,9 @@ class EventsRSVPService {
         $items = $db->getAll();
         
         foreach ($items as $currAvailability) {
-            if (
-                $currAvailability["userId"] == $userId &&
-                $currAvailability["eventId"] == $eventId
-                ) {
+            if ($currAvailability["userId"] == $userId && $currAvailability["eventId"] == $eventId) {
                     // Chech if RSVP already is the same (change possible for isGoing/reminder)
-                    if ($currAvailability["isGoing"] == $input["isGoing"] &&
-                        $currAvailability["reminder"] == $input["reminder"]
-                    ) {
+                    if ($currAvailability["isGoing"] == $input["isGoing"] && $currAvailability["reminder"] == $input["reminder"]) {
                         throw new Exception("No changes made");
                     }
                     
@@ -113,7 +91,7 @@ class EventsRSVPService {
                     }
                     
                     // Updated item
-                    return $db->patchData($currAvailability["id"],$changes);
+                    return $db->patchData($currAvailability["id"], $changes);
             }
                 
         }
@@ -137,18 +115,10 @@ class EventsRSVPService {
         $db = new DBAccess("events_rsvp");
         $items = $db->getAll();
         
-        foreach($items as $currAvailability) {
-            if (
-                $currAvailability["eventId"] == $eventId &&
-                $currAvailability["userId"] == $userId
-                ) {
-                    // Returns deleted item
-                    return $db->deleteData($currAvailability["id"]);
-                }
-        }
-    
-        throw new Exception("RSVP not found");
+        $exists = array_find($items, fn($x) => $x["userId"] === $userId && $x["eventId"] === $eventId);
+        if (!$exists) throw new Exception("RSVP not found");
         
+        return $db->deleteData($exists["id"]);
     }
 
 }

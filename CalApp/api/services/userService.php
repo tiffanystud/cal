@@ -27,7 +27,7 @@
 
             
         }
-        public static function getSpecUser($id) {
+        public static function getById($id) {
             $db = new DBAccess("users");
             $result = $db->findById($id);
             if($result === null) {

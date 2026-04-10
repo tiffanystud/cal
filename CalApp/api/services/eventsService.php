@@ -1,15 +1,14 @@
 <?php
-
 require_once "repository/DBAccess.php";
 
 class EventsService {
     //GET-metoder
-    public static function getAllEvents() {
+    public static function getAll() {
         $db = new DBAccess("events");
         return $db->getAll();
     }
 
-    public static function getEventById($id) {
+    public static function getByEventId($id) {
         $db = new DBAccess("events");
         $event = $db->findById($id);
 
@@ -20,7 +19,7 @@ class EventsService {
         }
     }
 
-    public static function getEventsCal($cal) {
+    public static function getByCalId($cal) {
         $db = new DBAccess("events");
         $events = $db->getAll();
         $eventsByCal = array_values(array_filter($events, fn($x) => $x["calId"] === $cal));
@@ -32,7 +31,7 @@ class EventsService {
     }
 
     //POST-metoder
-    public static function createNewEvent($input) {
+    public static function post($input) {
         // $userId = $input["userId"] ?? null; för kontroll om behörighet
         $type = $input["type"] ?? null;
         $name = $input["name"] ?? null;
@@ -81,7 +80,7 @@ class EventsService {
     }
 
     //PATCH-metoder
-    public static function patchEvent($input) {
+    public static function patch($input) {
         // $userId = $input["userId"] ?? null; för att kolla behörighet
         $eventId = $input["eventId"] ?? null;
         $calId = $input["calId"] ?? null;
@@ -135,7 +134,7 @@ class EventsService {
     }
 
     //DELETE-metoder
-    public static function deleteEvent($input) {
+    public static function delete($input) {
         // $userId = $input["userId"] ?? null; för koll om behörighet
         $calId = $input["calId"] ?? null;
         $eventId = $input["eventId"] ?? null;
@@ -157,5 +156,4 @@ class EventsService {
         return ["success" => "Event deleted successfully"];
     } 
  }
-
 ?>

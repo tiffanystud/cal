@@ -459,7 +459,7 @@ If you send a POST, PATCH or DELETE request, the Content-Type header must be set
 #### GET
 - Used to: Get all connections between users and calendars
 - Expected request-body: none
-- Possible response statuses 200
+- Possible response statuses 200, 404
 - Response-body: array of user_calendars-objects
 - Example response:
 > 200 OK 
@@ -469,6 +469,13 @@ If you send a POST, PATCH or DELETE request, the Content-Type header must be set
     "userId": "65e10aa11a001",
     "calId": "65e10aa11b001",
     "isAdmin": true
+}
+```
+
+> 404 Not Found | No connections found
+```js
+{
+    error: "No connections found"
 }
 ```
 
