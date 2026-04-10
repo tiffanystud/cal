@@ -554,7 +554,7 @@ If you send a POST, PATCH or DELETE request, the Content-Type header must be set
 > 404 Not Found | No user with specified ID was found
 ```js
 {
-    error: "User not found."
+    error: "User not found"
 }
 ```
 
