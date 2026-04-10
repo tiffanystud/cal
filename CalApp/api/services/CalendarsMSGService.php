@@ -5,7 +5,7 @@ require_once __DIR__ . "/../repository/DBAccess.php";
 class CalendarsMSGService
 {
     /* ---- GET ---- */
-    public static function getById($input)
+    public static function getByParams($input)
     {
         $senderId = $input["senderId"] ?? null;
         $calId = $input["calId"] ?? null;
@@ -16,11 +16,15 @@ class CalendarsMSGService
 
         $db = new DBAccess("calendar_msg");
         $items = $db->getAll();
-
-        $filtered = array_values(array_filter($items, fn($x) => $x["calId"] === $calId && $x["senderId"] === $senderId));
+        $filtered;
+        if ($senderId && $calId) {
+            $filtered = array_values(array_filter($items, fn($x) => $x["calId"] === $calId && $x["senderId"] === $senderId));
+        } else if ($calId) {
+            $filtered = array_values(array_filter($items, fn($x) => $x["calId"] === $calId));
+        }
 
         if (count($filtered) === 0) {
-            throw new Exception("Not found");
+            throw new Exception("Messages not found");
         }
 
         return $filtered;

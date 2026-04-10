@@ -9,7 +9,7 @@ class EventAdminsService {
         return $eventAdmins->getAll();
     }
 
-    public static function getById($obj) {
+    public static function getByParams($obj) {
         $userId = $obj["userId"] ?? null;
         $eventId = $obj["eventId"] ?? null;
         $eventAdmins = new DBAccess("events_admins");
@@ -39,7 +39,7 @@ class EventAdminsService {
     }
 
     //POST-metoder
-    public static function newEventAdmin($input) {
+    public static function post($input) {
         // $sessionId = $input["sessionId"] ?? null; för att kolla behörighet
         $userId = $input["userId"] ?? null;
         $eventId = $input["eventId"] ?? null;
@@ -74,7 +74,7 @@ class EventAdminsService {
     }
 
     //PATCH-metoder
-    public static function patchEventAdmin($input) {
+    public static function patch($input) {
         // $sessionId = $input["sessionId"] ?? null; för koll om behörighet
         $userId = $input["userId"] ?? null;
         $eventId = $input["eventId"] ?? null;
@@ -120,7 +120,7 @@ class EventAdminsService {
     }
 
     //DELETE-metoder
-    public static function deleteEventAdmin($input) {
+    public static function delete($input) {
         // $sessionId = $input["sessionId"] ?? null; för koll om behörighet
         $userId = $input["userId"] ?? null;
         $eventId = $input["eventId"] ?? null;
