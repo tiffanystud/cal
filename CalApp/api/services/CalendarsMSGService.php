@@ -5,7 +5,7 @@ require_once __DIR__ . "/../repository/DBAccess.php";
 class CalendarsMSGService
 {
     /* ---- GET ---- */
-    public static function getAll($input)
+    public static function getById($input)
     {
         $senderId = $input["senderId"] ?? null;
         $calId = $input["calId"] ?? null;
