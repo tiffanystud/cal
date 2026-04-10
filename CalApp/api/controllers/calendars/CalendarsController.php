@@ -17,7 +17,7 @@ class CalendarsController{
                     if(!isset($input["id"])) {
                         throw new Exception("value missing");
                     }
-                    $data = CalendarsService::getParams($input);
+                    $data = CalendarsService::getByParams($input);
                     sendJson([$data],200);
                 }
             } catch(Exception $error) {
