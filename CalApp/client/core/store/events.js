@@ -314,7 +314,9 @@ export const EVENTS = {
             },
             EVENTS: {
                 POST: "response:error:events:post",
-                GET: "response:error:events:get"
+                GET: "response:error:events:get",
+                PATCH: "response:error:events:patch",
+                DELETE: "response:error:events:delete"
             },
             USERS: {
                 POST: "response:error:users:post",

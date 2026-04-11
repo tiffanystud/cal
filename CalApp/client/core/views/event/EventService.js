@@ -15,18 +15,29 @@ class EventService {
 
         PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.ANY, (data) => {
             let param = data.entireUrl.searchParams.get("id");
+            let state = store.getState();
             if (param) {
-
+                PubSub.publish(REQUEST.SENT.EVENTS.GET);
+                let eventObject = state.events.find(event => event.id == param);
+                if (!eventObject) {
+                    PubSub.publish(RESOURCE.ERROR.EVENTS.GET)
+                } else {
+                    // Puba ett event som view lyssnar på för att synas 
+                }
             }
         })
 
+        // Osäker om det istället ska vara ett annat event istället för show, detta event borde finnas i viewn istället
         PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW.EVENT, (data) => {
-            let foundStateEvent = store.getState().find(event => event.id == data.id);
-            if (!foundStateEvent) {
-                // Fetch api för att hämta uppdatera state och kolla igen
+            let state = store.getState();
+            PubSub.publish(REQUEST.SENT.EVENTS.GET);
+            let eventObject = state.events.find(event => event == data.id);
+            if (!eventObject) {
+                PubSub.publish(RESOURCE.ERROR.EVENTS.GET)
             } else {
-                // Köra ett Pubsub för eventet att poppa upp i EventView som den lyssnar på
+                // Puba ett event som view lyssnar på för att synas 
             }
+
         })
 
     }
