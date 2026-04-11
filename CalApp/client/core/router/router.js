@@ -1,4 +1,4 @@
-import { EVENTS } from "../store/Events.js";
+import { EVENTS } from "../store/Events.js"
 import { PubSub } from "../store/Pubsub.js";
 
 // ROUTERN PUBLICERAR ETT EVENT, MED URL OCH VYN SUBSCRIBAR PÅ EVENTET SOM SEDAN GER URL ELLER PARAMS OCH RENDERAR

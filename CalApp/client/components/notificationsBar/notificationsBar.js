@@ -1,5 +1,5 @@
 import { apiRequest } from "/core/services/api.js";
-import { store } from "../../core/store/store.js";
+import { store } from "../../core/store/Store.js";
 import { NotificationCard } from "/core/views/notifications/components/notification-card.js";
 
 export class NotificationsBar extends HTMLElement {
