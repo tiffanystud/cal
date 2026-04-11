@@ -1,5 +1,5 @@
 // ROUTER
-import { Router } from "./core/router/router.js";
+import { Router } from "./core/router/Router.js";
 // export const newRouter = new Router(window.location.href);
 
 
