@@ -13,6 +13,8 @@ class EventService {
 
     subs() {
 
+        // Här sker tvp subs, beroende på om man trycker på ett event på sidan, eller navigerar till ett event via sökvägen med en url
+
         PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.ANY, (data) => {
             let param = data.entireUrl.searchParams.get("id");
             let state = store.getState();

@@ -3,15 +3,17 @@ import { apiRequest } from "../ApiService";
 import { PubSub } from "../../store/Pubsub.js";
 import { EVENTS } from "../../store/Events.js";
 
+// Denna service kan användas för att bearbeta event beroende på view och komponenter som berör events 
 class EventsAPIService {
 
     constructor() {
         this.subs();
     }
-    
+
     // Kolla över eventen här också i alla delar, osäker om eventen hör till rätt del
 
     subs() {
+        // Dessa pubbar lyssnar på eventen som skickas från servicen i views
         PubSub.subscribe(REQUEST.SENT.EVENTS.GET, (data) => {
             this.GET();
         })
@@ -26,7 +28,10 @@ class EventsAPIService {
         })
     }
 
+    // Metoderna använder ApiService för att fetcha datan och ändrar state samtidigt
+
     GET() {
+
         let newIncomingEvents = [];
 
         for (let cal of store.getState().cals) {
