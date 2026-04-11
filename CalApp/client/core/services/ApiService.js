@@ -18,10 +18,12 @@ export async function apiRequest({ entity, method, body = null }) {
     const BASE_URL = "http://localhost:8000";
 
     let response;
+    let responseData;
 
     try {
 
         response = await fetch(`${BASE_URL}/${entity}`, options);
+        responseData = await response.json();
 
     } catch (err) {
         PubSub.publish("Network::Error");
@@ -32,20 +34,20 @@ export async function apiRequest({ entity, method, body = null }) {
 
     // Handle type of !ok from api
     if (response.status === 404) {
-        return [];
+        throw responseData;
     }
 
     if (response.status === 400) {
-        return null;
+        throw responseData;
     }
 
     if (response.status === 409) {
-        return null;
+        throw responseData;
     }
 
     // Throw error om annat serverfel, kanske annat alt här?
     if (!response.ok) {
-        return null;
+        throw responseData;
     }
 
     // Från erik: Status måste alltid returneras och en (ev. tom) body + status

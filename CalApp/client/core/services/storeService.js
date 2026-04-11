@@ -1,7 +1,7 @@
-import { apiRequest } from "./api.js";
-import { PubSub } from "../store/pubsub.js";
-import { store } from "../store/store.js";
-import { EVENTS } from "../store/events.js";
+import { apiRequest } from "./ApiService.js";
+import { PubSub } from "../store/Pubsub.js";
+import { store } from "../store/Store.js";
+import { EVENTS } from "../store/Events.js";
 
 
 export class StoreService {

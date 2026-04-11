@@ -1,10 +1,10 @@
-import { EVENTS } from "../store/events.js";
-import { PubSub } from "../store/pubsub.js";
+import { EVENTS } from "../store/Events.js";
+import { PubSub } from "../store/Pubsub.js";
 
 // ROUTERN PUBLICERAR ETT EVENT, MED URL OCH VYN SUBSCRIBAR PÅ EVENTET SOM SEDAN GER URL ELLER PARAMS OCH RENDERAR
 // 1. Läsa av aktuell URL 2. Dela upp den i mainPath/subPath 3. Skicka ut ett event (PubSub) så att vyer kan rendera rätt innehåll
 
-export class Router {
+export class router {
 
     handleUrl(url) {
         // Tar emot url och splittar till delar
@@ -23,7 +23,7 @@ export class Router {
         history.pushState({}, "", path);
 
         PubSub.publish(EVENTS.VIEW.PAGE.SHOW.ANY, {
-
+            entireUrl: this.url,
             mainPath: this.mainPath,
             subPath: this.subPath
         }, true);
@@ -41,5 +41,4 @@ export class Router {
 
 }
 
-
-new Router();
+export const Router = new Router();
