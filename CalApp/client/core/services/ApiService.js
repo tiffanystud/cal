@@ -34,20 +34,20 @@ export async function apiRequest({ entity, method, body = null }) {
 
     // Handle type of !ok from api
     if (response.status === 404) {
-        throw responseData;
+        return responseData;
     }
 
     if (response.status === 400) {
-        throw responseData;
+        return responseData;
     }
 
     if (response.status === 409) {
-        throw responseData;
+        return responseData;
     }
 
     // Throw error om annat serverfel, kanske annat alt här?
     if (!response.ok) {
-        throw responseData;
+        return responseData;
     }
 
     // Från erik: Status måste alltid returneras och en (ev. tom) body + status
