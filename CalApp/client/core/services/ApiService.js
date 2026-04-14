@@ -1,5 +1,12 @@
 
 // API-calls - alla som använder denna funktionen ska wrappa fetchen med try/catch
+/*  
+{ 
+    entity: "users", 
+    method: "POST", 
+    body = {} 
+} 
+*/
 
 // Entity (matcha i router.php)
 export async function apiRequest({ entity, method, body = null }) {

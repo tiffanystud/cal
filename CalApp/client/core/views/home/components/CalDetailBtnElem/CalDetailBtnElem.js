@@ -2,7 +2,7 @@ import { Store } from "../../../../store/Store.js";
 import { PubSub } from "../../../../store/Pubsub.js";
 import { EVENTS } from "../../../../store/Events.js";
 
-export class CalDetailBtnComp extends HTMLElement {
+export class CalDetailBtnElem extends HTMLElement {
 
     constructor() {
         
@@ -37,11 +37,11 @@ export class CalDetailBtnComp extends HTMLElement {
         if(!id) {
             return "all";
             
-            const calendars = 
+            const calendars =  ""
         }
     }
 
 }
 
 
-customElements.define("cal-detail-btn-comp", CalDetailBtnComp);
+customElements.define("cal-detail-btn-elem", CalDetailBtnElem);

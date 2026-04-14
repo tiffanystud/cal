@@ -1,4 +1,3 @@
-import { store } from "../../../store/store.js";
 import { PubSub } from "../../../store/pubsub.js";
 
 export class CalDetailBtn extends HTMLElement{

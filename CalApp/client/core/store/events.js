@@ -244,7 +244,9 @@ export const EVENTS = {
         SENT: {
             CALENDARS: {
                 POST: "response:sent:calendars:post",
-                GET: "response:sent:calendars:get"
+                GET: "response:sent:calendars:get",
+                PATCH: "response:sent:calendars:patch",
+                DELETE: "response:sent:calendars:delete"
             },
             CALENDARSEVENTS: {
                 POST: "response:sent:calendarsevents:post",
@@ -344,7 +346,9 @@ export const EVENTS = {
         RECEIVED: {
             CALENDARS: {
                 POST: "resource:received:calendars:post",
-                GET: "resource:received:calendars:get"
+                GET: "resource:received:calendars:get",
+                PATCH: "resource:received:calendars:patch",
+                DELETE: "resource:received:calendars:delete"
             },
             CALENDARSEVENTS: {
                 POST: "resource:received:calendarsevents:post",
@@ -374,8 +378,10 @@ export const EVENTS = {
 
         ERROR: {
             CALENDARS: {
+                GET: "resource:error:calendars:get",
                 POST: "resource:error:calendars:post",
-                GET: "resource:error:calendars:get"
+                PATCH: "resource:error:calendars:patch",
+                DELETE: "resource:error:calendars:delete"
             },
             CALENDARSEVENTS: {
                 POST: "resource:error:calendarsevents:post",

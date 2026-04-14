@@ -6,6 +6,11 @@ import { HomeView } from "./HomeView.js";
 //COMPONENTS
 // loadingScreen (between popups and views etc)
 
+
+/* OBS 
+- DENNA MÅSTE UNLOADAS SÅ ALLA UNSUBS SKER?? I ALLA SERVICES OCH COMPS *** 
+ */
+
 export class HomeService {
 
     constructor() {
