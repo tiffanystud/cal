@@ -208,7 +208,9 @@ export const EVENTS = {
         ERROR: {
             CALENDARS: {
                 POST: "request:error:calendars:post",
-                GET: "request:error:calendars:get"
+                GET: "request:error:calendars:get",
+                PATCH: "request:error:calendars:patch",
+                DELETE: "request:error:calendars:delete"
             },
             CALENDARSEVENTS: {
                 POST: "request:error:calendarsevents:post",
