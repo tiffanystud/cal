@@ -7,8 +7,11 @@ import { EVENTS } from "../store/Events.js";
 export class StoreService {
 
     constructor() {
+        this.subs();
+    }
 
-
+    subs() {
+        
         PubSub.subscribe(EVENTS.AUTH.LOGIN.START, async (payload) => {
 
             const userId = payload.userId;
@@ -37,7 +40,7 @@ export class StoreService {
                 let usergroups;
 
                 try {
-                    
+
                     usergroups = await apiRequest({
                         entity: `users_calendars?userId=${userId}`,
                         method: "GET"
@@ -56,7 +59,7 @@ export class StoreService {
                 let friends;
 
                 try {
-                    
+
                     friends = await apiRequest({
                         entity: `friendships?userId=${userId}`,
                         method: "GET"
@@ -75,7 +78,7 @@ export class StoreService {
                 let privateMessages;
 
                 try {
-                    
+
                     privateMessages = await apiRequest({
                         entity: `private_msg`,
                         method: "GET"
@@ -253,7 +256,6 @@ export class StoreService {
             }
         }, true);
 
-
         PubSub.subscribe(EVENTS.AUTH.LOGOUT.START, () => {
 
             store.resetState();
@@ -262,7 +264,28 @@ export class StoreService {
             PubSub.publish(EVENTS.DATA.UPDATED.ISLOGGEDIN, null, true);
 
         }, true);
-
+        
+        PubSub.subscribe(EVENTS.DATA.SELECTED.CALENDARS, (ids = null) => {
+            // Expects array
+            
+            const currStateCals = store.getState().cals;
+        
+            // No ID (return all)
+            if (!ids) return currStateCals;
+            
+            // One ID (return filtered)
+            if (!ids[1]) return currStateCals.find(currCal => currCal.id == id);
+            
+            // Sevral IDs (return filtered)
+            let filteredCals = [];
+            for (let currId of ids) {
+                for(currCal of currStateCals) {
+                    if (currCal.id == currId) filteredCals.push(currCal);
+                }
+            }
+            return filteredCals;
+            
+        })
     }
 }
 
