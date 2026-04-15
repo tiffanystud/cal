@@ -110,6 +110,7 @@ All responses from are sent as JSON.
 - [/event_admins?eventId=id&userId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#event_adminseventididuseridid)
 - [/event_admins?eventId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#event_adminseventid)
 - [/event_admins?userId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#event_adminsuseridid)
+- [/friendships](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#friendships)
 - [/friendships?userId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#friendshipsuseridstring)
 - [/friendships?userId1=id&userId2=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#friendshipsuserid1stringuserid2string)
 - [/private_msg](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#private_msg)
