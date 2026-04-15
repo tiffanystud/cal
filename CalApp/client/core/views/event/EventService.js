@@ -12,7 +12,6 @@ class EventService {
     }
 
     subs() {
-
         // Här sker tvp subs, beroende på om man trycker på ett event på sidan, eller navigerar till ett event via sökvägen med en url
 
         PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.ANY, (data) => {
@@ -20,7 +19,10 @@ class EventService {
             let state = store.getState();
             if (param) {
                 PubSub.publish(REQUEST.SENT.EVENTS.GET);
+                PubSub.publish(REQUEST.SENT.USERCALENDARS.GET);
+                PubSub.publish(REQUEST.SENT.CALENDAR.GET);
                 let eventObject = state.events.find(event => event.id == param);
+                state.setState(eventObject);
                 if (!eventObject) {
                     PubSub.publish(RESOURCE.ERROR.EVENTS.GET)
                 } else {
@@ -41,6 +43,18 @@ class EventService {
             }
 
         })
+
+    }
+
+
+
+    participantsLogic(eventData) {
+        let state = store.getState();
+        let eventsParticipants = state.events_rsvp.filter(rsvp => rsvp.eventId == eventData.id);
+
+
+        PubSub.publish()
+
 
     }
 

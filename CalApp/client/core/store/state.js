@@ -8,10 +8,6 @@ export const state = {
         email: ""
     },
 
-    selectedCals: [],
-    selectedEvents: [],
-    selectedTags: [],
-
     cals: [],
 
     usergroups: [],
