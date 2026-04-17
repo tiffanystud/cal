@@ -25,7 +25,7 @@ class EventsRSVPService {
     }
 
     /* --- POST ---- */
-    public static function create($input){
+    public static function post($input) {
         
         $eventId = $input["eventId"] ?? null;
         $userId = $input["userId"] ?? null;

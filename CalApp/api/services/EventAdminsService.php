@@ -9,9 +9,9 @@ class EventAdminsService {
         return $eventAdmins->getAll();
     }
 
-    public static function getByParams($obj) {
-        $userId = $obj["userId"] ?? null;
-        $eventId = $obj["eventId"] ?? null;
+    public static function getByParams($input) {
+        $userId = $input["userId"] ?? null;
+        $eventId = $input["eventId"] ?? null;
         $eventAdmins = new DBAccess("events_admins");
 
         if ($userId && $eventId) {

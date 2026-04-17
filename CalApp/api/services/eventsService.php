@@ -8,25 +8,18 @@ class EventsService {
         return $db->getAll();
     }
 
-    public static function getByEventId($id) {
+    public static function getByParams($input) {
         $db = new DBAccess("events");
-        $event = $db->findById($id);
+        $all = $db->getAll();
 
-        if (!$event) {
-            throw new Exception("Event not found");
+        if (isset($input["eventId"])) {
+            $exists = array_find($all, fn($x) => $x["id"] === $input["eventId"]);
+            if (!$exists) throw new Exception("No events(s) found");
+            return $exists;
+        } else if (isset($input["calId"])) {
+            return array_values(array_filter($all, fn($x) => $x["calId"] === $input["calId"]));
         } else {
-            return $event;
-        }
-    }
-
-    public static function getByCalId($cal) {
-        $db = new DBAccess("events");
-        $events = $db->getAll();
-        $eventsByCal = array_values(array_filter($events, fn($x) => $x["calId"] === $cal));
-        if (count($eventsByCal) === 0) {
-            throw new Exception("No events found");
-        } else {
-            return $eventsByCal;
+            throw new Exception("Missing attributes");
         }
     }
 
