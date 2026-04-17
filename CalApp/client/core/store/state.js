@@ -10,7 +10,7 @@ export const state = {
 
     cals: [],
 
-    usergroups: [],
+    usercalendars: [],
 
     events: [],
 

@@ -16,30 +16,27 @@ class EventService {
 
         PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.ANY, (data) => {
             let param = data.entireUrl.searchParams.get("id");
-            let state = store.getState();
             if (param) {
-                PubSub.publish(REQUEST.SENT.EVENTS.GET);
-                PubSub.publish(REQUEST.SENT.USERCALENDARS.GET);
-                PubSub.publish(REQUEST.SENT.CALENDAR.GET);
-                let eventObject = state.events.find(event => event.id == param);
-                state.setState(eventObject);
-                if (!eventObject) {
-                    PubSub.publish(RESOURCE.ERROR.EVENTS.GET)
-                } else {
-                    // Puba ett event som view lyssnar på för att synas 
-                }
+                // Detta är gammalt, det ska uppdateras i storeservice när den pubas härifrån.
+                // PubSub.publish(EVENTS.REQUEST.SENT.EVENTS.GET);
+                // PubSub.publish(EVENTS.REQUEST.SENT.USERCALENDARS.GET);
+                // PubSub.publish(EVENTS.REQUEST.SENT.CALENDAR.GET);
+
+                this.participantsService(param);
+
             }
         })
 
         // Osäker om det istället ska vara ett annat event istället för show, detta event borde finnas i viewn istället
+        // MÅSTE GÖRAS OM
         PubSub.subscribe(EVENTS.VIEW.POPUP.SHOW.EVENT, (data) => {
             let state = store.getState();
-            PubSub.publish(REQUEST.SENT.EVENTS.GET);
+            PubSub.publish(EVENTS.REQUEST.SENT.EVENTS.GET);
             let eventObject = state.events.find(event => event == data.id);
             if (!eventObject) {
-                PubSub.publish(RESOURCE.ERROR.EVENTS.GET)
+                PubSub.publish(EVENTS.RESOURCE.ERROR.EVENTS.GET)
             } else {
-                // Puba ett event som view lyssnar på för att synas 
+                this.participantsLogic(eventObject["id"]);
             }
 
         })
@@ -48,12 +45,20 @@ class EventService {
 
 
 
-    participantsLogic(eventData) {
-        let state = store.getState();
-        let eventsParticipants = state.events_rsvp.filter(rsvp => rsvp.eventId == eventData.id);
+    participantsService(eventId) {
+        let eventObject = PubSub.publish(EVENTS.DATA.SELECTED.EVENTS, [eventId]);
 
+        let userCalendars = PubSub.publish(EVENTS.DATA.SELECTED.USERCALENDARS, [eventObject[calId]]);
 
-        PubSub.publish()
+        let userCalendarsIds = userCalendars.map(userCal => userCal.userId);
+
+        let eventsRSVP = PubSub.publish(EVENTS.DATA.SELECTED.EVENTSRSVP, userCalendarsIds);
+        
+        let userIsGoing = eventsRSVP.filter(eventsRSVPKeys => eventsRSVPKeys.isGoing == "yes");
+        let userNotGoing = eventsRSVP.filter(eventsRSVPKeys => eventsRSVPKeys.igGoing == "no");
+        let userMayebGoing = eventsRSVP.filter(eventsRSVPKeys => eventsRSVPKeys.isGoing == "maybe");
+
+        // Typ puba datan här till komponenterna?
 
 
     }

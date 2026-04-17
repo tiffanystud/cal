@@ -2,7 +2,7 @@ import { store } from "../../../store/Store.js";
 import { PubSub } from "../../../store/Pubsub.js";
 import { EVENTS } from "../../../store/Events.js";
 
-class EventHeader extends HTMLElement {
+class EventInfo extends HTMLElement {
 
     constructor() {
         super();
@@ -76,3 +76,6 @@ class EventHeader extends HTMLElement {
 
 
 }
+
+
+customElements.define("event-info", EventInfo);

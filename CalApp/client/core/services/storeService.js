@@ -276,7 +276,7 @@ export class storeService {
             if (!ids) return currStateCals;
 
             // One ID (return filtered)
-            if (!ids[1]) return currStateCals.find(currCal => currCal.id == id);
+            if (!ids[1]) return currStateCals.find(currCal => currCal.id == ids);
 
             // Sevral IDs (return filtered)
             let filteredCals = [];
@@ -289,17 +289,95 @@ export class storeService {
 
         })
 
+        PubSub.subscribe(EVENTS.DATA.SELECTED.USERCALENDARS, (ids) => {
+
+            let userCalsState = store.getState().usercalendars;
+
+            if (!ids) {
+                return userCalsState;
+            }
+
+            if (!ids[1]) {
+                return userCalsState.find(userCals => userCals.id == ids);
+            }
+
+            let filteredUserCals = [];
+            for (let userCalId of ids) {
+                for (let userCal of userCalsState) {
+                    if (userCalId == userCal.id) {
+                        filteredUserCals.push(userCal);
+                    }
+                }
+            }
+
+            return filteredUserCals;
+
+        })
+
+        PubSub.subscribe(EVENTS.DATA.SELECTED.EVENTS, (ids) => {
+            // Här uppdaterar den först entiteten i statet
+            PubSub.publish(EVENTS.REQUEST.SENT.EVENTS.GET);
+
+
+            let eventState = store.getState().events;
+
+            if (!ids) {
+                return eventState;
+            }
+
+            if ([!ids[1]]) {
+                return eventState.find(event => event.id == ids);
+            }
+
+            let filteredEvents = [];
+            for (let eventId of ids) {
+                for (let event of eventState) {
+                    if (eventId == event.id) {
+                        filteredEvents.push(event);
+                    }
+                }
+            }
+
+            return filteredEvents;
+
+        })
+
+        PubSub.subscribe(EVENTS.DATA.SELECTED.EVENTSRSVP, (ids) => {
+
+            let eventRsvpState = store.getState().eventsRsvp;
+
+            if (!ids) {
+                return eventRsvpState;
+            }
+
+            if (!ids[1]) {
+                return eventRsvpState.find(eventRsvp => eventRsvp.id == ids.id);
+            }
+
+            let filteredEventsRsvp = [];
+            for (let eventRsvpId of ids) {
+                for (let eventRsvp of eventRsvpState) {
+                    if (eventRsvpId == eventRsvp.id) {
+                        filteredEventsRsvp.push(eventRsvp);
+                    }
+                }
+            }
+
+            return filteredEventsRsvp;
+
+        })
+
     }
 
     // Use to subscribe to changes in state
     static getNotifiedStoreChanges(stateKey, callback) {
-        
+        6
         // Ex ( "cals", ("newCalData") => {console.log("New Cals", newCalData)} );
         store.subscribe(stateKey, (data) => {
             callback(data);
         });
     }
-    
+
 }
 
 export const StoreService = new storeService();

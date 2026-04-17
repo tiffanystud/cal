@@ -68,11 +68,13 @@ export const EVENTS = {
             TEST: "data:updated:test",
             CALENDARS: "data:selected:calendars",
             CALENDARSEVENTS: "data:selected:calendarsevents",
+            USERCALENDARS: "data:selected:usercalendars",
             EVENTS: "data:selected:events",
             USERS: "data:selected:users",
             USERGROUPS: "data:selected:usergroups",
             ISLOGGEDIN: "data:selected:isloggedin",
-            MESSAGES: "data:selected:messages"
+            MESSAGES: "data:selected:messages",
+            EVENTSRSVP: "data:selected:eventsrsvp"
         }
 
     },
