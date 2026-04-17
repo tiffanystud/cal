@@ -18,25 +18,22 @@ class PinnedCalendarsService {
 
     public static function getByParams($input) {
         $db = new DBAccess("pinned_calendars");
-        $pinnedCalendarTable = $db->getAll();
-        $filterdPinnedCalendars = array_values(array_filter($pinnedCalendarTable, fn($pinCal) => $pinCal["userId"] == $input["userId"]));
+        $all = $db->getAll();
+        
+        $connections = array_values(array_filter($all, fn($x) => $x["userId"] === $input["userId"]));
+        if (count($connections) === 0) throw new Exception("Not found");
 
-        if(empty($filterdPinnedCalendars)){
-            throw new Exception("No calendars found by userId");
-        } else {
-            return $filterdPinnedCalendars;
-        }
+        return $connections;
     }
 
-    public static function pinnedCalendarsPost($input){
+    public static function post($input){
         $db = new DBAccess("pinned_calendars");
-        $pinnedCalendarTable = $db->getAll();
+        $all = $db->getAll();
 
-        foreach($pinnedCalendarTable as $table){
-            if($table["calId"] == $input["calId"]){
-                throw new Exception("Calendar already exists");
-            }
-        }
+        if (!isset($input["userId"], $input["calId"])) throw new Exception("Missing attributes");
+
+        $exists = array_find($all, fn($x) => $x["userId"] === $input["userId"] && $x["calId"] === $input["calId"]);
+        if ($exists) throw new Exception("Calendar already pinned");
 
         $newData = [
             "id" => uniqid(),
@@ -47,45 +44,17 @@ class PinnedCalendarsService {
 
     }
 
-    public static function pinnedCalendarsPatch($input){
+    public static function delete($input){
         $db = new DBAccess("pinned_calendars");
-        $pinnedCalendarTable = $db->getAll();
+        $all = $db->getAll();
 
-        $changeData = [];
-        foreach($input as $key => $data){
-            if($key != "id"){
-                $changeData[$key] = $data;
-            }
-        }
-        if(!count($changeData) > 1){
-            throw new Exception("No values to be changed");
-        } else {
-            return $db->patchData($input["id"], $changeData);
-        }
-    }
-
-    public static function pinnedCalendarsDelete($input){
-        $db = new DBAccess("pinned_calendars");
-        $pinnedCalendarTable = $db->getAll();
-
-        $checkCal = false;
-        foreach($pinnedCalendarTable as $pinCal){
-            if($pinCal["id"] != $input["id"]){
-                $checkCal = true;
-                break;
-            }
-        }
+        if (!isset($input["userId"], $input["calId"])) throw new Exception("Missing attributes");
         
-        if($checkCal){
-            return $db->deleteData($input["id"]);
-        } else {
-            throw new Exception("Pinned calendar doesent exist");
-        }
+        $exists = array_find($all, fn($x) => $x["userId"] === $input["userId"] && $x["calId"] === $input["calId"]);
+        if ($exists) throw new Exception("Not found");
         
-
+        return $db->deleteData($exists["id"]);
     }
-    
-
 }
 
 
