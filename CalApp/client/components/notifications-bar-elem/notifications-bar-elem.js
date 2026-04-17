@@ -5,6 +5,7 @@ import { storeService } from "../../core/services/StoreService.js";
 import { PubSub } from "../../core/store/Pubsub.js";
 
 export class NotificationsBarElem extends HTMLElement {
+    
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
@@ -68,7 +69,6 @@ export class NotificationsBarElem extends HTMLElement {
 
     }
 
-
     styleA() {
         return `
             :host {
@@ -117,7 +117,6 @@ export class NotificationsBarElem extends HTMLElement {
         `;
     }
 
-
     eListeners() {
         this.addEventListener("click", (e) => {
             let overlayDiv = document.createElement("div");
@@ -136,6 +135,7 @@ export class NotificationsBarElem extends HTMLElement {
             document.querySelector("#app").appendChild(overlayDiv);
         });
     }
+    
 }
 
 customElements.define("notifications-bar-elem", NotificationsBarElem);
