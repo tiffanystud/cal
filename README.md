@@ -104,6 +104,7 @@ All responses from are sent as JSON.
 - [/users_calendars?calId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users_calendarscalidid)
 - [/users_calendars?userId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#users_calendarsuseridid)
 - [/pinned_calendars](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#pinned_calendars)
+- [/pinned_calendars?userId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#pinned_calendarsuseridid)
 - [/events](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#events)
 - [/events?calId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#eventscalidid)
 - [/events?eventId=id](https://github.com/tiffanyeo/PentaCal?tab=readme-ov-file#eventseventidid)
