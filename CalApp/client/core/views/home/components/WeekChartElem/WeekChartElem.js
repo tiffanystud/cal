@@ -1,7 +1,7 @@
 
 // Not POPUP
 
-export class WeekChartComp extends HTMLElement {
+export class WeekChartElem extends HTMLElement {
 
     constructor() {
         super();
@@ -102,4 +102,4 @@ export class WeekChartComp extends HTMLElement {
     
 }
 
-customElements.define("week-chart-comp", WeekChartComp);
+customElements.define("week-chart-elem", WeekChartElem);

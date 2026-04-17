@@ -17,7 +17,6 @@ export class Store {
         return structuredClone(this._state);
     }
 
-
     // Expects: ({key1: callback1}, bool?) - supports multiple keys
     setState(newState, consoleLogIt = false) {
 

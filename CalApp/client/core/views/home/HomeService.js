@@ -6,6 +6,11 @@ import { HomeView } from "./HomeView.js";
 //COMPONENTS
 // loadingScreen (between popups and views etc)
 
+
+/* OBS 
+- DENNA MÅSTE UNLOADAS SÅ ALLA UNSUBS SKER?? I ALLA SERVICES OCH COMPS *** 
+ */
+
 export class HomeService {
 
     constructor() {
@@ -117,6 +122,7 @@ export class HomeService {
         const eventCardPopup = document.querySelector("event-card-popup");
 
         createPopup.addEventListener("click", () => {
+            // Trigger popup-rendering ***
             PubSub.publish(EVENTS.VIEW.POPUP.SHOW.TEST1);
         });
         
@@ -124,6 +130,7 @@ export class HomeService {
             const id = "getIDfromSomewhere"
             const url = "/events?id="
             this.setURL(`${url}${id}`); // Måste resettas sen -> se över ***
+            // Trigger popup-rendering ***
             PubSub.publish(EVENTS.VIEW.POPUP.SHOW.TEST2);
         });
         

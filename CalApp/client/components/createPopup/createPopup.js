@@ -1,6 +1,6 @@
 
 import { EVENTS } from "../../core/store/Events.js";
-import { PubSub } from "../../core/store/pubsub.js";
+import { PubSub } from "../../core/store/P subsub.js";
 
 export class CreatePopup extends HTMLElement {
     
