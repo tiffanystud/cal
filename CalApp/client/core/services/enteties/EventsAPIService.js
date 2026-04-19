@@ -28,6 +28,10 @@ class EventsAPIService {
         })
     }
 
+    sendErrorMSG() {
+        return { error: "Something went wrong." };
+    }
+
     // Metoderna använder ApiService för att fetcha datan och ändrar state samtidigt
 
     GET() {
@@ -61,23 +65,22 @@ class EventsAPIService {
 
     POST(newEvent) {
 
+        if (!newEvent) {
+            PubSub.publish(EVENTS.REQUEST.ERROR.EVENTS.POST);
+            return this.sendErrorMSG();
+        }
+
+
+
         try {
-            // let postEvent = await fetch(`http://localhost:8000`, {
-            //     method: "POST",
-            //     body: JSON.stringify({ newEvent }),
-            //     headers: { "Content-Type": "application/json" }
-            // })
-            // if (postEvent.status == 400) {
-
-            // } else {
-            //     store.setState(newEvent);
-            // }
-
             let postEvent = apiRequest({ entity: "events", method: "POST", body: newEvent });
-            let state = store.getState();
-            state.events.push(postEvent);
-            store.setState(state);
-            PubSub.publish(EVENTS.RESPONSE.SENT.POST, true);
+
+            // Set correct EVENT
+            PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
+                entity: "events",
+                method: "created",
+                responseData: postEvent,
+            });
 
         } catch (responseMessage) {
             PubSub.publish(EVENTS.RESPONSE.ERROR.EVENTS.POST, { message: responseMessage });
@@ -88,12 +91,15 @@ class EventsAPIService {
     PATCH(editedEvent) {
 
         try {
-            let patchEvent = apiRequest({ entity: "events", method: "PATCH", body: editedEven });
-            let state = store.getState();
-            state.events.filter(event => event.id != editedEvent.id);
-            state.events.push(patchEvent);
-            store.setState(state);
-            PubSub.publish(EVENTS.RESPONSE.SENT.PATCH, true);
+            let patchEvent = apiRequest({ entity: "events", method: "PATCH", body: editedEvent });
+
+            PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
+                entity: "events",
+                method: "changed",
+                responseData: patchEvent,
+            });
+
+            // PubSub.publish(EVENTS.RESPONSE.SENT.PATCH, true);
 
         } catch (responseMessage) {
             PubSub.publish(EVENTS.RESPONSE.ERROR.EVENTS.PATCH, { message: responseMessage });
@@ -104,13 +110,17 @@ class EventsAPIService {
 
         try {
             let deleteEvent = apiRequest({ entity: "events", method: "DELETE", body: selectedEvent })
-            let state = store.getState();
-            state.events.filter(event => event.id != selectedEvent.id);
-            store.setState(state);
-            PubSub.publish(EVENTS.RESPONSE.SENT.DELETE, true);
+
+            PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
+                entity: "events",
+                method: "deleted",
+                responseData: deleteEvent,
+            });
+
 
         } catch (responseMessage) {
             PubSub.publish(EVENTS.RESPONSE.ERROR.EVENTS.DELETE, { message: responseMessage });
+            
         }
 
     }

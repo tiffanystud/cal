@@ -1,4 +1,4 @@
-import { apiRequest } from "./APIService.js";
+import { apiRequest } from "./Api  kkmService.js";
 import { PubSub } from "../store/Pubsub.js";
 import { store } from "../store/Store.js";
 import { EVENTS } from "../store/Events.js";
@@ -10,7 +10,7 @@ export class storeService {
         this.subs();
     }
 
-    subs() {
+    viewServiceSubs() {
 
         // Auth
         PubSub.subscribe(EVENTS.AUTH.LOGIN.START, async (payload) => {
@@ -390,12 +390,40 @@ export class storeService {
 
         })
 
+    }
+
+    apiServiceSubs() {
+
+        // takes entitiyname, method and responsedata from api to setState. This makes the event unified for all entities,
+        // instead of having more subscribes per entitiy and method here.
+        PubSub.subscribe(EVENTS.DATA.UPDATED, (data) => {
+
+            let entityArray = store.getState()[data.entity];
+
+            if (data.method == "created") {
+
+                store.setState({ [data.entity]: [...entityArray, data.responseData] })
+            }
+
+            else if (data.method == "changed") {
+                let filteredArray = entityArray.filter(obj => obj.id != data.responseData.id);
+                store.setState({ [data.entity]: [...filteredArray, data.responseData] });
+            }
+
+            else if (data.method == "deleted") {
+
+                let filteredArray = entityArray.filter(obj => obj.id != data.responseData.id);
+                store.setState({ [data.entity]: filteredArray });
+            }
+        })
+
+
 
     }
 
+
     // Use to subscribe to changes in state
     static getNotifiedStoreChanges(stateKey, callback) {
-        6
         // Ex ( "cals", ("newCalData") => {console.log("New Cals", newCalData)} );
         store.subscribe(stateKey, (data) => {
             callback(data);
