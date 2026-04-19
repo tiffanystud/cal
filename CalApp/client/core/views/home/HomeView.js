@@ -5,7 +5,7 @@ import "../../../components/bottomNav/bottomNav.js"
 import "../../../components/searchUsersModal/searchUsersModal.js"
 
 // VIEW-SPECIFIC
-import "./components/WeekChartComp/WeekChartComp.js"
+import "./components/WeekChartComp/WeekChartElem.js"
 import "./components" // eventCardPopup
 import "./components" // searchTagsBtn
 import "./components" // calDetailBtn

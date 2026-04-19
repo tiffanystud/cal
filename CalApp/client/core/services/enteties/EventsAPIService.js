@@ -14,16 +14,16 @@ class EventsAPIService {
 
     subs() {
         // Dessa pubbar lyssnar på eventen som skickas från servicen i views
-        PubSub.subscribe(REQUEST.SENT.EVENTS.GET, (data) => {
+        PubSub.subscribe(EVENTS.REQUEST.SENT.EVENTS.GET, (data) => {
             this.GET();
         })
-        PubSub.subscribe(REQUEST.SENT.EVENTS.POST, (data) => {
+        PubSub.subscribe(EVENTS.REQUEST.SENT.EVENTS.POST, (data) => {
             this.POST(data);
         })
-        PubSub.subscribe(REQUEST.SENT.EVENTS.PATCH, (data) => {
+        PubSub.subscribe(EVENTS.REQUEST.SENT.EVENTS.PATCH, (data) => {
             this.PATCH(data);
         })
-        PubSub.subscribe(REQUEST.SENT.EVENTS.DELETE, (data) => {
+        PubSub.subscribe(EVENTS.REQUEST.SENT.EVENTS.DELETE, (data) => {
             this.DELETE(data);
         })
     }

@@ -55,7 +55,7 @@ export const EVENTS = {
             CALENDARSEVENTS: "data:updated:calendarsevents",
             EVENTS: "data:updated:events",
             USERS: "data:updated:users",
-            USERGROUPS: "data:updated:usergroups",
+            USERCALENDARS: "data:updated:usercalendars",
             ISLOGGEDIN: "data:updated:isloggedin",
             MESSAGES: "data:updated:messages",
         },
@@ -68,11 +68,13 @@ export const EVENTS = {
             TEST: "data:updated:test",
             CALENDARS: "data:selected:calendars",
             CALENDARSEVENTS: "data:selected:calendarsevents",
+            USERCALENDARS: "data:selected:usercalendars",
             EVENTS: "data:selected:events",
             USERS: "data:selected:users",
-            USERGROUPS: "data:selected:usergroups",
             ISLOGGEDIN: "data:selected:isloggedin",
-            MESSAGES: "data:selected:messages"
+            MESSAGES: "data:selected:messages",
+            EVENTSRSVP: "data:selected:eventsrsvp",
+            NOTIFICATIONS: "data:selected:notifications",
         }
 
     },
@@ -136,6 +138,12 @@ export const EVENTS = {
                 PATCH: "request:sent:calendars:patch",
                 DELETE: "request:sent:calendars:delete"
             },
+            NOTIFICATIONS: {
+                POST: "request:sent:notifications:post",
+                GET: "request:sent:notifications:get",
+                PATCH: "request:sent:notifications:patch",
+                DELETE: "request:sent:notifications:delete"
+            },
             CALENDARSEVENTS: {
                 POST: "request:sent:calendarsevents:post",
                 GET: "request:sent:calendarsevents:get",
@@ -154,11 +162,11 @@ export const EVENTS = {
                 PATCH: "request:sent:users:patch",
                 DELETE: "request:sent:users:delete"
             },
-            USERGROUPS: {
-                POST: "request:sent:usergroups:post",
-                GET: "request:sent:usergroups:get",
-                PATCH: "request:sent:usergroups:patch",
-                DELETE: "request:sent:usergroups:delete"
+            USERCALENDARS: {
+                POST: "request:sent:usercalendars:post",
+                GET: "request:sent:usercalendars:get",
+                PATCH: "request:sent:usercalendars:patch",
+                DELETE: "request:sent:usercalendars:delete"
             },
             ISLOGGEDIN: {
                 POST: "request:sent:isloggedin:post",
@@ -191,9 +199,9 @@ export const EVENTS = {
                 POST: "request:received:users:post",
                 GET: "request:received:users:get"
             },
-            USERGROUPS: {
-                POST: "request:received:usergroups:post",
-                GET: "request:received:usergroups:get"
+            USERCALENDARS: {
+                POST: "request:received:usercalendars:post",
+                GET: "request:received:usercalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "request:received:isloggedin:post",
@@ -202,7 +210,13 @@ export const EVENTS = {
             MESSAGES: {
                 POST: "request:received:messages:post",
                 GET: "request:received:messages:get"
-            }
+            },
+            NOTIFICATIONS: {
+                POST: "request:received:notifications:post",
+                GET: "request:received:notifications:get",
+                PATCH: "request:received:notifications:patch",
+                DELETE: "request:received:notifications:delete"
+            },
         },
 
         ERROR: {
@@ -224,9 +238,9 @@ export const EVENTS = {
                 POST: "request:error:users:post",
                 GET: "request:error:users:get"
             },
-            USERGROUPS: {
-                POST: "request:error:usergroups:post",
-                GET: "request:error:usergroups:get"
+            USERCALENDARS: {
+                POST: "request:error:usercalendars:post",
+                GET: "request:error:usercalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "request:error:isloggedin:post",
@@ -235,6 +249,12 @@ export const EVENTS = {
             MESSAGES: {
                 POST: "request:error:messages:post",
                 GET: "request:error:messages:get"
+            },
+            NOTIFICATIONS: {
+                POST: "request:error:notifications:post",
+                GET: "request:error:notifications:get",
+                PATCH: "request:error:notifications:patch",
+                DELETE: "request:error:notifications:delete",
             }
         }
 
@@ -262,9 +282,9 @@ export const EVENTS = {
                 POST: "response:sent:users:post",
                 GET: "response:sent:users:get"
             },
-            USERGROUPS: {
-                POST: "response:sent:usergroups:post",
-                GET: "response:sent:usergroups:get"
+            USERCALENDARS: {
+                POST: "response:sent:usercalendars:post",
+                GET: "response:sent:usercalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "response:sent:isloggedin:post",
@@ -273,6 +293,12 @@ export const EVENTS = {
             MESSAGES: {
                 POST: "response:sent:messages:post",
                 GET: "response:sent:messages:get"
+            },
+            NOTIFICATIONS: {
+                POST: "response:sent:notifications:post",
+                GET: "response:sent:notifications:get",
+                PATCH: "response:sent:notifications:patch",
+                DELETE: "response:sent:notifications:delete"
             }
         },
 
@@ -293,9 +319,9 @@ export const EVENTS = {
                 POST: "response:received:users:post",
                 GET: "response:received:users:get"
             },
-            USERGROUPS: {
-                POST: "response:received:usergroups:post",
-                GET: "response:received:usergroups:get"
+            USERCALENDARS: {
+                POST: "response:received:usercalendars:post",
+                GET: "response:received:usercalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "response:received:isloggedin:post",
@@ -304,7 +330,13 @@ export const EVENTS = {
             MESSAGES: {
                 POST: "response:received:messages:post",
                 GET: "response:received:messages:get"
-            }
+            },
+            NOTIFICATIONS: {
+                POST: "response:received:notifications:post",
+                GET: "response:received:notifications:get",
+                PATCH: "response:received:notifications:patch",
+                DELETE: "response:received:notifications:delete",
+            },
         },
 
         ERROR: {
@@ -326,9 +358,9 @@ export const EVENTS = {
                 POST: "response:error:users:post",
                 GET: "response:error:users:get"
             },
-            USERGROUPS: {
-                POST: "response:error:usergroups:post",
-                GET: "response:error:usergroups:get"
+            USERCALENDARS: {
+                POST: "response:error:usercalendars:post",
+                GET: "response:error:usercalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "response:error:isloggedin:post",
@@ -337,7 +369,14 @@ export const EVENTS = {
             MESSAGES: {
                 POST: "response:error:messages:post",
                 GET: "response:error:messages:get"
-            }
+            },
+            NOTIFICATIONS: {
+                POST: "response:error:notifications:post",
+                GET: "response:error:notifications:get",
+                PATCH: "response:error:notifications:patch",
+                DELETE: "response:error:notifications:delete",
+            },
+
         }
 
     },
@@ -364,9 +403,9 @@ export const EVENTS = {
                 POST: "resource:received:users:post",
                 GET: "resource:received:users:get"
             },
-            USERGROUPS: {
-                POST: "resource:received:usergroups:post",
-                GET: "resource:received:usergroups:get"
+            USERCALENDARS: {
+                POST: "resource:received:usercalendars:post",
+                GET: "resource:received:usercalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "resource:received:isloggedin:post",
@@ -375,7 +414,13 @@ export const EVENTS = {
             MESSAGES: {
                 POST: "resource:received:messages:post",
                 GET: "resource:received:messages:get"
-            }
+            },
+            NOTIFICATIONS: {
+                POST: "resource:received:notifications:post",
+                GET: "resource:received:notifications:get",
+                PATCH: "resource:received:notifications:patch",
+                DELETE: "resource:received:notifications:delete"
+            },
         },
 
         ERROR: {
@@ -397,9 +442,9 @@ export const EVENTS = {
                 POST: "resource:error:users:post",
                 GET: "resource:error:users:get"
             },
-            USERGROUPS: {
-                POST: "resource:error:usergroups:post",
-                GET: "resource:error:usergroups:get"
+            USERCALENDARS: {
+                POST: "resource:error:usercalendars:post",
+                GET: "resource:error:usercalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "resource:error:isloggedin:post",
@@ -408,7 +453,13 @@ export const EVENTS = {
             MESSAGES: {
                 POST: "resource:error:messages:post",
                 GET: "resource:error:messages:get"
-            }
+            },
+            NOTIFICATIONS: {
+                POST: "resource:error:notifications:post",
+                GET: "resource:error:notifications:get",
+                PATCH: "resource:error:notifications:patch",
+                DELETE: "resource:error:notifications:delete"
+            },
         }
 
     }

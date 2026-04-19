@@ -47,7 +47,6 @@ export class HomeService {
             // Show (!loggedIn || loggedIn) home view
             HomeView.renderHTML(this.isLoggedIn);
             if (this.isLoggedIn) eListeners();
-
         });
 
         // COMPONENT-SPECIFIC, REMINDER: some needs to be unsubbed when view changes

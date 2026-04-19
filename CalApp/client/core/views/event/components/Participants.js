@@ -1,8 +1,9 @@
-class EventHeader extends HTMLElement {
+class Participants extends HTMLElement {
 
     constructor() {
         super();
         this.attachShadow({ mode: open });
+        this.eventData;
     }
 
     connectedCallback() {
@@ -12,12 +13,17 @@ class EventHeader extends HTMLElement {
     }
 
     disconnectedCallback() {
-
+        // Unsubscriba ??
     }
 
     subs() {
 
+        PubSub.subscribe(EVENTS.DATA, (data) => {
+            this.eventData = data;
+        })
+
     }
+
     getValue() {
 
     }
@@ -30,9 +36,20 @@ class EventHeader extends HTMLElement {
 
     }
 
-    render() {
 
+    render() {
+        this.shadowRoot.innerHTML = `
+        <style></style>
+
+        
+
+        
+        `
     }
 
 
 }
+
+
+
+

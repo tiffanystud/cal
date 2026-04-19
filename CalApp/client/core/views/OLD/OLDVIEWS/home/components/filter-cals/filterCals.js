@@ -72,18 +72,24 @@ class FilterCals extends HTMLElement {
     }
 
     eventListeners() {
+        
         let allCals = this.shadowRoot.querySelectorAll(".calBoxes");
+        
         for (let pressedCals of allCals) {
             // subscribe through store
+            
             pressedCals.addEventListener("click", () => {
+                
                 if (!pressedCals.classList.contains("selected")) {
+                    
                     PubSub.publish("SELECTEDCALS.EVENTS.STATE.POST", this.userCals.find(cal => pressedCals.id == cal.id));
-                    pressedCals.style.backgroundColor = "blue";
                     pressedCals.classList.add("selected");
+                    
                 } else {
+                    
                     PubSub.publish("SELECTEDCALS.EVENTS.STATE.DELETE", this.userCals.find(cal => pressedCals.id == cal.id));
-                    pressedCals.style.backgroundColor = "white";
                     pressedCals.classList.remove("selected");
+                    
                 }
             })
         }
