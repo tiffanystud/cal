@@ -1,5 +1,5 @@
-import { store } from "../../store/Store.js";
-import { apiRequest } from "../ApiService";
+import { Store } from "../../store/Store.js";
+import { APIRequest } from "../APIService.js";
 import { PubSub } from "../../store/Pubsub.js";
 import { EVENTS } from "../../store/Events.js";
 
@@ -44,7 +44,7 @@ class calendarAPIService {
     // METHODS
     GET(id = null) {
 
-        const userCalendars = store.getState().cals;
+        const userCalendars = Store.getState().cals;
 
         // Return one calendar
         if (id) {
@@ -58,7 +58,7 @@ class calendarAPIService {
 
             try {
 
-                const allCals = apiRequest({
+                const allCals = APIRequest({
                     "entity": "calendars",
                     "method": "GET"
                 });
@@ -79,7 +79,7 @@ class calendarAPIService {
         // Return all calendars
         try {
 
-            const allCals = apiRequest({
+            const allCals = APIRequest({
                 "entity": "calendars",
                 "method": "GET"
             })
@@ -116,7 +116,7 @@ class calendarAPIService {
 
         try {
 
-            const created = apiRequest({
+            const created = APIRequest({
                 "entity": "calendars",
                 "method": "POST",
                 "body": newCalendar
@@ -152,7 +152,7 @@ class calendarAPIService {
 
         try {
 
-            const patched = apiRequest({
+            const patched = APIRequest({
                 "entity": "calendars",
                 "method": "PATCH",
                 "body": newData
@@ -176,8 +176,8 @@ class calendarAPIService {
             return this.sendErrorMSG();
         }
 
-        const foundCalendar = store.getState().cals.find(c => c.id === id);
-        const userID = store.getState().isLoggedin.id;
+        const foundCalendar = Store.getState().cals.find(c => c.id === id);
+        const userID = Store.getState().isLoggedin.id;
 
         if (!foundCalendar || foundCalendar.creatorId !== userID) {
             PubSub.publish(EVENTS.REQUEST.ERROR.CALENDARS.DELETE);
@@ -186,7 +186,7 @@ class calendarAPIService {
 
         try {
 
-            const result = apiRequest({
+            const result = APIRequest({
                 "entity": "calendars",
                 "method": "DELETE",
                 "body": id

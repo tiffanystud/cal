@@ -1,5 +1,5 @@
-import { store } from "../../store/Store.js";
-import { apiRequest } from "../ApiService";
+import { Store } from "../../store/Store.js";
+import { APIRequest } from "../APIService.js";
 import { PubSub } from "../../store/Pubsub.js";
 import { EVENTS } from "../../store/Events.js";
 
@@ -38,13 +38,13 @@ class EventsAPIService {
 
         let newIncomingEvents = [];
 
-        for (let cal of store.getState().cals) {
+        for (let cal of Store.getState().cals) {
             try {
                 // let event = await fetch(`http://localhost:8000/${cal.id}`);
                 // if (event.calId != cal.id) {
                 //     newIncomingEvents.push(event);
                 // }
-                let event = apiRequest({ entity: `events?${cal.id}`, method: "GET" });
+                let event = APIRequest({ entity: `events?${cal.id}`, method: "GET" });
                 if (event.calId != cal.id) {
                     newIncomingEvents.push(event);
                 }
@@ -54,11 +54,11 @@ class EventsAPIService {
             }
         }
         if (newIncomingEvents.length > 0) {
-            let state = store.getState();
+            let state = Store.getState();
             for (let newEvent of newIncomingEvents) {
                 state.events.push(newEvent);
             }
-            store.setState(state);
+            Store.setState(state);
             PubSub.publish(EVENTS.RESPONSE.SENT.GET);
         }
     }
@@ -73,7 +73,7 @@ class EventsAPIService {
 
 
         try {
-            let postEvent = apiRequest({ entity: "events", method: "POST", body: newEvent });
+            let postEvent = APIRequest({ entity: "events", method: "POST", body: newEvent });
 
             // Set correct EVENT
             PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
@@ -91,7 +91,7 @@ class EventsAPIService {
     PATCH(editedEvent) {
 
         try {
-            let patchEvent = apiRequest({ entity: "events", method: "PATCH", body: editedEvent });
+            let patchEvent = APIRequest({ entity: "events", method: "PATCH", body: editedEvent });
 
             PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
                 entity: "events",
@@ -109,7 +109,7 @@ class EventsAPIService {
     DELETE(selectedEvent) {
 
         try {
-            let deleteEvent = apiRequest({ entity: "events", method: "DELETE", body: selectedEvent })
+            let deleteEvent = APIRequest({ entity: "events", method: "DELETE", body: selectedEvent })
 
             PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
                 entity: "events",

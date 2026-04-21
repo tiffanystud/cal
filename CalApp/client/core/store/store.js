@@ -1,8 +1,8 @@
 
-import { state } from "./state2.js";
-import { stateSchema } from "./state2.js";
+import { State } from "./State.js";
+import { StateSchema } from "./State.js";
 
-export class Store {
+export class store {
 
     static allStates = [];
     static allListeners = {};
@@ -10,7 +10,7 @@ export class Store {
     constructor(initialState) {
         this._state = initialState;
         this.lastState = null;
-        Store.allStates.push(this._state)
+        // this.allStates.push(this._state) ***
     }
 
     getState() {
@@ -99,4 +99,4 @@ export class Store {
 
 }
 
-export const store = new Store(state);
+export const Store = new store(State);

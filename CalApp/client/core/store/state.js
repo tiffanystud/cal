@@ -1,6 +1,6 @@
 
 
-export const state = {
+export const State = {
 
     isLoggedIn: {
         id: "",
@@ -30,7 +30,7 @@ export const state = {
 
 
 // Same as above, but cleaner structure when in use in store.js
-export const stateSchema = {
+export const StateSchema = {
     isLoggedIn: {
         id: "",
         username: "",

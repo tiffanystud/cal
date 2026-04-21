@@ -1,5 +1,5 @@
 
-import { apiRequest } from "../ApiService.js";
+import { APIRequest } from "../APIService.js";
 import { PubSub } from "../../store/Pubsub.js";
 import { store } from "../../store/Store.js";
 import { EVENTS } from "../../store/Events.js";
@@ -17,7 +17,7 @@ export function userCalendarService() {
         try {
 
 
-            const response = await apiRequest({
+            const response = await APIRequest({
                 entity: "users_calendars",
                 method: "POST",
                 body: payload

@@ -124,4 +124,4 @@ class FilterCalendarsElem extends HTMLElement {
 
 }
 
-customElements.define("filter-calendars-elem", FilterCals);
+customElements.define("filter-calendars-elem", FilterCalendarsElem);

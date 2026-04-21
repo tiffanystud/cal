@@ -9,7 +9,7 @@
 */
 
 // Entity (matcha i router.php)
-export async function apiRequest({ entity, method, body = null }) {
+export async function APIRequest({ entity, method, body = null }) {
 
     // console.log(`RECEIVED REQUEST: ${entity} ${method} ${body} -`)
 
