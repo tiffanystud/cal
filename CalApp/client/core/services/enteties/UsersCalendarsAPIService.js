@@ -3,10 +3,9 @@ import { APIRequest } from "../APIService.js";
 import { PubSub } from "../../store/Pubsub.js";
 import { EVENTS } from "../../store/Events.js";
 
-// Service + Controller
-// Always listening? ***
 
-class calendarAPIService {
+// NOT DONE
+class userCalendarsAPIService {
 
     constructor() {
         this.subs();
@@ -14,16 +13,17 @@ class calendarAPIService {
 
     subs() {
 
-        this.unsubGET = PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.GET, (data) => {
+        this.unsubGET = PubSub.subscribe(EVENTS.REQUEST.SENT.USERSCALENDARS.GET, (data) => {
             this.GET(data);
+            // console.log("HI I WAS CALLED? (from ugsAPI)", data)
         })
-        this.unsubPOST = PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.POST, (data) => {
+        this.unsubPOST = PubSub.subscribe(EVENTS.REQUEST.SENT.USERSCALENDARS.POST, (data) => {
             this.POST(data);
         })
-        this.unsubPATCH = PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.PATCH, (data) => {
+        this.unsubPATCH = PubSub.subscribe(EVENTS.REQUEST.SENT.USERSCALENDARS.PATCH, (data) => {
             this.PATCH(data);
         })
-        this.unsubDELETE = PubSub.subscribe(EVENTS.REQUEST.SENT.CALENDARS.DELETE, (data) => {
+        this.unsubDELETE = PubSub.subscribe(EVENTS.REQUEST.SENT.USERSCALENDARS.DELETE, (data) => {
             this.DELETE(data);
         })
 
@@ -42,54 +42,24 @@ class calendarAPIService {
     }
 
     // METHODS
-    GET(id = null) {
+    async GET(calID = null) {
 
-        const userCalendars = Store.getState().cals;
-
-        // Return one calendar
-        if (id) {
-
-            // If in state, return calendar from state
-            const cal = userCalendars.find(c => c.id === id);
-            if (cal) {
-                PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.GET);
-                return cal;
-            }
-
-            try {
-
-                const allCals = APIRequest({
-                    "entity": "calendars",
-                    "method": "GET"
-                });
-
-                // PUB OK
-                PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.GET);
-
-                const calendar = allCals.find(c => c.id === id);
-                return calendar;
-
-            } catch (err) {
-                // PUB !OK
-                PubSub.publish(EVENTS.RESOURCE.ERROR.CALENDARS.GET);
-                return err;
-            }
-        }
-
-        // Return all calendars
+        // Return all UGS
         try {
 
-            const allCals = APIRequest({
-                "entity": "calendars",
+            const allUGs = await APIRequest({
+                "entity": "users_calendars",
                 "method": "GET"
             })
 
-            PubSub.publish(EVENTS.RESOURCE.RECEIVED.CALENDARS.GET);
+            // console.log("IM GIVING YOU THIS DATA NOW:", allUGs, "(from ugsAPI)");
+            PubSub.publish(EVENTS.RESOURCE.RECEIVED.USERSCALENDARS.GET, allUGs);
 
-            return allCals;
+            return allUGs;
 
         } catch (err) {
-            PubSub.publish(EVENTS.RESOURCE.ERROR.CALENDARS.GET);
+
+            PubSub.publish(EVENTS.RESOURCE.ERROR.USERSCALENDARS.GET, (err));
             return err;
         }
 
@@ -205,4 +175,4 @@ class calendarAPIService {
 
 }
 
-export const CalendarAPIService = new calendarAPIService()
+export const UserCalendarsAPIService = new userCalendarsAPIService()

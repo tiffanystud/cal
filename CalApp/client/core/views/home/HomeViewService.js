@@ -5,6 +5,8 @@ import { HomeView } from "./HomeView.js";
 
 //COMPONENTS
 // loadingScreen (between popups and views etc)
+import "./components/week-chart-elem/week-chart-elem.js"
+import "./components/filter-cals-elem/filter-cals-elem.js"
 
 
 /* OBS 
@@ -14,8 +16,16 @@ import { HomeView } from "./HomeView.js";
 export class HomeViewService {
 
     constructor() {
+
+        // DEVELOPMENT
+        this.data = {
+            allCalendars: null,
+            allUGs: null,
+            usersFilteredCals: null
+        };
+
         this.subs();
-        this.eListeners();
+        // this.eListeners();
     }
 
     subs() {
@@ -29,7 +39,7 @@ export class HomeViewService {
             } else {
                 // Om vyn byts (OBS MÅSTE VARA DET GLOB. PRAC. SÅ ALLA VYER BYTS PÅ DETTA SÄTT)
                 // Intern rerendering kan ske med EVENTS.VIEW.PAGE.SHOW.HOME (eller annat alt?)
-                unsub();
+                // unsub();
             }
         })
 
@@ -50,10 +60,21 @@ export class HomeViewService {
         });
 
         // COMPONENT-SPECIFIC, REMINDER: some needs to be unsubbed when view changes
-        this.unsubSelectedCalendars = PubSub.subscribe(EVENTS.DATA.SELECTED.CALENDARS, function (data) {
-            
+        this.unsubReqCalendars = PubSub.subscribe(EVENTS.RESOURCE.RECEIVED.CALENDARS.GET, (allCals) => {
+            this.data.allCalendars = allCals;
+            this.tryBuildUserCalendars();
+        });
+
+        PubSub.subscribe(EVENTS.RESOURCE.RECEIVED.USERSCALENDARS.GET, (allUGs) => {
+            this.data.allUGs = allUGs;
+            this.tryBuildUserCalendars();
+        });
+
+
+        /* this.unsubSelectedCalendars = PubSub.subscribe(EVENTS.DATA.SELECTED.CALENDARS, function (data) {
+
             if (!this.selectedCalendars) this.selectedCalendars = data;
-            
+
             const newSelCal = [];
             this.selectedCalendars.forEach(cal => {
                 newSelCal.push(cal)
@@ -61,15 +82,15 @@ export class HomeViewService {
             data.forEach(cal => {
                 newSelCal.push(cal);
             })
-            
+
             this.selectedCalendars = newSelCal;
-            
+
         })
-        
+
         this.unsubSelectedEvents = PubSub.subscribe(EVENTS.DATA.SELECTED.EVENTS, function (data) {
-            
+
             if (!this.selectedEvents) return this.selectedEvents = data;
-            
+
             const newSelEvents = [];
             this.selectedEvents.forEach(event => {
                 newSelEvents.push(event)
@@ -77,15 +98,15 @@ export class HomeViewService {
             data.forEach(event => {
                 newSelEvents.push(event);
             })
-            
+
             this.selectedEvents = newSelEvents;
-            
+
         })
-        
+
         this.unsubSelectedTags = PubSub.subscribe(EVENTS.DATA.SELECTED.EVENTS, function (data) {
-            
+
             if (!this.selectedTags) return this.selectedTags = data;
-            
+
             const newSelTag = [];
             this.selectedTags.forEach(tag => {
                 newSelTag.push(tag)
@@ -93,11 +114,12 @@ export class HomeViewService {
             data.forEach(tag => {
                 newSelTag.push(tag);
             })
-            
-            this.selectedTags = newSelTag;
-            
-        })
 
+            this.selectedTags = newSelTag;
+
+        })
+            
+        */
     }
 
     unsub() {
@@ -124,7 +146,7 @@ export class HomeViewService {
             // Trigger popup-rendering ***
             PubSub.publish(EVENTS.VIEW.POPUP.SHOW.TEST1);
         });
-        
+
         eventCardPopup.addEventListener("click", () => {
             const id = "getIDfromSomewhere"
             const url = "/events?id="
@@ -132,8 +154,25 @@ export class HomeViewService {
             // Trigger popup-rendering ***
             PubSub.publish(EVENTS.VIEW.POPUP.SHOW.TEST2);
         });
-        
+
     }
+
+    // DEVELOPMENT
+    tryBuildUserCalendars() {
+        if (!this.data.allCalendars || !this.data.allUGs) return;
+
+        const dummyUserId = "65f3aa11a01e";
+
+        const userUGs = this.data.allUGs.filter(ug => ug.userId === dummyUserId);
+        const filteredCals = this.data.allCalendars.filter(cal =>
+            userUGs.find(ug => ug.calId === cal.id)
+        );
+
+        this.data.usersFilteredCals = filteredCals;
+
+        PubSub.publish(EVENTS.DATA.SELECTED.CALENDARS, filteredCals);
+    }
+
 
     loadSelectedData(data) {
 
@@ -148,3 +187,5 @@ export class HomeViewService {
     }
 
 } 
+
+new HomeViewService();
