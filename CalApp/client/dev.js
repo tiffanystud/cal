@@ -9,7 +9,8 @@ import { Router } from "./core/router/Router.js";
 
 // SERVIVES (API)
 import "./core/services/enteties/HomeAPIService.js"
-import "./core/services/enteties/CalendarAPIService.js"
+import "./core/services/enteties/CalendarsAPIService.js"
+import "./core/services/enteties/UsersCalendarsAPIService.js"
 
 
 // SERVIVES (VIEWS)
