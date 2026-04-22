@@ -1,0 +1,1039 @@
+{
+    "calendar_msg": [
+        {
+            "id": "65e10aa153001",
+            "senderId": "65e10aa11a002",
+            "calId": "65e10aa11b001",
+            "date": "2026-02-20",
+            "time": "13:10:00",
+            "content": "Jag laddar upp filerna inom kort. Tänkte göra det direkt efter lunch men det blev lite försenat — bör vara klart senast vid 15-tiden.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153002",
+            "senderId": "65e10aa11a003",
+            "calId": "65e10aa11b002",
+            "date": "2026-02-21",
+            "time": "14:20:00",
+            "content": "Glöm inte mötet imorgon.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153003",
+            "senderId": "65e10aa11a004",
+            "calId": "65e10aa11b003",
+            "date": "2026-02-22",
+            "time": "15:30:00",
+            "content": "OBS! Gympasset är omplanerat till 18:00 istället för den ursprungliga tiden. Uppdatera gärna era kalendrar så vi inte tappar folk på vägen.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153004",
+            "senderId": "65e10aa11a005",
+            "calId": "65e10aa11b004",
+            "date": "2026-02-23",
+            "time": "16:45:00",
+            "content": "Hallå allihopa! De e AW på fredag å ja undrar vem som hainner komma? Hör av dej så vi vet hur många vi e, de e viktit för bokning å sånt. Ju fler desto roligare såklart!!",
+            "hasChanged": true
+        },
+        {
+            "id": "65e10aa153005",
+            "senderId": "65e10aa11a006",
+            "calId": "65e10aa11b005",
+            "date": "2026-02-24",
+            "time": "17:55:00",
+            "content": "Deadline närmar sig. Lämna in i tid.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153001",
+            "senderId": "65f3aa11a001",
+            "calId": "65f3bb11b001",
+            "date": "2026-03-10",
+            "time": "09:15",
+            "content": "Påminnelse om att veckomötet äger rum på torsdag som planerat. Vänligen se till att ni har förberett en kort statusuppdatering från era respektive ansvarsområden.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153002",
+            "senderId": "65f3aa11a006",
+            "calId": "65f3bb11b001",
+            "date": "2026-03-11",
+            "time": "14:22",
+            "content": "Jag uppdaterar supportlistan senare idag.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153003",
+            "senderId": "65f3aa11a003",
+            "calId": "65f3bb11b002",
+            "date": "2025-11-02",
+            "time": "12:40",
+            "content": "Föreläsningen är flyttad till sal B203.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153004",
+            "senderId": "65f3aa11a002",
+            "calId": "65f3bb11b002",
+            "date": "2025-11-03",
+            "time": "08:55",
+            "content": "Hej! Jag kommer lägga upp mina anteckningar från gårdagens lektion under kvällen. De är ganska omfattande så det kan ta lite tid att strukturera dem ordentligt, men jag lovar att det blir bra. Kolla Canvas imorgon bitti.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153005",
+            "senderId": "65f3aa11a007",
+            "calId": "65f3bb11b003",
+            "date": "2027-02-15",
+            "time": "06:50",
+            "content": "Kom ihåg yogapasset på fredag! Ta med bekväma kläder och kom gärna lite i förväg så vi hinner checka in lugnt.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153006",
+            "senderId": "65f3aa11a008",
+            "calId": "65f3bb11b003",
+            "date": "2027-02-16",
+            "time": "18:10",
+            "content": "Jag tar med extra mattor.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153007",
+            "senderId": "65f3aa11a009",
+            "calId": "65f3bb11b004",
+            "date": "2026-09-20",
+            "time": "20:30",
+            "content": "Samling vid baren 21:00 — var där.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153008",
+            "senderId": "65f3aa11a00a",
+            "calId": "65f3bb11b004",
+            "date": "2026-09-21",
+            "time": "22:10",
+            "content": "Gästlistan e nu uppdaterad å vi e fullt!! Om nån vet om folk som int kom me på listan, be dom höra av sej direkt till mej så kollar ja vad ja kan göra. De kan vara lite tight men vi försöker lösa det så gott vi kan.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153009",
+            "senderId": "65f3aa11a00b",
+            "calId": "65f3bb11b005",
+            "date": "2025-05-12",
+            "time": "17:45",
+            "content": "Träningen börjar 19:00. Kom i tid.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f41115300a",
+            "senderId": "65f3aa11a00c",
+            "calId": "65f3bb11b005",
+            "date": "2025-05-13",
+            "time": "18:20",
+            "content": "Jag tar med västar till alla så vi kan köra matchspel direkt utan krångel. Om någon har preferenser på färg får de hoppas på tur.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f41115300b",
+            "senderId": "65f3aa11a00d",
+            "calId": "65f3bb11b006",
+            "date": "2027-01-08",
+            "time": "16:40",
+            "content": "Kvällslöpning på onsdag! Ses vid stadion.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f41115300c",
+            "senderId": "65f3aa11a00e",
+            "calId": "65f3bb11b006",
+            "date": "2027-01-09",
+            "time": "07:10",
+            "content": "Tänkte värma upp i cirka 10 minuter innan vi sätter igång med själva löprundan. Om ni vill hänga med på uppvärmningen, kom gärna 10 minuter tidigare än utsatt tid.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f41115300d",
+            "senderId": "65f3aa11a010",
+            "calId": "65f3bb11b007",
+            "date": "2026-04-01",
+            "time": "13:20",
+            "content": "Workshop imorgon — ta med laptop.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f41115300e",
+            "senderId": "65f3aa11a011",
+            "calId": "65f3bb11b007",
+            "date": "2026-04-02",
+            "time": "09:50",
+            "content": "Ja fixar fika! Ha me dej kaffesuget å kanske lite taggning, för de blir en intensiv dag. Tänkte köra på det klassiska med kanelbullar å kaffe men om nån e allergisk mot nåt, hör av dej nu så löser vi det.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f41115300f",
+            "senderId": "65f3aa11a012",
+            "calId": "65f3bb11b008",
+            "date": "2025-12-18",
+            "time": "19:40",
+            "content": "Kodkväll imorgon — glöm inte!",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153010",
+            "senderId": "65f3aa11a013",
+            "calId": "65f3bb11b008",
+            "date": "2025-12-19",
+            "time": "21:10",
+            "content": "Jag tar med snacks till alla. Tänkte chips, godis och lite frukt för de hälsomedvetna bland oss. Hör av er om ni vill bidra med något, ju mer desto bättre när det är hackathon.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153011",
+            "senderId": "65f3aa11a015",
+            "calId": "65f3bb11b009",
+            "date": "2027-03-01",
+            "time": "08:30",
+            "content": "Kickoff för Projekt Orion äger rum på fredag. Samtliga deltagare uppmanas att läsa igenom det bifogade bakgrundsmaterialet i förväg så att vi kan använda mötestiden effektivt.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153012",
+            "senderId": "65f3aa11a018",
+            "calId": "65f3bb11b009",
+            "date": "2027-03-02",
+            "time": "10:15",
+            "content": "Jag uppdaterar agendan och skickar ut den senast klockan 16 idag. Om det är punkter ni vill lägga till, hör av er innan dess.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153013",
+            "senderId": "65f3aa11a017",
+            "calId": "65f3bb11b00a",
+            "date": "2026-06-09",
+            "time": "10:50",
+            "content": "Strategimötet äger rum på torsdag enligt plan.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153014",
+            "senderId": "65f3aa11a01d",
+            "calId": "65f3bb11b00a",
+            "date": "2026-06-10",
+            "time": "15:30",
+            "content": "Jag skickar dokumenten senare idag. Det rör sig om ganska omfattande material — en sammanfattning av det internationella samarbetsförslaget samt de synpunkter som inkommit från berörda parter. Vänligen bekräfta mottagande när de landar i er inkorg.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153015",
+            "senderId": "65f3aa11a019",
+            "calId": "65f3bb11b00b",
+            "date": "2025-08-25",
+            "time": "13:40",
+            "content": "Match på onsdag! De e semifinal å de gäller å va påläst — vi kan int förlora den här. Kolla senaste analyserna ja la upp och kom förberedda.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153016",
+            "senderId": "65f3aa11a01c",
+            "calId": "65f3bb11b00b",
+            "date": "2025-08-26",
+            "time": "17:20",
+            "content": "Laguppställningen är fixad och skickad till er alla. Hör av er om ni har synpunkter, men tänk på att det är noga genomtänkt utifrån motståndarlaget.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153017",
+            "senderId": "65f3aa11a01c",
+            "calId": "65f3bb11b00c",
+            "date": "2026-10-12",
+            "time": "11:10",
+            "content": "Workshopen äger rum på onsdag som planerat.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f411153018",
+            "senderId": "65f3aa11a01e",
+            "calId": "65f3bb11b00c",
+            "date": "2026-10-13",
+            "time": "14:45",
+            "content": "Jag tar med datasetet till workshopen. Det är det reviderade från senaste mätperioden, så det bör vara mer komplett än förra versionen vi jobbade med.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153001",
+            "senderId": "65e10aa11a009",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:00",
+            "content": "Okej team, ska vi plugga ihop på söndag?",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153002",
+            "senderId": "65f3aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:05",
+            "content": "Jag är på! Behöver repetera API-delen.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153003",
+            "senderId": "699dab0435090",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:07",
+            "content": "Söndag funkar för mig också.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153004",
+            "senderId": "65e10aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:10",
+            "content": "Perfekt, jag tar med kaffe.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153005",
+            "senderId": "699dab0435090",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:12",
+            "content": "Toppen! Ska vi ses vid 10:00?",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153006",
+            "senderId": "65e10aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:15",
+            "content": "Ja, det låter bra. Ska vi mötas vid parken?",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153007",
+            "senderId": "699dab0435090",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:18",
+            "content": "Det blir perfekt. Jag tar med några snacks också.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153008",
+            "senderId": "65e10aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:20",
+            "content": "Bra idé! Vi kan gå igenom planeringen för nästa vecka också.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153009",
+            "senderId": "699dab0435090",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:25",
+            "content": "Absolut, det är bra att få det gjort. Jag ser fram emot det!",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153010",
+            "senderId": "65e10aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:30",
+            "content": "Då säger vi så! Vi ses på söndag kl. 10:00 vid parken.",
+            "hasChanged": false
+        },
+        {
+            "id": "65f900153011",
+            "senderId": "699dab0435090",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-21",
+            "time": "14:35",
+            "content": "Perfekt, vi ses då!",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153003",
+            "senderId": "65e10aa11a001",
+            "calId": "65e10aa11b001",
+            "date": "2026-02-20",
+            "time": "13:25:00",
+            "content": "Perfekt, säg till när det är klart så går jag igenom allt direkt.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153004",
+            "senderId": "65e10aa11a002",
+            "calId": "65e10aa11b001",
+            "date": "2026-02-20",
+            "time": "15:05:00",
+            "content": "Nu är allt uppladdat. Kolla mappen \"final\".",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153005",
+            "senderId": "65e10aa11a001",
+            "calId": "65e10aa11b001",
+            "date": "2026-02-20",
+            "time": "15:22:00",
+            "content": "Ser bra ut vid första anblick. Jag återkommer med feedback senare ikväll.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153006",
+            "senderId": "65e10aa11a003",
+            "calId": "65e10aa11b002",
+            "date": "2026-02-21",
+            "time": "18:10:00",
+            "content": "Vilken sal är det imorgon igen?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153007",
+            "senderId": "65e10aa11a003",
+            "calId": "65e10aa11b002",
+            "date": "2026-02-21",
+            "time": "18:12:00",
+            "content": "Tror det var samma som förra veckan men inte helt säker.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153008",
+            "senderId": "65e10aa11a004",
+            "calId": "65e10aa11b003",
+            "date": "2026-02-22",
+            "time": "09:10:00",
+            "content": "Kör vi benpass idag eller överkropp?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153009",
+            "senderId": "65e10aa11a003",
+            "calId": "65e10aa11b003",
+            "date": "2026-02-22",
+            "time": "09:12:00",
+            "content": "Ben, det behövs 😅",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa15300a",
+            "senderId": "65f3aa11a007",
+            "calId": "65e10aa11b003",
+            "date": "2026-02-22",
+            "time": "09:15:00",
+            "content": "Jag kommer lite sent men joinar.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa15300b",
+            "senderId": "65e10aa11a004",
+            "calId": "65e10aa11b004",
+            "date": "2026-02-23",
+            "time": "11:00:00",
+            "content": "Vi borde sätta en tydligare plan för denna grupp.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa15300c",
+            "senderId": "65e10aa11a005",
+            "calId": "65e10aa11b004",
+            "date": "2026-02-23",
+            "time": "11:05:00",
+            "content": "Håller med, just nu är det lite spretigt.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa15300d",
+            "senderId": "65e10aa11a006",
+            "calId": "65e10aa11b004",
+            "date": "2026-02-23",
+            "time": "11:08:00",
+            "content": "Jag kan ta fram ett förslag till nästa vecka.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa15300e",
+            "senderId": "65f3aa11a001",
+            "calId": "65f3bb11b001",
+            "date": "2026-02-24",
+            "time": "20:10:00",
+            "content": "Vem tar supportpasset på fredag?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa15300f",
+            "senderId": "65f3aa11a006",
+            "calId": "65f3bb11b001",
+            "date": "2026-02-24",
+            "time": "20:12:00",
+            "content": "Jag kan ta det om ingen annan vill.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153010",
+            "senderId": "65f3aa11a00f",
+            "calId": "65f3bb11b001",
+            "date": "2026-02-24",
+            "time": "20:14:00",
+            "content": "Kör på det, jag tar nästa vecka istället.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153011",
+            "senderId": "65f3aa11a003",
+            "calId": "65f3bb11b002",
+            "date": "2026-02-25",
+            "time": "10:30:00",
+            "content": "Deadline för inlämningen är flyttad till fredag.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153012",
+            "senderId": "65f3aa11a002",
+            "calId": "65f3bb11b002",
+            "date": "2026-02-25",
+            "time": "10:32:00",
+            "content": "Bra, då hinner jag fixa klart analysen.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153013",
+            "senderId": "65f3aa11a009",
+            "calId": "65f3bb11b002",
+            "date": "2026-02-25",
+            "time": "10:35:00",
+            "content": "Perfekt, jag uppdaterar dokumentet ikväll.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153003",
+            "senderId": "65e10aa11a001",
+            "calId": "65e10aa11b001",
+            "date": "2026-02-20",
+            "time": "13:25:00",
+            "content": "Toppen, säg till om du behöver hjälp innan dess.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153004",
+            "senderId": "65e10aa11a002",
+            "calId": "65e10aa11b001",
+            "date": "2026-02-20",
+            "time": "14:05:00",
+            "content": "Tack, återkommer om något strular.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153005",
+            "senderId": "65e10aa11a003",
+            "calId": "65e10aa11b002",
+            "date": "2026-02-21",
+            "time": "14:30:00",
+            "content": "Yes, jag är redo. Ska vi köra via Teams?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153006",
+            "senderId": "65e10aa11a004",
+            "calId": "65e10aa11b002",
+            "date": "2026-02-21",
+            "time": "14:32:00",
+            "content": "Ja, jag skickar länk snart.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153007",
+            "senderId": "65e10aa11a004",
+            "calId": "65e10aa11b003",
+            "date": "2026-02-22",
+            "time": "09:00:00",
+            "content": "När passar det att gå igenom planen?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153008",
+            "senderId": "65e10aa11a005",
+            "calId": "65e10aa11b003",
+            "date": "2026-02-22",
+            "time": "09:10:00",
+            "content": "Jag är ledig efter 11.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153009",
+            "senderId": "65e10aa11a004",
+            "calId": "65e10aa11b004",
+            "date": "2026-02-23",
+            "time": "10:15:00",
+            "content": "Deadline närmar sig, status?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153010",
+            "senderId": "65e10aa11a006",
+            "calId": "65e10aa11b004",
+            "date": "2026-02-23",
+            "time": "10:20:00",
+            "content": "Nästan klart, fixar sista delen nu.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153011",
+            "senderId": "65e10aa11a007",
+            "calId": "65e10aa11b005",
+            "date": "2026-02-24",
+            "time": "11:00:00",
+            "content": "Har någon uppdatering om designen?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153012",
+            "senderId": "65e10aa11a008",
+            "calId": "65e10aa11b005",
+            "date": "2026-02-24",
+            "time": "11:05:00",
+            "content": "Ja, laddar upp nya skisser nu.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153013",
+            "senderId": "65f3aa11a001",
+            "calId": "65f3bb11b001",
+            "date": "2026-02-25",
+            "time": "08:30:00",
+            "content": "God morgon, dags att köra igång sprinten.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153014",
+            "senderId": "65f3aa11a006",
+            "calId": "65f3bb11b001",
+            "date": "2026-02-25",
+            "time": "08:35:00",
+            "content": "Yes, jag tar första uppgiften.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153015",
+            "senderId": "65f3aa11a003",
+            "calId": "65f3bb11b002",
+            "date": "2026-02-25",
+            "time": "09:00:00",
+            "content": "Någon som kan hjälpa med buggen?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153016",
+            "senderId": "65f3aa11a002",
+            "calId": "65f3bb11b002",
+            "date": "2026-02-25",
+            "time": "09:05:00",
+            "content": "Jag kollar på den nu.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153017",
+            "senderId": "65f3aa11a007",
+            "calId": "65f3bb11b003",
+            "date": "2026-02-26",
+            "time": "10:10:00",
+            "content": "Hur går testningen?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153018",
+            "senderId": "65f3aa11a008",
+            "calId": "65f3bb11b003",
+            "date": "2026-02-26",
+            "time": "10:15:00",
+            "content": "Allt ser stabilt ut hittills.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153019",
+            "senderId": "65f3aa11a009",
+            "calId": "65f3bb11b004",
+            "date": "2026-02-27",
+            "time": "13:00:00",
+            "content": "Vi behöver prioritera om lite.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153020",
+            "senderId": "65f3aa11a00a",
+            "calId": "65f3bb11b004",
+            "date": "2026-02-27",
+            "time": "13:05:00",
+            "content": "Håller med, vad ska upp först?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153021",
+            "senderId": "65e10aa11a001",
+            "calId": "69bc0311e91e4",
+            "date": "2026-02-28",
+            "time": "15:00:00",
+            "content": "Vi behöver boka in ett möte denna vecka.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153022",
+            "senderId": "65e10aa11a006",
+            "calId": "69bc0311e91e4",
+            "date": "2026-02-28",
+            "time": "15:10:00",
+            "content": "Jag kan onsdag eftermiddag.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153023",
+            "senderId": "65e10aa11a001",
+            "calId": "69bc0311e91e4",
+            "date": "2026-02-28",
+            "time": "15:15:00",
+            "content": "Perfekt, bokar in det.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153024",
+            "senderId": "65e10aa11a001",
+            "calId": "69bc03e975743",
+            "date": "2026-03-01",
+            "time": "09:00:00",
+            "content": "Hur ser planen ut för idag?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153025",
+            "senderId": "65e10aa11a00a",
+            "calId": "69bc03e975743",
+            "date": "2026-03-01",
+            "time": "09:05:00",
+            "content": "Fokus på implementation.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153026",
+            "senderId": "65e10aa11a00a",
+            "calId": "69bc0b6761c21",
+            "date": "2026-03-02",
+            "time": "11:20:00",
+            "content": "Någon som kan reviewa min PR?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153027",
+            "senderId": "65e10aa11a001",
+            "calId": "69bc0b6761c21",
+            "date": "2026-03-02",
+            "time": "11:25:00",
+            "content": "Jag tar den om 10 min.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153028",
+            "senderId": "65f3aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-03",
+            "time": "14:00:00",
+            "content": "Vi måste fixa deploymenten idag.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153029",
+            "senderId": "65f3aa11a002",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-03",
+            "time": "14:10:00",
+            "content": "Jag är på det.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153030",
+            "senderId": "65e10aa11a001",
+            "calId": "65f900bb11b01",
+            "date": "2026-03-03",
+            "time": "14:15:00",
+            "content": "Bra, hojta när klart.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153031",
+            "senderId": "65f3aa11a00b",
+            "calId": "65f3bb11b005",
+            "date": "2026-03-04",
+            "time": "09:10:00",
+            "content": "God morgon team ☀️ dags att köra!",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153032",
+            "senderId": "65f3aa11a00c",
+            "calId": "65f3bb11b005",
+            "date": "2026-03-04",
+            "time": "09:12:00",
+            "content": "Let’s gooo 🚀",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153033",
+            "senderId": "65f3aa11a015",
+            "calId": "65f3bb11b005",
+            "date": "2026-03-04",
+            "time": "09:20:00",
+            "content": "Jag är lite sen idag, sorry 😅",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153034",
+            "senderId": "65f3aa11a00d",
+            "calId": "65f3bb11b006",
+            "date": "2026-03-05",
+            "time": "10:00:00",
+            "content": "Statusuppdatering tack.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153035",
+            "senderId": "65f3aa11a00e",
+            "calId": "65f3bb11b006",
+            "date": "2026-03-05",
+            "time": "10:05:00",
+            "content": "Allt enligt plan 👍",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153036",
+            "senderId": "65f3aa11a016",
+            "calId": "65f3bb11b006",
+            "date": "2026-03-05",
+            "time": "10:06:00",
+            "content": "Same här!",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153037",
+            "senderId": "65f3aa11a010",
+            "calId": "65f3bb11b007",
+            "date": "2026-03-06",
+            "time": "11:30:00",
+            "content": "Vem tog sista kaffet...? ☕️😐",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153038",
+            "senderId": "65f3aa11a011",
+            "calId": "65f3bb11b007",
+            "date": "2026-03-06",
+            "time": "11:31:00",
+            "content": "iinte jag 👀",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153039",
+            "senderId": "65f3aa11a012",
+            "calId": "65f3bb11b008",
+            "date": "2026-03-07",
+            "time": "08:45:00",
+            "content": "Reminder: demo idag kl 13.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153040",
+            "senderId": "65f3aa11a013",
+            "calId": "65f3bb11b008",
+            "date": "2026-03-07",
+            "time": "08:50:00",
+            "content": "Yes, är redo 💪",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153041",
+            "senderId": "65f3aa11a015",
+            "calId": "65f3bb11b009",
+            "date": "2026-03-08",
+            "time": "12:00:00",
+            "content": "Lunch någon? 🍔",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153042",
+            "senderId": "65f3aa11a018",
+            "calId": "65f3bb11b009",
+            "date": "2026-03-08",
+            "time": "12:02:00",
+            "content": "Jag är på!",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153043",
+            "senderId": "65f3aa11a017",
+            "calId": "65f3bb11b00a",
+            "date": "2026-03-09",
+            "time": "15:00:00",
+            "content": "AAAHHH! Det här buggar igen 😤",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153044",
+            "senderId": "65f3aa11a01d",
+            "calId": "65f3bb11b00a",
+            "date": "2026-03-09",
+            "time": "15:05:00",
+            "content": "What a classic 😂",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153045",
+            "senderId": "65f3aa11a019",
+            "calId": "65f3bb11b00b",
+            "date": "2026-03-10",
+            "time": "16:10:00",
+            "content": "Vi behöver tänka om här..",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153046",
+            "senderId": "65f3aa11a01c",
+            "calId": "65f3bb11b00b",
+            "date": "2026-03-10",
+            "time": "16:12:00",
+            "content": "Agree, känns inte helt rätt",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153047",
+            "senderId": "65f3aa11a01c",
+            "calId": "65f3bb11b00c",
+            "date": "2026-03-11",
+            "time": "09:40:00",
+            "content": "Fixade deployen nu 🙌",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153048",
+            "senderId": "65f3aa11a01e",
+            "calId": "65f3bb11b00c",
+            "date": "2026-03-11",
+            "time": "09:42:00",
+            "content": "Snyggt jobbat!",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153049",
+            "senderId": "65e10aa11a001",
+            "calId": "69c31914a2768",
+            "date": "2026-03-12",
+            "time": "13:00:00",
+            "content": "Hur går det här då?",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153050",
+            "senderId": "66b8cd90f089",
+            "calId": "69c31914a2768",
+            "date": "2026-03-12",
+            "time": "13:05:00",
+            "content": "Lite segt men framåt 👍",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153051",
+            "senderId": "67b8ab56d245",
+            "calId": "69c31a3bdbf80",
+            "date": "2026-03-13",
+            "time": "10:00:00",
+            "content": "Hallå där 👋",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153052",
+            "senderId": "67c9bc67e256",
+            "calId": "69c31a3bdbf80",
+            "date": "2026-03-13",
+            "time": "10:01:00",
+            "content": "Tjena!",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153053",
+            "senderId": "65f3aa11a002",
+            "calId": "6b2e4d95f310",
+            "date": "2026-03-14",
+            "time": "14:00:00",
+            "content": "All good här.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153054",
+            "senderId": "65f3aa11a001",
+            "calId": "6b2e4d95f310",
+            "date": "2026-03-14",
+            "time": "14:02:00",
+            "content": "Perfekt 👍",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153055",
+            "senderId": "65f3aa11a00b",
+            "calId": "6c3a5e06a421",
+            "date": "2026-03-15",
+            "time": "09:00:00",
+            "content": "Ny vecka, nya tag 💥",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153056",
+            "senderId": "65f3aa11a00c",
+            "calId": "6c3a5e06a421",
+            "date": "2026-03-15",
+            "time": "09:05:00",
+            "content": "KBK!",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153057",
+            "senderId": "65f3aa11a00c",
+            "calId": "6d4b6f17b532",
+            "date": "2026-03-16",
+            "time": "11:00:00",
+            "content": "Den här var klurig 🤔",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153058",
+            "senderId": "65f3aa11a00d",
+            "calId": "6d4b6f17b532",
+            "date": "2026-03-16",
+            "time": "11:10:00",
+            "content": "Vi löser det.",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153059",
+            "senderId": "66b8cd90f089",
+            "calId": "6e5c7028c643",
+            "date": "2026-03-17",
+            "time": "15:03:00",
+            "content": "Bra tempo idag 🔥",
+            "hasChanged": false
+        },
+        {
+            "id": "65e10aa153060",
+            "senderId": "6812ab12d311",
+            "calId": "6e5c7028c643",
+            "date": "2026-03-17",
+            "time": "15:05:00",
+            "content": "Verkligen!",
+            "hasChanged": false
+        }
+    ]
+}

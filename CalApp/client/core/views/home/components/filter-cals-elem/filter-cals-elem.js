@@ -1,6 +1,7 @@
 import { PubSub } from "../../../../store/Pubsub.js";
 import { EVENTS } from "../../../../store/Events.js";
 import { StoreService } from "../../../../services/StoreService.js";
+import { HomeViewService } from "../../HomeViewService.js";
 
 class FilterCalendarsElem extends HTMLElement {
 
@@ -17,13 +18,20 @@ class FilterCalendarsElem extends HTMLElement {
     }
 
     subs() {
-        // Updated cals in state
+        
+        PubSub.subscribe(EVENTS.DATA.SELECTED.CALENDARS, () => {
+            HomeViewService // GET CALS?
+            
+        })
+        
+        // Get cals, and updated cals in state
         StoreService.getNotifiedStoreChanges("cals", (updatedCals) => {
             // Re-render
             this.data = updatedCals;
             this.render();
             this.eListeners();
         });
+        
     }
 
     service() {
@@ -47,56 +55,54 @@ class FilterCalendarsElem extends HTMLElement {
 
     style() {
         return `
-            <style>
-                #filter-container {
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                    flex-wrap: wrap;
-                }
-                #cals {
-                    display: flex;
-                    gap: 5px;
-                    flex-wrap: wrap;
-                    flex: 1;
-                }
-                .calBoxes {
-                    display: flex;
-                    gap: 5px;
-                    background-color: white;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 10px;
-                    border-radius: 10px;
-                    cursor: pointer;
-                }
-                #createGroupBtn {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 10px;
-                    border-radius: 10px;
-                    background-color: white;
-                    border: none;
-                    cursor: pointer;
-                    font-weight: bold;
-                    white-space: nowrap;
-                }
-                #createGroupBtn:hover {
-                    background-color: #e0e0e0;
-                }
-                    
-                .selectedBox {
-                    background-color: blue;
-                }   
-            </style>
+            #filter-container {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                flex-wrap: wrap;
+            }
+            #cals {
+                display: flex;
+                gap: 5px;
+                flex-wrap: wrap;
+                flex: 1;
+            }
+            .calBoxes {
+                display: flex;
+                gap: 5px;
+                background-color: white;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            #createGroupBtn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: white;
+                border: none;
+                cursor: pointer;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+            #createGroupBtn:hover {
+                background-color: #e0e0e0;
+            }
+                
+            .selectedBox {
+                background-color: blue;
+            }   
         `;
     }
     
     render() {
         this.shadowRoot.innerHTML = `
         
-            ${this.style()}
+            <style>${this.style()}</style>
             
             <div id="filter-container">
                 <div id="cals"> ${this.createBoxes()}</div>

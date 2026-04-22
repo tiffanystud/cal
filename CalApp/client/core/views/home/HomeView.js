@@ -1,15 +1,15 @@
 
 // GLOBAL
-import "../../../components/notificationsBar/notificationsBar.js"
-import "../../../components/bottomNav/bottomNav.js"
-import "../../../components/searchUsersModal/searchUsersModal.js"
+// import "../../../components/notificationsBar/notificationsBar.js"
+// import "../../../components/bottomNav/bottomNav.js"
+// import "../../../components/searchUsersModal/searchUsersModal.js"
 
 // VIEW-SPECIFIC
-import "./components/WeekChartComp/WeekChartElem.js"
-import "./components" // eventCardPopup
-import "./components" // searchTagsBtn
-import "./components" // calDetailBtn
-import "./components" // landingButtons
+import "./components/week-chart-elem/week-chart-elem.js"
+// import "./components" // eventCardPopup
+// import "./components" // searchTagsBtn
+// import "./components" // calDetailBtn
+// import "./components" // landingButtons
 
 
 export class homeView {

@@ -1,0 +1,333 @@
+{
+    "calendars": [
+        {
+            "id": "65e10aa11b001",
+            "creatorId": "65e10aa11a001",
+            "name": "Projekt A",
+            "description": "En samlingsplats f\u00f6r allt som r\u00f6r projektet.",
+            "type": "public"
+        },
+        {
+            "id": "65e10aa11b002",
+            "creatorId": "65e10aa11a002",
+            "name": "Studiegrupp",
+            "description": "H\u00e4r f\u00f6rs\u00f6ker vi h\u00e5lla koll p\u00e5 plugg, tr\u00e4ffar och allt kaos som uppst\u00e5r n\u00e4r alla har olika scheman. Perfekt f\u00f6r att undvika att n\u00e5gon 'gl\u00f6mmer' seminariet igen.",
+            "type": "private"
+        },
+        {
+            "id": "65e10aa11b003",
+            "creatorId": "65e10aa11a003",
+            "name": "Gym-schema",
+            "description": "Tr\u00e4ning och gains.",
+            "type": "public"
+        },
+        {
+            "id": "65e10aa11b004",
+            "creatorId": "65e10aa11a004",
+            "name": "newNameGroup",
+            "description": "",
+            "type": "public"
+        },
+        {
+            "id": "699d8717f007a",
+            "creatorId": "65f3be11b009",
+            "name": "LatestTestgroup",
+            "description": "En experimentkalender d\u00e4r allt testas, \u00e4ndras, kastas om och ibland bara r\u00e5kar funka \u00e4nd\u00e5.",
+            "type": "public"
+        },
+        {
+            "id": "69ac867f767b5",
+            "creatorId": "65f3aa11a003",
+            "name": "Studiegrupp",
+            "description": "Plugg och m\u00f6ten.",
+            "type": "private"
+        },
+        {
+            "id": "69bc0311e91e4",
+            "creatorId": "65e10aa11a001",
+            "name": "Dancing Queens",
+            "description": "En kalender fylld med danspass, glitter, energi och allt som beh\u00f6vs f\u00f6r att h\u00e5lla rytmen vid liv.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b001",
+            "creatorId": "65f3aa11a001",
+            "name": "MAU Tech Support",
+            "description": "Planering av supportpass, fels\u00f6kningstr\u00e4ffar.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b002",
+            "creatorId": "65f3aa11a003",
+            "name": "Ekonomi HT26",
+            "description": "Alla kursmoment, f\u00f6rel\u00e4sningar och deadlines samlade s\u00e5 ingen beh\u00f6ver panikscrolla Canvas 03:12 p\u00e5 natten.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b003",
+            "creatorId": "65f3aa11a007",
+            "name": "Yoga Mindfulness Club",
+            "description": "En lugn och harmonisk kalender d\u00e4r vi f\u00f6rs\u00f6ker komma ih\u00e5g att andas, str\u00e4cka ut och inte stressa s\u00f6nder.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b004",
+            "creatorId": "65f3aa11a009",
+            "name": "Spy Bar Crew",
+            "description": "Arbetspass, m\u00f6ten och allt annat som h\u00e4nder bakom kulisserna n\u00e4r natten lever sitt eget liv.",
+            "type": "private"
+        },
+        {
+            "id": "65f3bb11b00d",
+            "creatorId": "65f3aa11a009",
+            "name": "Spy Bar VIP",
+            "description": "Allt som \u00e4r lite extra, lite hemligt och lite mer 'du m\u00e5ste k\u00e4nna n\u00e5gon f\u00f6r att ens veta att detta existerar'.",
+            "type": "private"
+        },
+        {
+            "id": "65f3bb11b005",
+            "creatorId": "65f3aa11a00b",
+            "name": "Malm\u00f6 Futsal Team",
+            "description": "Matcher, tr\u00e4ningar och lagaktiviteter.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b006",
+            "creatorId": "65f3aa11a00d",
+            "name": "Lund Running Club",
+            "description": "En kalender f\u00f6r l\u00f6prundor, intervaller och spontana 'ska vi springa 12 km fast vi sa 5?'-id\u00e9er.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b007",
+            "creatorId": "65f3aa11a010",
+            "name": "Foto & Film Studio",
+            "description": "H\u00e4r samlas allt fr\u00e5n planerade fotoshoots till sena kv\u00e4llar d\u00e4r n\u00e5gon s\u00e4ger 'vi testar bara en grej' och pl\u00f6tsligt st\u00e5r alla med tre lampor, tv\u00e5 stativ och en id\u00e9 som kanske eller kanske inte fungerar. Perfekt f\u00f6r kreativa kaosprojekt.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b008",
+            "creatorId": "65f3aa11a012",
+            "name": "Coding Night Group",
+            "description": "Kodkv\u00e4llar, snacks och projekt som f\u00f6ds av ren koffeinenergi.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b009",
+            "creatorId": "65f3aa11a015",
+            "name": "Projekt Orion",
+            "description": "En mer omfattande projektkalender d\u00e4r id\u00e9er, planering, research, m\u00f6ten och l\u00e5ngsiktiga m\u00e5l v\u00e4vs ihop till en tydlig riktning. Perfekt f\u00f6r att h\u00e5lla koll p\u00e5 allt som annars hade f\u00f6rsvunnit i en chattr\u00e5d n\u00e5gon gl\u00f6mde scrolla upp i.",
+            "type": "private"
+        },
+        {
+            "id": "65f3bb11b00a",
+            "creatorId": "65f3aa11a017",
+            "name": "Team Global Outreach",
+            "description": "Planering av internationella initiativ och samarbeten.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b00b",
+            "creatorId": "65f3aa11a019",
+            "name": "Malm\u00f6 Gaming League",
+            "description": "Turneringar, scrims och allt som g\u00f6r gaminglivet lite mer organiserat.",
+            "type": "public"
+        },
+        {
+            "id": "65f3bb11b00c",
+            "creatorId": "65f3aa11a01c",
+            "name": "Sustainability Research Lab",
+            "description": "En kalender fylld med forskningsm\u00f6ten, analyser, workshops och l\u00e5ngsiktiga projekt som kretsar kring h\u00e5llbarhet, innovation och framtidens l\u00f6sningar. H\u00e4r samlas b\u00e5de sm\u00e5 och stora steg mot en mer genomt\u00e4nkt v\u00e4rld.",
+            "type": "public"
+        },
+        {
+            "id": "65f900bb11b01",
+            "creatorId": "65e10aa11a009",
+            "name": "Penta",
+            "description": "Planering av gruppens aktiviteter.",
+            "type": "private"
+        },
+        {
+            "id": "65fa00bb11b01",
+            "creatorId": "65e10aa11a001",
+            "name": "Vad h\u00e4nder i Malm\u00f6",
+            "description": "En levande samling av allt som h\u00e4nder i stan - konserter, sm\u00e5 events, spontana happenings och mindre evenemang.",
+            "type": "public"
+        },
+        {
+            "id": "69c31731daf11",
+            "creatorId": "66c9de01a090",
+            "name": "Språk lunch",
+            "description": "Vi ses varannan tisdag på saluhallen. Ojämna veckor.",
+            "type": "private"
+        },
+        {
+            "id": "69c31914a2768",
+            "creatorId": "6812ab12d311",
+            "name": "Nordic Food Festivals",
+            "description": "",
+            "type": "public"
+        },
+        {
+            "id": "69c31a3bdbf80",
+            "creatorId": "67b8ab56d245",
+            "name": "Costco Finds",
+            "description": "heyy",
+            "type": "private"
+        },
+        {
+            "id": "69bc03e975743",
+            "creatorId": "65e10aa11a001",
+            "name": "Bagerisällskapet",
+            "description": "Baktillfällen där vi fokuserar på ekologiskt hållbara- och svenskproducerade råvaror.",
+            "type": "private"
+        },
+        {
+            "id": "69bc0b6761c21",
+            "creatorId": "65e10aa11a001",
+            "name": "Malmö REKO-Ring",
+            "description": "Vi tycker att kedjan mellan producent och konsument borde vara mycket kortare! Vi vill göra det enklare att stötta småskaliga, lokala initiativ. REKO-ringen innebär direkthandel där producenternas matsvinn och dyra mellanhänder minimeras. Varor förhandsbeställs på Penta betalas innan konsumenter och producenter träffas för samordnad varuutlämning varje vecka.",
+            "type": "public"
+        },
+        {
+            "id": "6a1f3c84e209",
+            "creatorId": "65f3aa11a001",
+            "name": "Techno & Rave Koordination",
+            "description": "Inte för alla. Om du vet, vet du. Hemliga adresser skickas 2h innan. Glöm inte svart.",
+            "type": "private"
+        },
+        {
+            "id": "6b2e4d95f310",
+            "creatorId": "65f3aa11a002",
+            "name": "Podcast: Två Killar En Mikrofon",
+            "description": "Inspelningsschema, gästbokningar och alla de gånger vi säger 'vi fixar det live' och sedan inte gör det. En kalender för Sveriges troligtvis mest oförberedda men ärliga poddprojekt.",
+            "type": "private"
+        },
+        {
+            "id": "6c3a5e06a421",
+            "creatorId": "65f3aa11a00b",
+            "name": "Rabattkod Jägarna",
+            "description": "Delar de bästa koderna, drop-tider och kampanjer. Ingen betalar full pris här.",
+            "type": "public"
+        },
+        {
+            "id": "6d4b6f17b532",
+            "creatorId": "65f3aa11a00c",
+            "name": "Flashback Filosoferna",
+            "description": "Träffar där vi diskuterar trådar som borde ha lästs igår. Allt från samhällskritik till konspirationer som kanske inte är konspirationer. Kaffe och åsikter ingår.",
+            "type": "private"
+        },
+        {
+            "id": "6e5c7028c643",
+            "creatorId": "66b8cd90f089",
+            "name": "Malmö Street Food Crawl",
+            "description": "",
+            "type": "public"
+        },
+        {
+            "id": "6f6d8139d754",
+            "creatorId": "66c9de01a090",
+            "name": "Solpanels-nördarnas Mötesplats",
+            "description": "För oss som verkligen tänkte för djupt på elräkningen och nu bygger egna off-grid-system. Workshops, gemensamma inköp och tekniska djupdykningar.",
+            "type": "public"
+        },
+        {
+            "id": "6a7e924ae865",
+            "creatorId": "65f3bb11b009",
+            "name": "Sebbe & Gänget",
+            "description": "",
+            "type": "private"
+        },
+        {
+            "id": "6b8fa35bf976",
+            "creatorId": "66daef12b101",
+            "name": "Afrikansk Litteraturklubb",
+            "description": "En kalender för läsecirkeln som faktiskt läser. Vi täcker allt från Achebe till nya röster. Mötena är på engelska men hjärtat är globalt.",
+            "type": "public"
+        },
+        {
+            "id": "6c90b46ca087",
+            "creatorId": "65f3aa11a010",
+            "name": "Golden Hour Fotografi",
+            "description": "Spontana shoots vid soluppgång och solnedgång. Platser annonseras kvällen innan. Ta med kameran, lämna planen hemma.",
+            "type": "public"
+        },
+        {
+            "id": "6da1c57db198",
+            "creatorId": "66ebfa23c112",
+            "name": "Meditationscirkeln",
+            "description": "Veckovis stillhet, guidade sessioner och ibland bara tystnad. Välkommen oavsett erfarenhet.",
+            "type": "public"
+        },
+        {
+            "id": "6eb2d68ec209",
+            "creatorId": "65f3aa11a016",
+            "name": "True Crime Torsdagar",
+            "description": "Vi samlas varje torsdag, äter för mycket chips och analyserar fall som polisen uppenbarligen inte förstår. Hobby-detektiver välkomna.",
+            "type": "private"
+        },
+        {
+            "id": "6fc3e79fd31a",
+            "creatorId": "66f6ab78d067",
+            "name": "Latinamerika Cultural Exchange",
+            "description": "Events, film nights, language tandem sessions and everything that connects the diaspora. Todos bienvenidos.",
+            "type": "public"
+        },
+        {
+            "id": "6ad4f80ae42b",
+            "creatorId": "65f3aa11a018",
+            "name": "Vinylsamlarnas Börs",
+            "description": "Köp, sälj, byt skivor. Träffas en gång i månaden i någons källare och låtsas som att vi inte köper för mycket.",
+            "type": "private"
+        },
+        {
+            "id": "6be5091bf53c",
+            "creatorId": "6796ef34b223",
+            "name": "Fantasy Football Kommissionen",
+            "description": "",
+            "type": "private"
+        },
+        {
+            "id": "6cf61a2ca64d",
+            "creatorId": "6c9fef341223",
+            "name": "Tennis Academy Malmö",
+            "description": "Bokningar, turneringsschema och träningsupplägg för alla nivåer. Från nybörjare till de som tar det lite väl seriöst.",
+            "type": "public"
+        },
+        {
+            "id": "6da72b3db75e",
+            "creatorId": "65f3aa11a01a",
+            "name": "Anonyma Överkonsumenter",
+            "description": "En support-kalender för oss som köper saker vi inte behöver och delar hauls vi skäms lite för. Dömningsfritt. Mestadels.",
+            "type": "private"
+        },
+        {
+            "id": "6eb83c4ec86f",
+            "creatorId": "66a7bc89e078",
+            "name": "Klimataktivism Nätverk",
+            "description": "Koordinering av aktioner, demonstrationer och lokala initiativ. Planeten väntar inte och det gör inte vi heller.",
+            "type": "public"
+        },
+        {
+            "id": "6fc94d5fd979",
+            "creatorId": "65f3aa11a00e",
+            "name": "Anime & Manga Screening",
+            "description": "Fredagskvällar med projektorduk, japansk snacks och djupa diskussioner om karaktärsutveckling som egentligen handlar om oss själva.",
+            "type": "public"
+        },
+        {
+            "id": "6ada5e60ea8a",
+            "creatorId": "67dacd78f267",
+            "name": "Cairo Connect",
+            "description": "A calendar for the Egyptian community abroad — cultural events, eid planning, and keeping traditions alive far from home.",
+            "type": "private"
+        },
+        {
+            "id": "6beb6f71fb9b",
+            "creatorId": "65f3aa11a014",
+            "name": "Spontana Middagar",
+            "description": "Ingen planering, ingen meny bestämd i förväg. Bara ett datum, en adress och förväntningen att någon vet hur man lagar mat. Någon vet väl det?",
+            "type": "public"
+        }
+    ]
+}

@@ -1,0 +1,164 @@
+{
+    "users_notifications": [
+        {
+            "id": "69bbd466480ef",
+            "notiId": "69bbcc44b5377",
+            "userId": "65e10aa11a001"
+        },
+        {
+            "id": "69bbd478a6a16",
+            "notiId": "69bbcc44b5377",
+            "userId": "65e10aa11a002"
+        },
+        {
+            "id": "69bbd4c913172",
+            "notiId": "69bbce7c49da1",
+            "userId": "65e10aa11a003"
+        },
+        {
+            "id": "69bbd4e1ccf8b",
+            "notiId": "69bbd002ab5b8",
+            "userId": "65e10aa11a002"
+        },
+        {
+            "id": "69bbd4f174546",
+            "notiId": "69bbd0f08ba4a",
+            "userId": "65e10aa11a001"
+        },
+        {
+            "id": "69bbd502ef38f",
+            "notiId": "69bbd0f08ba4a",
+            "userId": "65e10aa11a002"
+        },
+        {
+            "id": "69bbd502ef14f",
+            "notiId": "69bd5c20d9396",
+            "userId": "65e10aa11a001"
+        },
+        {
+            "id": "69bbd502ef390",
+            "notiId": "69bd5c3412a97",
+            "userId": "65e10aa11a001"
+        },
+        {
+            "id": "69bbd502ef391",
+            "notiId": "69bd5c4ccd060",
+            "userId": "65e10aa11a001"
+        },
+        {
+            "id": "69bbd502ef392",
+            "notiId": "69bd5c20d9396",
+            "userId": "65e10aa11a002"
+        },
+        {
+            "id": "69bbd502ef393",
+            "notiId": "69bd5c3412a97",
+            "userId": "65e10aa11a002"
+        },
+        {
+            "id": "69bbd502ef394",
+            "notiId": "69bd5c4ccd060",
+            "userId": "65e10aa11a002"
+        },
+        {
+            "id": "65f47711f001",
+            "notiId": "65f43344b5011",
+            "userId": "65f3aa11a001"
+        },
+        {
+            "id": "65f47711f002",
+            "notiId": "65f43344b5011",
+            "userId": "65f3aa11a006"
+        },
+        {
+            "id": "65f47711f003",
+            "notiId": "65f43344b5011",
+            "userId": "65f3aa11a00f"
+        },
+        {
+            "id": "65f47711f004",
+            "notiId": "65f43344b5012",
+            "userId": "65f3aa11a001"
+        },
+        {
+            "id": "65f47711f005",
+            "notiId": "65f43344b5012",
+            "userId": "65f3aa11a006"
+        },
+        {
+            "id": "65f47711f006",
+            "notiId": "65f43344b5012",
+            "userId": "65f3aa11a012"
+        },
+        {
+            "id": "65f47711f007",
+            "notiId": "65f43344b5013",
+            "userId": "65f3aa11a003"
+        },
+        {
+            "id": "65f47711f008",
+            "notiId": "65f43344b5013",
+            "userId": "65f3aa11a002"
+        },
+        {
+            "id": "65f47711f009",
+            "notiId": "65f43344b5013",
+            "userId": "65f3aa11a004"
+        },
+        {
+            "id": "65f47711f00a",
+            "notiId": "65f43344b5014",
+            "userId": "65f3aa11a009"
+        },
+        {
+            "id": "65f47711f00b",
+            "notiId": "65f43344b5014",
+            "userId": "65f3aa11a00a"
+        },
+        {
+            "id": "65f47711f00c",
+            "notiId": "65f43344b5014",
+            "userId": "65f3aa11a01b"
+        },
+        {
+            "id": "65f47711f00d",
+            "notiId": "65f43344b5015",
+            "userId": "65f3aa11a012"
+        },
+        {
+            "id": "65f47711f00e",
+            "notiId": "65f43344b5015",
+            "userId": "65f3aa11a013"
+        },
+        {
+            "id": "65f47711f00f",
+            "notiId": "65f43344b5015",
+            "userId": "65f3aa11a017"
+        },
+        {
+            "id": "65f47711f010",
+            "notiId": "65f43344b5012",
+            "userId": "65f3aa11a011"
+        },
+        {
+            "id": "65f47711f011",
+            "notiId": "65f43344b5014",
+            "userId": "65f3aa11a019"
+        },
+        {
+            "id": "65f47711f012",
+            "notiId": "65f43344b5011",
+            "userId": "65f3aa11a01c"
+        },
+        {
+            "id": "65f47711f013",
+            "notiId": "65f43344b5013",
+            "userId": "65f3aa11a01e"
+        },
+        {
+            "id": "65f47711f014",
+            "notiId": "65f43344b5015",
+            "userId": "65f3aa11a018"
+        }
+    ]
+}

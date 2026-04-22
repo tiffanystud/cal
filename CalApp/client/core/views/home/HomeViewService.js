@@ -11,7 +11,7 @@ import { HomeView } from "./HomeView.js";
 - DENNA MÅSTE UNLOADAS SÅ ALLA UNSUBS SKER?? I ALLA SERVICES OCH COMPS *** 
  */
 
-export class HomeService {
+export class HomeViewService {
 
     constructor() {
         this.subs();
@@ -52,7 +52,7 @@ export class HomeService {
         // COMPONENT-SPECIFIC, REMINDER: some needs to be unsubbed when view changes
         this.unsubSelectedCalendars = PubSub.subscribe(EVENTS.DATA.SELECTED.CALENDARS, function (data) {
             
-            if (!this.selectedCalendars) return this.selectedCalendars = data;
+            if (!this.selectedCalendars) this.selectedCalendars = data;
             
             const newSelCal = [];
             this.selectedCalendars.forEach(cal => {
