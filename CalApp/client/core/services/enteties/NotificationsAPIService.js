@@ -1,5 +1,5 @@
-import { store } from "../../store/Store.js";
-import { apiRequest } from "../ApiService";
+import { Store } from "../../store/Store.js";
+import { APIRequest } from "../APIService.js";
 import { PubSub } from "../../store/Pubsub.js";
 import { EVENTS } from "../../store/Events.js";
 
@@ -45,7 +45,7 @@ class NotificationsAPIService {
     GET(id = null) {
 
         // Byt till store
-        const userCalendars = store.getState().cals;
+        const userCalendars = Store.getState().cals;
 
         // Return one calendar
         if (id) {
@@ -59,7 +59,7 @@ class NotificationsAPIService {
 
             try {
 
-                const allCals = apiRequest({
+                const allCals = APIRequest({
                     "entity": "calendars",
                     "method": "GET"
                 });
@@ -80,7 +80,7 @@ class NotificationsAPIService {
         // Return all calendars
         try {
 
-            const allCals = apiRequest({
+            const allCals = APIRequest({
                 "entity": "calendars",
                 "method": "GET"
             })
@@ -117,7 +117,7 @@ class NotificationsAPIService {
 
         try {
 
-            const created = apiRequest({
+            const created = APIRequest({
                 "entity": "calendars",
                 "method": "POST",
                 "body": newCalendar
@@ -153,7 +153,7 @@ class NotificationsAPIService {
 
         try {
 
-            const patched = apiRequest({
+            const patched = APIRequest({
                 "entity": "calendars",
                 "method": "PATCH",
                 "body": newData
@@ -177,8 +177,8 @@ class NotificationsAPIService {
             return this.sendErrorMSG();
         }
 
-        const foundCalendar = store.getState().cals.find(c => c.id === id);
-        const userID = store.getState().isLoggedin.id;
+        const foundCalendar = Store.getState().cals.find(c => c.id === id);
+        const userID = Store.getState().isLoggedin.id;
 
         if (!foundCalendar || foundCalendar.creatorId !== userID) {
             PubSub.publish(EVENTS.REQUEST.ERROR.CALENDARS.DELETE);
@@ -187,7 +187,7 @@ class NotificationsAPIService {
 
         try {
 
-            const result = apiRequest({
+            const result = APIRequest({
                 "entity": "calendars",
                 "method": "DELETE",
                 "body": id

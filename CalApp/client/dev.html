@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIN Development</title>
+    <style>
+        #app {
+            height: 700px;
+            width: 390px;
+            background-color: rgb(227, 238, 244);
+            box-sizing: border-box;
+            overflow: scroll;
+            padding: 10px;
+            position: relative;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <week-chart-elem></week-chart-elem> <!-- ✔️ -->
+        <filter-cals-elem></filter-cals-elem> <!-- ✔️ -->
+    </div>
+    
+    <script type="module" src="dev.js"></script>
+</body>
+
+</html>
