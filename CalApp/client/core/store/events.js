@@ -62,6 +62,7 @@ export const EVENTS = {
 
         RETURNED: {
             MESSAGES: "data:returned:messages"
+            EVENTSRSVP: "data:selected:eventsrsvp",
         },
 
         SELECTED: {

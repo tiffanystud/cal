@@ -3,7 +3,7 @@ class Participants extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: open });
-        this.eventData;
+        this.participants;
     }
 
     connectedCallback() {
@@ -17,9 +17,8 @@ class Participants extends HTMLElement {
     }
 
     subs() {
-
-        PubSub.subscribe(EVENTS.DATA, (data) => {
-            this.eventData = data;
+        PubSub.subscribe(EVENTS.DATA.RETURNED.EVENTSRSVP, (data) => {
+            this.participants = data.isGoing;
         })
 
     }

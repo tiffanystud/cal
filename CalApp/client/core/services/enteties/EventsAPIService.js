@@ -65,6 +65,7 @@ class EventsAPIService {
 
     POST(newEvent) {
 
+        // Does it need controllers for incoming request? Server should handle it instead of frontend
         if (!newEvent) {
             PubSub.publish(EVENTS.REQUEST.ERROR.EVENTS.POST);
             return this.sendErrorMSG();
@@ -120,7 +121,7 @@ class EventsAPIService {
 
         } catch (responseMessage) {
             PubSub.publish(EVENTS.RESPONSE.ERROR.EVENTS.DELETE, { message: responseMessage });
-            
+
         }
 
     }

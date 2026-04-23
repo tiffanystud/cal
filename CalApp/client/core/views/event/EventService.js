@@ -46,19 +46,23 @@ class EventService {
 
 
     participantsService(eventId) {
+        // Pubba data.selected för att hämta in data från store
         let eventObject = PubSub.publish(EVENTS.DATA.SELECTED.EVENTS, [eventId]);
 
         let userCalendars = PubSub.publish(EVENTS.DATA.SELECTED.USERCALENDARS, [eventObject[calId]]);
-
         let userCalendarsIds = userCalendars.map(userCal => userCal.userId);
 
         let eventsRSVP = PubSub.publish(EVENTS.DATA.SELECTED.EVENTSRSVP, userCalendarsIds);
-        
+
         let userIsGoing = eventsRSVP.filter(eventsRSVPKeys => eventsRSVPKeys.isGoing == "yes");
         let userNotGoing = eventsRSVP.filter(eventsRSVPKeys => eventsRSVPKeys.igGoing == "no");
-        let userMayebGoing = eventsRSVP.filter(eventsRSVPKeys => eventsRSVPKeys.isGoing == "maybe");
+        let userMaybebGoing = eventsRSVP.filter(eventsRSVPKeys => eventsRSVPKeys.isGoing == "maybe");
 
-        // Typ puba datan här till komponenterna?
+        PubSub.publish(EVENTS.DATA.RETURNED.EVENTSRSVP, {
+            isGoing: userIsGoing,
+            isNotGoing: userNotGoing,
+            userMaybeGoing: userMaybebGoing
+        })
 
 
     }

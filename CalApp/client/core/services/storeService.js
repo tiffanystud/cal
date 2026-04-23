@@ -394,7 +394,7 @@ export class storeService {
 
     apiServiceSubs() {
 
-        // takes entitiyname, method and responsedata from api to setState. This makes the event unified for all entities,
+        // Takes entitiyname, method and responsedata from api to setState. This makes the event unified for all entities,
         // instead of having more subscribes per entitiy and method here.
         PubSub.subscribe(EVENTS.DATA.UPDATED, (data) => {
 
