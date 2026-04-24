@@ -10,30 +10,30 @@
                 if($method === "GET") {
                     if(empty($input)){
                         $data = UserService::getAll($input);
-                        sendJSON([$data],200);
+                        sendJSON($data,200);
                     }
                     if(isset($input["id"])){
                         $data = UserService::getByParams($input);
-                        sendJSON([$data],200);
+                        sendJSON($data,200);
                     }
                 } elseif($method === "POST") {
                     if(!isset($input["name"]) || !isset($input["email"]) || !isset($input["password"])) {
                         throw new Exception("Missing fields");
                     }
                     $data = UserService::post($input);
-                    sendJSON([$data],201);
+                    sendJSON($data,201);
                 } elseif($method === "PATCH") {
                     if(!isset($input["userId"])) {
                         throw new Exception("Missing userId parameter");
                     }
                     $data = UserService::patch($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 } elseif($method === "DELETE") {
                     if(!isset($input["userId"]) || !isset($input["email"]) || !isset($input["password"])) {
                         throw new Exception("Missing fields");
                     }
                     $data = UserService::delete($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 }
 
             } catch(Exception $error) {

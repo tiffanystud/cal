@@ -11,27 +11,27 @@ class EventsRSVPController {
                     throw new Exception("Missing attributes");
                 } 
                 $data = EventsRSVPServices::getByParams($input);
-                sendJson([$data],200);
+                sendJson($data,200);
                 
             } elseif($method == "POST") {
                 if(!isset($input["userId"]) || !isset($input["eventId"]) || !isset($input["isGoing"]) || !isset($input["reminder"])) {
                     throw new Exception("Missing attributes");
                 } 
                 $data = EventsRSVPServices::post($input);
-                sendJson([$data],201);
+                sendJson($data,201);
     
             } elseif($method == "PATCH") {
                 if(!isset($input["userId"]) || !isset($input["eventId"])) {
                     throw new Exception("Missing attributes");
                 } 
                 $data = EventsRSVPServices::patch($input);
-                sendJson([$data],200);
+                sendJson($data,200);
             } elseif($method == "DELETE") {
                 if(!isset($input["userId"]) || !isset($input["eventId"])) {
                     throw new Exception("Missing attributes");
                 } 
                 $data = EventsRSVPServices::delete($input);
-                sendJson([$data],200);
+                sendJson($data,200);
             }
         } catch(Exception $error) {
             self::errorHandler($error);

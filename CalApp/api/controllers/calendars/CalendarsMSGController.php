@@ -14,28 +14,28 @@ class CalendarsMSGController {
                     throw new Exception("Missing attributes");
                 }
                 $data = CalendarsMSGService::getByParams($input);
-                sendJson([$data],200);
+                sendJson($data,200);
     
             } else if($method === "POST") {
                 if(!isset($input["senderId"]) || !isset($input["calId"]) || !isset($input["content"])  ) {
                     throw new Exception("Missing attributes");
                 }
                 $data = CalendarsMSGService::post($input);
-                sendJson([$data],201);
+                sendJson($data,201);
                 
             } else if($method === "PATCH") {
                 if(!isset($input["id"]) || !isset($input["calId"]) || !isset($input["content"])  ) {
                     throw new Exception("Missing attributes");
                 }
                 $data = CalendarsMSGService::patch($input);
-                sendJson([$data],200);
+                sendJson($data,200);
                 
             } else if($method === "DELETE") {
                 if(!isset($input["id"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = CalendarsMSGService::delete($input);
-                sendJson([$data],200);
+                sendJson($data,200);
     
             }
         } catch(Exception $error) {

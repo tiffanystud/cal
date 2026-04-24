@@ -43,7 +43,7 @@ class CalendarsController{
                     throw new Exception("Missing attributes");
                 } 
                 $data = CalendarsService::delete($input);
-                sendJson([$data], 200);
+                sendJson($data, 200);
     
             }
 

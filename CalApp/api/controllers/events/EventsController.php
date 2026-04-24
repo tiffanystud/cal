@@ -13,15 +13,15 @@ class EventsController {
             if($method == "GET") {
                 if(isset($input["calId"])) {
                     $data = EventsService::getByParams($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 }
                 if(isset($input["eventId"])) {
                     $data = EventsService::getByParams($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 }
                 if(empty($input)) {
                     $data = EventsService::getAll($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 }
 
             } elseif($method == "POST") {
@@ -29,20 +29,20 @@ class EventsController {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventsService::post($input);
-                sendJSON([$data],201);
+                sendJSON($data,201);
 
             } elseif($method == "PATCH") {
                 if(!isset($input["eventId"]) || !isset($input["calId"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventsService::patch($input);
-                sendJSON([$data],200);
+                sendJSON($data,200);
             } elseif($method == "DELETE") {
                 if(!isset($input["eventId"]) || !isset($input["calId"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventsService::delete($input);
-                sendJSON([$data],200);
+                sendJSON($data,200);
             }
         } catch (Exception $error) {
             self::errorHandler($error);

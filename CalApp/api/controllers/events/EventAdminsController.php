@@ -10,19 +10,19 @@ class EventAdminsController {
             if($method == "GET") {
                 if(isset($input["eventId"]) && isset($input["userId"])) {
                     $data = EventAdminsService::getByParams($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 }
                 if(isset($input["eventId"])) {
                     $data = EventAdminsService::getByParams($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 }
                 if(isset($input["userId"])) {
                     $data = EventAdminsService::getByParams($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 }
                 if(empty($input)) {
                     $data = EventAdminsService::getAll($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 }
                 throw new Exception("Missing attributes");
 
@@ -31,21 +31,21 @@ class EventAdminsController {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventAdminsService::post($input);
-                sendJSON([$data],200);
+                sendJSON($data,200);
 
             } elseif($method == "PATCH") {
                 if(!isset($input["userId"]) || !isset($input["eventId"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventAdminsService::patch($input);
-                sendJSON([$data],200);
+                sendJSON($data,200);
 
             } elseif($method == "DELETE") {
                 if(!isset($input["userId"]) || !isset($input["eventId"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventAdminsService::delete($input);
-                sendJSON([$data],200);
+                sendJSON($data,200);
             }
         } catch(Exception $error) {
             self::errorHandler($error);
