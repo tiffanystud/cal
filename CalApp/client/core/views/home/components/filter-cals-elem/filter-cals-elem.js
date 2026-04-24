@@ -42,7 +42,6 @@ class FilterCalsElem extends HTMLElement {
         // Trigger HomeViewService
         PubSub.publish(EVENTS.REQUEST.SENT.CALENDARS.GET);
         PubSub.publish(EVENTS.REQUEST.SENT.USERSCALENDARS.GET);
-        console.log("ALL PUBS WERE PUBBED");
     }
 
     createBoxes() {

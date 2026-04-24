@@ -58,6 +58,7 @@ export const EVENTS = {
             USERSCALENDARS: "data:updated:userscalendars",
             ISLOGGEDIN: "data:updated:isloggedin",
             MESSAGES: "data:updated:messages",
+            FRIENDSHIPS: "data:updated:friendships",
         },
 
         RETURNED: {
@@ -71,7 +72,8 @@ export const EVENTS = {
             NOTIFICATIONS: "data:returned:notifications",
             PRIVATE_MSG: "data:returned:private_msg",
             CALENDAR_MSG: "data:returned:calendar_msg",
-            SEARCHMOAL: "data:returned:searchmodal",
+            FRIENDSHIPS: "data:returned:friendships",
+            SEARCHMODAL: "data:returned:searchmodal",
         },
 
         SELECTED: {
@@ -85,6 +87,7 @@ export const EVENTS = {
             MESSAGES: "data:selected:messages",
             EVENTSRSVP: "data:selected:eventsrsvp",
             NOTIFICATIONS: "data:selected:notifications",
+            FRIENDSHIPS: "data:selected:friendships",
         }
 
     },
@@ -189,7 +192,13 @@ export const EVENTS = {
                 GET: "request:sent:messages:get",
                 PATCH: "request:sent:messages:patch",
                 DELETE: "request:sent:messages:delete"
-            }
+            },
+            FRIENDSHIPS: {
+                POST: "request:sent:friendships:post",
+                GET: "request:sent:friendships:get",
+                PATCH: "request:sent:friendships:patch",
+                DELETE: "request:sent:friendships:delete"
+            },
         },
 
         RECEIVED: {
@@ -226,6 +235,12 @@ export const EVENTS = {
                 GET: "request:received:notifications:get",
                 PATCH: "request:received:notifications:patch",
                 DELETE: "request:received:notifications:delete"
+            },
+            FRIENDSHIPS: {
+                POST: "request:received:friendships:post",
+                GET: "request:received:friendships:get",
+                PATCH: "request:received:friendships:patch",
+                DELETE: "request:received:friendships:delete"
             },
         },
 
@@ -265,7 +280,13 @@ export const EVENTS = {
                 GET: "request:error:notifications:get",
                 PATCH: "request:error:notifications:patch",
                 DELETE: "request:error:notifications:delete",
-            }
+            },
+            FRIENDSHIPS: {
+                POST: "request:error:friendships:post",
+                GET: "request:error:friendships:get",
+                PATCH: "request:error:friendships:patch",
+                DELETE: "request:error:friendships:delete",
+            },
         }
 
     },
@@ -309,7 +330,13 @@ export const EVENTS = {
                 GET: "response:sent:notifications:get",
                 PATCH: "response:sent:notifications:patch",
                 DELETE: "response:sent:notifications:delete"
-            }
+            },
+            FRIENDSHIPS: {
+                POST: "response:sent:friendships:post",
+                GET: "response:sent:friendships:get",
+                PATCH: "response:sent:friendships:patch",
+                DELETE: "response:sent:friendships:delete"
+            },
         },
 
         RECEIVED: {
@@ -346,6 +373,12 @@ export const EVENTS = {
                 GET: "response:received:notifications:get",
                 PATCH: "response:received:notifications:patch",
                 DELETE: "response:received:notifications:delete",
+            },
+            FRIENDSHIPS: {
+                POST: "response:received:friendships:post",
+                GET: "response:received:friendships:get",
+                PATCH: "response:received:friendships:patch",
+                DELETE: "response:received:friendships:delete",
             },
         },
 
@@ -385,6 +418,12 @@ export const EVENTS = {
                 GET: "response:error:notifications:get",
                 PATCH: "response:error:notifications:patch",
                 DELETE: "response:error:notifications:delete",
+            },
+            FRIENDSHIPS: {
+                POST: "response:error:friendships:post",
+                GET: "response:error:friendships:get",
+                PATCH: "response:error:friendships:patch",
+                DELETE: "response:error:friendships:delete",
             },
 
         }
@@ -431,6 +470,12 @@ export const EVENTS = {
                 PATCH: "resource:received:notifications:patch",
                 DELETE: "resource:received:notifications:delete"
             },
+            FRIENDSHIPS: {
+                POST: "resource:received:friendships:post",
+                GET: "resource:received:friendships:get",
+                PATCH: "resource:received:friendships:patch",
+                DELETE: "resource:received:friendships:delete"
+            },
         },
 
         ERROR: {
@@ -469,6 +514,12 @@ export const EVENTS = {
                 GET: "resource:error:notifications:get",
                 PATCH: "resource:error:notifications:patch",
                 DELETE: "resource:error:notifications:delete"
+            },
+            FRIENDSHIPS: {
+                POST: "resource:error:friendships:post",
+                GET: "resource:error:friendships:get",
+                PATCH: "resource:error:friendships:patch",
+                DELETE: "resource:error:friendships:delete"
             },
         }
 
