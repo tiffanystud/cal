@@ -1,0 +1,207 @@
+{
+    "users_availabilities": [
+        {
+            "id": "65e10aa150001",
+            "userId": "65e10aa11a001",
+            "date": "2026-03-01",
+            "isAvailable": true,
+            "calId": "65e10aa11b001"
+        },
+        {
+            "id": "65e10aa150002",
+            "userId": "65e10aa11a002",
+            "date": "2026-03-01",
+            "isAvailable": false,
+            "calId": "65e10aa11b001"
+        },
+        {
+            "id": "65e10aa150003",
+            "userId": "65e10aa11a003",
+            "date": "2026-03-05",
+            "isAvailable": true,
+            "calId": "65e10aa11b002"
+        },
+        {
+            "id": "65e10aa150004",
+            "userId": "65e10aa11a004",
+            "date": "2026-03-10",
+            "isAvailable": true,
+            "calId": "65e10aa11b003"
+        },
+        {
+            "id": "65e10aa150005",
+            "userId": "65e10aa11a005",
+            "date": "2026-03-12",
+            "isAvailable": false,
+            "calId": "65e10aa11b004"
+        },
+        {
+            "id": "65f455150001",
+            "userId": "65f3aa11a001",
+            "date": "2026-03-12",
+            "isAvailable": true,
+            "calId": "65f3bb11b001"
+        },
+        {
+            "id": "65f455150002",
+            "userId": "65f3aa11a006",
+            "date": "2026-03-12",
+            "isAvailable": false,
+            "calId": "65f3bb11b001"
+        },
+        {
+            "id": "65f455150003",
+            "userId": "65f3aa11a003",
+            "date": "2025-11-04",
+            "isAvailable": true,
+            "calId": "65f3bb11b002"
+        },
+        {
+            "id": "65f455150004",
+            "userId": "65f3aa11a002",
+            "date": "2025-11-04",
+            "isAvailable": true,
+            "calId": "65f3bb11b002"
+        },
+        {
+            "id": "65f455150005",
+            "userId": "65f3aa11a007",
+            "date": "2027-02-18",
+            "isAvailable": true,
+            "calId": "65f3bb11b003"
+        },
+        {
+            "id": "65f455150006",
+            "userId": "65f3aa11a008",
+            "date": "2027-02-18",
+            "isAvailable": false,
+            "calId": "65f3bb11b003"
+        },
+        {
+            "id": "65f455150007",
+            "userId": "65f3aa11a009",
+            "date": "2026-09-22",
+            "isAvailable": true,
+            "calId": "65f3bb11b004"
+        },
+        {
+            "id": "65f455150008",
+            "userId": "65f3aa11a00a",
+            "date": "2026-09-22",
+            "isAvailable": true,
+            "calId": "65f3bb11b004"
+        },
+        {
+            "id": "65f455150009",
+            "userId": "65f3aa11a00b",
+            "date": "2025-05-14",
+            "isAvailable": true,
+            "calId": "65f3bb11b005"
+        },
+        {
+            "id": "65f45515000a",
+            "userId": "65f3aa11a00c",
+            "date": "2025-05-14",
+            "isAvailable": false,
+            "calId": "65f3bb11b005"
+        },
+        {
+            "id": "65f45515000b",
+            "userId": "65f3aa11a00d",
+            "date": "2027-01-10",
+            "isAvailable": true,
+            "calId": "65f3bb11b006"
+        },
+        {
+            "id": "65f45515000c",
+            "userId": "65f3aa11a00e",
+            "date": "2027-01-10",
+            "isAvailable": true,
+            "calId": "65f3bb11b006"
+        },
+        {
+            "id": "65f45515000d",
+            "userId": "65f3aa11a010",
+            "date": "2026-04-02",
+            "isAvailable": true,
+            "calId": "65f3bb11b007"
+        },
+        {
+            "id": "65f45515000e",
+            "userId": "65f3aa11a011",
+            "date": "2026-04-02",
+            "isAvailable": false,
+            "calId": "65f3bb11b007"
+        },
+        {
+            "id": "65f45515000f",
+            "userId": "65f3aa11a012",
+            "date": "2025-12-19",
+            "isAvailable": true,
+            "calId": "65f3bb11b008"
+        },
+        {
+            "id": "65f455150010",
+            "userId": "65f3aa11a013",
+            "date": "2025-12-19",
+            "isAvailable": true,
+            "calId": "65f3bb11b008"
+        },
+        {
+            "id": "65f455150011",
+            "userId": "65f3aa11a015",
+            "date": "2027-03-03",
+            "isAvailable": true,
+            "calId": "65f3bb11b009"
+        },
+        {
+            "id": "65f455150012",
+            "userId": "65f3aa11a018",
+            "date": "2027-03-03",
+            "isAvailable": false,
+            "calId": "65f3bb11b009"
+        },
+        {
+            "id": "65f455150013",
+            "userId": "65f3aa11a017",
+            "date": "2026-06-11",
+            "isAvailable": true,
+            "calId": "65f3bb11b00a"
+        },
+        {
+            "id": "65f455150014",
+            "userId": "65f3aa11a01d",
+            "date": "2026-06-11",
+            "isAvailable": true,
+            "calId": "65f3bb11b00a"
+        },
+        {
+            "id": "65f455150015",
+            "userId": "65f3aa11a019",
+            "date": "2025-08-27",
+            "isAvailable": true,
+            "calId": "65f3bb11b00b"
+        },
+        {
+            "id": "65f455150016",
+            "userId": "65f3aa11a01c",
+            "date": "2025-08-27",
+            "isAvailable": false,
+            "calId": "65f3bb11b00b"
+        },
+        {
+            "id": "65f455150017",
+            "userId": "65f3aa11a01c",
+            "date": "2026-10-14",
+            "isAvailable": true,
+            "calId": "65f3bb11b00c"
+        },
+        {
+            "id": "65f455150018",
+            "userId": "65f3aa11a01e",
+            "date": "2026-10-14",
+            "isAvailable": true,
+            "calId": "65f3bb11b00c"
+        }
+    ]
+}

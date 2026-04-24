@@ -13,7 +13,7 @@
  *
  * Add a RESOURCE (data)
  *   1.  Add under DATA.UPDATED
- *   1.  Add under DATA.RETURNED
+ *   1.  Add under DATA.RETURNEDF
  *   2.  Add under DATA.SELECTED
  *   3.  Add under REQUEST.SENT      (POST, GET, PATCH, DELETE)
  *   4.  Add under REQUEST.RECEIVED  (POST, GET)
@@ -55,26 +55,39 @@ export const EVENTS = {
             CALENDARSEVENTS: "data:updated:calendarsevents",
             EVENTS: "data:updated:events",
             USERS: "data:updated:users",
-            USERCALENDARS: "data:updated:usercalendars",
+            USERSCALENDARS: "data:updated:userscalendars",
             ISLOGGEDIN: "data:updated:isloggedin",
             MESSAGES: "data:updated:messages",
+            FRIENDSHIPS: "data:updated:friendships",
         },
 
         RETURNED: {
-            MESSAGES: "data:returned:messages"
+            MESSAGES: "data:returned:messages",
+            EVENTSRSVP: "data:selected:eventsrsvp",
+            TEST: "data:returned:test",
+            CALENDARS: "data:returned:calendars",
+            USERS: "data:returned:users",
+            EVENTS: "data:returned:events",
+            USERSCALENDARS: "data:returned:userscalendars",
+            NOTIFICATIONS: "data:returned:notifications",
+            PRIVATE_MSG: "data:returned:private_msg",
+            CALENDAR_MSG: "data:returned:calendar_msg",
+            FRIENDSHIPS: "data:returned:friendships",
+            SEARCHMODAL: "data:returned:searchmodal",
         },
 
         SELECTED: {
             TEST: "data:updated:test",
             CALENDARS: "data:selected:calendars",
             CALENDARSEVENTS: "data:selected:calendarsevents",
-            USERCALENDARS: "data:selected:usercalendars",
+            USERSCALENDARS: "data:selected:userscalendars",
             EVENTS: "data:selected:events",
             USERS: "data:selected:users",
             ISLOGGEDIN: "data:selected:isloggedin",
             MESSAGES: "data:selected:messages",
             EVENTSRSVP: "data:selected:eventsrsvp",
             NOTIFICATIONS: "data:selected:notifications",
+            FRIENDSHIPS: "data:selected:friendships",
         }
 
     },
@@ -162,11 +175,11 @@ export const EVENTS = {
                 PATCH: "request:sent:users:patch",
                 DELETE: "request:sent:users:delete"
             },
-            USERCALENDARS: {
-                POST: "request:sent:usercalendars:post",
-                GET: "request:sent:usercalendars:get",
-                PATCH: "request:sent:usercalendars:patch",
-                DELETE: "request:sent:usercalendars:delete"
+            USERSCALENDARS: {
+                POST: "request:sent:userscalendars:post",
+                GET: "request:sent:userscalendars:get",
+                PATCH: "request:sent:userscalendars:patch",
+                DELETE: "request:sent:userscalendars:delete"
             },
             ISLOGGEDIN: {
                 POST: "request:sent:isloggedin:post",
@@ -179,7 +192,13 @@ export const EVENTS = {
                 GET: "request:sent:messages:get",
                 PATCH: "request:sent:messages:patch",
                 DELETE: "request:sent:messages:delete"
-            }
+            },
+            FRIENDSHIPS: {
+                POST: "request:sent:friendships:post",
+                GET: "request:sent:friendships:get",
+                PATCH: "request:sent:friendships:patch",
+                DELETE: "request:sent:friendships:delete"
+            },
         },
 
         RECEIVED: {
@@ -199,9 +218,9 @@ export const EVENTS = {
                 POST: "request:received:users:post",
                 GET: "request:received:users:get"
             },
-            USERCALENDARS: {
-                POST: "request:received:usercalendars:post",
-                GET: "request:received:usercalendars:get"
+            USERSCALENDARS: {
+                POST: "request:received:userscalendars:post",
+                GET: "request:received:userscalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "request:received:isloggedin:post",
@@ -216,6 +235,12 @@ export const EVENTS = {
                 GET: "request:received:notifications:get",
                 PATCH: "request:received:notifications:patch",
                 DELETE: "request:received:notifications:delete"
+            },
+            FRIENDSHIPS: {
+                POST: "request:received:friendships:post",
+                GET: "request:received:friendships:get",
+                PATCH: "request:received:friendships:patch",
+                DELETE: "request:received:friendships:delete"
             },
         },
 
@@ -238,9 +263,9 @@ export const EVENTS = {
                 POST: "request:error:users:post",
                 GET: "request:error:users:get"
             },
-            USERCALENDARS: {
-                POST: "request:error:usercalendars:post",
-                GET: "request:error:usercalendars:get"
+            USERSCALENDARS: {
+                POST: "request:error:userscalendars:post",
+                GET: "request:error:userscalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "request:error:isloggedin:post",
@@ -255,7 +280,13 @@ export const EVENTS = {
                 GET: "request:error:notifications:get",
                 PATCH: "request:error:notifications:patch",
                 DELETE: "request:error:notifications:delete",
-            }
+            },
+            FRIENDSHIPS: {
+                POST: "request:error:friendships:post",
+                GET: "request:error:friendships:get",
+                PATCH: "request:error:friendships:patch",
+                DELETE: "request:error:friendships:delete",
+            },
         }
 
     },
@@ -282,9 +313,9 @@ export const EVENTS = {
                 POST: "response:sent:users:post",
                 GET: "response:sent:users:get"
             },
-            USERCALENDARS: {
-                POST: "response:sent:usercalendars:post",
-                GET: "response:sent:usercalendars:get"
+            USERSCALENDARS: {
+                POST: "response:sent:userscalendars:post",
+                GET: "response:sent:userscalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "response:sent:isloggedin:post",
@@ -299,7 +330,13 @@ export const EVENTS = {
                 GET: "response:sent:notifications:get",
                 PATCH: "response:sent:notifications:patch",
                 DELETE: "response:sent:notifications:delete"
-            }
+            },
+            FRIENDSHIPS: {
+                POST: "response:sent:friendships:post",
+                GET: "response:sent:friendships:get",
+                PATCH: "response:sent:friendships:patch",
+                DELETE: "response:sent:friendships:delete"
+            },
         },
 
         RECEIVED: {
@@ -319,9 +356,9 @@ export const EVENTS = {
                 POST: "response:received:users:post",
                 GET: "response:received:users:get"
             },
-            USERCALENDARS: {
-                POST: "response:received:usercalendars:post",
-                GET: "response:received:usercalendars:get"
+            USERSCALENDARS: {
+                POST: "response:received:userscalendars:post",
+                GET: "response:received:userscalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "response:received:isloggedin:post",
@@ -336,6 +373,12 @@ export const EVENTS = {
                 GET: "response:received:notifications:get",
                 PATCH: "response:received:notifications:patch",
                 DELETE: "response:received:notifications:delete",
+            },
+            FRIENDSHIPS: {
+                POST: "response:received:friendships:post",
+                GET: "response:received:friendships:get",
+                PATCH: "response:received:friendships:patch",
+                DELETE: "response:received:friendships:delete",
             },
         },
 
@@ -358,9 +401,9 @@ export const EVENTS = {
                 POST: "response:error:users:post",
                 GET: "response:error:users:get"
             },
-            USERCALENDARS: {
-                POST: "response:error:usercalendars:post",
-                GET: "response:error:usercalendars:get"
+            USERSCALENDARS: {
+                POST: "response:error:userscalendars:post",
+                GET: "response:error:userscalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "response:error:isloggedin:post",
@@ -375,6 +418,12 @@ export const EVENTS = {
                 GET: "response:error:notifications:get",
                 PATCH: "response:error:notifications:patch",
                 DELETE: "response:error:notifications:delete",
+            },
+            FRIENDSHIPS: {
+                POST: "response:error:friendships:post",
+                GET: "response:error:friendships:get",
+                PATCH: "response:error:friendships:patch",
+                DELETE: "response:error:friendships:delete",
             },
 
         }
@@ -403,9 +452,9 @@ export const EVENTS = {
                 POST: "resource:received:users:post",
                 GET: "resource:received:users:get"
             },
-            USERCALENDARS: {
-                POST: "resource:received:usercalendars:post",
-                GET: "resource:received:usercalendars:get"
+            USERSCALENDARS: {
+                POST: "resource:received:userscalendars:post",
+                GET: "resource:received:userscalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "resource:received:isloggedin:post",
@@ -420,6 +469,12 @@ export const EVENTS = {
                 GET: "resource:received:notifications:get",
                 PATCH: "resource:received:notifications:patch",
                 DELETE: "resource:received:notifications:delete"
+            },
+            FRIENDSHIPS: {
+                POST: "resource:received:friendships:post",
+                GET: "resource:received:friendships:get",
+                PATCH: "resource:received:friendships:patch",
+                DELETE: "resource:received:friendships:delete"
             },
         },
 
@@ -442,9 +497,9 @@ export const EVENTS = {
                 POST: "resource:error:users:post",
                 GET: "resource:error:users:get"
             },
-            USERCALENDARS: {
-                POST: "resource:error:usercalendars:post",
-                GET: "resource:error:usercalendars:get"
+            USERSCALENDARS: {
+                POST: "resource:error:userscalendars:post",
+                GET: "resource:error:userscalendars:get"
             },
             ISLOGGEDIN: {
                 POST: "resource:error:isloggedin:post",
@@ -459,6 +514,12 @@ export const EVENTS = {
                 GET: "resource:error:notifications:get",
                 PATCH: "resource:error:notifications:patch",
                 DELETE: "resource:error:notifications:delete"
+            },
+            FRIENDSHIPS: {
+                POST: "resource:error:friendships:post",
+                GET: "resource:error:friendships:get",
+                PATCH: "resource:error:friendships:patch",
+                DELETE: "resource:error:friendships:delete"
             },
         }
 

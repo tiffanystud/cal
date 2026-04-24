@@ -21,7 +21,7 @@ class EventInfo extends HTMLElement {
     }
 
     subs() {
-
+        // Sätt in rätt event för suben
         PubSub.subscribe(EVENTS.DATA, (data) => {
             this.eventData = data;
         })

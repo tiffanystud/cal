@@ -9,9 +9,10 @@
 */
 
 // Entity (matcha i router.php)
-export async function apiRequest({ entity, method, body = null }) {
+export async function APIRequest({ entity, method, body = null }) {
 
-    // console.log(`RECEIVED REQUEST: ${entity} ${method} ${body} -`)
+    // DEVELOPMENT
+    console.log(`RECEIVED REQUEST: ${entity} ${method} ${body} -`);
 
     const options = {
         method: method.toUpperCase(),
@@ -31,6 +32,11 @@ export async function apiRequest({ entity, method, body = null }) {
 
         response = await fetch(`${BASE_URL}/${entity}`, options);
         responseData = await response.json();
+
+        // DEVELOPMENT
+        /*         console.log(`RECEIVED RESPONSE AND RESOURCE:`);
+                console.log("Response:", response);
+                console.log("Resource:", responseData); */
 
     } catch (err) {
         PubSub.publish("Network::Error");
@@ -58,7 +64,7 @@ export async function apiRequest({ entity, method, body = null }) {
     }
 
     // Från erik: Status måste alltid returneras och en (ev. tom) body + status
-    const data = await response.json();
-    return data;
+    // const data = await response.json();
+    return responseData;
 
 }

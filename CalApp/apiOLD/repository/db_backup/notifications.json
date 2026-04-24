@@ -1,0 +1,661 @@
+{
+    "notifications": [
+        {
+            "id": "69bbcc44b5377",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa153001",
+                "senderId": "65e10aa11a002",
+                "calId": "65e10aa11b001",
+                "date": "2026-02-20",
+                "time": "13:10:00",
+                "content": "Jag laddar upp filerna snart.",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa153001",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bbce7c49da1",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c002",
+                "date": "2026-03-05",
+                "time": "18:00",
+                "type": "deadline",
+                "name": "Inl\u00e4mning 1",
+                "description": "Deadline för inlämning 1",
+                "location": "Canvas",
+                "needsConfirmation": false,
+                "participationLimits": null,
+                "tags": "school",
+                "calId": "65e10aa11b002"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c002",
+            "read": false
+        },
+        {
+            "id": "69bbd002ab5b8",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa152001",
+                "senderId": "65e10aa11a001",
+                "receiverId": "65e10aa11a002",
+                "date": "2026-02-20",
+                "time": "13:00:00",
+                "content": "Hej!",
+                "hasChange": false
+            },
+            "messageId": "65e10aa152001",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bbd0f08ba4a",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c006",
+                "date": "2026-03-18",
+                "time": "18:00",
+                "type": "meeting",
+                "name": "Planeringsm\u00f6te",
+                "description": "Planering",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65e10aa11b001"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c006",
+            "read": false
+        },
+        {
+            "id": "69bd5c20d9396",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c006",
+                "date": "2026-03-18",
+                "time": "18:00",
+                "type": "meeting",
+                "name": "Planeringsm\u00f6te",
+                "description": "Planering",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65e10aa11b001"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c006",
+            "read": false
+        },
+        {
+            "id": "69bd5c3412a97",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c006",
+                "date": "2026-03-18",
+                "time": "18:00",
+                "type": "meeting",
+                "name": "Planeringsm\u00f6te",
+                "description": "Planering",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65e10aa11b001"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c006",
+            "read": false
+        },
+        {
+            "id": "69bd5c4ccd060",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c006",
+                "date": "2026-03-18",
+                "time": "18:00",
+                "type": "meeting",
+                "name": "Planeringsm\u00f6te",
+                "description": "Planering",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65e10aa11b001"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c006",
+            "read": false
+        },
+        {
+            "id": "65f43344b5011",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153001",
+                "senderId": "65f3aa11a001",
+                "calId": "65f3bb11b001",
+                "date": "2026-03-10",
+                "time": "09:15",
+                "content": "Glöm inte veckomötet på torsdag.",
+                "hasChanged": false
+            },
+            "messageId": "65f411153001",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "65f43344b5012",
+            "type": "event",
+            "notiContent": {
+                "id": "65f3ee11c001",
+                "senderId": "65f3aa11a001"
+            },
+            "messageId": null,
+            "eventId": "65f3ee11c001",
+            "read": false
+        },
+        {
+            "id": "65f43344b5013",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153004",
+                "senderId": "65f3aa11a002",
+                "calId": "65f3bb11b002",
+                "date": "2025-11-03",
+                "time": "08:55",
+                "content": "Jag lägger upp anteckningarna efter lektionen.",
+                "hasChanged": false
+            },
+            "messageId": "65f411153004",
+            "eventId": null,
+            "read": true
+        },
+        {
+            "id": "65f43344b5014",
+            "type": "event",
+            "notiContent": {
+                "id": "65f3ee11c004",
+                "senderId": "65f3aa11a009"
+            },
+            "messageId": null,
+            "eventId": "65f3ee11c004",
+            "read": false
+        },
+        {
+            "id": "65f43344b5015",
+            "type": "message",
+            "notiContent": {
+                "id": "65f41115300f",
+                "senderId": "65f3aa11a012",
+                "calId": "65f3bb11b008",
+                "date": "2025-12-18",
+                "time": "19:40",
+                "content": "Kodkväll imorgon!",
+                "hasChanged": false
+            },
+            "messageId": "65f41115300f",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69be100000001",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa153001",
+                "senderId": "65e10aa11a002",
+                "calId": "65e10aa11b001",
+                "date": "2026-02-20",
+                "time": "13:10:00",
+                "content": "Jag laddar upp filerna snart.",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa153001",
+            "eventId": null,
+            "read": false,
+            "userId": "65e10aa11a001"
+        },
+        {
+            "id": "69be100000002",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa153001",
+                "senderId": "65e10aa11a002",
+                "calId": "65e10aa11b001",
+                "date": "2026-02-20",
+                "time": "13:10:00",
+                "content": "Jag laddar upp filerna snart.",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa153001",
+            "eventId": null,
+            "read": false,
+            "userId": "65e10aa11a003"
+        },
+        {
+            "id": "69be100000003",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c002",
+                "date": "2026-03-05",
+                "time": "18:00",
+                "type": "deadline",
+                "name": "Inlämning 1",
+                "description": "Deadline för inlämning 1",
+                "location": "Canvas",
+                "needsConfirmation": false,
+                "participationLimits": null,
+                "tags": "school",
+                "calId": "65e10aa11b002"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c002",
+            "read": false,
+            "userId": "65e10aa11a003"
+        },
+        {
+            "id": "69be100000004",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c002",
+                "date": "2026-03-05",
+                "time": "18:00",
+                "type": "deadline",
+                "name": "Inlämning 1",
+                "description": "Deadline för inlämning 1",
+                "location": "Canvas",
+                "needsConfirmation": false,
+                "participationLimits": null,
+                "tags": "school",
+                "calId": "65e10aa11b002"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c002",
+            "read": false,
+            "userId": "65e10aa11a004"
+        },
+        {
+            "id": "69be100000005",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa153002",
+                "senderId": "65e10aa11a003",
+                "calId": "65e10aa11b002",
+                "date": "2026-02-21",
+                "time": "14:20:00",
+                "content": "Glöm inte mötet imorgon.",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa153002",
+            "eventId": null,
+            "read": false,
+            "userId": "65e10aa11a004"
+        },
+        {
+            "id": "69be100000006",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa153002",
+                "senderId": "65e10aa11a003",
+                "calId": "65e10aa11b002",
+                "date": "2026-02-21",
+                "time": "14:20:00",
+                "content": "Glöm inte mötet imorgon.",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa153002",
+            "eventId": null,
+            "read": false,
+            "userId": "65e10aa11a002"
+        },
+        {
+            "id": "69be100000007",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c006",
+                "date": "2026-03-18",
+                "time": "18:00",
+                "type": "meeting",
+                "name": "Planeringsmöte",
+                "description": "Planering",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65e10aa11b001"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c006",
+            "read": false,
+            "userId": "65e10aa11a001"
+        },
+        {
+            "id": "69be100000008",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c006",
+                "date": "2026-03-18",
+                "time": "18:00",
+                "type": "meeting",
+                "name": "Planeringsmöte",
+                "description": "Planering",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65e10aa11b001"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c006",
+            "read": false,
+            "userId": "65e10aa11a002"
+        },
+        {
+            "id": "69be100000009",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c006",
+                "date": "2026-03-18",
+                "time": "18:00",
+                "type": "meeting",
+                "name": "Planeringsmöte",
+                "description": "Planering",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65e10aa11b001"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c006",
+            "read": false,
+            "userId": "65e10aa11a003"
+        },
+        {
+            "id": "69be100000010",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153001",
+                "senderId": "65f3aa11a001",
+                "calId": "65f3bb11b001",
+                "date": "2026-03-10",
+                "time": "09:15",
+                "content": "Glöm inte veckomötet på torsdag.",
+                "hasChanged": false
+            },
+            "messageId": "65f411153001",
+            "eventId": null,
+            "read": false,
+            "userId": "65f3aa11a002"
+        },
+        {
+            "id": "69be100000011",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153001",
+                "senderId": "65f3aa11a001",
+                "calId": "65f3bb11b001",
+                "date": "2026-04-10",
+                "time": "09:15",
+                "content": "Glöm inte veckomötet på torsdag.",
+                "hasChanged": false
+            },
+            "messageId": "65f411153001",
+            "eventId": null,
+            "read": false,
+            "userId": "65f3aa11a003"
+        },
+        {
+            "id": "69bc000000001",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa153001",
+                "senderId": "65e10aa11a002",
+                "calId": "65e10aa11b001",
+                "date": "2026-04-01",
+                "time": "10:00:00",
+                "content": "Hej! Glöm inte dagens planeringsmöte kl 11.",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa153001",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bc000000002",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153001",
+                "senderId": "65f3aa11a001",
+                "calId": "65f3bb11b001",
+                "date": "2026-04-01",
+                "time": "09:30:00",
+                "content": "Missa inte veckomötet på torsdag!",
+                "hasChanged": false
+            },
+            "messageId": "65f411153001",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bc000000003",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c002",
+                "date": "2026-04-02",
+                "time": "18:00",
+                "type": "deadline",
+                "name": "Inlämning 2",
+                "description": "Deadline för inlämning 2",
+                "location": "Canvas",
+                "needsConfirmation": false,
+                "participationLimits": null,
+                "tags": "school",
+                "calId": "65e10aa11b002"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c002",
+            "read": false
+        },
+        {
+            "id": "69bc000000004",
+            "type": "event",
+            "notiContent": {
+                "id": "65f3ee11c001",
+                "date": "2026-04-03",
+                "time": "14:00",
+                "type": "meeting",
+                "name": "Team Standup",
+                "description": "Daglig standup med teamet",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 15,
+                "tags": "work",
+                "calId": "65f3bb11b001"
+            },
+            "messageId": null,
+            "eventId": "65f3ee11c001",
+            "read": false
+        },
+        {
+            "id": "69bc000000005",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153004",
+                "senderId": "65f3aa11a002",
+                "calId": "65f3bb11b002",
+                "date": "2026-04-04",
+                "time": "15:00:00",
+                "content": "Jag lägger upp anteckningarna efter lektionen, promise 😊",
+                "hasChanged": false
+            },
+            "messageId": "65f411153004",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bc000000006",
+            "type": "event",
+            "notiContent": {
+                "id": "65f3ee11c004",
+                "date": "2026-04-05",
+                "time": "16:30",
+                "type": "meeting",
+                "name": "Code Review",
+                "description": "Vi går igenom koden inför release",
+                "location": "GitHub / Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65f3bb11b002"
+            },
+            "messageId": null,
+            "eventId": "65f3ee11c004",
+            "read": false
+        },
+        {
+            "id": "69bc000000007",
+            "type": "message",
+            "notiContent": {
+                "id": "65f41115300f",
+                "senderId": "65f3aa11a012",
+                "calId": "65f3bb11b008",
+                "date": "2026-04-06",
+                "time": "19:00:00",
+                "content": "Kodkväll ikväll! 🖥️🍕",
+                "hasChanged": false
+            },
+            "messageId": "65f41115300f",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bc000000008",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa153002",
+                "senderId": "65e10aa11a003",
+                "calId": "65e10aa11b002",
+                "date": "2026-04-07",
+                "time": "12:00:00",
+                "content": "Glöm inte mötet imorgon!",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa153002",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bc000000009",
+            "type": "event",
+            "notiContent": {
+                "id": "65e10aa11c006",
+                "date": "2026-04-08",
+                "time": "18:00",
+                "type": "meeting",
+                "name": "Planeringsmöte",
+                "description": "Planering inför Q2",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65e10aa11b001"
+            },
+            "messageId": null,
+            "eventId": "65e10aa11c006",
+            "read": false
+        },
+        {
+            "id": "69bc000000010",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa152001",
+                "senderId": "65e10aa11a001",
+                "receiverId": "65e10aa11a002",
+                "date": "2026-04-09",
+                "time": "11:00:00",
+                "content": "Hej! Har du tid för en kort pratstund idag?",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa152001",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bc000000011",
+            "type": "message",
+            "notiContent": {
+                "id": "65e10aa152002",
+                "senderId": "65e10aa11a002",
+                "receiverId": "65e10aa11a003",
+                "date": "2026-04-10",
+                "time": "13:45:00",
+                "content": "Haha, du glömmer alltid dina möten 😏",
+                "hasChanged": false
+            },
+            "messageId": "65e10aa152002",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bc000000012",
+            "type": "event",
+            "notiContent": {
+                "id": "65f3ee11c001",
+                "date": "2026-04-11",
+                "time": "10:00",
+                "type": "meeting",
+                "name": "Sprint Planning",
+                "description": "Planering för nästa sprint",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 15,
+                "tags": "work",
+                "calId": "65f3bb11b001"
+            },
+            "messageId": null,
+            "eventId": "65f3ee11c001",
+            "read": false
+        },
+        {
+            "id": "69bc000000013",
+            "type": "message",
+            "notiContent": {
+                "id": "65f411153001",
+                "senderId": "65f3aa11a001",
+                "calId": "65f3bb11b001",
+                "date": "2026-04-12",
+                "time": "09:00:00",
+                "content": "Kom ihåg att uppdatera din status på Jira!",
+                "hasChanged": false
+            },
+            "messageId": "65f411153001",
+            "eventId": null,
+            "read": false
+        },
+        {
+            "id": "69bc000000014",
+            "type": "event",
+            "notiContent": {
+                "id": "65f3ee11c004",
+                "date": "2026-04-13",
+                "time": "14:00",
+                "type": "meeting",
+                "name": "Release Review",
+                "description": "Granskning av release",
+                "location": "Teams",
+                "needsConfirmation": true,
+                "participationLimits": 10,
+                "tags": "work",
+                "calId": "65f3bb11b002"
+            },
+            "messageId": null,
+            "eventId": "65f3ee11c004",
+            "read": false
+        }
+    ]
+}

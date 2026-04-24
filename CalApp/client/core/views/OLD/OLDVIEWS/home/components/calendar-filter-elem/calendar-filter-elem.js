@@ -9,18 +9,22 @@ export class CalendarFilterElem extends HTMLElement {
         this.data;
     }
 
-    connectedCallback(){}
-    
-    disconnectedCallback(){}
-    
-    subs() {}
-    
-    render() {}
-    
-    service() {}
-    
-    eListeners() {}
-    
+    connectedCallback() { }
+
+    disconnectedCallback() { }
+
+    subs() { }
+
+    render() {
+        this.shadowRoot.innerHTML= `
+        
+        `;
+     }
+
+    service() { }
+
+    eListeners() { }
+
 }
 
 

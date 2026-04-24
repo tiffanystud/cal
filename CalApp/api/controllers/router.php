@@ -5,7 +5,6 @@ require_once __DIR__ . "/../middleware/Middleware.php";
 
 // Controllers
 require_once "UserController.php";
-require_once "GroupsController.php";
 require_once "UsersCalendarsController.php";
 require_once "UsersAvailabilitiesController.php";
 require_once "EventsRSVPController.php";

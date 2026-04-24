@@ -1,5 +1,5 @@
-import { store } from "../../store/Store.js";
-import { apiRequest } from "../ApiService";
+import { Store } from "../../store/Store.js";
+import { APIRequest } from "../APIService.js";
 import { PubSub } from "../../store/Pubsub.js";
 import { EVENTS } from "../../store/Events.js";
 
@@ -28,19 +28,23 @@ class EventsAPIService {
         })
     }
 
+    sendErrorMSG() {
+        return { error: "Something went wrong." };
+    }
+
     // Metoderna använder ApiService för att fetcha datan och ändrar state samtidigt
 
     GET() {
 
         let newIncomingEvents = [];
 
-        for (let cal of store.getState().cals) {
+        for (let cal of Store.getState().cals) {
             try {
                 // let event = await fetch(`http://localhost:8000/${cal.id}`);
                 // if (event.calId != cal.id) {
                 //     newIncomingEvents.push(event);
                 // }
-                let event = apiRequest({ entity: `events?${cal.id}`, method: "GET" });
+                let event = APIRequest({ entity: `events?${cal.id}`, method: "GET" });
                 if (event.calId != cal.id) {
                     newIncomingEvents.push(event);
                 }
@@ -50,34 +54,34 @@ class EventsAPIService {
             }
         }
         if (newIncomingEvents.length > 0) {
-            let state = store.getState();
+            let state = Store.getState();
             for (let newEvent of newIncomingEvents) {
                 state.events.push(newEvent);
             }
-            store.setState(state);
+            Store.setState(state);
             PubSub.publish(EVENTS.RESPONSE.SENT.GET);
         }
     }
 
     POST(newEvent) {
 
+        // Does it need controllers for incoming request? Server should handle it instead of frontend
+        if (!newEvent) {
+            PubSub.publish(EVENTS.REQUEST.ERROR.EVENTS.POST);
+            return this.sendErrorMSG();
+        }
+
+
+
         try {
-            // let postEvent = await fetch(`http://localhost:8000`, {
-            //     method: "POST",
-            //     body: JSON.stringify({ newEvent }),
-            //     headers: { "Content-Type": "application/json" }
-            // })
-            // if (postEvent.status == 400) {
+            let postEvent = APIRequest({ entity: "events", method: "POST", body: newEvent });
 
-            // } else {
-            //     store.setState(newEvent);
-            // }
-
-            let postEvent = apiRequest({ entity: "events", method: "POST", body: newEvent });
-            let state = store.getState();
-            state.events.push(postEvent);
-            store.setState(state);
-            PubSub.publish(EVENTS.RESPONSE.SENT.POST, true);
+            // Set correct EVENT
+            PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
+                entity: "events",
+                method: "created",
+                responseData: postEvent,
+            });
 
         } catch (responseMessage) {
             PubSub.publish(EVENTS.RESPONSE.ERROR.EVENTS.POST, { message: responseMessage });
@@ -88,12 +92,15 @@ class EventsAPIService {
     PATCH(editedEvent) {
 
         try {
-            let patchEvent = apiRequest({ entity: "events", method: "PATCH", body: editedEven });
-            let state = store.getState();
-            state.events.filter(event => event.id != editedEvent.id);
-            state.events.push(patchEvent);
-            store.setState(state);
-            PubSub.publish(EVENTS.RESPONSE.SENT.PATCH, true);
+            let patchEvent = APIRequest({ entity: "events", method: "PATCH", body: editedEvent });
+
+            PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
+                entity: "events",
+                method: "changed",
+                responseData: patchEvent,
+            });
+
+            // PubSub.publish(EVENTS.RESPONSE.SENT.PATCH, true);
 
         } catch (responseMessage) {
             PubSub.publish(EVENTS.RESPONSE.ERROR.EVENTS.PATCH, { message: responseMessage });
@@ -103,14 +110,18 @@ class EventsAPIService {
     DELETE(selectedEvent) {
 
         try {
-            let deleteEvent = apiRequest({ entity: "events", method: "DELETE", body: selectedEvent })
-            let state = store.getState();
-            state.events.filter(event => event.id != selectedEvent.id);
-            store.setState(state);
-            PubSub.publish(EVENTS.RESPONSE.SENT.DELETE, true);
+            let deleteEvent = APIRequest({ entity: "events", method: "DELETE", body: selectedEvent })
+
+            PubSub.publish(EVENTS.DATA.UPDATED.EVENTS, {
+                entity: "events",
+                method: "deleted",
+                responseData: deleteEvent,
+            });
+
 
         } catch (responseMessage) {
             PubSub.publish(EVENTS.RESPONSE.ERROR.EVENTS.DELETE, { message: responseMessage });
+
         }
 
     }

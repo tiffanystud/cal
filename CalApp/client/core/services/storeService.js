@@ -1,16 +1,16 @@
-import { apiRequest } from "./APIService.js";
+import { APIRequest } from "./APIService.js";
 import { PubSub } from "../store/Pubsub.js";
-import { store } from "../store/Store.js";
+import { Store } from "../store/Store.js";
 import { EVENTS } from "../store/Events.js";
 
 
 export class storeService {
 
     constructor() {
-        this.subs();
+        // this.subs();
     }
 
-    subs() {
+    viewServiceSubs() {
 
         // Auth
         PubSub.subscribe(EVENTS.AUTH.LOGIN.START, async (payload) => {
@@ -20,7 +20,7 @@ export class storeService {
             try {
 
                 // Get User
-                const currUser = await apiRequest({
+                const currUser = await APIRequest({
                     entity: `users?id=${userId}`,
                     method: "GET"
                 });
@@ -29,7 +29,7 @@ export class storeService {
                     return;
                 }
 
-                store.setState({
+                Store.setState({
                     isLoggedIn: {
                         id: currUser.id,
                         username: currUser.name,
@@ -42,7 +42,7 @@ export class storeService {
 
                 try {
 
-                    usergroups = await apiRequest({
+                    usergroups = await APIRequest({
                         entity: `users_calendars?userId=${userId}`,
                         method: "GET"
                     });
@@ -61,7 +61,7 @@ export class storeService {
 
                 try {
 
-                    friends = await apiRequest({
+                    friends = await APIRequest({
                         entity: `friendships?userId=${userId}`,
                         method: "GET"
                     });
@@ -80,7 +80,7 @@ export class storeService {
 
                 try {
 
-                    privateMessages = await apiRequest({
+                    privateMessages = await APIRequest({
                         entity: `private_msg`,
                         method: "GET"
                     });
@@ -105,7 +105,7 @@ export class storeService {
                         let msgs;
 
                         try {
-                            msgs = await apiRequest({
+                            msgs = await APIRequest({
                                 entity: `calendar_msg?senderId=${userId}&calId=${ug.calId}`,
                                 method: "GET"
                             });
@@ -130,7 +130,7 @@ export class storeService {
                 let pinned;
 
                 try {
-                    pinned = await apiRequest({
+                    pinned = await APIRequest({
                         entity: `users_pinned_calenders?userId=${userId}`,
                         method: "GET"
                     });
@@ -148,7 +148,7 @@ export class storeService {
                 let availabilities;
 
                 try {
-                    availabilities = await apiRequest({
+                    availabilities = await APIRequest({
                         entity: `users_availabilities?userId=${userId}`,
                         method: "GET"
                     });
@@ -172,7 +172,7 @@ export class storeService {
                         let cal;
 
                         try {
-                            cal = await apiRequest({
+                            cal = await APIRequest({
                                 entity: `calendars?id=${ug.calId}`,
                                 method: "GET"
                             });
@@ -194,7 +194,7 @@ export class storeService {
 
                 if (userId) {
                     try {
-                        notis = await apiRequest({
+                        notis = await APIRequest({
                             entity: `notifications?userId=${userId}`,
                             method: "GET"
                         });
@@ -214,7 +214,7 @@ export class storeService {
                         let eventsForCal;
 
                         try {
-                            eventsForCal = await apiRequest({
+                            eventsForCal = await APIRequest({
                                 entity: `events?calId=${cal.id}`,
                                 method: "GET"
                             });
@@ -234,7 +234,7 @@ export class storeService {
                     }
                 }
 
-                store.setState({
+                Store.setState({
                     usergroups: usergroups,
                     cals: cals,
                     events: events,
@@ -259,7 +259,7 @@ export class storeService {
 
         PubSub.subscribe(EVENTS.AUTH.LOGOUT.START, () => {
 
-            store.resetState();
+            Store.resetState();
 
             PubSub.publish(EVENTS.AUTH.LOGOUT.SUCCESS, null, true);
             PubSub.publish(EVENTS.DATA.UPDATED.ISLOGGEDIN, null, true);
@@ -270,7 +270,7 @@ export class storeService {
         PubSub.subscribe(EVENTS.DATA.SELECTED.CALENDARS, (ids = null) => {
             // Expects array if sevral
 
-            const currStateNotis = store.getState().cals;
+            const currStateNotis = Store.getState().cals;
 
             // No ID (return all)
             if (!ids) return currStateNotis;
@@ -293,7 +293,7 @@ export class storeService {
         PubSub.subscribe(EVENTS.DATA.SELECTED.NOTIFICATIONS, (ids = null) => {
             // Expects array if sevral
 
-            const currStateNotis = store.getState().notis;
+            const currStateNotis = Store.getState().notis;
 
             // No ID (return all)
             if (!ids) return currStateNotis;
@@ -314,7 +314,7 @@ export class storeService {
 
         PubSub.subscribe(EVENTS.DATA.SELECTED.USERCALENDARS, (ids) => {
 
-            let userCalsState = store.getState().usercalendars;
+            let userCalsState = Store.getState().usercalendars;
 
             if (!ids) {
                 return userCalsState;
@@ -342,7 +342,7 @@ export class storeService {
             PubSub.publish(EVENTS.REQUEST.SENT.EVENTS.GET);
 
 
-            let eventState = store.getState().events;
+            let eventState = Store.getState().events;
 
             if (!ids) {
                 return eventState;
@@ -367,7 +367,7 @@ export class storeService {
 
         PubSub.subscribe(EVENTS.DATA.SELECTED.EVENTSRSVP, (ids) => {
 
-            let eventRsvpState = store.getState().eventsRsvp;
+            let eventRsvpState = Store.getState().eventsRsvp;
 
             if (!ids) {
                 return eventRsvpState;
@@ -390,12 +390,40 @@ export class storeService {
 
         })
 
+    }
+
+    apiServiceSubs() {
+
+        // Takes entitiyname, method and responsedata from api to setState. This makes the event unified for all entities,
+        // instead of having more subscribes per entitiy and method here.
+        PubSub.subscribe(EVENTS.DATA.UPDATED, (data) => {
+
+            let entityArray = Store.getState()[data.entity];
+
+            if (data.method == "created") {
+
+                Store.setState({ [data.entity]: [...entityArray, data.responseData] })
+            }
+
+            else if (data.method == "changed") {
+                let filteredArray = entityArray.filter(obj => obj.id != data.responseData.id);
+                Store.setState({ [data.entity]: [...filteredArray, data.responseData] });
+            }
+
+            else if (data.method == "deleted") {
+
+                let filteredArray = entityArray.filter(obj => obj.id != data.responseData.id);
+                Store.setState({ [data.entity]: filteredArray });
+            }
+        })
+
+
 
     }
 
+
     // Use to subscribe to changes in state
     static getNotifiedStoreChanges(stateKey, callback) {
-        6
         // Ex ( "cals", ("newCalData") => {console.log("New Cals", newCalData)} );
         store.subscribe(stateKey, (data) => {
             callback(data);

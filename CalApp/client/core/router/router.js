@@ -41,4 +41,4 @@ export class router {
 
 }
 
-export const Router = new Router();
+export const Router = new router();

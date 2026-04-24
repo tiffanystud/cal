@@ -37,10 +37,10 @@ export class WeekChartElem extends HTMLElement {
         
     }
 
-    render() {
+    createWeekCells() {
 
+        const weekdays = this.getCurrWeek();
         let html = ``;
-        let weekdays = this.getCurrWeek();
 
         for (let day of weekdays) {
             if (day.isToday) {
@@ -59,6 +59,12 @@ export class WeekChartElem extends HTMLElement {
                 `;
             }
         }
+        
+        return html;
+        
+    }
+    
+    render() {
 
         this.shadowRoot.innerHTML = `
             <style>
@@ -95,7 +101,9 @@ export class WeekChartElem extends HTMLElement {
                     border: 1px solid #84b291;
                 }
             </style>
-            <div id="week">${html}</div>
+            
+            <div id="week">${this.createWeekCells()}</div>
+            
         `;
 
     }
