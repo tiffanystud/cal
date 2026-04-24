@@ -13,15 +13,15 @@ class EventsController {
             if($method == "GET") {
                 if(isset($input["calId"])) {
                     $data = EventsService::getByParams($input);
-                    sendJson([$data],200);
+                    sendJSON([$data],200);
                 }
                 if(isset($input["eventId"])) {
                     $data = EventsService::getByParams($input);
-                    sendJson([$data],200);
+                    sendJSON([$data],200);
                 }
                 if(empty($input)) {
                     $data = EventsService::getAll($input);
-                    sendJson([$data],200);
+                    sendJSON([$data],200);
                 }
 
             } elseif($method == "POST") {
@@ -29,20 +29,20 @@ class EventsController {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventsService::post($input);
-                sendJson([$data],201);
+                sendJSON([$data],201);
 
             } elseif($method == "PATCH") {
                 if(!isset($input["eventId"]) || !isset($input["calId"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventsService::patch($input);
-                sendJson([$data],200);
+                sendJSON([$data],200);
             } elseif($method == "DELETE") {
                 if(!isset($input["eventId"]) || !isset($input["calId"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventsService::delete($input);
-                sendJson([$data],200);
+                sendJSON([$data],200);
             }
         } catch (Exception $error) {
             self::errorHandler($error);
@@ -57,31 +57,31 @@ class EventsController {
 
         //GET PARAMS
         if($message === "No event(s) found") {
-            sendJson(["error" => "No event(s) found"], 404);
+            sendJSON(["error" => "No event(s) found"], 404);
         }
 
         //POST
         if($message === "Missing attributes") {
-            sendJson(["error" => "Missing attributes"], 400);
+            sendJSON(["error" => "Missing attributes"], 400);
         }
         if($message === "Cal not found") {
-            sendJson(["error" => "Cal not found"], 404);
+            sendJSON(["error" => "Cal not found"], 404);
         }
 
         //PATCH
         if($message === "Missing attributes") {
-            sendJson(["error" => "Missing attributes"], 400);
+            sendJSON(["error" => "Missing attributes"], 400);
         }
         if($message === "Not found") {
-            sendJson(["error" => "Not found"], 404);
+            sendJSON(["error" => "Not found"], 404);
         }
 
         //DELETE
         if($message === "Missing attributes") {
-            sendJson(["error" => "Missing attributes"], 400);
+            sendJSON(["error" => "Missing attributes"], 400);
         }
         if($message === "Not found") {
-            sendJson(["error" => "Not found"], 404);
+            sendJSON(["error" => "Not found"], 404);
         }
 
     }

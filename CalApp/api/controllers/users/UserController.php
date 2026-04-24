@@ -1,121 +1,92 @@
 <?php
 
     require_once __DIR__ . "/../../services/UserService.php";
+    require_once __DIR__ . "/../sendJSON.php";
+
 
     class UserController {
         public static function handle($method, $input) {
-            if($method === "GET") {
-                if(isset($input["id"])){
-                    $result = UserService::getSpecUser($input["id"]);
-                    if(isset($result["error"])) {
-                        http_response_code(404);
-                        echo json_encode($result);
-                        return;
-                    } else {
-                        http_response_code(200);
-                        echo json_encode($result);
-                        return;
+            try {
+                if($method === "GET") {
+                    if(empty($input)){
+                        $data = UserService::getAll($input);
+                        sendJSON([$data],200);
                     }
-                } else if (isset($input["calId"])){
-                    try {
-                        $result = UserService::getUsersInCal($input["calId"]);
-                        http_response_code(200);
-                        echo json_encode($result);
-                        return;
-                    } catch (Exception $exc) {
-                        http_response_code(404);
-                        echo json_encode(["error" => $exc->getMessage()]);
-                        return;
+                    if(isset($input["id"])){
+                        $data = UserService::getByParams($input);
+                        sendJSON([$data],200);
                     }
-                    
-                }
-                $result = UserService::getAllUsers();
-                http_response_code(200);
-                echo json_encode($result);
-                return;
-            }
-            if($method === "POST") {
-                if(isset($input["name"]) && isset($input["email"]) && isset($input["pwd"])) {
-                    $result = UserService::createNewUser($input); //new user
-                    if(isset($result["error"])) {
-                        http_response_code(409);
-                        echo json_encode($result);
-                        return;
-                    } else {
-                        http_response_code(201);
-                        echo json_encode($result);
-                        return;
+                } elseif($method === "POST") {
+                    if(!isset($input["name"]) || !isset($input["email"]) || !isset($input["password"])) {
+                        throw new Exception("Missing fields");
                     }
-                } else {
-                    http_response_code(400);
-                    echo json_encode(["error" => "Missing fields"]);
-                    return;
-                }
-                
-            }
-            if($method === "PATCH") {
-                if(isset($input["id"])){
-                    $name = $input["name"] ?? null;
-                    $pwd =  $input["pwd"] ?? null;
-                    $email = $input["email"] ?? null;
-
-                    $data = [                      
-                        "name" => $name,
-                        "pwd" => $pwd,
-                        "email" => $email                       
-                    ];
-                    $result = UserService::changeUser($input["id"], $data);
-                    if(isset($result["error"])) {
-                        http_response_code(404);
-                        echo json_encode($result);
-                        return;
-                    } else {
-                        http_response_code(200);
-                        echo json_encode(["message" => "Update OK"]);
-                        return;
+                    $data = UserService::post($input);
+                    sendJSON([$data],201);
+                } elseif($method === "PATCH") {
+                    if(!isset($input["userId"])) {
+                        throw new Exception("Missing userId parameter");
                     }
-                    
-                } else {
-                    http_response_code(400);
-                    echo json_encode(["error" => "Missing user id parameter"]);
-                    return;
+                    $data = UserService::patch($input);
+                    sendJSON([$data],200);
+                } elseif($method === "DELETE") {
+                    if(!isset($input["userId"]) || !isset($input["email"]) || !isset($input["password"])) {
+                        throw new Exception("Missing fields");
+                    }
+                    $data = UserService::delete($input);
+                    sendJSON([$data],200);
                 }
 
+            } catch(Exception $error) {
+                self::errorHandler($error);
             }
-            if($method === "DELETE") {
-                if(isset($input["id"])){
-                    if(isset($input["email"]) && isset($input["pwd"])) {
-                        $result = UserService::deleteUser($input);
-                        if($result === ["error" => "User not found"]){ 
-                            http_response_code(404);
-                            echo json_encode($result);
-                            return;
-                        } elseif($result === ["error" => "Invalid email or password"]) {
-                            http_response_code(403);
-                            echo json_encode($result);
-                            return;
-                        } elseif(["message" => "User succesfully deleted"] ) {
-                            http_response_code(200);
-                            echo json_encode(["message" => "User succesfully deleted"]);
-                            return;
-                        }
-                    } else {
-                        http_response_code(400);
-                        echo json_encode(["error" => "Missing fields"]);
-                        return;
-                    }
-                } else {
-                    http_response_code(400);
-                    echo json_encode(["error" => "Missing userId"]);
-                    return;
-                }
-            }
-
         }
 
+        public static function errorHandler($error) {
+            $message = $error->getMessage(); 
+
+            //GET PARAMS
+            if($message === "User not found") {
+                sendJSON(["error" => "User not found"], 404);
+            }
+
+            //GET
+
+            //POST
+            if($message === "Missing fields") {
+                sendJSON(["error" => "Missing fields"], 400);
+            }
+            if($message === "User aldready exists") {
+                sendJSON(["error" => "User aldready exists"], 409);
+            }
 
 
+            //PATCH
+            if($message === "Missing userId parameter") {
+                sendJSON(["error" => "Missing userId parameter"], 400);
+            }
+            if($message === "User not found") {
+                sendJSON(["error" => "User not found"], 404);
+            }
+
+            //DELETE
+            if($message === "Missing fields") {
+                sendJSON(["error" => "Missing fields"], 400);
+            }
+            if($message === "Invalid email or password") {
+                sendJSON(["error" => "Invalid email or password"], 403);
+            }
+            if($message === "User not found") {
+                sendJSON(["error" => "User not found"], 404);
+            }
+
+
+            
+
+
+        }
     }
+
+    
 
 
 ?>

@@ -3,7 +3,7 @@
     require_once __DIR__ . "/../sendJSON.php";
 
     class PrivateMsgController {
-        public static function handle($method, $input) { //private_msg?senderId=string&receiverId=string
+        public static function handle($method, $input) { 
             try {
                 if($method === "GET") { 
                     if(isset($input["senderId"]) && isset($input["receiverId"])) {

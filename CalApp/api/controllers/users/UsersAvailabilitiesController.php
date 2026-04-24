@@ -1,183 +1,82 @@
 <?php
 
 require_once __DIR__ . "/../../services/UsersAvailabilitiesService.php";
+require_once __DIR__ . "/../sendJSON.php";
+
 class UsersAvailabilitiesController {
+    public static function handle($method, $input) { 
+        try {
 
-    /* -- RESPONSES -- */
-    static function bubbleError($exc, $sender)
-    {
-
-        $responseCode;
-
-        // Check exc msg for response code
-        switch ($exc->getMessage()) {
-
-            case "Missing attributes":
-                $responseCode = 400;
-                break;
-
-            case "Availability not found":
-            case "User or calendar not found":
-                $responseCode = 404;
-                break;
-
-            case "Availability already exists":
-                $responseCode = 409;
-                break;
-
-            // Not an error, valid
-            case "No changes made":
-                $response = $exc; // Eller vad ska jag sätta här?
-                $status = 409;
-                return self::bubbleMessage($response, $status);
-
-            default:
-                $positionMsg = " (Thrown at: " . $sender . "), bubbled at: bubbleError ";
-                return self::bubbleDefault($positionMsg, 400);
-        }
-
-        http_response_code($responseCode);
-        echo json_encode(["error" => $exc->getMessage()]);
-        exit;
-    }
-
-    static function bubbleMessage($response, $responseCode)
-    {
-        http_response_code($responseCode);
-
-        // Hanterar arrays eller exc
-        if (is_array($response)) {
-            echo json_encode($response);
-            exit;
-        }
-
-        echo json_encode(["message" => $response->getMessage()]);
-        exit;
-    }
-
-    static function bubbleData($data, $status)
-    {
-        http_response_code($status);
-        echo json_encode($data);
-        exit;
-    }
-
-    static function bubbleDefault($position, $status)
-    {
-
-        // Se över **
-        $production = false;
-        if ($production) {
-            // var_dump("Default bubble at: " . $position . " ----- UsersAvailabilitiesController.php ----- ");
-        }
-
-        http_response_code($status);
-        echo json_encode(new Exception("Something went wrong"));
-        exit;
-    }
-
-
-    /* -- HANDLER -- */
-    public static function handle($method, $input)
-    {
-
-        if ($method == "GET") {
-
-            $userId = $_GET["userId"] ?? null;
-            $date = $_GET["date"] ?? null;
-
-            try {
-
-                if (!isset($userId, $date)) {
+            if($method === "GET") {
+                if(isset($input["userId"]) && isset($input["date"])) {
+                    $data = UsersAvailabilitiesService::getByParams($input);
+                    sendJSON([$data],200);
+                } else {
                     throw new Exception("Missing attributes");
                 }
-
-                $result = UsersAvailabilitiesService::getAll($userId, $date);
-                return self::bubbleData($result, 200);
-
-            } catch (Exception $exc) {
-
-                return self::bubbleError($exc, "GET/ catch-block");
-
-            }
-        }
-
-
-        if ($method == "POST") {
-
-            try {
-
-                $userId = $input["userId"] ?? null;
-                $date = $input["date"] ?? null;
-                $isAvailable = $input["isAvailable"] ?? null;
-                $calId = $input["calId"] ?? null;
-
-                if (!isset($userId, $date, $isAvailable, $calId)) {
-                    $exc = new ErrorException("Missing attributes");
-                    return self::bubbleError($exc, "POST /try-block");
+            
+            } elseif($method === "POST") {
+                if(!isset($input["userId"]) || !isset($input["date"]) || !isset($input["isAvailable"]) || !isset($input["calId"])) {
+                    throw new Exception("Missing attributes");
                 }
-                    
-                $result = UsersAvailabilitiesService::create($userId, $date, $isAvailable, $calId);
-                return self::bubbleMessage($result, 201);
-
-            } catch (Exception $exc) {
-
-                return self::bubbleError($exc, "POST /catch-block");
-
-            }
-
-
-        }
-
-        if ($method == "PATCH") {
-
-            try {
-
-                $userId = $input["userId"] ?? null;
-                $date = $input["date"] ?? null;
-                $isAvailable = $input["isAvailable"] ?? null;
-                $calId = $input["calId"] ?? null;
-
-                if (!isset($userId, $date, $isAvailable, $calId)) {
-                    $exc = new Exception("Missing attributes");
-                    return self::bubbleError($exc, "PATCH /try-block");
+                $data = UsersAvailabilitiesService::post($input);
+                sendJSON([$data],201);
+            } elseif($method === "PATCH") {
+                if(!isset($input["userId"]) || !isset($input["calId"])) {
+                    throw new Exception("Missing attributes");
                 }
-                    
-                $result = UsersAvailabilitiesService::update($input);
-                return self::bubbleMessage($result, 200);
-
-            } catch (Exception $exc) {
-
-                return self::bubbleError($exc, "PATCH /catch-block");
-
-            }
-
-        }
-
-        if ($method == "DELETE") {
-
-            try {
-
-                $userId = $input["userId"] ?? null;
-                $date = $input["date"] ?? null;
-                $calId = $input["calId"] ?? null;
-
-                // If input exists
-                if (!isset($userId, $date, $calId)) {
-                    $exc = new ErrorException("Missing attributes");
-                    return self::bubbleError($exc, "DELETE /try-block");
+                $data = UsersAvailabilitiesService::patch($input);
+                sendJSON([$data],200);
+            } elseif($method === "DELETE") {
+                if(!isset($input["userId"]) || !isset($input["calId"]) || !isset($input["date"])) {
+                    throw new Exception("Missing attributes");
                 }
-                    
-                $result = UsersAvailabilitiesService::delete($userId, $date, $calId);
-                return self::bubbleMessage($result, 200);
-
-            } catch (Exception $exc) {
-
-                return self::bubbleError($exc, "DELETE /catch-block");
-
+                $data = UsersAvailabilitiesService::delete($input);
+                sendJSON([$data],200);
             }
-        }
 
+        } catch(Exception $error) {
+            self::errorHandler($error);
+        }
     }
+    public static function errorHandler($error) {
+        $message = $error->getMessage(); 
 
+        //GET PARAMS
+        if($message === "Missing attributes") {
+            sendJSON(["error" => "Missing attributes"], 400);
+        }
+        if($message === "Availability not found") { 
+            sendJSON(["error" => "Availability not found"], 404);
+        }
+        //POST
+        if($message === "Missing attributes") {
+            sendJSON(["error" => "Missing attributes"], 400);
+        }
+        if($message === "User or calendar not found") {
+            sendJSON(["error" => "User or calendar not found"], 404);
+        }
+        if($message === "Availability already exists") {
+            sendJSON(["error" => "Availability already exists"], 409);
+        }
+    
+        //PATCH
+        if($message === "Missing attributes") { 
+            sendJSON(["error" => "Missing attributes"], 400);
+        }
+        if($message === "Availability not found") { 
+            sendJSON(["error" => "Availability not found"], 404);
+        }
+        if($message === "No changes made") { 
+            sendJSON(["error" => "No changes made"], 409);
+        }
+
+        //DELETE
+        if($message === "Missing attributes") {
+            sendJSON(["error" => "Missing attributes"], 400);
+        }
+        if($message === "Availability not found") { 
+            sendJSON(["error" => "Availability not found"], 404);
+        }
+    }
 }
