@@ -10,19 +10,19 @@ class EventAdminsController {
             if($method == "GET") {
                 if(isset($input["eventId"]) && isset($input["userId"])) {
                     $data = EventAdminsService::getByParams($input);
-                    sendJson([$data],200);
+                    sendJSON([$data],200);
                 }
                 if(isset($input["eventId"])) {
                     $data = EventAdminsService::getByParams($input);
-                    sendJson([$data],200);
+                    sendJSON([$data],200);
                 }
                 if(isset($input["userId"])) {
                     $data = EventAdminsService::getByParams($input);
-                    sendJson([$data],200);
+                    sendJSON([$data],200);
                 }
                 if(empty($input)) {
                     $data = EventAdminsService::getAll($input);
-                    sendJson([$data],200);
+                    sendJSON([$data],200);
                 }
                 throw new Exception("Missing attributes");
 
@@ -31,21 +31,21 @@ class EventAdminsController {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventAdminsService::post($input);
-                sendJson([$data],200);
+                sendJSON([$data],200);
 
             } elseif($method == "PATCH") {
                 if(!isset($input["userId"]) || !isset($input["eventId"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventAdminsService::patch($input);
-                sendJson([$data],200);
+                sendJSON([$data],200);
 
             } elseif($method == "DELETE") {
                 if(!isset($input["userId"]) || !isset($input["eventId"])) {
                     throw new Exception("Missing attributes");
                 }
                 $data = EventAdminsService::delete($input);
-                sendJson([$data],200);
+                sendJSON([$data],200);
             }
         } catch(Exception $error) {
             self::errorHandler($error);
@@ -58,32 +58,32 @@ class EventAdminsController {
 
         //GET PARAMS
         if($message == "Not found") {
-            sendJson(["error" => "Not found"], 404);
+            sendJSON(["error" => "Not found"], 404);
         }
 
         //POST
         if($message === "Missing attributes") {
-            sendJson(["error" => "Missing attributes"], 400);
+            sendJSON(["error" => "Missing attributes"], 400);
         }
         if($message == "Not found") {
-            sendJson(["error" => "Not found"], 404);
+            sendJSON(["error" => "Not found"], 404);
         }
 
         //PATCH
         if($message === "Missing attributes") {
-            sendJson(["error" => "Missing attributes"], 400);
+            sendJSON(["error" => "Missing attributes"], 400);
         }
         if($message == "Not found") {
-            sendJson(["error" => "Not found"], 404);
+            sendJSON(["error" => "Not found"], 404);
         }
 
 
         //DELETE
         if($message === "Missing attributes") {
-            sendJson(["error" => "Missing attributes"], 400);
+            sendJSON(["error" => "Missing attributes"], 400);
         }
         if($message == "Not found") {
-            sendJson(["error" => "Not found"], 404);
+            sendJSON(["error" => "Not found"], 404);
         }
 
 

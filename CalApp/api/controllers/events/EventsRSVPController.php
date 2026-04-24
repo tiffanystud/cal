@@ -71,6 +71,9 @@ class EventsRSVPController {
         if($message === "RSVP not found") {
             sendJson(["error" => "RSVP not found"], 404);
         }
+        
+
+        
 
 
 

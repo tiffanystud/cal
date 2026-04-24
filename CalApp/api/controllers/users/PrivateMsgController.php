@@ -1,76 +1,73 @@
 <?php
     require_once __DIR__ . "/../../services/PrivateMsgService.php";
+    require_once __DIR__ . "/../sendJSON.php";
+
     class PrivateMsgController {
-        public static function handle($method, $input) {
-            if($method === "GET") {
-                $result = PrivateMsgService::getAllPrivateMsg();
-                if(empty($result)) {
-                    http_response_code(404);
-                    echo json_encode(["error" => "No private messages found"]);
-                    return;
-                } else {
-                    http_response_code(200);
-                    echo json_encode($result);
-                    return;
-                }
-            }
-            if($method === "POST") {
-                if(isset($input["userId"]) && isset($input["receiverId"]) && isset($input["content"])){
-                    $result = PrivateMsgService::createNewPrivMsg($input);
-                    if(isset($result["error"])){
-                        http_response_code(404);
-                        echo json_encode($result);
-                        return;
-                    } else {
-                        http_response_code(200);
-                        echo json_encode(["message" => "Message is send to receiver"]);
-                        return;
+        public static function handle($method, $input) { //private_msg?senderId=string&receiverId=string
+            try {
+                if($method === "GET") { 
+                    if(isset($input["senderId"]) && isset($input["receiverId"])) {
+                        $data = PrivateMsgService::getByParams($input);
+                        sendJSON([$data],200);
                     }
+                } elseif($method === "POST") {
+                    if(!isset($input["userId"]) || !isset($input["receiverId"]) || !isset($input["content"])) {
+                        throw new Exception("Bad request");
+                    }
+                    $data = PrivateMsgService::post($input);
+                    sendJSON([$data],200);
+                } elseif($method === "PATCH") {
+                    if(!isset($input["privMsgId"]) || !isset($input["content"])) {
+                        throw new Exception("Bad request");
+                    }
+                    $data = PrivateMsgService::patch($input);
+                    sendJSON([$data],200);
+
+                } elseif($method == "DELETE") {
+                    if(!isset($input["privMsgId"])) {
+                        throw new Exception("Bad request");
+                    }
+                    $data = PrivateMsgService::delete($input);
+                    sendJSON([$data],200);
+                }
+            } catch(Exception $error) {
+                self::errorHandler($error);
+            }
+
+        }
+        public static function errorHandler($error) {
+            $message = $error->getMessage(); 
+
+            //GET PARAM
+            if($message === "No messages found") {
+                sendJSON(["error" => $message], 404);
+            } 
+
+            //POST
+            if($message === "Bad request") {
+                sendJSON(["error" => $message], 400);
+            } 
+            if($message === "The receiver or sender doesn't exist") {
+                sendJSON(["error" => $message], 404);
+            }
+            //PATCH
+            if($message === "Bad request") {
+                sendJSON(["error" => $message], 400);
+            } 
+            if($message === "The message couldn't be found") {
+                sendJSON(["error" => $message], 404);
+            }
+            //DELETE
+            if($message === "Bad request") {
+                sendJSON(["error" => $message], 400);
+            } 
+            if($message === "The message couldn't be found") {
+                sendJSON(["error" => $message], 404);
+            }
 
 
-                } else {
-                    http_response_code(400);
-                    echo json_encode(["error" => "Bad request"]);
-                    return;
-                }
-            }
-            if($method === "PATCH") {
-                if(isset($input["privMsgId"]) && isset($input["content"])) {
-                    $result = PrivateMsgService::changePrivMsg($input);
-                    if(isset($result["error"])) {
-                        http_response_code(404);
-                        echo json_encode($result);
-                        return;
-                    } else {
-                        http_response_code(200);
-                        echo json_encode(["message" => "Successfully update message"]);
-                        return;
-                    }
-                } else {
-                    http_response_code(400);
-                    echo json_encode(["error" => "Bad request"]);
-                    return;
-                }
-            }
-            if($method === "DELETE") {
-                if(isset($input["privMsgId"])) {
-                    $result = PrivateMsgService::deletePrivMsg($input["privMsgId"]);
-                    if(isset($result["error"])) {
-                        http_response_code(404);
-                        echo json_encode($result);
-                        return;
-                    } else {
-                        http_response_code(200);
-                        echo json_encode($result);
-                        return;
-                    }
-                } else {
-                    http_response_code(400);
-                    echo json_encode(["error" => "Bad request"]);
-                    return;
-                }
+            
 
-            }
 
         }
     }
