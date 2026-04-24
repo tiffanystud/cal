@@ -10,29 +10,20 @@ class UsersAvailabilitiesController {
             if($method === "GET") {
                 if(isset($input["userId"]) && isset($input["date"])) {
                     $data = UsersAvailabilitiesService::getByParams($input);
-                    sendJSON([$data],200);
+                    sendJSON($data,200);
                 } else {
                     throw new Exception("Missing attributes");
                 }
             
             } elseif($method === "POST") {
-                if(!isset($input["userId"]) || !isset($input["date"]) || !isset($input["isAvailable"]) || !isset($input["calId"])) {
-                    throw new Exception("Missing attributes");
-                }
                 $data = UsersAvailabilitiesService::post($input);
-                sendJSON([$data],201);
+                sendJSON($data,201);
             } elseif($method === "PATCH") {
-                if(!isset($input["userId"]) || !isset($input["calId"])) {
-                    throw new Exception("Missing attributes");
-                }
                 $data = UsersAvailabilitiesService::patch($input);
-                sendJSON([$data],200);
+                sendJSON($data,200);
             } elseif($method === "DELETE") {
-                if(!isset($input["userId"]) || !isset($input["calId"]) || !isset($input["date"])) {
-                    throw new Exception("Missing attributes");
-                }
                 $data = UsersAvailabilitiesService::delete($input);
-                sendJSON([$data],200);
+                sendJSON($data,200);
             }
 
         } catch(Exception $error) {
