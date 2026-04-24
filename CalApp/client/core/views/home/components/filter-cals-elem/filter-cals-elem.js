@@ -46,7 +46,7 @@ class FilterCalsElem extends HTMLElement {
 
     createBoxes() {
 
-        if (!this.data) return console.log("I DONT HAVE THE DATA YET");
+        if (!this.data) return // console.log("I DONT HAVE THE DATA YET");
         let calBoxHTML = "";
 
         for (let currCal of this.data) {

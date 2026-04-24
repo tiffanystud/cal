@@ -12,7 +12,7 @@
 export async function APIRequest({ entity, method, body = null }) {
 
     // DEVELOPMENT
-    console.log(`RECEIVED REQUEST: ${entity} ${method} ${body} -`);
+    console.log(`RECEIVED REQUEST: (entity): ${entity} (method): ${method} (body): ${body}`);
 
     const options = {
         method: method.toUpperCase(),

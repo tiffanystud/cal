@@ -46,12 +46,12 @@ export class HomeViewService {
         PubSub.subscribe(EVENTS.AUTH.LOGIN.SUCCESS, () => {
             this.isLoggedIn = true;
             PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME);
-        }, true);
+        });
 
         PubSub.subscribe(EVENTS.AUTH.LOGOUT.SUCCESS, () => {
             this.isLoggedIn = false;
             PubSub.publish(EVENTS.VIEW.PAGE.SHOW.HOME);
-        }, true);
+        });
 
         PubSub.subscribe(EVENTS.VIEW.PAGE.SHOW.HOME, () => {
             // Show (!loggedIn || loggedIn) home view
