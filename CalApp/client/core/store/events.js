@@ -61,8 +61,17 @@ export const EVENTS = {
         },
 
         RETURNED: {
-            MESSAGES: "data:returned:messages"
+            MESSAGES: "data:returned:messages",
             EVENTSRSVP: "data:selected:eventsrsvp",
+            TEST: "data:returned:test",
+            CALENDARS: "data:returned:calendars",
+            USERS: "data:returned:users",
+            EVENTS: "data:returned:events",
+            USERSCALENDARS: "data:returned:userscalendars",
+            NOTIFICATIONS: "data:returned:notifications",
+            PRIVATE_MSG: "data:returned:private_msg",
+            CALENDAR_MSG: "data:returned:calendar_msg",
+            SEARCHMOAL: "data:returned:searchmodal",
         },
 
         SELECTED: {
