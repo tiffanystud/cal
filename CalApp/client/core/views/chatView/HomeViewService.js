@@ -24,13 +24,6 @@ export class HomeViewService {
             usersFilteredCals: null
         };
 
-        this.userData = {
-            // Filtered data for one user, ex. "events", just for users UC-events
-            events: null,
-            calendars: null,
-            userCals: null
-        }
-
         this.subs();
         // this.eListeners();
     }
@@ -68,35 +61,15 @@ export class HomeViewService {
 
         // COMPONENT-SPECIFIC, REMINDER: some needs to be unsubbed when view changes
         this.unsubReqCalendars = PubSub.subscribe(EVENTS.RESOURCE.RECEIVED.CALENDARS.GET, (allCals) => {
-
             this.data.allCalendars = allCals;
             this.tryBuildUserCalendars();
-            this.tryUserEvents();
-
-            if (!this.userData.userCals) return PubSub.publish(EVENTS.REQUEST.SENT.USERSCALENDARS.GET);
-            this.userData.calendars;
-            // Try to make more abstract further on
-            this.tryBuildUserCalendars();
-            this.tryUserEvents();
         });
 
         PubSub.subscribe(EVENTS.RESOURCE.RECEIVED.USERSCALENDARS.GET, (allUGs) => {
-
             this.data.allUGs = allUGs;
-
-            const dummyUserId = "65f3aa11a01e";
-            const userUCs = this.data.allUGs.filter(ug => ug.userId === dummyUserId);
-            this.userData.userCals = userUCs;
-            
-            // Try to make more abstract further on
             this.tryBuildUserCalendars();
-            this.tryUserEvents();
         });
 
-        PubSub.subscribe(EVENTS.RESOURCE.RECEIVED.EVENTS.GET, (allEvents) => {
-            this.data.allEvents = allEvents;
-            this.tryUserEvents();
-        })
 
         /* this.unsubSelectedCalendars = PubSub.subscribe(EVENTS.DATA.SELECTED.CALENDARS, function (data) {
 
@@ -166,7 +139,6 @@ export class HomeViewService {
         const detailContainer = document.querySelector("detail-container");
         const filterCals = document.querySelector("filter-cals"); 
         */
-
         const createPopup = document.querySelector("create-popup");
         const eventCardPopup = document.querySelector("event-card-popup");
 
@@ -201,30 +173,9 @@ export class HomeViewService {
         PubSub.publish(EVENTS.DATA.SELECTED.CALENDARS, filteredCals);
     }
 
-    tryUserEvents() {
-
-        if (!this.data.allCalendars || !this.data.allUGs || !this.data.allEvents) return;
-
-        let filteredEvents = [];
-        for (let currEvent of this.data.allEvents) {
-            for (let currUC of this.userData.userCals) {
-                if (currUC.calId === currEvent.calId) filteredEvents.push(currEvent);
-            }
-        }
-        this.userData.events = filteredEvents;
-
-        const payload = {
-            calendars: this.userData.calendars,
-            userCals: this.userData.userCals,
-            events: this.userData.events
-        }
-
-        PubSub.publish(EVENTS.DATA.SELECTED.CALENDARS, payload)
-
-    }
 
     loadSelectedData(data) {
-        // REFACTOR TO THIS WHEN FLOW OK WITH REQ/RESOURCE
+
         if (data = "") {
             PubSub.publish(EVENTS.DATA.SELECTED.CALENDARS, data, false)
         } else if (data = "") {
@@ -235,6 +186,6 @@ export class HomeViewService {
 
     }
 
-}
+} 
 
 new HomeViewService();

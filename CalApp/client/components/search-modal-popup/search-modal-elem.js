@@ -1,3 +1,17 @@
+/* 
+<search-modal-elem 
+    entity="friends" 
+    mode="single" 
+    context="searchChats" 
+></search-modal-elem>
+
+<search-modal-elem 
+    entity="events" 
+    mode="multi" 
+    context="searchEventTags" 
+></search-modal-elem>
+*/
+
 import { PubSub } from "../../core/store/Pubsub.js";
 import { EVENTS } from "../../core/store/Events.js";
 
@@ -106,6 +120,8 @@ export class SearchModalElem extends HTMLElement {
 
     }
 
+    
+    // LOGIC
     service() {
 
         // Check if component has all data needed for result rendering

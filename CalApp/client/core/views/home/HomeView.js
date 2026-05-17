@@ -14,6 +14,10 @@ import "./components/week-chart-elem/week-chart-elem.js"
 
 export class homeView {
 
+    constructor(isLoggedIn) {
+        this.isLoggedIn = isLoggedIn;
+    }
+    
     renderHTML(isLoggedIn) {
         
         const content = document.querySelector("#content");
